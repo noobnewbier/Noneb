@@ -1,0 +1,4 @@
+Priority Queue, used for pathfinding.
+Ewww on the space in file name btw
+
+https://www.nuget.org/packages/OptimizedPriorityQueue/

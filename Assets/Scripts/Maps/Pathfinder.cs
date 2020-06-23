@@ -9,7 +9,7 @@ namespace Maps
     //https://en.wikipedia.org/wiki/A*_search_algorithm
     public class Pathfinder
     {
-        public bool TryFindPath(Tile start, Tile goal, out IList<Tile> path)
+        public bool TryFindPath(Tile start, Tile goal, Map map, out IList<Tile> path)
         {
             var tileToDiscover = new SimplePriorityQueue<Tile, float>();
             var cameFrom = new Dictionary<Tile, Tile>();
@@ -34,7 +34,7 @@ namespace Maps
                     return true;
                 }
 
-                foreach (var neighbour in current.Neighbours.Values)
+                foreach (var neighbour in map.GetNeighbours(current.Coordinate).Values)
                 {
                     var currentDistanceToNeighbour = distanceToTile[current] + neighbour.TileData.Weight;
                     if (!distanceToTile.TryGetValue(neighbour, out var previousDistanceToNeighbour))

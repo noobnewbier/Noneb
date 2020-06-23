@@ -4,9 +4,9 @@
     {
         PlusX,
         MinusX,
-        PlusY,
-        MinusY,
-        PlusXMinusY,
-        MinusXPlusY
+        PlusZ,
+        MinusZ,
+        PlusXMinusZ,
+        MinusXPlusZ
     }
 }

@@ -1,25 +1,44 @@
 ﻿using System;
-using UnityEngine;
 
 namespace Tiles
 {
     //Using Cube Coordinate : https://www.redblobgames.com/grids/hexagons/#map-storage
     [Serializable]
-    public struct Coordinate
+    public struct Coordinate : IEquatable<Coordinate>
     {
-        [SerializeField] private int x;
-        [SerializeField] private int y;
-
-        public Coordinate(int x, int y)
+        public Coordinate(int x, int z)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Z = z;
         }
 
-        public int X => x;
+        public int X { get; }
 
-        public int Y => y;
+        public int Z { get; }
 
-        public int Z => -x - y;
+        public int Y => -X - Z;
+
+        public bool Equals(Coordinate other)
+        {
+            return X == other.X && Z == other.Z;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Coordinate other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (X * 397) ^ Z;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"({X}, {Y}, {Z})";
+        }
     }
 }

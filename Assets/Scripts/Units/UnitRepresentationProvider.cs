@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Units
 {
     [CreateAssetMenu(menuName = "Providers/UnitRepresentation", fileName = "UnitRepresentationProvider")]
-    public class UnitRepresentationProvider : ObjectProvider<UnitRepresentation>
+    public class UnitRepresentationProvider : ScriptableObjectProvider<UnitRepresentation>
     {
         [SerializeField] private GameObject prefab;
         

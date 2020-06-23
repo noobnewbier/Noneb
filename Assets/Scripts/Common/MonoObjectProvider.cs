@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    public abstract class ObjectProvider<T> : ScriptableObject
+    public abstract class MonoObjectProvider<T> : MonoBehaviour, IObjectProvider<T>
     {
         public abstract T Provide();
     }

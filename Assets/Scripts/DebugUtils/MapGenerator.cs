@@ -12,47 +12,38 @@ namespace DebugUtils
     {
         [Range(0f, 1f)] [SerializeField] private float chanceOfConstructOnTile;
         [Range(0f, 1f)] [SerializeField] private float chanceOfUnitOnTile;
-        [SerializeField] private MapConfiguration configuration;
+        [SerializeField] private MapConfiguration config;
         [SerializeField] private ConstructRepresentationProvider constructRepresentationProvider;
         [SerializeField] private TileRepresentationProvider tileRepresentationProvider;
         [SerializeField] private UnitRepresentationProvider unitRepresentationProvider;
+        [SerializeField] private GameObject rowPrefab;
+
 
         [ContextMenu("GenerateMap")]
         private void GenerateMap()
         {
             var selfTransform = transform;
-            var upDistance = configuration.OuterRadius * 1.5f;
-            var sideDistance = configuration.InnerRadius * 2f;
+            var upDistance = config.OuterRadius * 1.5f;
+            var sideDistance = config.InnerRadius * 2f;
 
-            for (var i = 0; i < configuration.XSize; i++)
+            for (var i = 0; i < config.XSize; i++)
             {
+                var row = Instantiate(rowPrefab).transform;
+                row.parent = selfTransform;
                 var sideOffset = i % 2 * sideDistance / 2f;
-                for (var j = 0; j < configuration.ZSize; j++)
+                for (var j = 0; j < config.ZSize; j++)
                 {
                     var newTile = tileRepresentationProvider.Provide().gameObject.transform;
 
-                    newTile.parent = selfTransform;
+                    newTile.parent = row;
 
-                    switch (configuration.Orientation)
-                    {
-                        case HexagonOrientation.PointUp:
-                            newTile.rotation *= Quaternion.AngleAxis(30f, configuration.UpAxis);
-                            newTile.position = new Vector3(
-                                j * sideDistance + sideOffset,
-                                selfTransform.position.y,
-                                i * upDistance
-                            );
-                            break;
-                        case HexagonOrientation.PointSide:
-                            newTile.position = new Vector3(
-                                i * upDistance,
-                                selfTransform.position.y,
-                                j * sideDistance + sideOffset
-                            );
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+
+                    newTile.rotation *= Quaternion.AngleAxis(30f, config.UpAxis);
+                    newTile.position = new Vector3(
+                        j * sideDistance + sideOffset,
+                        selfTransform.position.y,
+                        i * upDistance
+                    );
                 }
             }
         }

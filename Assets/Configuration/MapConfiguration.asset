@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: MapConfiguration
   m_EditorClassIdentifier: 
   innerRadius: 1.815
-  orientation: 0
   xSize: 5
   zSize: 5
   upAxis: {x: 0, y: 0, z: 1}

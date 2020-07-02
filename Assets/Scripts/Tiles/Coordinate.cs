@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Tiles
 {
@@ -6,15 +7,18 @@ namespace Tiles
     [Serializable]
     public struct Coordinate : IEquatable<Coordinate>
     {
+        [SerializeField] private int x;
+        [SerializeField] private int z;
+
         public Coordinate(int x, int z)
         {
-            X = x;
-            Z = z;
+            this.x = x;
+            this.z = z;
         }
 
-        public int X { get; }
+        public int X => x;
 
-        public int Z { get; }
+        public int Z => z;
 
         public int Y => -X - Z;
 
@@ -39,6 +43,41 @@ namespace Tiles
         public override string ToString()
         {
             return $"({X}, {Y}, {Z})";
+        }
+
+        public static Coordinate operator +(Coordinate a, Coordinate b)
+        {
+            return new Coordinate(a.X + b.X, a.Z + b.Z);
+        }
+
+        public static bool operator ==(Coordinate a, Coordinate b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Coordinate a, Coordinate b)
+        {
+            return !(a == b);
+        }
+
+        public static Coordinate operator -(Coordinate c)
+        {
+            return new Coordinate(-c.X, -c.Z);
+        }
+
+        public static float ManhattanDistance(Coordinate a, Coordinate b)
+        {
+            return a.X - b.X +
+                   (a.Y - b.Y) +
+                   (a.Z - b.Z);
+        }
+    }
+
+    public static class CoordinateExtension
+    {
+        public static Coordinate AxialToGrid(this Coordinate c)
+        {
+            return new Coordinate(c.X + c.Z % 2 + c.Z / 2, c.Z);
         }
     }
 }

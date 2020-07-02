@@ -5,24 +5,24 @@ namespace Tiles
 {
     public class TileRepresentation : MonoBehaviour
     {
-        [SerializeField] private Tile tile;
+        public Tile Tile { get; private set; }
 
         public void Initialize(Tile t)
         {
-            tile = t;
+            Tile = t;
 
-            gameObject.name = "Tile: " + tile.Coordinate;
+            gameObject.name = "Tile: " + Tile.Coordinate;
         }
 
 
         private void OnDrawGizmosSelected()
         {
-            if (tile == null)
+            if (Tile == null)
             {
                 return;
             }
 
-            Handles.Label(transform.position,tile.Coordinate.ToString());
+            Handles.Label(transform.position,Tile.Coordinate.ToString());
         }
     }
 }

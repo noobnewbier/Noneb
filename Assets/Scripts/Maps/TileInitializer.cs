@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Common;
+﻿using Common;
 using Tiles;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,27 +6,13 @@ using UnityEngine.Assertions;
 namespace Maps
 {
     /// <summary>
-    /// Assuming attached to parent of all hexagons' rows, which contains the tiles
+    /// Assuming attached tod parent of all hexagons' rows, which contains the tiles
     /// </summary>
     public class TileInitializer : MonoBehaviour
     {
         [SerializeField] private MapConfiguration config;
+        [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
-        private IList<Transform> GetRows()
-        {
-            var toReturn = new List<Transform>();
-            for (var i = 0; i < transform.childCount; i++)
-            {
-                //do our best to ensure it is in order
-                var child = transform.GetChild(i);
-                if (child.CompareTag(ObjectTags.GridRow))
-                {
-                    toReturn.Add(child);
-                }
-            }
-
-            return toReturn;
-        }
 
         /// <summary>
         /// Assuming it's a rectangle, reference: https://www.redblobgames.com/grids/hexagons/#map-storage map-storage section
@@ -35,17 +20,17 @@ namespace Maps
         [ContextMenu("InitializeTiles")]
         private void InitializeTiles()
         {
-            var rows = GetRows();
+            var tilesTransform = tilesTransformProvider.Provide();
 
-            Assert.AreEqual(rows.Count, config.ZSize, "number of rows in this game object is different from the configuration");
+            Assert.AreEqual(tilesTransform.Count, config.ZSize * config.XSize, "Number of tile representation is different from the configuration");
 
-            for (var i = 0; i < rows.Count; i++)
+            for (var i = 0; i < config.ZSize; i++)
             for (var j = 0; j < config.XSize; j++)
             {
-                var hexGameObject = rows[i].GetChild(j);
+                var hexGameObject = tilesTransform[i * config.XSize + j].gameObject;
                 var tileData = hexGameObject.GetComponent<IObjectProvider<TileData>>().Provide();
                 var x = j + i % 2 + i / 2;
-                var z = -i;
+                var z = i;
 
                 hexGameObject.GetComponent<TileRepresentation>().Initialize(new Tile(new Coordinate(x, z), null, tileData));
             }

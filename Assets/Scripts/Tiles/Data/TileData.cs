@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tiles
+namespace Tiles.Data
 {
     [CreateAssetMenu(menuName = "Data/Tile", fileName = "TileData")]
     public class TileData : ScriptableObject

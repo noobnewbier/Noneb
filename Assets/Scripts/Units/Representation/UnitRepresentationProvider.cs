@@ -1,7 +1,7 @@
 ﻿using Common;
 using UnityEngine;
 
-namespace Units
+namespace Units.Representation
 {
     [CreateAssetMenu(menuName = "Providers/UnitRepresentation", fileName = "UnitRepresentationProvider")]
     public class UnitRepresentationProvider : ScriptableObjectProvider<UnitRepresentation>

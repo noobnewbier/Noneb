@@ -1,7 +1,7 @@
 ﻿using Common;
 using UnityEngine;
 
-namespace Tiles
+namespace Tiles.Representation
 {
     [CreateAssetMenu(menuName = "Providers/TileRepresentation", fileName = "TileRepresentationProvider")]
     public class TileRepresentationProvider : ScriptableObjectProvider<TileRepresentation>

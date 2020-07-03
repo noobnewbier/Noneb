@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Common;
 using Tiles;
+using Tiles.Representation.Repository;
 using UnityEngine;
 
 namespace Maps
@@ -15,8 +16,8 @@ namespace Maps
         {
             if (_map == null)
             {
-                var tiles = tileRepresentationRepositoryProvider.Provide();
-                _map = new Map(tiles.GetAllFlatten().Select(t => t.Tile).ToList(), mapConfiguration.XSize, mapConfiguration.ZSize);
+                var tileRepresentationRepository = tileRepresentationRepositoryProvider.Provide();
+                _map = new Map(tileRepresentationRepository.GetAllFlatten().Select(t => t.Tile).ToList(), mapConfiguration.XSize, mapConfiguration.ZSize);
             }
 
             return _map;

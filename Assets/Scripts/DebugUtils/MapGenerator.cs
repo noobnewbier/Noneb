@@ -1,7 +1,9 @@
 ﻿using Construct;
 using Maps;
 using Tiles;
+using Tiles.Representation;
 using Units;
+using Units.Representation;
 using UnityEngine;
 
 namespace DebugUtils

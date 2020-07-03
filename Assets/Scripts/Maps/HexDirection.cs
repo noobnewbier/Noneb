@@ -1,4 +1,4 @@
-﻿namespace Tiles
+﻿namespace Maps
 {
     public class HexDirection
     {

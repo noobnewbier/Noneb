@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tiles
+namespace Maps
 {
     //Using Cube Coordinate : https://www.redblobgames.com/grids/hexagons/#map-storage
     [Serializable]

@@ -2,7 +2,7 @@
 using Common;
 using UnityEngine;
 
-namespace Maps
+namespace Tiles
 {
     public class TilesTransformProvider : MonoObjectProvider<IList<Transform>>
     {

@@ -1,7 +1,7 @@
 ﻿using Common;
 using UnityEngine;
 
-namespace Tiles
+namespace Tiles.Data
 {
     public class TileDataProvider : MonoObjectProvider<TileData>
     {

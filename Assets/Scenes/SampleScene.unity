@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5dc9f6dbea4898b97db3a337d432d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileData: {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  tileData: {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}
 --- !u!114 &639590356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c36e235bb9d97c04fb2f3dd4bd6efb21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fb4f573651db114994e831529756c37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5dc9f6dbea4898b97db3a337d432d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileData: {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  tileData: {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}
 --- !u!114 &772344850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,7 +1136,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c36e235bb9d97c04fb2f3dd4bd6efb21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fb4f573651db114994e831529756c37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1317,11 +1317,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal:
     x: 2
-    z: 1
-  mapProvider: {fileID: 849524809}
+    z: 0
   start:
     x: 0
     z: 0
+  mapProvider: {fileID: 849524809}
+  maxCost: 7
   tileRepresentationRepositoryProvider: {fileID: 849524812}
 --- !u!114 &849524811
 MonoBehaviour:
@@ -2951,7 +2952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5dc9f6dbea4898b97db3a337d432d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileData: {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  tileData: {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}
 --- !u!114 &2000466900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3003,7 +3004,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c36e235bb9d97c04fb2f3dd4bd6efb21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fb4f573651db114994e831529756c37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

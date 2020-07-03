@@ -3,7 +3,7 @@ using Common;
 using Maps;
 using UnityEngine;
 
-namespace Tiles
+namespace Tiles.Representation.Repository
 {
     public class TileRepresentationRepositoryProvider : MonoObjectProvider<ITileRepresentationRepository>
     {

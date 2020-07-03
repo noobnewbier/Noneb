@@ -1,9 +1,11 @@
 ﻿using Common;
-using Tiles;
+using Maps;
+using Tiles.Data;
+using Tiles.Representation;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Maps
+namespace Tiles
 {
     /// <summary>
     /// Assuming attached tod parent of all hexagons' rows, which contains the tiles

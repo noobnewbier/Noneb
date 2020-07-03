@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Tiles
+namespace Tiles.Representation
 {
     public class TileRepresentation : MonoBehaviour
     {

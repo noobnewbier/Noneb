@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Maps;
 
-namespace Tiles
+namespace Tiles.Representation.Repository
 {
     public interface ITileRepresentationRepository
     {

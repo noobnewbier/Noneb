@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tiles
 {
+    //this seems weird and bad... IList<Transform> does not implies it to be a tile transform.
     public class TilesTransformProvider : MonoObjectProvider<IList<Transform>>
     {
         public override IList<Transform> Provide()

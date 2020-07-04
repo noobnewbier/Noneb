@@ -1,7 +1,7 @@
 ﻿using Common;
 using UnityEngine;
 
-namespace Construct
+namespace Constructs
 {
     [CreateAssetMenu(menuName = "Providers/ConstructRepresentation", fileName = "ConstructRepresentationProvider")]
     public class ConstructRepresentationProvider : ScriptableObjectProvider<ConstructRepresentation>

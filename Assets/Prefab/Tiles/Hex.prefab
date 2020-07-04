@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9036806880443086749}
   - component: {fileID: 8095298735320461442}
   - component: {fileID: 6181830262758183419}
-  - component: {fileID: 8830626867016395861}
+  - component: {fileID: 991554237357567726}
   m_Layer: 0
   m_Name: Hex
   m_TagString: TileRepresentation
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d808884286a4ca387908528c7695be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8830626867016395861
+--- !u!114 &991554237357567726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +104,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3474967027299988907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f5dc9f6dbea4898b97db3a337d432d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 23152bfbb14c423db5518dd28a2700c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinate:
+    x: 0
+    z: 0
+  unitPreservationContainer: {fileID: 0}
   tileData: {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}

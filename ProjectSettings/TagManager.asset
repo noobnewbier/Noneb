@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GridRow
   - TileRepresentation
+  - ConstructRepresentation
+  - UnitRepresentation
   layers:
   - Default
   - TransparentFX

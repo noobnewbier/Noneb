@@ -1,6 +1,5 @@
 ﻿using Common;
 using Maps;
-using Tiles.Data;
 using Tiles.Representation;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -8,17 +7,13 @@ using UnityEngine.Assertions;
 namespace Tiles
 {
     /// <summary>
-    /// Assuming attached tod parent of all hexagons' rows, which contains the tiles
+    /// Dangerously similar to <see cref="CoordinateSetter"/>, consider adding TilesTransformIterator to reduce that WET loop?
     /// </summary>
     public class TileInitializer : MonoBehaviour
     {
         [SerializeField] private MapConfiguration config;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
-
-        /// <summary>
-        /// Assuming it's a rectangle, reference: https://www.redblobgames.com/grids/hexagons/#map-storage map-storage section
-        /// </summary>
         [ContextMenu("InitializeTiles")]
         private void InitializeTiles()
         {
@@ -29,12 +24,10 @@ namespace Tiles
             for (var i = 0; i < config.ZSize; i++)
             for (var j = 0; j < config.XSize; j++)
             {
-                var hexGameObject = tilesTransform[i * config.XSize + j].gameObject;
-                var tileData = hexGameObject.GetComponent<IObjectProvider<TileData>>().Provide();
-                var x = j + i % 2 + i / 2;
-                var z = i;
+                var hexTransform = tilesTransform[i * config.XSize + j];
+                var tile = hexTransform.GetComponent<IPreservationContainer<Tile>>().GetPreservation();
 
-                hexGameObject.GetComponent<TileRepresentation>().Initialize(new Tile(new Coordinate(x, z), null, tileData));
+                hexTransform.GetComponent<TileRepresentation>().Initialize(tile);
             }
         }
     }

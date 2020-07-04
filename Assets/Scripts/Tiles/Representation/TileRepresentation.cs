@@ -5,7 +5,13 @@ namespace Tiles.Representation
 {
     public class TileRepresentation : MonoBehaviour
     {
-        public Tile Tile { get; private set; }
+        [SerializeField] private Tile tile;
+
+        public Tile Tile
+        {
+            get => tile;
+            private set => tile = value;
+        }
 
         public void Initialize(Tile t)
         {
@@ -14,7 +20,6 @@ namespace Tiles.Representation
             gameObject.name = "Tile: " + Tile.Coordinate;
         }
 
-
         private void OnDrawGizmosSelected()
         {
             if (Tile == null)
@@ -22,7 +27,7 @@ namespace Tiles.Representation
                 return;
             }
 
-            Handles.Label(transform.position,Tile.Coordinate.ToString());
+            Handles.Label(transform.position, Tile.Coordinate.ToString());
         }
     }
 }

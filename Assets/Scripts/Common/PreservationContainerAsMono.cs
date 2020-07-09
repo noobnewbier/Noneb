@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Common.Providers;
+using UnityEngine;
 
 namespace Common
 {
@@ -8,14 +9,10 @@ namespace Common
         private T _cache;
         protected abstract T CreateFromPreservation();
 
+        //can potentially listen to event and refresh when signal is fired.
         public T GetPreservation()
         {
-            if (Application.isPlaying)
-            {
-                return _cache ?? (_cache = CreateFromPreservation());
-            }
-
-            return CreateFromPreservation();
+            return _cache ?? (_cache = CreateFromPreservation());
         }
     }
 }

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3107bc304ec8d44b9d160ae7f441ad, type: 3}
   m_Name: UnitData
   m_EditorClassIdentifier: 
+  unitName: Dummy Unit
   health: 100
   maxHealth: 100

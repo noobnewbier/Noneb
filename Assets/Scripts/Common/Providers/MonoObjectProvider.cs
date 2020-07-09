@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Common
+namespace Common.Providers
 {
     public abstract class MonoObjectProvider<T> : MonoBehaviour, IObjectProvider<T>
     {

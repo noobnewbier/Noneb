@@ -8,6 +8,7 @@ TagManager:
   - TileRepresentation
   - ConstructRepresentation
   - UnitRepresentation
+  - StrongholdRepresentation
   layers:
   - Default
   - TransparentFX

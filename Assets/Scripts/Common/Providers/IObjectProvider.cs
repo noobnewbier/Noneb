@@ -1,4 +1,4 @@
-﻿namespace Common
+﻿namespace Common.Providers
 {
     public interface IObjectProvider<out T>
     {

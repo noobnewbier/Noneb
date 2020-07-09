@@ -10,7 +10,6 @@ namespace Units
     {
         [SerializeField] private UnitData unitData;
         [SerializeField] private Coordinate coordinate;
-        [CanBeNull] [SerializeField] private ConstructPreservationContainer capturedConstructPreservationContainer;
 
         public Coordinate Coordinate
         {
@@ -19,9 +18,7 @@ namespace Units
 
         protected override Unit CreateFromPreservation()
         {
-            var construct = capturedConstructPreservationContainer != null ? capturedConstructPreservationContainer.GetPreservation() : null;
-
-            return new Unit(unitData, coordinate, construct);
+            return new Unit(unitData, coordinate);
         }
     }
 }

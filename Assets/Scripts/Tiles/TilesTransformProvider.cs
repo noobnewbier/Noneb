@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Common;
+using Common.Constants;
+using Common.Providers;
 using UnityEngine;
 
 namespace Tiles

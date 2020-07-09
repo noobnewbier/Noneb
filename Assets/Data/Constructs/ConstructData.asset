@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8896be6c62ff47bea241e812e7d3f3a4, type: 3}
   m_Name: ConstructData
   m_EditorClassIdentifier: 
+  constructName: Dummy Construct

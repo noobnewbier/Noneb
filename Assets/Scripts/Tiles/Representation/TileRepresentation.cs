@@ -1,9 +1,10 @@
-﻿using UnityEditor;
+﻿using Common.Representations;
+using UnityEditor;
 using UnityEngine;
 
 namespace Tiles.Representation
 {
-    public class TileRepresentation : MonoBehaviour
+    public class TileRepresentation : MonoBehaviour, IRepresentation<Tile>
     {
         [SerializeField] private Tile tile;
 

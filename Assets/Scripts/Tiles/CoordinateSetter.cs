@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 namespace Tiles
 {
     /// <summary>
-    /// Assuming attached tod parent of all hexagons' rows, which contains the tiles
+    /// Assuming attached to parent of all hexagons' rows, which contains the tiles
     /// </summary>
     public class CoordinateSetter : MonoBehaviour
     {

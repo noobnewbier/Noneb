@@ -13,6 +13,7 @@ namespace DebugUtils
         [SerializeField] private MapConfiguration config;
         [SerializeField] private ConstructRepresentationProvider constructRepresentationProvider;
         [SerializeField] private TileRepresentationProvider tileRepresentationProvider;
+        [SerializeField] private TilesPositionProvider tilesPositionProvider;
         [SerializeField] private UnitRepresentationProvider unitRepresentationProvider;
         [SerializeField] private GameObject rowPrefab;
 
@@ -21,27 +22,19 @@ namespace DebugUtils
         private void GenerateMap()
         {
             var selfTransform = transform;
-            var upDistance = config.OuterRadius * 1.5f;
-            var sideDistance = config.InnerRadius * 2f;
+            var positions = tilesPositionProvider.Provide();
 
-            for (var i = 0; i < config.XSize; i++)
+            for (var i = 0; i < config.ZSize; i++)
             {
                 var row = Instantiate(rowPrefab).transform;
                 row.parent = selfTransform;
-                var sideOffset = i % 2 * sideDistance / 2f;
-                for (var j = 0; j < config.ZSize; j++)
+                for (var j = 0; j < config.XSize; j++)
                 {
                     var newTile = tileRepresentationProvider.Provide().gameObject.transform;
 
                     newTile.parent = row;
-
-
                     newTile.rotation *= Quaternion.AngleAxis(30f, config.UpAxis);
-                    newTile.position = new Vector3(
-                        j * sideDistance + sideOffset,
-                        selfTransform.position.y,
-                        i * upDistance
-                    );
+                    newTile.position = positions[i * config.XSize + j];
                 }
             }
         }

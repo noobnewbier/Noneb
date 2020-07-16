@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using Maps;
 using UnityEngine;
 
-namespace Maps.InGameEditor
+namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {

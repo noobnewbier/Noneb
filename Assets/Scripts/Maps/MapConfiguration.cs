@@ -2,7 +2,7 @@
 
 namespace Maps
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = nameof(MapConfiguration), menuName = "Data/" + nameof(MapConfiguration))]
     public class MapConfiguration : ScriptableObject
     {
         [Range(0f, 10f)] [SerializeField] private float innerRadius;

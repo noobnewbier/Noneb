@@ -3,7 +3,7 @@
 namespace UniRx
 {
     [Serializable]
-    public struct Unit : IEquatable<Unit>
+    public struct Unit
     {
         static readonly Unit @default = new Unit();
 

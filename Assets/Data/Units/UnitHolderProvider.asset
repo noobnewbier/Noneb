@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ff3f09be764c3685c7baa4dcc19bc6, type: 3}
-  m_Name: UnitRepresentationProvider
+  m_Name: UnitHolderProvider
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}

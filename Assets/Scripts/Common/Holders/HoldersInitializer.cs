@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Common.Holders
 {
-    public abstract class RepresentationInitializer : MonoBehaviour
+    public abstract class HoldersInitializer : MonoBehaviour
     {
         public abstract void InitializeRepresentation();
     }
@@ -19,7 +19,7 @@ namespace Common.Holders
     /// This is built under the expectation of "There can be no more than ONE thing of some type under one tile"
     /// We will see if this bit us later :)
     /// </summary>
-    public abstract class HoldersInitializer<T, TR> : RepresentationInitializer where T : class where TR : IHolder<T>
+    public abstract class HoldersInitializer<T, TR> : HoldersInitializer where T : class where TR : IHolder<T>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
         protected abstract string RepresentationTag { get; }

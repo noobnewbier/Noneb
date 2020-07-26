@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Tiles.Holders.Repository
 {
-    public class TileRepresentationRepositoryProvider : MonoObjectProvider<ITileHoldersRepository>
+    public class TileHolderRepositoryProvider : MonoObjectProvider<ITileHoldersRepository>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
         [SerializeField] private MapConfiguration configuration;

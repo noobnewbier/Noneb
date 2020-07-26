@@ -5,7 +5,7 @@ namespace DebugUtils
 {
     public class InitializersInvoker : MonoBehaviour
     {
-        [SerializeField] private RepresentationInitializer[] representationInitializers;
+        [SerializeField] private HoldersInitializer[] representationInitializers;
 
         [ContextMenu("Initialize")]
         public void Initialize()

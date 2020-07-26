@@ -13,7 +13,7 @@ namespace DebugUtils
         [Range(0f, 1f)] [SerializeField] private float chanceOfUnitOnTile;
         [SerializeField] private MapConfiguration config;
         [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField] private ConstructHolderProvider constructHolderProvider;
-        [SerializeField] private TileRepresentationProvider tileRepresentationProvider;
+        [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField] private TileHolderProvider tileHolderProvider;
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
         [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField] private UnitHoldersProvider unitHoldersProvider;
         [SerializeField] private GameObject rowPrefab;
@@ -31,7 +31,7 @@ namespace DebugUtils
                 row.parent = selfTransform;
                 for (var j = 0; j < config.XSize; j++)
                 {
-                    var newTile = tileRepresentationProvider.Provide().gameObject.transform;
+                    var newTile = tileHolderProvider.Provide().gameObject.transform;
 
                     newTile.parent = row;
                     newTile.rotation *= Quaternion.AngleAxis(30f, config.UpAxis);

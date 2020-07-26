@@ -3,6 +3,7 @@ using System.Linq;
 using Maps;
 using Tiles.Holders.Repository;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DebugUtils
 {
@@ -17,7 +18,7 @@ namespace DebugUtils
 
 
         //in axial instead of grid
-        [SerializeField] private TileRepresentationRepositoryProvider tileRepresentationRepositoryProvider;
+        [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField] private TileHolderRepositoryProvider tileHolderRepositoryProvider;
 
 
         [ContextMenu("ShowPath")]
@@ -30,7 +31,7 @@ namespace DebugUtils
                 return;
             }
 
-            var tileRepresentationRepository = tileRepresentationRepositoryProvider.Provide();
+            var tileRepresentationRepository = tileHolderRepositoryProvider.Provide();
             var representation = path.Select(c => tileRepresentationRepository.Get(c));
             _points = representation.Select(r => r.transform.position).ToList();
         }

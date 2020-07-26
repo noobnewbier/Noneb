@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 7796056797699649506}
   m_Layer: 0
   m_Name: UnitPrototype
-  m_TagString: UnitRepresentation
+  m_TagString: UnitHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,6 @@ MonoBehaviour:
   coordinate:
     x: 0
     z: 0
-  capturedConstructPreservationContainer: {fileID: 0}
 --- !u!1 &7220240992551867816
 GameObject:
   m_ObjectHideFlags: 0

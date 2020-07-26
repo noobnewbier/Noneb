@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4499606091389773706}
   m_Layer: 0
   m_Name: ConstructPrototype
-  m_TagString: ConstructRepresentation
+  m_TagString: ConstructHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - GridRow
-  - TileRepresentation
-  - ConstructRepresentation
-  - UnitRepresentation
-  - StrongholdRepresentation
+  - TileHolder
+  - ConstructHolder
+  - UnitHolder
+  - StrongholdHolder
   layers:
   - Default
   - TransparentFX

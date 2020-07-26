@@ -1,10 +1,10 @@
-﻿using Common.Representations;
+﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
 
 namespace Constructs
 {
-    public class ConstructRepresentation : MonoBehaviour, IRepresentation<Construct>
+    public class ConstructHolder : MonoBehaviour, IHolder<Construct>
     {
         public Construct Construct { get; private set; }
 

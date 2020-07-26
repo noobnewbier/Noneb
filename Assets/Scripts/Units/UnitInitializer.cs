@@ -1,10 +1,10 @@
 ﻿using Common.Constants;
-using Common.Representations;
-using Units.Representation;
+using Common.Holders;
+using Units.Holders;
 
 namespace Units
 {
-    public class UnitInitializer : RepresentationInitializer<Unit, UnitRepresentation>
+    public class UnitInitializer : HoldersInitializer<Unit, UnitHolder>
     {
         protected override string RepresentationTag => ObjectTags.UnitRepresentation;
     }

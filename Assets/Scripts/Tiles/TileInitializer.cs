@@ -1,10 +1,10 @@
 ﻿using Common.Constants;
-using Common.Representations;
-using Tiles.Representation;
+using Common.Holders;
+using Tiles.Holders;
 
 namespace Tiles
 {
-    public class TileInitializer : RepresentationInitializer<Tile, TileRepresentation>
+    public class TileInitializer : HoldersInitializer<Tile, TileHolder>
     {
         protected override string RepresentationTag => ObjectTags.TileRepresentation;
     }

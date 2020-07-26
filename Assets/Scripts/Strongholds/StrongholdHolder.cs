@@ -1,11 +1,11 @@
-﻿using Common.Representations;
+﻿using Common.Holders;
 using Constructs;
 using UnityEditor;
 using UnityEngine;
 
 namespace Strongholds
 {
-    public class StrongholdRepresentation : MonoBehaviour, IRepresentation<Stronghold>
+    public class StrongholdHolder : MonoBehaviour, IHolder<Stronghold>
     {
         public Stronghold Stronghold { get; private set; }
 

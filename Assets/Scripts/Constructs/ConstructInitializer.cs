@@ -1,9 +1,9 @@
 ﻿using Common.Constants;
-using Common.Representations;
+using Common.Holders;
 
 namespace Constructs
 {
-    public class ConstructInitializer : RepresentationInitializer<Construct, ConstructRepresentation>
+    public class ConstructInitializer : HoldersInitializer<Construct, ConstructHolder>
     {
         protected override string RepresentationTag => ObjectTags.ConstructRepresentation;
     }

@@ -1,9 +1,9 @@
 ﻿using Common.Constants;
-using Common.Representations;
+using Common.Holders;
 
 namespace Strongholds
 {
-    public class StrongholdInitializer : RepresentationInitializer<Stronghold, StrongholdRepresentation>
+    public class StrongholdInitializer : HoldersInitializer<Stronghold, StrongholdHolder>
     {
         protected override string RepresentationTag => ObjectTags.StrongholdRepresentation;
     }

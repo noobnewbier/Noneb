@@ -1,10 +1,10 @@
-﻿using Common.Representations;
+﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
 
-namespace Tiles.Representation
+namespace Tiles.Holders
 {
-    public class TileRepresentation : MonoBehaviour, IRepresentation<Tile>
+    public class TileHolder : MonoBehaviour, IHolder<Tile>
     {
         [SerializeField] private Tile tile;
 

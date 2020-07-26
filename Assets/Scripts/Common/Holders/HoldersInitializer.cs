@@ -3,7 +3,7 @@ using Common.Providers;
 using Tiles;
 using UnityEngine;
 
-namespace Common.Representations
+namespace Common.Holders
 {
     public abstract class RepresentationInitializer : MonoBehaviour
     {
@@ -19,7 +19,7 @@ namespace Common.Representations
     /// This is built under the expectation of "There can be no more than ONE thing of some type under one tile"
     /// We will see if this bit us later :)
     /// </summary>
-    public abstract class RepresentationInitializer<T, TR> : RepresentationInitializer where T : class where TR : IRepresentation<T>
+    public abstract class HoldersInitializer<T, TR> : RepresentationInitializer where T : class where TR : IHolder<T>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
         protected abstract string RepresentationTag { get; }

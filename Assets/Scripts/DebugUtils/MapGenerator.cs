@@ -1,8 +1,9 @@
 ﻿using Constructs;
 using Maps;
-using Tiles.Representation;
-using Units.Representation;
+using Tiles.Holders;
+using Units.Holders;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DebugUtils
 {
@@ -11,10 +12,10 @@ namespace DebugUtils
         [Range(0f, 1f)] [SerializeField] private float chanceOfConstructOnTile;
         [Range(0f, 1f)] [SerializeField] private float chanceOfUnitOnTile;
         [SerializeField] private MapConfiguration config;
-        [SerializeField] private ConstructRepresentationProvider constructRepresentationProvider;
+        [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField] private ConstructHolderProvider constructHolderProvider;
         [SerializeField] private TileRepresentationProvider tileRepresentationProvider;
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
-        [SerializeField] private UnitRepresentationProvider unitRepresentationProvider;
+        [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField] private UnitHoldersProvider unitHoldersProvider;
         [SerializeField] private GameObject rowPrefab;
 
 

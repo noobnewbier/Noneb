@@ -1,10 +1,10 @@
-﻿using Common.Representations;
+﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
 
-namespace Units.Representation
+namespace Units.Holders
 {
-    public class UnitRepresentation : MonoBehaviour, IRepresentation<Unit>
+    public class UnitHolder : MonoBehaviour, IHolder<Unit>
     {
         public Unit Unit { get; private set; }
 

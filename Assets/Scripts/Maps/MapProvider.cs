@@ -2,7 +2,7 @@
 using Common;
 using Common.Providers;
 using Tiles;
-using Tiles.Representation.Repository;
+using Tiles.Holders.Repository;
 using UnityEngine;
 
 namespace Maps

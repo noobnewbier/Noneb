@@ -1,7 +1,7 @@
-﻿namespace Common.Representations
+﻿namespace Common.Holders
 {
     //does it actually need to be bound as a class tho....
-    public interface IRepresentation<in T> where T : class
+    public interface IHolder<in T> where T : class
     {
         void Initialize(T t);
     }

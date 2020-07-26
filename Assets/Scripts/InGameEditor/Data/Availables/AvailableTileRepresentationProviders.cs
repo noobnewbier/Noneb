@@ -1,4 +1,4 @@
-﻿using Tiles.Representation;
+﻿using Tiles.Holders;
 
 namespace InGameEditor.Data.Availables
 {

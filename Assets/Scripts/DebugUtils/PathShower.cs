@@ -13,12 +13,13 @@ namespace DebugUtils
         [SerializeField] private Coordinate goal;
         [SerializeField] private Coordinate start;
         [SerializeField] private MapProvider mapProvider;
-        [Range(0, 65535)] [SerializeField]
-        private int maxCost;
+
+        [Range(0, 65535)] [SerializeField] private int maxCost;
 
 
         //in axial instead of grid
-        [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField] private TileHolderRepositoryProvider tileHolderRepositoryProvider;
+        [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
+        private TileHolderRepositoryProvider tileHolderRepositoryProvider;
 
 
         [ContextMenu("ShowPath")]
@@ -31,9 +32,9 @@ namespace DebugUtils
                 return;
             }
 
-            var tileRepresentationRepository = tileHolderRepositoryProvider.Provide();
-            var representation = path.Select(c => tileRepresentationRepository.Get(c));
-            _points = representation.Select(r => r.transform.position).ToList();
+            var tileHoldersRepository = tileHolderRepositoryProvider.Provide();
+            var holders = path.Select(c => tileHoldersRepository.Get(c));
+            _points = holders.Select(r => r.transform.position).ToList();
         }
 
         private void OnDrawGizmosSelected()

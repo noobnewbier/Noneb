@@ -7,7 +7,7 @@ namespace Common.Holders
 {
     public abstract class HoldersInitializer : MonoBehaviour
     {
-        public abstract void InitializeRepresentation();
+        public abstract void InitializeHolder();
     }
 
     /// <summary>
@@ -19,34 +19,34 @@ namespace Common.Holders
     /// This is built under the expectation of "There can be no more than ONE thing of some type under one tile"
     /// We will see if this bit us later :)
     /// </summary>
-    public abstract class HoldersInitializer<T, TR> : HoldersInitializer where T : class where TR : IHolder<T>
+    public abstract class HoldersInitializer<T, THolder> : HoldersInitializer where T : class where THolder : IHolder<T>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
-        protected abstract string RepresentationTag { get; }
+        protected abstract string HolderTag { get; }
 
-        public sealed override void InitializeRepresentation()
+        public sealed override void InitializeHolder()
         {
-            var tileRepresentations = tilesTransformProvider.Provide();
+            var tileHolders = tilesTransformProvider.Provide();
 
-            foreach (var transformHasTr in tileRepresentations
-                .Select(tileRepresentation => tileRepresentation.transform)
+            foreach (var transformHasTr in tileHolders
+                .Select(holder => holder.transform)
                 .Select(GetTrTransform)
                 .Where(t => t != null))
-                InitializeRepresentation(transformHasTr);
+                InitializeHolder(transformHasTr);
         }
 
         private Transform GetTrTransform(Transform tileTransform)
         {
-            return tileTransform.CompareTag(RepresentationTag) ?
+            return tileTransform.CompareTag(HolderTag) ?
                 tileTransform :
-                tileTransform.Cast<Transform>().FirstOrDefault(t => t.CompareTag(RepresentationTag));
+                tileTransform.Cast<Transform>().FirstOrDefault(t => t.CompareTag(HolderTag));
         }
 
-        private static void InitializeRepresentation(Component representationTransform)
+        private static void InitializeHolder(Component representationTransform)
         {
             var preservationContainer = representationTransform.GetComponent<IPreservationContainer<T>>();
             var preservedT = preservationContainer.GetPreservation();
-            representationTransform.GetComponent<TR>().Initialize(preservedT);
+            representationTransform.GetComponent<THolder>().Initialize(preservedT);
         }
     }
 }

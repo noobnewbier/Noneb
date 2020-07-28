@@ -6,16 +6,16 @@ namespace Units.Holders
 {
     public class UnitHolder : MonoBehaviour, IHolder<Unit>
     {
-        public Unit Unit { get; private set; }
+        public Unit Value { get; private set; }
 
         public void Initialize(Unit unit)
         {
-            Unit = unit;
+            Value = unit;
         }
 
         private void OnDrawGizmosSelected()
         {
-            if (Unit == null)
+            if (Value == null)
             {
                 return;
             }
@@ -23,7 +23,7 @@ namespace Units.Holders
             var style = new GUIStyle {normal = {textColor = Color.yellow}};
             Handles.Label(
                 transform.position,
-                $"{Unit.UnitData.UnitName}",
+                $"{Value.UnitData.UnitName}",
                 style
             );
         }

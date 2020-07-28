@@ -1,5 +1,4 @@
 ﻿using Common.Holders;
-using Constructs;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,16 +6,16 @@ namespace Strongholds
 {
     public class StrongholdHolder : MonoBehaviour, IHolder<Stronghold>
     {
-        public Stronghold Stronghold { get; private set; }
+        public Stronghold Value { get; private set; }
 
         public void Initialize(Stronghold stronghold)
         {
-            Stronghold = stronghold;
+            Value = stronghold;
         }
-        
+
         private void OnDrawGizmosSelected()
         {
-            if (Stronghold == null)
+            if (Value == null)
             {
                 return;
             }
@@ -24,7 +23,7 @@ namespace Strongholds
             var style = new GUIStyle {normal = {textColor = Color.red}};
             Handles.Label(
                 transform.position,
-                $"{Stronghold.Construct.ConstructData.ConstructName} captured by : {Stronghold.Unit.UnitData.UnitName}",
+                $"{Value.Construct.ConstructData.ConstructName} captured by : {Value.Unit.UnitData.UnitName}",
                 style
             );
         }

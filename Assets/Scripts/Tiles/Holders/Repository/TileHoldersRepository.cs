@@ -13,21 +13,21 @@ namespace Tiles.Holders.Repository
     {
         private readonly int _mapXSize;
         private readonly int _mapZSize;
-        private readonly TileHolder[,] _tileRepresentations;
+        private readonly TileHolder[,] _tileHolders;
 
         public TileHoldersRepository(IReadOnlyList<TileHolder> tiles, int mapXSize, int mapZSize)
         {
             _mapXSize = mapXSize;
             _mapZSize = mapZSize;
-            _tileRepresentations = new TileHolder[_mapXSize + _mapZSize / 2, _mapZSize];
+            _tileHolders = new TileHolder[_mapXSize + _mapZSize / 2, _mapZSize];
             for (var i = 0; i < _mapZSize; i++)
             for (var j = 0; j < _mapXSize; j++)
-                _tileRepresentations[j + i % 2 + i / 2, i] = tiles[i * _mapXSize + j];
+                _tileHolders[j + i % 2 + i / 2, i] = tiles[i * _mapXSize + j];
         }
 
         public TileHolder Get(Coordinate axialCoordinate)
         {
-            return _tileRepresentations[axialCoordinate.X, axialCoordinate.Z];
+            return _tileHolders[axialCoordinate.X, axialCoordinate.Z];
         }
 
         public IEnumerable<TileHolder> GetAllFlatten()
@@ -36,7 +36,7 @@ namespace Tiles.Holders.Repository
 
             for (var i = 0; i < _mapZSize; i++)
             for (var j = 0; j < _mapXSize; j++)
-                toReturn[i * _mapXSize + j] = _tileRepresentations[j + i % 2 + i / 2, i];
+                toReturn[i * _mapXSize + j] = _tileHolders[j + i % 2 + i / 2, i];
 
             return toReturn;
         }

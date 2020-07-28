@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Units.Holders
 {
-    [CreateAssetMenu(menuName = "Providers/UnitRepresentation", fileName = nameof(UnitHoldersProvider))]
-    public class UnitHoldersProvider : ScriptableObjectProvider<UnitHolder>
+    [CreateAssetMenu(menuName = "Providers/UnitRepresentation", fileName = nameof(UnitHolderProvider))]
+    public class UnitHolderProvider : ScriptableObjectProvider<UnitHolder>
     {
         [SerializeField] private GameObject prefab;
         

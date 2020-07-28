@@ -5,6 +5,6 @@ namespace Strongholds
 {
     public class StrongholdInitializer : HoldersInitializer<Stronghold, StrongholdHolder>
     {
-        protected override string RepresentationTag => ObjectTags.StrongholdRepresentation;
+        protected override string HolderTag => ObjectTags.StrongholdHolder;
     }
 }

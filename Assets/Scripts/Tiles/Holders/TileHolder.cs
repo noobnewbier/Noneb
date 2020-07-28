@@ -6,9 +6,10 @@ namespace Tiles.Holders
 {
     public class TileHolder : MonoBehaviour, IHolder<Tile>
     {
+        //serialize to show stuffs in the inspector.
         [SerializeField] private Tile tile;
 
-        public Tile Tile
+        public Tile Value
         {
             get => tile;
             private set => tile = value;
@@ -16,19 +17,19 @@ namespace Tiles.Holders
 
         public void Initialize(Tile t)
         {
-            Tile = t;
+            Value = t;
 
-            gameObject.name = "Tile: " + Tile.Coordinate;
+            gameObject.name = "Tile: " + Value.Coordinate;
         }
 
         private void OnDrawGizmosSelected()
         {
-            if (Tile == null)
+            if (Value == null)
             {
                 return;
             }
 
-            Handles.Label(transform.position, Tile.Coordinate.ToString());
+            Handles.Label(transform.position, Value.Coordinate.ToString());
         }
     }
 }

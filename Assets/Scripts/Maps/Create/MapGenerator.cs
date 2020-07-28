@@ -1,11 +1,10 @@
 ﻿using Constructs;
-using Maps;
 using Tiles.Holders;
 using Units.Holders;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace DebugUtils
+namespace Maps.Create
 {
     public class MapGenerator : MonoBehaviour
     {
@@ -15,7 +14,7 @@ namespace DebugUtils
         [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField] private ConstructHolderProvider constructHolderProvider;
         [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField] private TileHolderProvider tileHolderProvider;
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
-        [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField] private UnitHoldersProvider unitHoldersProvider;
+        [FormerlySerializedAs("unitHoldersProvider")] [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField] private UnitHolderProvider unitHolderProvider;
         [SerializeField] private GameObject rowPrefab;
 
 
@@ -31,7 +30,7 @@ namespace DebugUtils
                 row.parent = selfTransform;
                 for (var j = 0; j < config.XSize; j++)
                 {
-                    var newTile = tileHolderProvider.Provide().gameObject.transform;
+                    var newTile = tileHolderProvider.Provide().GameObject.transform;
 
                     newTile.parent = row;
                     newTile.rotation *= Quaternion.AngleAxis(30f, config.UpAxis);

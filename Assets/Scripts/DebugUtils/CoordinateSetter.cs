@@ -1,10 +1,10 @@
 ﻿using Common;
 using Maps;
-using Tiles.Data;
+using Tiles;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Tiles
+namespace DebugUtils
 {
     /// <summary>
     /// Assuming attached to parent of all hexagons' rows, which contains the tiles

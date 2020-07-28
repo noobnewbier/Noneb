@@ -3,9 +3,9 @@
     public static class ObjectTags
     {
         public const string GridRow = "GridRow";
-        public const string TileRepresentation = "TileRepresentation";
-        public const string UnitRepresentation = "UnitRepresentation";
-        public const string ConstructRepresentation = "ConstructRepresentation";
-        public const string StrongholdRepresentation = "StrongholdRepresentation";
+        public const string TileHolder = "TileHolder";
+        public const string UnitHolder = "UnitHolder";
+        public const string ConstructHolder = "ConstructHolder";
+        public const string StrongholdHolder = "StrongholdHolder";
     }
 }

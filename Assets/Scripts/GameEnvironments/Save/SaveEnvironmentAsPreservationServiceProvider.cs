@@ -1,11 +1,11 @@
 ﻿using Common.Providers;
-using Maps;
 using Maps.Repositories;
 using UnityEngine;
+using UnityUtils.Constants;
 
-namespace InGameEditor.Services.SaveEnvironment
+namespace GameEnvironments.Save
 {
-    [CreateAssetMenu(menuName = "ScriptableService/SaveEnvironmentAsPreservationService", fileName = nameof(SaveEnvironmentAsPreservationServiceProvider))]
+    [CreateAssetMenu(menuName = MenuName.ScriptableService+"SaveEnvironmentAsPreservationService", fileName = nameof(SaveEnvironmentAsPreservationServiceProvider))]
     public class SaveEnvironmentAsPreservationServiceProvider : ScriptableObjectProvider<ISaveEnvironmentAsPreservationService>
     {
         [SerializeField] private MapCharacteristicRepositoryProvider mapCharacteristicRepositoryProvider;

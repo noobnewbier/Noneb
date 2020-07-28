@@ -1,6 +1,6 @@
-﻿using InGameEditor.Data;
+﻿using GameEnvironments.Common.Data;
 
-namespace InGameEditor.Repositories.GameEnvironments
+namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {
     public interface ICurrentGameEnvironmentRepository
     {

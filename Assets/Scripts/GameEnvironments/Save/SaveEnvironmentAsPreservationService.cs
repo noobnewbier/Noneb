@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using Common.Constants;
+using GameEnvironments.Common.Data;
 using InGameEditor.Data;
 using InGameEditor.Data.Availables;
-using Maps;
-using Maps.Data;
 using Maps.Repositories;
 using UnityEngine;
 
-namespace InGameEditor.Services.SaveEnvironment
+namespace GameEnvironments.Save
 {
     public interface ISaveEnvironmentAsPreservationService
     {
@@ -88,38 +87,38 @@ namespace InGameEditor.Services.SaveEnvironment
             var upAxis = _mapCharacteristicRepository.GetUpAxis();
             
             var tileDataAsInts = new int[arrayLength];
-            var tileRepresentationAsInts = new int[arrayLength];
+            var tileGameObjectAsInts = new int[arrayLength];
             var constructDataAsInts = new int[arrayLength];
-            var constructRepresentationAsInts = new int[arrayLength];
+            var constructGameObjectAsInts = new int[arrayLength];
             var unitDataAsInts = new int[arrayLength];
-            var unitRepresentationAsInts = new int[arrayLength];
+            var unitGameObjectAsInts = new int[arrayLength];
 
             FillArrayWithMatchingIndex(editorPalette.AvailableTileData, gameEnvironment.TileDatas, tileDataAsInts);
             FillArrayWithMatchingIndex(
-                editorPalette.AvailableTileRepresentationProviders,
-                gameEnvironment.TileRepresentationProviders,
-                tileRepresentationAsInts
+                editorPalette.AvailableTileGameObjectProviders,
+                gameEnvironment.TileGameObjectProviders,
+                tileGameObjectAsInts
             );
             FillArrayWithMatchingIndex(editorPalette.AvailableConstructData, gameEnvironment.ConstructDatas, constructDataAsInts);
             FillArrayWithMatchingIndex(
-                editorPalette.AvailableConstructRepresentationProviders,
-                gameEnvironment.ConstructRepresentationProviders,
-                constructRepresentationAsInts
+                editorPalette.AvailableConstructGameObjectProviders,
+                gameEnvironment.ConstructGameObjectProviders,
+                constructGameObjectAsInts
             );
             FillArrayWithMatchingIndex(editorPalette.AvailableUnitData, gameEnvironment.UnitDatas, unitDataAsInts);
             FillArrayWithMatchingIndex(
-                editorPalette.AvailableUnitRepresentationProviders,
-                gameEnvironment.UnitRepresentationProviders,
-                unitRepresentationAsInts
+                editorPalette.AvailableUnitGameObjectProviders,
+                gameEnvironment.UnitGameObjectProviders,
+                unitGameObjectAsInts
             );
 
             return new GameEnvironmentJson(
                 tileDataAsInts,
-                tileRepresentationAsInts,
+                tileGameObjectAsInts,
                 constructDataAsInts,
-                constructRepresentationAsInts,
+                constructGameObjectAsInts,
                 unitDataAsInts,
-                unitRepresentationAsInts,
+                unitGameObjectAsInts,
                 _mapCharacteristicRepository.GetInnerRadius(),
                 _mapCharacteristicRepository.GetMap2DArrayWidth(),
                 _mapCharacteristicRepository.GetMap2dArrayHeight(),

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Maps.Data
+namespace GameEnvironments.Common.Data
 {
     //label everything with int and hence ordering in the palette matters
     //todo: handle overrides

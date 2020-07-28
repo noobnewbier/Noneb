@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db789c491d645e39c4b9561b8505299, type: 3}
+  m_Name: GameEnvironmentScriptable
+  m_EditorClassIdentifier: 
+  mapConfiguration: {fileID: 11400000, guid: 6b267b412d0995c41b8aebc9db4e6a0f, type: 2}
+  tileDatas:
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  tileGameObjectProviders:
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: b7ba825f1e9b12f46867f531e90f4628, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: b7ba825f1e9b12f46867f531e90f4628, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: b7ba825f1e9b12f46867f531e90f4628, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  - {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb, type: 2}
+  constructDatas:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  constructGameObjectProviders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  unitDatas:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  unitGameObjectProviders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

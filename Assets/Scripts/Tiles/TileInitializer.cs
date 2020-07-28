@@ -6,6 +6,6 @@ namespace Tiles
 {
     public class TileInitializer : HoldersInitializer<Tile, TileHolder>
     {
-        protected override string RepresentationTag => ObjectTags.TileRepresentation;
+        protected override string HolderTag => ObjectTags.TileHolder;
     }
 }

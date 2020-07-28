@@ -17,7 +17,7 @@ namespace Tiles
         {
             var unit = unitPreservationContainer != null ? unitPreservationContainer.GetPreservation() : null;
             
-            return new Tile(coordinate, unit, tileData);
+            return new Tile(coordinate, tileData);
         }
 
         public Coordinate Coordinate

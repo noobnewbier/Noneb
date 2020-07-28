@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using Common;
 using Common.Providers;
-using Tiles;
 using Tiles.Holders.Repository;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Maps
 {
@@ -11,14 +10,14 @@ namespace Maps
     {
         private Map _map;
         [SerializeField] private MapConfiguration mapConfiguration;
-        [SerializeField] private TileRepresentationRepositoryProvider tileRepresentationRepositoryProvider;
+        [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField] private TileHolderRepositoryProvider tileHolderRepositoryProvider;
 
         public override Map Provide()
         {
             if (_map == null)
             {
-                var tileRepresentationRepository = tileRepresentationRepositoryProvider.Provide();
-                _map = new Map(tileRepresentationRepository.GetAllFlatten().Select(t => t.Tile).ToList(), mapConfiguration.XSize, mapConfiguration.ZSize);
+                var tileHoldersRepository = tileHolderRepositoryProvider.Provide();
+                _map = new Map(tileHoldersRepository.GetAllFlatten().Select(t => t.Value).ToList(), mapConfiguration.XSize, mapConfiguration.ZSize);
             }
 
             return _map;

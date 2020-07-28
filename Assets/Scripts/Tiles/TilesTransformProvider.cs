@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Common;
 using Common.Constants;
 using Common.Providers;
 using UnityEngine;
@@ -21,7 +20,7 @@ namespace Tiles
                     for (var j = 0; j < child.childCount; j++)
                     {
                         var grandChild = child.GetChild(j);
-                        if (grandChild.CompareTag(ObjectTags.TileRepresentation))
+                        if (grandChild.CompareTag(ObjectTags.TileHolder))
                         {
                             toReturn.Add(grandChild);
                         }

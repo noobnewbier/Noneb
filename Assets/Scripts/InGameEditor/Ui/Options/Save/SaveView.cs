@@ -1,10 +1,10 @@
 ﻿using System;
 using EventManagement;
 using EventManagement.Providers;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Save;
 using InGameEditor.Events;
-using InGameEditor.Repositories.GameEnvironments;
 using InGameEditor.Repositories.SelectedEditorPalettes;
-using InGameEditor.Services.SaveEnvironment;
 using TMPro;
 using UniRx;
 using UnityEngine;

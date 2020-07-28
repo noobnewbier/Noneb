@@ -7,17 +7,17 @@ namespace InGameEditor.Data
     public class EditorPalette : ScriptableObject
     {
         [SerializeField] private AvailableTileData availableTileData;
-        [SerializeField] private AvailableTileRepresentationProviders availableTileRepresentationProviders;
+        [SerializeField] private AvailableGameObjectProviders availableTileGameObjectProviders;
         [SerializeField] private AvailableConstructData availableConstructData;
-        [SerializeField] private AvailableConstructRepresentationProviders availableConstructRepresentationProviders;
+        [SerializeField] private AvailableGameObjectProviders availableConstructGameObjectProviders;
         [SerializeField] private AvailableUnitData availableUnitData;
-        [SerializeField] private AvailableUnitRepresentationProviders availableUnitRepresentationProviders;
+        [SerializeField] private AvailableGameObjectProviders availableUnitGameObjectProviders;
 
         public AvailableTileData AvailableTileData => availableTileData;
-        public AvailableTileRepresentationProviders AvailableTileRepresentationProviders => availableTileRepresentationProviders;
+        public AvailableGameObjectProviders AvailableTileGameObjectProviders => availableTileGameObjectProviders;
         public AvailableConstructData AvailableConstructData => availableConstructData;
-        public AvailableConstructRepresentationProviders AvailableConstructRepresentationProviders => availableConstructRepresentationProviders;
+        public AvailableGameObjectProviders AvailableConstructGameObjectProviders => availableConstructGameObjectProviders;
         public AvailableUnitData AvailableUnitData => availableUnitData;
-        public AvailableUnitRepresentationProviders AvailableUnitRepresentationProviders => availableUnitRepresentationProviders;
+        public AvailableGameObjectProviders AvailableUnitGameObjectProviders => availableUnitGameObjectProviders;
     }
 }

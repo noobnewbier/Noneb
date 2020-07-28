@@ -1,6 +1,6 @@
-﻿using InGameEditor.Data;
-using InGameEditor.Repositories.GameEnvironments;
-using InGameEditor.Services.SaveEnvironment;
+﻿using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Save;
+using InGameEditor.Data;
 using UnityEngine;
 
 namespace InGameEditor.Ui.Options.Save

@@ -10,6 +10,8 @@ namespace Maps.Repositories
         int GetFlattenMapArrayWidth();
         Vector3 GetUpAxis();
         float GetInnerRadius();
+        int GetMap2DActualWidth();
+        int GetMap2dActualHeight();
     }
 
     
@@ -29,6 +31,16 @@ namespace Maps.Repositories
         }
 
         public int GetMap2dArrayHeight()
+        {
+            return _mapConfig.ZSize;
+        }
+        
+        public int GetMap2DActualWidth()
+        {
+            return _mapConfig.XSize;
+        }
+
+        public int GetMap2dActualHeight()
         {
             return _mapConfig.ZSize;
         }

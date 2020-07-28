@@ -6,6 +6,6 @@ namespace Units
 {
     public class UnitInitializer : HoldersInitializer<Unit, UnitHolder>
     {
-        protected override string RepresentationTag => ObjectTags.UnitRepresentation;
+        protected override string HolderTag => ObjectTags.UnitHolder;
     }
 }

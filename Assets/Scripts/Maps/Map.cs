@@ -4,10 +4,12 @@ using Tiles;
 
 namespace Maps
 {
+    //A map holds tile and their coordinates(gameplay-wise), it has nothing to do with any other stuffs
     public class Map
     {
         private readonly Tile[,] _grid;
 
+        //Todo: use IMapCharacteristicRepository
         public Map(IReadOnlyList<Tile> tiles, int mapXSize, int mapZSize)
         {
             _grid = new Tile[mapXSize + mapZSize / 2, mapZSize];

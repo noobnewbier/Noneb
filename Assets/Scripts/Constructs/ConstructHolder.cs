@@ -6,16 +6,16 @@ namespace Constructs
 {
     public class ConstructHolder : MonoBehaviour, IHolder<Construct>
     {
-        public Construct Construct { get; private set; }
+        public Construct Value { get; private set; }
 
         public void Initialize(Construct construct)
         {
-            Construct = construct;
+            Value = construct;
         }
 
         private void OnDrawGizmosSelected()
         {
-            if (Construct == null)
+            if (Value == null)
             {
                 return;
             }
@@ -23,7 +23,7 @@ namespace Constructs
             var style = new GUIStyle {normal = {textColor = Color.red}};
             Handles.Label(
                 transform.position,
-                $"{Construct.ConstructData.ConstructName}",
+                $"{Value.ConstructData.ConstructName}",
                 style
             );
         }

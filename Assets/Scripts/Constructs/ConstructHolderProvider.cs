@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Constructs
 {
-    [CreateAssetMenu(menuName = "Providers/ConstructRepresentation", fileName = nameof(ConstructHolderProvider))]
+    [CreateAssetMenu(menuName = "Providers/ConstructHolder", fileName = nameof(ConstructHolderProvider))]
     public class ConstructHolderProvider : ScriptableObjectProvider<ConstructHolder>
     {
         [SerializeField] private GameObject prefab;

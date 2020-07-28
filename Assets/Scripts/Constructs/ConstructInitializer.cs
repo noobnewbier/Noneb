@@ -5,6 +5,6 @@ namespace Constructs
 {
     public class ConstructInitializer : HoldersInitializer<Construct, ConstructHolder>
     {
-        protected override string RepresentationTag => ObjectTags.ConstructRepresentation;
+        protected override string HolderTag => ObjectTags.ConstructHolder;
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using Common.Providers;
+﻿using Common.Providers;
 using Maps.Services;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.Map
+namespace GameEnvironments.Load.Tiles
 {
     [CreateAssetMenu(fileName = nameof(MapLoadServiceProvider), menuName = MenuName.ScriptableService + "MapLoaderService")]
     public class MapLoadServiceProvider : ScriptableObjectProvider<IMapLoadService>

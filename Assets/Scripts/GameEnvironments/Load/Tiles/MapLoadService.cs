@@ -1,22 +1,27 @@
 ﻿using System.Collections.Generic;
-using Common;
 using Common.Providers;
+using GameEnvironments.Load.BoardItemOnTile;
 using Maps.Services;
 using Tiles;
 using Tiles.Data;
 using Tiles.Holders;
 using UnityEngine;
 
-namespace GameEnvironments.Load.Map
+namespace GameEnvironments.Load.Tiles
 {
+    /// <summary>
+    /// Tile cannot be load like the rest of BoardItems,
+    /// as it's the only board item that needs to have it's position initialized
+    ///
+    /// todo: dangerously similar to <see cref="ILoadBoardItemOnTileService{THolder,TBoardItem,TBoardItemData}"/>
+    /// </summary>
     public interface IMapLoadService
     {
         void Load(IList<TileData> tileDatas,
                   IObjectProvider<IList<Vector3>> tilesPositionProvider,
-                  IObjectProvider<GameObjectAndComponent<TileHolder>> tileHolderProvider,
+                  IGameObjectAndComponentProvider<TileHolder> tileHolderProvider,
                   GameObject rowPrefab,
                   Transform baseTransform,
-                  Vector3 upAxis,
                   int mapXSize,
                   int mapZSize);
     }
@@ -32,10 +37,9 @@ namespace GameEnvironments.Load.Map
 
         public void Load(IList<TileData> tileDatas,
                          IObjectProvider<IList<Vector3>> tilesPositionProvider,
-                         IObjectProvider<GameObjectAndComponent<TileHolder>> tileHolderProvider,
+                         IGameObjectAndComponentProvider<TileHolder> tileHolderProvider,
                          GameObject rowPrefab,
                          Transform baseTransform,
-                         Vector3 upAxis,
                          int mapXSize,
                          int mapZSize)
         {
@@ -47,18 +51,11 @@ namespace GameEnvironments.Load.Map
                 row.parent = baseTransform;
                 for (var j = 0; j < mapXSize; j++)
                 {
-                    var tileAndGo = tileHolderProvider.Provide();
+                    var tileAndGo = tileHolderProvider.Provide(row, false);
                     var index = i * mapXSize + j;
 
-                    //set gameObject's position
-                    var gameObjectTransform = tileAndGo.GameObject.transform;
-                    gameObjectTransform.parent = row;
-                    gameObjectTransform.rotation *= Quaternion.AngleAxis(30f, upAxis);
-                    gameObjectTransform.position = positions[index];
-
-                    Debug.Log(tileAndGo.Component);
-                    //set tile's data
-                    tileAndGo.Component.Initialize(new Tile(_getCoordinateService.GetAxialCoordinate(j, i), tileDatas[index]));
+                    tileAndGo.GameObject.transform.position = positions[index];
+                    tileAndGo.Component.Initialize(new Tile(tileDatas[index], _getCoordinateService.GetAxialCoordinate(j, i)));
                 }
             }
         }

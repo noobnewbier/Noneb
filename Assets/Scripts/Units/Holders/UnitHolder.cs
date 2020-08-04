@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Units.Holders
 {
-    public class UnitHolder : MonoBehaviour, IHolder<Unit>
+    public class UnitHolder : MonoBehaviour, IBoardItemHolder<Unit>
     {
         public Unit Value { get; private set; }
 
@@ -23,7 +23,7 @@ namespace Units.Holders
             var style = new GUIStyle {normal = {textColor = Color.yellow}};
             Handles.Label(
                 transform.position,
-                $"{Value.UnitData.UnitName}",
+                $"{Value.Data.UnitName}",
                 style
             );
         }

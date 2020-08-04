@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using BoardItems;
+using UnityEngine;
 
 namespace Units
 {
     [CreateAssetMenu(fileName = "UnitData", menuName = "Data/Unit")]
-    public class UnitData : ScriptableObject
+    public class UnitData : ScriptableObject, IBoardItemData
     {
         [SerializeField] private string unitName;
         [SerializeField] private float health;

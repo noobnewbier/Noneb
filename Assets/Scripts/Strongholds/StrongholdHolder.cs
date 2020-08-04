@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Strongholds
 {
-    public class StrongholdHolder : MonoBehaviour, IHolder<Stronghold>
+    public class StrongholdHolder : MonoBehaviour, IBoardItemHolder<Stronghold>
     {
         public Stronghold Value { get; private set; }
 
@@ -20,10 +20,10 @@ namespace Strongholds
                 return;
             }
 
-            var style = new GUIStyle {normal = {textColor = Color.red}};
+            var style = new GUIStyle {normal = {textColor = Color.cyan}};
             Handles.Label(
                 transform.position,
-                $"{Value.Construct.ConstructData.ConstructName} captured by : {Value.Unit.UnitData.UnitName}",
+                $"{Value.Data.ConstructData.ConstructName} captured by : {Value.Data.UnitData.UnitName}",
                 style
             );
         }

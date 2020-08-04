@@ -1,21 +1,13 @@
-﻿using Maps;
+﻿using BoardItems;
+using Common.TagInterface;
+using Maps;
 
 namespace Units
 {
-    public class Unit
+    public class Unit : BoardItem<UnitData>, IOnTile
     {
-        public Unit(UnitData unitData, Coordinate coordinate)
+        public Unit(UnitData data, Coordinate coordinate) : base(data, coordinate)
         {
-            UnitData = unitData;
-            Coordinate = coordinate;
-        }
-
-        public UnitData UnitData { get; }
-        public Coordinate Coordinate { get; private set; }
-
-        public void MoveTo(Coordinate coordinate)
-        {
-            Coordinate = coordinate;
         }
     }
 }

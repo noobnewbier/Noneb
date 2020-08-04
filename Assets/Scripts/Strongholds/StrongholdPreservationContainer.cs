@@ -6,19 +6,19 @@ using UnityEngine;
 
 namespace Strongholds
 {
-    public class StrongholdPreservationContainer :PreservationContainerAsMono<Stronghold>, IRequireCoordinate
+    public class StrongholdPreservationContainer : PreservationContainerAsMono<Stronghold>, IRequireCoordinate
     {
         [SerializeField] private UnitPreservationContainer unitPreservationContainer;
         [SerializeField] private ConstructPreservationContainer constructPreservationContainer;
         [SerializeField] private Coordinate coordinate;
-        
-        
+
+
         protected override Stronghold CreateFromPreservation()
         {
             var unit = unitPreservationContainer.GetPreservation();
             var construct = constructPreservationContainer.GetPreservation();
 
-            return new Stronghold(unit, construct, coordinate);
+            return new Stronghold(new StrongholdData(unit.Data, construct.Data), coordinate);
         }
 
         public Coordinate Coordinate

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BoardItems;
 using Common.Providers;
 using Tiles;
 using UnityEngine;
@@ -18,8 +19,10 @@ namespace Common.Holders
     /// Where it can only handle ONE such instance, and ignore any TR under the same parent.
     /// This is built under the expectation of "There can be no more than ONE thing of some type under one tile"
     /// We will see if this bit us later :)
+    ///
+    /// Todo: may need to get rid of this
     /// </summary>
-    public abstract class HoldersInitializer<T, THolder> : HoldersInitializer where T : class where THolder : IHolder<T>
+    public abstract class HoldersInitializer<T, THolder> : HoldersInitializer where T : BoardItem where THolder : IBoardItemHolder<T>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
         protected abstract string HolderTag { get; }

@@ -16,7 +16,7 @@ namespace Constructs
 
         protected override Construct CreateFromPreservation()
         {
-            return new Construct(coordinate, constructData);
+            return new Construct(constructData, coordinate);
         }
     }
 }

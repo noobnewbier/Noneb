@@ -1,27 +1,13 @@
-﻿using System;
+﻿using BoardItems;
 using Maps;
 using Tiles.Data;
-using UnityEngine;
 
 namespace Tiles
 {
-    [Serializable]
-    public class Tile
+    public class Tile : BoardItem<TileData>
     {
-        //do we actually need coord here?
-        [SerializeField] private Coordinate coordinate;
-        [SerializeField] private TileData tileData;
-
-        public Tile(Coordinate coordinate,
-                    TileData tileData)
+        public Tile(TileData data, Coordinate coordinate) : base(data, coordinate)
         {
-            this.coordinate = coordinate;
-            this.tileData = tileData;
         }
-
-        public Coordinate Coordinate => coordinate;
-
-        public TileData TileData => tileData;
-
     }
 }

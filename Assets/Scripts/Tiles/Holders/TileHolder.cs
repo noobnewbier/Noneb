@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tiles.Holders
 {
-    public class TileHolder : MonoBehaviour, IHolder<Tile>
+    public class TileHolder : MonoBehaviour, IBoardItemHolder<Tile>
     {
         //serialize to show stuffs in the inspector.
         [SerializeField] private Tile tile;

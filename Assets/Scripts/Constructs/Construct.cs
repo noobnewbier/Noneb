@@ -1,16 +1,13 @@
-﻿using Maps;
+﻿using BoardItems;
+using Common.TagInterface;
+using Maps;
 
 namespace Constructs
 {
-    public class Construct
+    public class Construct : BoardItem<ConstructData>, IOnTile
     {
-        public Coordinate Coordinate { get; }
-        public ConstructData ConstructData { get; }
-
-        public Construct(Coordinate coordinate, ConstructData constructData)
+        public Construct(ConstructData data, Coordinate coordinate) : base(data, coordinate)
         {
-            Coordinate = coordinate;
-            ConstructData = constructData;
         }
     }
 }

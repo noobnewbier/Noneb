@@ -1,20 +1,13 @@
-﻿using Constructs;
+﻿using BoardItems;
+using Common.TagInterface;
 using Maps;
-using Units;
 
 namespace Strongholds
 {
-    public class Stronghold
+    public class Stronghold : BoardItem<StrongholdData>, IOnTile
     {
-        public Unit Unit { get; }
-        public Construct Construct { get; }
-        public Coordinate Coordinate { get; }
-
-        public Stronghold(Unit unit, Construct construct, Coordinate coordinate)
+        public Stronghold(StrongholdData data, Coordinate coordinate) : base(data, coordinate)
         {
-            Unit = unit;
-            Construct = construct;
-            Coordinate = coordinate;
         }
     }
 }

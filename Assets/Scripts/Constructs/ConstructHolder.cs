@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Constructs
 {
-    public class ConstructHolder : MonoBehaviour, IHolder<Construct>
+    public class ConstructHolder : MonoBehaviour, IBoardItemHolder<Construct>
     {
         public Construct Value { get; private set; }
 
@@ -23,7 +23,7 @@ namespace Constructs
             var style = new GUIStyle {normal = {textColor = Color.red}};
             Handles.Label(
                 transform.position,
-                $"{Value.ConstructData.ConstructName}",
+                $"{Value.Data.ConstructName}",
                 style
             );
         }

@@ -1,26 +1,20 @@
 ﻿using Common.Providers;
-using Constructs;
 using GameEnvironments.Common.Data;
-using Tiles.Data;
-using Units;
+using UnityEngine;
 
 namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {
     public class CurrentGameEnvironmentRepositoryProvider : MonoObjectProvider<ICurrentGameEnvironmentRepository>
     {
+        // At some point this might not be serialized,
+        // as it should be "loaded"(set) by some script instead of a human 
+        [SerializeField] private GameEnvironmentScriptable gameEnvironmentScriptable;
+
+        private ICurrentGameEnvironmentRepository _cache;
+
         public override ICurrentGameEnvironmentRepository Provide()
         {
-            //todo: actual game env
-            var gameEnv = new GameEnvironment(
-                new GameObjectProvider[1],
-                new ConstructData[0],
-                new GameObjectProvider[0],
-                new UnitData[0],
-                new GameObjectProvider[0],
-                new TileData[0],
-                null
-            );
-            return new CurrentGameEnvironmentRepository(gameEnv);
+            return _cache ?? (_cache = new CurrentGameEnvironmentRepository(gameEnvironmentScriptable.ToGameEnvironment()));
         }
     }
 }

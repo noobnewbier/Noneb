@@ -1,49 +1,76 @@
-﻿using Common.Providers;
+﻿using System;
+using System.Linq;
+using Common.Providers;
 using Constructs;
+using JetBrains.Annotations;
 using Maps;
+using Strongholds;
 using Tiles.Data;
 using Units;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameEnvironments.Common.Data
 {
     [CreateAssetMenu(menuName = "Data/GameEnvironment", fileName = nameof(GameEnvironmentScriptable))]
     public class GameEnvironmentScriptable : ScriptableObject
     {
-        [FormerlySerializedAs("_mapConfiguration")] [SerializeField]
-        private MapConfiguration mapConfiguration;
+        /// <summary>
+        /// Required to avoid passing in empty but not null object into the environment
+        /// </summary>
+        [Serializable]
+        private class StrongholdDataWrapper
+        {
+            [SerializeField] private UnitData unitData;
+            [SerializeField] private ConstructData constructData;
 
-        [FormerlySerializedAs("_tileDatas")] [SerializeField]
-        private TileData[] tileDatas;
+            public StrongholdDataWrapper(UnitData unitData, ConstructData constructData)
+            {
+                this.unitData = unitData;
+                this.constructData = constructData;
+            }
 
-        [FormerlySerializedAs("_tileGameObjectProviders")] [SerializeField]
-        private GameObjectProvider[] tileGameObjectProviders;
+            public StrongholdData ToStrongholdData()
+            {
+                if (unitData == null && constructData == null)
+                {
+                    return null;
+                }
+                
+                return new StrongholdData(unitData, constructData);
+            }
+        }
 
-        [FormerlySerializedAs("_constructDatas")] [SerializeField]
-        private ConstructData[] constructDatas;
+        [SerializeField] private MapConfiguration mapConfiguration;
+        [SerializeField] private TileData[] tileDatas;
+        [SerializeField] private GameObjectProvider[] tileGameObjectProviders;
+        [SerializeField] private ConstructData[] constructDatas;
+        [SerializeField] private GameObjectProvider[] constructGameObjectProviders;
+        [SerializeField] private UnitData[] unitDatas;
+        [SerializeField] private GameObjectProvider[] unitGameObjectProviders;
+        [SerializeField] private StrongholdDataWrapper[] strongholdDatas;
+        [SerializeField] private GameObjectProvider[] strongholdUnitGameObjectProviders;
+        [SerializeField] private GameObjectProvider[] strongholdConstructGameObjectProviders;
 
-        [FormerlySerializedAs("_constructGameObjectProviders")] [SerializeField]
-        private GameObjectProvider[] constructGameObjectProviders;
+#if UNITY_EDITOR
+        [TextArea] [SerializeField] [UsedImplicitly]
+        private string devInformation;
+#endif
 
-        [FormerlySerializedAs("_unitDatas")] [SerializeField]
-        private UnitData[] unitDatas;
 
-        [FormerlySerializedAs("_unitGameObjectProviders")] [SerializeField]
-        private GameObjectProvider[] unitGameObjectProviders;
-
-        public MapConfiguration MapConfiguration => mapConfiguration;
-
-        public TileData[] TileDatas => tileDatas;
-
-        public GameObjectProvider[] TileGameObjectProviders => tileGameObjectProviders;
-
-        public ConstructData[] ConstructDatas => constructDatas;
-
-        public GameObjectProvider[] ConstructGameObjectProviders => constructGameObjectProviders;
-
-        public UnitData[] UnitDatas => unitDatas;
-
-        public GameObjectProvider[] UnitGameObjectProviders => unitGameObjectProviders;
+        public GameEnvironment ToGameEnvironment()
+        {
+            return new GameEnvironment(
+                mapConfiguration,
+                tileDatas,
+                tileGameObjectProviders,
+                constructDatas,
+                constructGameObjectProviders,
+                unitDatas,
+                unitGameObjectProviders,
+                strongholdDatas.Select(wrapper => wrapper.ToStrongholdData()).ToArray(),
+                strongholdUnitGameObjectProviders,
+                strongholdConstructGameObjectProviders
+            );
+        }
     }
 }

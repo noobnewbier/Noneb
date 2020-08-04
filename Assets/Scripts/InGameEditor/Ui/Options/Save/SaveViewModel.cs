@@ -2,7 +2,6 @@
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save;
 using InGameEditor.Data;
-using UniRx;
 
 namespace InGameEditor.Ui.Options.Save
 {

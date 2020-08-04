@@ -9,6 +9,8 @@ TagManager:
   - ConstructHolder
   - UnitHolder
   - StrongholdHolder
+  - UnitGameObject
+  - ConstructGameObject
   layers:
   - Default
   - TransparentFX

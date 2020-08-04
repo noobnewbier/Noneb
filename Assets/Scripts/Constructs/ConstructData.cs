@@ -1,4 +1,4 @@
-﻿using BoardItems;
+﻿using Common.BoardItems;
 using UnityEngine;
 
 namespace Constructs

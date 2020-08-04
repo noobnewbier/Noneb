@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Priority_Queue;
-using Tiles;
 using UnityEngine;
 
 namespace Maps
@@ -37,7 +36,7 @@ namespace Maps
                     }
 
                     //we ignore the starting tile when calculating the cost
-                    var pathCost = path.Select(map.Get).Sum(t => t.TileData.Weight);
+                    var pathCost = path.Select(map.Get).Sum(t => t.Data.Weight);
                     if (includeStartingTile)
                     {
                         path.Add(start);
@@ -56,7 +55,7 @@ namespace Maps
                         continue;
                     }
 
-                    var currentDistanceToNeighbour = distanceToTile[current] + neighbour.TileData.Weight;
+                    var currentDistanceToNeighbour = distanceToTile[current] + neighbour.Data.Weight;
                     var neighbourCoordinate = neighbour.Coordinate;
                     if (!distanceToTile.TryGetValue(neighbourCoordinate, out var previousDistanceToNeighbour))
                     {

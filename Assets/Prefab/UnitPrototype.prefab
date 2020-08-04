@@ -102,11 +102,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 999063115371683619}
-  - component: {fileID: 8310619793318726757}
-  - component: {fileID: 7796056797699649506}
   m_Layer: 0
   m_Name: UnitPrototype
-  m_TagString: UnitHolder
+  m_TagString: UnitGameObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,34 +125,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8310619793318726757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175489675846785999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06216da6fba044acb8eb84a9fb9ff638, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7796056797699649506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175489675846785999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe2b78fe9404d23902b36baecd25caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitData: {fileID: 11400000, guid: 02f0fea788e70934ab4713d45a240723, type: 2}
-  coordinate:
-    x: 0
-    z: 0
 --- !u!1 &7220240992551867816
 GameObject:
   m_ObjectHideFlags: 0

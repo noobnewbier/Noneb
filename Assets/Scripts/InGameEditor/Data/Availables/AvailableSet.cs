@@ -4,8 +4,8 @@ namespace InGameEditor.Data.Availables
 {
     public abstract class AvailableSet<T> : ScriptableObject
     {
-        [SerializeField] private T[] _set;
+        [SerializeField] private T[] set;
 
-        public T[] Set => _set;
+        public T[] Set => set;
     }
 }

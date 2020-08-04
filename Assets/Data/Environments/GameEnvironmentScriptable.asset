@@ -73,7 +73,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c1246cdd20052e844b7a42a8b2a89d03, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 85b84275b5ab76745bbfe77edd990657, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 02f0fea788e70934ab4713d45a240723, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: 530213afbb2686447b6d506305ff53d9, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -168,4 +169,108 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  strongholdDatas:
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 11400000, guid: 02f0fea788e70934ab4713d45a240723, type: 2}
+    constructData: {fileID: 11400000, guid: c1246cdd20052e844b7a42a8b2a89d03, type: 2}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  - unitData: {fileID: 0}
+    constructData: {fileID: 0}
+  strongholdUnitGameObjectProviders:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 530213afbb2686447b6d506305ff53d9, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  strongholdConstructGameObjectProviders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 85b84275b5ab76745bbfe77edd990657, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  devInformation: "Obstacles\t: 2,5,8\nUnit\t\t: 4\t\nConstruct\t: 7\nStronghold\t:
+    15"

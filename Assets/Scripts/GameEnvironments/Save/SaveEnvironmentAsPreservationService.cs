@@ -2,48 +2,41 @@
 using System.Collections.Generic;
 using System.IO;
 using Common.Constants;
+using GameEnvironments.Common;
 using GameEnvironments.Common.Data;
 using InGameEditor.Data;
 using InGameEditor.Data.Availables;
+using InGameEditor.Repositories.SelectedEditorPalettes;
 using Maps.Repositories;
 using UnityEngine;
 
 namespace GameEnvironments.Save
 {
-    public interface ISaveEnvironmentAsPreservationService
-    {
-        /// <summary>
-        /// Try to save the environment as json, return value indicates if it is successful
-        /// Prime reason that saving is not successful is that there already exist a file with the same name
-        /// </summary>
-        /// <returns>Enum indicates whether saving is successful</returns>
-        SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, EditorPalette editorPalette, string filename);
-    }
-
-    public enum SavingResult
-    {
-        Success,
-        FileExist,
-        Error
-    }
-
-    public class SaveEnvironmentAsPreservationService : ISaveEnvironmentAsPreservationService
+    /// <summary>
+    /// Try to save the environment as json, return value indicates if it is successful
+    /// Prime reason that saving is not successful is that there already exist a file with the same name
+    /// </summary>
+    /// <returns>Enum indicates whether saving is successful</returns>
+    public class SaveEnvironmentService : ISaveEnvironmentService
     {
         private const string JsonFileExtension = ".json";
 
         private readonly IMapCharacteristicRepository _mapCharacteristicRepository;
+        private readonly ISelectedEditorPaletteRepository _editorPaletteRepository;
 
-        public SaveEnvironmentAsPreservationService(IMapCharacteristicRepository mapCharacteristicRepository)
+        public SaveEnvironmentService(IMapCharacteristicRepository mapCharacteristicRepository,
+                                                    ISelectedEditorPaletteRepository editorPaletteRepository)
         {
             _mapCharacteristicRepository = mapCharacteristicRepository;
+            _editorPaletteRepository = editorPaletteRepository;
         }
 
-        public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, EditorPalette editorPalette, string filename)
+        public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string filename)
         {
             var path = Path.Combine(DirectoryNames.Environments, filename + JsonFileExtension);
             if (!File.Exists(path))
             {
-                var environmentJson = CreateEnvironmentJson(gameEnvironment, editorPalette);
+                var environmentJson = CreateEnvironmentJson(gameEnvironment, _editorPaletteRepository.Palette);
                 var environmentJsonString = JsonUtility.ToJson(environmentJson);
 
                 try
@@ -85,7 +78,7 @@ namespace GameEnvironments.Save
         {
             var arrayLength = _mapCharacteristicRepository.GetMap2DArrayWidth();
             var upAxis = _mapCharacteristicRepository.GetUpAxis();
-            
+
             var tileDataAsInts = new int[arrayLength];
             var tileGameObjectAsInts = new int[arrayLength];
             var constructDataAsInts = new int[arrayLength];

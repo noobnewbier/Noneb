@@ -1,9 +1,6 @@
 ﻿using System;
-using EventManagement;
-using EventManagement.Providers;
+using GameEnvironments.Common;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
-using GameEnvironments.Save;
-using InGameEditor.Events;
 using InGameEditor.Repositories.SelectedEditorPalettes;
 using TMPro;
 using UniRx;
@@ -13,25 +10,24 @@ namespace InGameEditor.Ui.Options.Save
 {
     public class SaveView : MonoBehaviour
     {
+        [SerializeField] private SaveType saveType;
+
         [SerializeField] private GameObject savingDetailDialog;
         [SerializeField] private SaveViewModelFactory viewModelFactory;
         [SerializeField] private SelectedEditorPaletteRepositoryProvider editorPaletteRepositoryProvider;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
         [SerializeField] private TMP_InputField filenameInputField;
-        [SerializeField] private EventAggregatorProvider uiEventAggregatorProvider;
 
         private SaveViewModel _viewModel;
-        private IEventAggregator _uiEventAggregator;
         private CompositeDisposable _compositeDisposable;
 
         private void OnEnable()
         {
             _compositeDisposable = new CompositeDisposable();
             _viewModel = viewModelFactory.Create(
-                editorPaletteRepositoryProvider.Provide().Palette,
-                currentGameEnvironmentRepositoryProvider.Provide()
+                currentGameEnvironmentRepositoryProvider.Provide(),
+                saveType
             );
-            _uiEventAggregator = uiEventAggregatorProvider.ProvideEventAggregator();
 
             _compositeDisposable.Add(
                 _viewModel.SavingResultEvent.Subscribe(
@@ -74,17 +70,17 @@ namespace InGameEditor.Ui.Options.Save
 
         private void ShowFileExist()
         {
-            _uiEventAggregator.Publish(new UiMessageEvent("File already exist, pick another filename"));
+            _viewModel.ShowEditorMessage("File already exist, pick another filename");
         }
 
         private void ShowErrorMessage()
         {
-            _uiEventAggregator.Publish(new UiMessageEvent("Error occurs while trying to save the environment"));
+            _viewModel.ShowEditorMessage("File already exist, pick another filename");
         }
 
         private void ShowSavingSuccess()
         {
-            _uiEventAggregator.Publish(new UiMessageEvent("Success! Finally Noob you did something"));
+            _viewModel.ShowEditorMessage("File already exist, pick another filename");
         }
 
         private void ShowSavingDetailDialog()
@@ -101,6 +97,7 @@ namespace InGameEditor.Ui.Options.Save
         {
             _viewModel.ClickedSaveMenuButton();
         }
+
 
         public void OnClickSaveInSavingDetailDialog()
         {

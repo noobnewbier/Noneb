@@ -1,25 +1,33 @@
 ﻿using Common.Providers;
+using InGameEditor.Repositories.SelectedEditorPalettes;
 using Maps.Repositories;
 using UnityEngine;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Save
 {
-    [CreateAssetMenu(menuName = MenuName.ScriptableService+"SaveEnvironmentAsPreservationService", fileName = nameof(SaveEnvironmentAsPreservationServiceProvider))]
-    public class SaveEnvironmentAsPreservationServiceProvider : ScriptableObjectProvider<ISaveEnvironmentAsPreservationService>
+    [CreateAssetMenu(
+        menuName = MenuName.ScriptableService + "SaveEnvironmentAsPreservationService",
+        fileName = nameof(SaveEnvironmentAsPreservationServiceProvider)
+    )]
+    public class SaveEnvironmentAsPreservationServiceProvider : ScriptableObjectProvider<ISaveEnvironmentService>
     {
         [SerializeField] private MapCharacteristicRepositoryProvider mapCharacteristicRepositoryProvider;
-
-        private ISaveEnvironmentAsPreservationService _saveEnvironmentAsPreservationService;
+        [SerializeField] private SelectedEditorPaletteRepositoryProvider editorPaletteRepositoryProvider;
+        
+        private ISaveEnvironmentService _saveEnvironmentService;
 
         private void OnEnable()
         {
-            _saveEnvironmentAsPreservationService = new SaveEnvironmentAsPreservationService(mapCharacteristicRepositoryProvider.Provide());
+            _saveEnvironmentService = new SaveEnvironmentService(
+                mapCharacteristicRepositoryProvider.Provide(),
+                editorPaletteRepositoryProvider.Provide()
+            );
         }
 
-        public override ISaveEnvironmentAsPreservationService Provide()
+        public override ISaveEnvironmentService Provide()
         {
-            return _saveEnvironmentAsPreservationService;
+            return _saveEnvironmentService;
         }
     }
 }

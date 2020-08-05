@@ -1,18 +1,39 @@
-﻿using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+﻿using System;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save;
-using InGameEditor.Data;
+using GameEnvironments.Save.EditorOnly;
+using InGameEditor.Services;
 using UnityEngine;
 
 namespace InGameEditor.Ui.Options.Save
 {
     [CreateAssetMenu(menuName = "Factory/SaveViewModel", fileName = nameof(SaveViewModelFactory))]
-    public class SaveViewModelFactory : ScriptableObject
+    public partial class SaveViewModelFactory : ScriptableObject
     {
-        [SerializeField] private SaveEnvironmentAsPreservationServiceProvider environmentAsPreservationServiceProvider;
+        [SerializeField] private SaveEnvironmentAsPreservationServiceProvider saveEnvironmentAsPreservationServiceProvider;
+        [SerializeField] private SaveEnvironmentAsScriptableServiceProvider saveEnvironmentAsScriptableServiceProvider;
+
+        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
         
-        public SaveViewModel Create(EditorPalette editorPalette, ICurrentGameEnvironmentRepository repository)
+        public SaveViewModel Create(ICurrentGameEnvironmentRepository repository ,SaveType saveType)
         {
-            return new SaveViewModel(environmentAsPreservationServiceProvider.Provide(), editorPalette, repository);
+            switch (saveType)
+            {
+                case SaveType.Scriptable:
+                    return new SaveViewModel(
+                        saveEnvironmentAsScriptableServiceProvider.Provide(),
+                        repository,
+                        messageServiceProvider.Provide()
+                    );
+                case SaveType.Preservation:
+                    return new SaveViewModel(
+                        saveEnvironmentAsPreservationServiceProvider.Provide(),
+                        repository,
+                        messageServiceProvider.Provide()
+                    );
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

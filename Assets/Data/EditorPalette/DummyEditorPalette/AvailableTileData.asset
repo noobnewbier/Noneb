@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2e8e6dbd3a41d1b78315bd12018193, type: 3}
-  m_Name: EditorMessageViewModelFactory
+  m_Script: {fileID: 11500000, guid: e1d8685675e142dba04920273ceb35f5, type: 3}
+  m_Name: AvailableTileData
   m_EditorClassIdentifier: 
-  messageServiceProvider: {fileID: 11400000, guid: e50a2fd960ba9da40bd0c71229d4a797,
-    type: 2}
+  set:
+  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
+  - {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}

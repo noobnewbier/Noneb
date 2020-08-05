@@ -1,12 +1,11 @@
 ﻿using Common.Providers;
+using UnityEngine;
+using UnityUtils.Constants;
 
 namespace InGameEditor.Data.Availables
 {
-    /// <summary>
-    /// GameObjects are used for visual purposes, they should hold no behaviour
-    /// </summary>
-    public class AvailableGameObjectProviders : AvailableSet<IGameObjectProvider>
+    [CreateAssetMenu(fileName = nameof(AvailableGameObjectProviders), menuName = MenuName.Data + "InGameEditor/" + nameof(AvailableGameObjectProviders))]
+    public class AvailableGameObjectProviders : AvailableSet<GameObjectProvider>
     {
-        
     }
 }

@@ -3,9 +3,9 @@
     public static class DirectoryNames
     {
 #if UNITY_EDITOR
-        public static string Environments => "Environments";
+        public static string Environments => "Assets/Data/Environments/";
 #else
-        public static string Environments => Application.persistentDataPath + "//Environments";
+        public static string Environments => Application.persistentDataPath + "//Environments/";
 #endif
     }
 }

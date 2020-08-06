@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Maps.Repositories;
 using Tiles;
 
 namespace Maps
@@ -9,13 +10,18 @@ namespace Maps
     {
         private readonly Tile[,] _grid;
 
-        //Todo: use IMapCharacteristicRepository
-        public Map(IReadOnlyList<Tile> tiles, int mapXSize, int mapZSize)
+        public Map(IReadOnlyList<Tile> tiles, IMapCharacteristicRepository mapCharacteristicRepository)
         {
-            _grid = new Tile[mapXSize + mapZSize / 2, mapZSize];
-            for (var i = 0; i < mapZSize; i++)
-            for (var j = 0; j < mapXSize; j++)
-                _grid[j + i % 2 + i / 2, i] = tiles[i * mapXSize + j];
+            var mapCharacteristicRepository1 = mapCharacteristicRepository;
+            var map2DArrayWidth = mapCharacteristicRepository1.GetMap2DArrayWidth();
+            var map2dArrayHeight = mapCharacteristicRepository1.GetMap2DArrayHeight();
+            var map2DActualWidth = mapCharacteristicRepository1.GetMap2DActualWidth();
+            var map2dActualHeight = mapCharacteristicRepository1.GetMap2DActualHeight();
+            
+            _grid = new Tile[map2DArrayWidth, map2dArrayHeight];
+            for (var i = 0; i < map2dActualHeight; i++)
+            for (var j = 0; j < map2DActualWidth; j++)
+                _grid[j + i % 2 + i / 2, i] = tiles[i * map2DActualWidth + j];
         }
 
         public IReadOnlyDictionary<HexDirection, Tile> GetNeighbours(Coordinate axialCoordinate)

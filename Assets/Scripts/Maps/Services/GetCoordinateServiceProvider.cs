@@ -1,6 +1,5 @@
 ﻿using System;
 using Common.Providers;
-using EventManagement;
 using UnityEngine;
 using UnityUtils.Constants;
 

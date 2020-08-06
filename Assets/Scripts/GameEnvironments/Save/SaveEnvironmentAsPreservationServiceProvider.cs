@@ -19,7 +19,7 @@ namespace GameEnvironments.Save
 
         private void OnEnable()
         {
-            _saveEnvironmentService = new SaveEnvironmentService(
+            _saveEnvironmentService = new SaveEnvironmentAsPreservationService(
                 mapCharacteristicRepositoryProvider.Provide(),
                 editorPaletteRepositoryProvider.Provide()
             );

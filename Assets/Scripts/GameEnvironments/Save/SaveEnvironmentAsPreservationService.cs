@@ -17,14 +17,14 @@ namespace GameEnvironments.Save
     /// Prime reason that saving is not successful is that there already exist a file with the same name
     /// </summary>
     /// <returns>Enum indicates whether saving is successful</returns>
-    public class SaveEnvironmentService : ISaveEnvironmentService
+    public class SaveEnvironmentAsPreservationService : ISaveEnvironmentService
     {
         private const string JsonFileExtension = ".json";
 
         private readonly IMapCharacteristicRepository _mapCharacteristicRepository;
         private readonly ISelectedEditorPaletteRepository _editorPaletteRepository;
 
-        public SaveEnvironmentService(IMapCharacteristicRepository mapCharacteristicRepository,
+        public SaveEnvironmentAsPreservationService(IMapCharacteristicRepository mapCharacteristicRepository,
                                                     ISelectedEditorPaletteRepository editorPaletteRepository)
         {
             _mapCharacteristicRepository = mapCharacteristicRepository;

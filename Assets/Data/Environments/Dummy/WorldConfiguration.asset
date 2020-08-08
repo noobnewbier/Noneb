@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a58e235fa7403d939b45be6b2f11f4, type: 3}
-  m_Name: MapCharacteristicRepositoryProvider
+  m_Script: {fileID: 11500000, guid: b3b063a9e5b04956a508eef1c545e483, type: 3}
+  m_Name: WorldConfiguration
   m_EditorClassIdentifier: 
-  mapConfig: {fileID: 11400000, guid: 6b267b412d0995c41b8aebc9db4e6a0f, type: 2}
+  innerRadius: 1.813
+  upAxis: {x: 0, y: 0, z: 1}

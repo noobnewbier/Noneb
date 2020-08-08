@@ -3438,8 +3438,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99728c0e14a4223adae7fbcb586ea46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapConfiguration: {fileID: 11400000, guid: 6b267b412d0995c41b8aebc9db4e6a0f, type: 2}
   tileHolderRepositoryProvider: {fileID: 849524812}
+  mapCharacteristicRepositoryProvider: {fileID: 11400000, guid: d99096af9396de04ab2efd209bcdfe65,
+    type: 2}
 --- !u!114 &849524810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4015,14 +4016,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff88cfb1b8a1e04e9b118e731b33286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveType: 0
   savingDetailDialog: {fileID: 1850595404}
-  viewModelFactory: {fileID: 11400000, guid: 3215f39ce65d97c4996b164ad3777c78, type: 2}
+  viewModelFactory: {fileID: 11400000, guid: fc5d3a53cce71414bbd123602c2b7882, type: 2}
   editorPaletteRepositoryProvider: {fileID: 11400000, guid: 5abb86274ad398342a69d24d0ef2b09f,
     type: 2}
   currentGameEnvironmentRepositoryProvider: {fileID: 642466531}
   filenameInputField: {fileID: 806330215}
-  uiEventAggregatorProvider: {fileID: 11400000, guid: ab867a845c50d784581d08e043a0db23,
-    type: 2}
 --- !u!1 &1031561043
 GameObject:
   m_ObjectHideFlags: 0

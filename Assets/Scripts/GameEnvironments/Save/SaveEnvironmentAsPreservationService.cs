@@ -30,30 +30,33 @@ namespace GameEnvironments.Save
         public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string environmentName)
         {
             var pathPrefix = Application.isEditor ? Application.dataPath : Application.persistentDataPath;
-            var path = Path.Combine(pathPrefix + DirectoryNames.Environments, environmentName + JsonFileExtension);
-            if (!File.Exists(path))
+            var parentFolder = Path.Combine(pathPrefix, DirectoryNames.Environments, $"{environmentName}/");
+            var fullPath = Path.Combine(parentFolder, $"{environmentName}{JsonFileExtension}");
+
+            if (!File.Exists(fullPath))
             {
                 var environmentJson = CreateEnvironmentJson(gameEnvironment, _editorPaletteRepository.Palette);
                 var environmentJsonString = JsonUtility.ToJson(environmentJson);
 
                 try
                 {
-                    File.WriteAllText(path, environmentJsonString);
+                    Directory.CreateDirectory(parentFolder);
+                    File.WriteAllText(fullPath, environmentJsonString);
                     return SavingResult.Success;
                 }
                 catch (ArgumentException)
                 {
-                    Debug.Log($"path: {path} is invalidly formed");
+                    Debug.Log($"path: {fullPath} is invalidly formed");
                     return SavingResult.Error;
                 }
                 catch (PathTooLongException)
                 {
-                    Debug.Log($"path: {path} is too long");
+                    Debug.Log($"path: {fullPath} is too long");
                     return SavingResult.Error;
                 }
-                catch (DirectoryNotFoundException)
+                catch (DirectoryNotFoundException e)
                 {
-                    Debug.Log($"path: {path} is invalid, is it on an unmapped drive?(FWIW I don't even know what is an unmapped drive");
+                    Debug.Log($"path: {fullPath} is invalid, is it on an unmapped drive?(FWIW I don't even know what is an unmapped drive");
                     return SavingResult.Error;
                 }
                 catch (IOException)
@@ -68,10 +71,11 @@ namespace GameEnvironments.Save
                 }
             }
 
+            Debug.Log("File already exist");
             return SavingResult.FileExist;
         }
 
-        private GameEnvironmentJson CreateEnvironmentJson(GameEnvironment gameEnvironment, EditorPalette editorPalette)
+        private static GameEnvironmentJson CreateEnvironmentJson(GameEnvironment gameEnvironment, EditorPalette editorPalette)
         {
             var mapConfiguration = gameEnvironment.MapConfiguration;
             var arrayLength = mapConfiguration.GetFlattenMapArrayLength();

@@ -21,11 +21,28 @@ namespace GameEnvironments.Save.EditorOnly
             var childFolder = environmentName;
             var path = Path.Combine(parentFolder, childFolder);
 
-            if (!AssetDatabase.IsValidFolder(path))
+            var levelDataFilename = environmentName + nameof(LevelData) + AssetFileExtension;
+            var gameEnvironmentFilename = environmentName + nameof(GameEnvironment) + AssetFileExtension;
+            var mapConfigFilename = environmentName + nameof(MapConfiguration) + AssetFileExtension;
+            var worldConfigFilename = environmentName + nameof(WorldConfiguration) + AssetFileExtension;
+
+            if (!File.Exists(Path.Combine(path, gameEnvironmentFilename)))
             {
                 try
                 {
-                    CreateAndSaveAsset(gameEnvironment, environmentName, parentFolder, childFolder, path);
+                    if (!AssetDatabase.IsValidFolder(path))
+                    {
+                        AssetDatabase.CreateFolder(parentFolder, childFolder);
+                    }
+
+                    CreateAndSaveAsset(
+                        gameEnvironment,
+                        path,
+                        levelDataFilename,
+                        gameEnvironmentFilename,
+                        mapConfigFilename,
+                        worldConfigFilename
+                    );
 
                     return SavingResult.Success;
                 }
@@ -56,22 +73,17 @@ namespace GameEnvironments.Save.EditorOnly
                 }
             }
 
+            Debug.Log("File already exist");
             return SavingResult.FileExist;
         }
 
-        private void CreateAndSaveAsset(GameEnvironment gameEnvironment,
-                                        string environmentName,
-                                        string parentFolder,
-                                        string childFolder,
-                                        string fullPath)
+        private static void CreateAndSaveAsset(GameEnvironment gameEnvironment,
+                                               string fullPath,
+                                               string levelDataFilename,
+                                               string gameEnvironmentFilename,
+                                               string mapConfigFilename,
+                                               string worldConfigFilename)
         {
-            var levelDataFilename = environmentName + nameof(LevelData) + AssetFileExtension;
-            var gameEnvironmentFilename = environmentName + nameof(GameEnvironment) + AssetFileExtension;
-            var mapConfigFilename = environmentName + nameof(MapConfiguration) + AssetFileExtension;
-            var worldConfigFilename = environmentName + nameof(WorldConfiguration) + AssetFileExtension;
-
-            AssetDatabase.CreateFolder(parentFolder, childFolder);
-
             //create new instances as they cannot be referencing the old configs
             var levelDataScriptable = LevelDataScriptable.CreateScriptableFromLevelData(
                 gameEnvironment.LevelData

@@ -8,7 +8,7 @@ namespace Tiles.Holders.Repository
     public class TileHolderRepositoryProvider : MonoObjectProvider<ITileHoldersRepository>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
-        [SerializeField] private MapConfiguration configuration;
+        [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
         
         private ITileHoldersRepository _repository;
         
@@ -16,8 +16,9 @@ namespace Tiles.Holders.Repository
         {
             if (_repository == null)
             {
+                var mapConfig = mapConfigurationProvider.Provide();
                 var representations = tilesTransformProvider.Provide().Select(t => t.GetComponent<TileHolder>()).ToList();
-                _repository = new TileHoldersRepository(representations, configuration.XSize, configuration.ZSize);                
+                _repository = new TileHoldersRepository(representations, mapConfig.XSize, mapConfig.ZSize);                
             }
 
             return _repository;

@@ -1,5 +1,9 @@
-﻿using Common.Providers;
+﻿using System.Collections.Immutable;
+using Common.Providers;
 using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Data.GameEnvironments;
+using GameEnvironments.Common.Data.LevelDatas;
+using GameEnvironments.Common.Repositories.LevelDatas;
 using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
 using Strongholds;
 using UnityEngine;
@@ -16,9 +20,9 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
             return loadStrongholdServiceProvider.Provide();
         }
 
-        protected override StrongholdData[] GetDatasFromEnvironment(GameEnvironment gameEnvironment)
+        protected override ImmutableArray<StrongholdData> GetDatasFromRepository(ILevelDataRepository levelDataRepository)
         {
-            return gameEnvironment.StrongholdDatas;
+            return levelDataRepository.StrongholdDatas;
         }
 
         protected override IGameObjectAndComponentProvider<StrongholdHolder> GetHolderProvider()

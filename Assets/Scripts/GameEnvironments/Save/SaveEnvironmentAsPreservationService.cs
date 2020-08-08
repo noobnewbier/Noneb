@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using Common.Constants;
 using GameEnvironments.Common;
-using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Data.GameEnvironments;
 using InGameEditor.Data;
 using InGameEditor.Data.Availables;
 using InGameEditor.Repositories.SelectedEditorPalettes;
-using Maps.Repositories;
 using UnityEngine;
 
 namespace GameEnvironments.Save
@@ -21,19 +20,17 @@ namespace GameEnvironments.Save
     {
         private const string JsonFileExtension = ".json";
 
-        private readonly IMapCharacteristicRepository _mapCharacteristicRepository;
         private readonly ISelectedEditorPaletteRepository _editorPaletteRepository;
 
-        public SaveEnvironmentAsPreservationService(IMapCharacteristicRepository mapCharacteristicRepository,
-                                                    ISelectedEditorPaletteRepository editorPaletteRepository)
+        public SaveEnvironmentAsPreservationService(ISelectedEditorPaletteRepository editorPaletteRepository)
         {
-            _mapCharacteristicRepository = mapCharacteristicRepository;
             _editorPaletteRepository = editorPaletteRepository;
         }
 
-        public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string filename)
+        public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string environmentName)
         {
-            var path = Path.Combine(DirectoryNames.Environments, filename + JsonFileExtension);
+            var pathPrefix = Application.isEditor ? Application.dataPath : Application.persistentDataPath;
+            var path = Path.Combine(pathPrefix + DirectoryNames.Environments, environmentName + JsonFileExtension);
             if (!File.Exists(path))
             {
                 var environmentJson = CreateEnvironmentJson(gameEnvironment, _editorPaletteRepository.Palette);
@@ -76,8 +73,9 @@ namespace GameEnvironments.Save
 
         private GameEnvironmentJson CreateEnvironmentJson(GameEnvironment gameEnvironment, EditorPalette editorPalette)
         {
-            var arrayLength = _mapCharacteristicRepository.GetMap2DArrayWidth();
-            var upAxis = _mapCharacteristicRepository.GetUpAxis();
+            var mapConfiguration = gameEnvironment.MapConfiguration;
+            var arrayLength = mapConfiguration.GetFlattenMapArrayLength();
+            var levelData = gameEnvironment.LevelData;
 
             var tileDataAsInts = new int[arrayLength];
             var tileGameObjectAsInts = new int[arrayLength];
@@ -86,22 +84,22 @@ namespace GameEnvironments.Save
             var unitDataAsInts = new int[arrayLength];
             var unitGameObjectAsInts = new int[arrayLength];
 
-            FillArrayWithMatchingIndex(editorPalette.AvailableTileData, gameEnvironment.TileDatas, tileDataAsInts);
+            FillArrayWithMatchingIndex(editorPalette.AvailableTileData, levelData.TileDatas, tileDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableTileGameObjectProviders,
-                gameEnvironment.TileGameObjectProviders,
+                levelData.TileGameObjectProviders,
                 tileGameObjectAsInts
             );
-            FillArrayWithMatchingIndex(editorPalette.AvailableConstructData, gameEnvironment.ConstructDatas, constructDataAsInts);
+            FillArrayWithMatchingIndex(editorPalette.AvailableConstructData, levelData.ConstructDatas, constructDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableConstructGameObjectProviders,
-                gameEnvironment.ConstructGameObjectProviders,
+                levelData.ConstructGameObjectProviders,
                 constructGameObjectAsInts
             );
-            FillArrayWithMatchingIndex(editorPalette.AvailableUnitData, gameEnvironment.UnitDatas, unitDataAsInts);
+            FillArrayWithMatchingIndex(editorPalette.AvailableUnitData, levelData.UnitDatas, unitDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableUnitGameObjectProviders,
-                gameEnvironment.UnitGameObjectProviders,
+                levelData.UnitGameObjectProviders,
                 unitGameObjectAsInts
             );
 
@@ -112,12 +110,10 @@ namespace GameEnvironments.Save
                 constructGameObjectAsInts,
                 unitDataAsInts,
                 unitGameObjectAsInts,
-                _mapCharacteristicRepository.GetInnerRadius(),
-                _mapCharacteristicRepository.GetMap2DArrayWidth(),
-                _mapCharacteristicRepository.GetMap2dArrayHeight(),
-                upAxis.x,
-                upAxis.y,
-                upAxis.z
+                gameEnvironment.WorldConfiguration.InnerRadius,
+                mapConfiguration.GetMap2DArrayWidth(),
+                mapConfiguration.GetMap2DArrayHeight(),
+                gameEnvironment.WorldConfiguration.UpAxis
             );
         }
 

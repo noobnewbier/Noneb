@@ -1,11 +1,10 @@
 ﻿using Common.Providers;
 using Constructs;
-using Maps;
 using Strongholds;
 using Tiles.Data;
 using Units;
 
-namespace GameEnvironments.Common.Data
+namespace GameEnvironments.Common.Data.LevelDatas
 {
     /// <summary>
     /// Basically a game level, including all data one required to load a level(both visually and "backend" wise)
@@ -14,18 +13,17 @@ namespace GameEnvironments.Common.Data
     /// todo: collection better be readonly, in case you accidentally assign stuffs... or should they?
     /// todo: handle overrides
     /// </summary>
-    public class GameEnvironment
+    public class LevelData
     {
-        public GameEnvironment(MapConfiguration mapConfiguration,
-                               TileData[] tileDatas,
-                               GameObjectProvider[] tileGameObjectProviders,
-                               ConstructData[] constructDatas,
-                               GameObjectProvider[] constructGameObjectProviders,
-                               UnitData[] unitDatas,
-                               GameObjectProvider[] unitGameObjectProviders,
-                               StrongholdData[] strongholdDatas,
-                               GameObjectProvider[] strongholdUnitGameObjectProviders,
-                               GameObjectProvider[] strongholdConstructGameObjectProviders)
+        public LevelData(TileData[] tileDatas,
+                         GameObjectProvider[] tileGameObjectProviders,
+                         ConstructData[] constructDatas,
+                         GameObjectProvider[] constructGameObjectProviders,
+                         UnitData[] unitDatas,
+                         GameObjectProvider[] unitGameObjectProviders,
+                         StrongholdData[] strongholdDatas,
+                         GameObjectProvider[] strongholdUnitGameObjectProviders,
+                         GameObjectProvider[] strongholdConstructGameObjectProviders)
         {
             TileDatas = tileDatas;
             TileGameObjectProviders = tileGameObjectProviders;
@@ -33,13 +31,11 @@ namespace GameEnvironments.Common.Data
             ConstructGameObjectProviders = constructGameObjectProviders;
             UnitDatas = unitDatas;
             UnitGameObjectProviders = unitGameObjectProviders;
-            MapConfiguration = mapConfiguration;
             StrongholdUnitGameObjectProviders = strongholdUnitGameObjectProviders;
             StrongholdConstructGameObjectProviders = strongholdConstructGameObjectProviders;
             StrongholdDatas = strongholdDatas;
         }
 
-        public MapConfiguration MapConfiguration { get; }
         public TileData[] TileDatas { get; }
         public GameObjectProvider[] TileGameObjectProviders { get; }
         public ConstructData[] ConstructDatas { get; }

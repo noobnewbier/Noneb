@@ -1,6 +1,7 @@
-﻿using Common.Providers;
+﻿using System.Collections.Immutable;
+using Common.Providers;
 using Constructs;
-using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Repositories.LevelDatas;
 using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
 using UnityEngine;
 
@@ -10,15 +11,15 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
     {
         [SerializeField] private LoadConstructServiceProvider loadConstructServiceProvider;
         [SerializeField] private ConstructHolderProvider constructHolderProvider;
-        
+
         protected override ILoadBoardItemOnTileService<ConstructHolder, Construct, ConstructData> GetService()
         {
             return loadConstructServiceProvider.Provide();
         }
 
-        protected override ConstructData[] GetDatasFromEnvironment(GameEnvironment gameEnvironment)
+        protected override ImmutableArray<ConstructData> GetDatasFromRepository(ILevelDataRepository levelDataRepository)
         {
-            return gameEnvironment.ConstructDatas;
+            return levelDataRepository.ConstructDatas;
         }
 
         protected override IGameObjectAndComponentProvider<ConstructHolder> GetHolderProvider()

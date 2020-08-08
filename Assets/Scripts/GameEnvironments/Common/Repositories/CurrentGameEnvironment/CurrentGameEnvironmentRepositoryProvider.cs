@@ -1,13 +1,17 @@
 ﻿using Common.Providers;
 using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Data.GameEnvironments;
 using UnityEngine;
+using UnityUtils.Constants;
 
 namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {
-    public class CurrentGameEnvironmentRepositoryProvider : MonoObjectProvider<ICurrentGameEnvironmentRepository>
+    [CreateAssetMenu(
+        fileName = nameof(CurrentGameEnvironmentRepositoryProvider),
+        menuName = MenuName.ScriptableRepository + nameof(CurrentGameEnvironmentRepository)
+    )]
+    public class CurrentGameEnvironmentRepositoryProvider : ScriptableObjectProvider<ICurrentGameEnvironmentRepository>
     {
-        // At some point this might not be serialized,
-        // as it should be "loaded"(set) by some script instead of a human 
         [SerializeField] private GameEnvironmentScriptable gameEnvironmentScriptable;
 
         private ICurrentGameEnvironmentRepository _cache;

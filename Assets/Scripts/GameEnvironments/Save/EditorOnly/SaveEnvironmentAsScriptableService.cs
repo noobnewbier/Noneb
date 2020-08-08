@@ -2,24 +2,31 @@
 using System.IO;
 using Common.Constants;
 using GameEnvironments.Common;
-using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Data.GameEnvironments;
+using GameEnvironments.Common.Data.LevelDatas;
+using Maps;
 using UnityEditor;
 using UnityEngine;
+using WorldConfigurations;
 
 namespace GameEnvironments.Save.EditorOnly
 {
     public class SaveEnvironmentAsScriptableService : ISaveEnvironmentService
     {
         private const string AssetFileExtension = ".asset";
-        
-        public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string filename)
+
+        public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string environmentName)
         {
-            var path = Path.Combine(DirectoryNames.Environments, filename + AssetFileExtension);
-            if (!File.Exists(path))
+            var parentFolder = Path.Combine("Assets/", DirectoryNames.Environments);
+            var childFolder = environmentName;
+            var path = Path.Combine(parentFolder, childFolder);
+
+            if (!AssetDatabase.IsValidFolder(path))
             {
                 try
                 {
-                    AssetDatabase.CreateAsset(GameEnvironmentScriptable.CreateScriptableFromGameEnvironment(gameEnvironment), path);
+                    CreateAndSaveAsset(gameEnvironment, environmentName, parentFolder, childFolder, path);
+
                     return SavingResult.Success;
                 }
                 catch (ArgumentException)
@@ -50,6 +57,47 @@ namespace GameEnvironments.Save.EditorOnly
             }
 
             return SavingResult.FileExist;
+        }
+
+        private void CreateAndSaveAsset(GameEnvironment gameEnvironment,
+                                        string environmentName,
+                                        string parentFolder,
+                                        string childFolder,
+                                        string fullPath)
+        {
+            var levelDataFilename = environmentName + nameof(LevelData) + AssetFileExtension;
+            var gameEnvironmentFilename = environmentName + nameof(GameEnvironment) + AssetFileExtension;
+            var mapConfigFilename = environmentName + nameof(MapConfiguration) + AssetFileExtension;
+            var worldConfigFilename = environmentName + nameof(WorldConfiguration) + AssetFileExtension;
+
+            AssetDatabase.CreateFolder(parentFolder, childFolder);
+
+            //create new instances as they cannot be referencing the old configs
+            var levelDataScriptable = LevelDataScriptable.CreateScriptableFromLevelData(
+                gameEnvironment.LevelData
+            );
+            var mapConfiguration = MapConfiguration.Create(
+                gameEnvironment.MapConfiguration.XSize,
+                gameEnvironment.MapConfiguration.ZSize
+            );
+            var worldConfiguration = WorldConfiguration.Create(
+                gameEnvironment.WorldConfiguration.UpAxis,
+                gameEnvironment.WorldConfiguration.InnerRadius
+            );
+
+            var gameEnvironmentScriptable = GameEnvironmentScriptable.Create(
+                mapConfiguration,
+                worldConfiguration,
+                levelDataScriptable
+            );
+
+            AssetDatabase.CreateAsset(levelDataScriptable, $"{fullPath}/{levelDataFilename}");
+            AssetDatabase.CreateAsset(mapConfiguration, $"{fullPath}/{mapConfigFilename}");
+            AssetDatabase.CreateAsset(worldConfiguration, $"{fullPath}/{worldConfigFilename}");
+            AssetDatabase.CreateAsset(
+                gameEnvironmentScriptable,
+                $"{fullPath}/{gameEnvironmentFilename}"
+            );
         }
     }
 }

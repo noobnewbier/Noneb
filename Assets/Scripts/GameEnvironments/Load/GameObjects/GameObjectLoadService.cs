@@ -6,12 +6,12 @@ namespace GameEnvironments.Load.GameObjects
 {
     public interface IGameObjectLoadService
     {
-        void Load(GameObjectProvider[] gameObjectProviders, IList<Transform> holdersTransforms, int mapXSize, int mapZSize);
+        void Load(IList<GameObjectProvider> gameObjectProviders, IList<Transform> holdersTransforms, int mapXSize, int mapZSize);
     }
 
     public class GameObjectLoadService : IGameObjectLoadService
     {
-        public void Load(GameObjectProvider[] gameObjectProviders, IList<Transform> holdersTransforms, int mapXSize, int mapZSize)
+        public void Load(IList<GameObjectProvider> gameObjectProviders, IList<Transform> holdersTransforms, int mapXSize, int mapZSize)
         {
             for (var i = 0; i < mapZSize; i++)
             for (var j = 0; j < mapXSize; j++)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Maps.Repositories;
 using Tiles;
 
 namespace Maps
@@ -10,13 +9,12 @@ namespace Maps
     {
         private readonly Tile[,] _grid;
 
-        public Map(IReadOnlyList<Tile> tiles, IMapCharacteristicRepository mapCharacteristicRepository)
+        public Map(IReadOnlyList<Tile> tiles, MapConfiguration mapConfig)
         {
-            var mapCharacteristicRepository1 = mapCharacteristicRepository;
-            var map2DArrayWidth = mapCharacteristicRepository1.GetMap2DArrayWidth();
-            var map2dArrayHeight = mapCharacteristicRepository1.GetMap2DArrayHeight();
-            var map2DActualWidth = mapCharacteristicRepository1.GetMap2DActualWidth();
-            var map2dActualHeight = mapCharacteristicRepository1.GetMap2DActualHeight();
+            var map2DArrayWidth = mapConfig.GetMap2DArrayWidth();
+            var map2dArrayHeight = mapConfig.GetMap2DArrayHeight();
+            var map2DActualWidth = mapConfig.GetMap2DActualWidth();
+            var map2dActualHeight = mapConfig.GetMap2DActualHeight();
             
             _grid = new Tile[map2DArrayWidth, map2dArrayHeight];
             for (var i = 0; i < map2dActualHeight; i++)
@@ -26,7 +24,6 @@ namespace Maps
 
         public IReadOnlyDictionary<HexDirection, Tile> GetNeighbours(Coordinate axialCoordinate)
         {
-            //makes more sense to hard code, it is possible to use a loop but it is even harder to read
             var minusX = axialCoordinate + HexDirection.MinusX;
             var plusX = axialCoordinate + HexDirection.PlusX;
             var minusXMinusZ = axialCoordinate + HexDirection.MinusXMinusZ;

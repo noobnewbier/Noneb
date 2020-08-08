@@ -1,4 +1,5 @@
 ﻿using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Data.GameEnvironments;
 
 namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {

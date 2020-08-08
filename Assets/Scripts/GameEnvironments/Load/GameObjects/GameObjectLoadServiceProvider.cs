@@ -1,15 +1,17 @@
-﻿using Common.Providers;
+﻿using System;
+using Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Load.GameObjects
 {
-    [CreateAssetMenu(fileName = nameof(GameObjectLoadServiceProvider), menuName = MenuName.ScriptableService+"TileGameObjectLoadService")]
+    [CreateAssetMenu(fileName = nameof(GameObjectLoadServiceProvider), menuName = MenuName.ScriptableService+ nameof(GameObjectLoadService))]
     public class GameObjectLoadServiceProvider : ScriptableObjectProvider<IGameObjectLoadService>
     {
+        private readonly Lazy<IGameObjectLoadService> _lazyInstance = new Lazy<IGameObjectLoadService>(() => new GameObjectLoadService());
         public override IGameObjectLoadService Provide()
         {
-            return new GameObjectLoadService();
+            return _lazyInstance.Value;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DebugUtils
     /// </summary>
     public class CoordinateSetter : MonoBehaviour
     {
-        [SerializeField] private MapConfiguration config;
+        [SerializeField] private MapConfigurationProvider mapConfigProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
         /// <summary>
@@ -21,6 +21,7 @@ namespace DebugUtils
         private void SetCoordinates()
         {
             var tilesTransform = tilesTransformProvider.Provide();
+            var config = mapConfigProvider.Provide();
 
             Assert.AreEqual(tilesTransform.Count, config.ZSize * config.XSize, "Number of tile representation is different from the configuration");
 

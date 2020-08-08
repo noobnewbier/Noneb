@@ -1,9 +1,10 @@
-﻿using Common.BoardItems;
+﻿using System.Collections.Immutable;
+using Common.BoardItems;
 using Common.Holders;
 using Common.Providers;
 using Common.TagInterface;
-using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Common.Repositories.LevelDatas;
+using Maps;
 using Tiles;
 using UnityEngine;
 
@@ -14,33 +15,26 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
         where TBoardItemOnTile : BoardItem, IOnTile
         where TData : IBoardItemData
     {
-        [SerializeField] protected CurrentGameEnvironmentRepositoryProvider gameEnvironmentRepositoryProvider;
+        [SerializeField] private LevelDataRepositoryProvider levelDataRepositoryProvider;
+        [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
-
-        private ILoadBoardItemOnTileService<THolder, TBoardItemOnTile, TData> _loadOnTileService;
-        private ICurrentGameEnvironmentRepository _gameEnvironmentRepository;
-
-        private void OnEnable()
-        {
-            _loadOnTileService = GetService();
-            _gameEnvironmentRepository = gameEnvironmentRepositoryProvider.Provide();
-        }
 
         public void Load()
         {
-            var gameEnvironment = _gameEnvironmentRepository.Get();
-            
-            _loadOnTileService.Load(
-                GetDatasFromEnvironment(gameEnvironment),
+            var mapConfiguration = mapConfigurationProvider.Provide();
+            var loadOnTileService = GetService();
+            var levelDataRepository = levelDataRepositoryProvider.Provide();
+            loadOnTileService.Load(
+                GetDatasFromRepository(levelDataRepository),
                 tilesTransformProvider,
                 GetHolderProvider(),
-                gameEnvironment.MapConfiguration.XSize,
-                gameEnvironment.MapConfiguration.ZSize
+                mapConfiguration.GetMap2DActualWidth(),
+                mapConfiguration.GetMap2DActualHeight()
             );
         }
 
         protected abstract ILoadBoardItemOnTileService<THolder, TBoardItemOnTile, TData> GetService();
-        protected abstract TData[] GetDatasFromEnvironment(GameEnvironment gameEnvironment);
+        protected abstract ImmutableArray<TData> GetDatasFromRepository(ILevelDataRepository levelDataRepository);
         protected abstract IGameObjectAndComponentProvider<THolder> GetHolderProvider();
     }
 }

@@ -1,12 +1,15 @@
 ﻿using System.Linq;
 using Maps;
 using UnityEngine;
+using UnityEngine.Serialization;
+using WorldConfigurations;
 
 namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {
-        [SerializeField] private MapConfiguration config;
+        [FormerlySerializedAs("config")] [SerializeField] private MapConfiguration mapConfig;
+        [SerializeField] private WorldConfigurationProvider worldConfigurationProvider;
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
 
 
@@ -15,18 +18,19 @@ namespace DebugUtils
         [ContextMenu("GenerateVertices")]
         private void GenerateVertices()
         {
+            var worldConfig = worldConfigurationProvider.Provide();
             var positions = tilesPositionProvider.Provide().ToArray();
-            _vertices = new Vector3[config.XSize * config.ZSize * 6];
+            _vertices = new Vector3[mapConfig.XSize * mapConfig.ZSize * 6];
 
-            for (var i = 0; i < config.ZSize; i++)
+            for (var i = 0; i < mapConfig.ZSize; i++)
             {
-                for (var j = 0; j < config.XSize; j++)
+                for (var j = 0; j < mapConfig.XSize; j++)
                 {
                     for (var k = 0; k < 6; k++)
                     {
-                        var vertex = config.Corners[k] + positions[i * config.XSize + j];
+                        var vertex = worldConfig.TileCorners[k] + positions[i * mapConfig.XSize + j];
 
-                        _vertices[(i * config.XSize + j) * 6 + k] = vertex;
+                        _vertices[(i * mapConfig.XSize + j) * 6 + k] = vertex;
                     }
                 }
             }

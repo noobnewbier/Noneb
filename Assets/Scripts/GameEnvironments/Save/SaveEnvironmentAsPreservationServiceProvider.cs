@@ -1,7 +1,8 @@
 ﻿using Common.Providers;
 using InGameEditor.Repositories.SelectedEditorPalettes;
-using Maps.Repositories;
+using Maps;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Save
@@ -12,15 +13,14 @@ namespace GameEnvironments.Save
     )]
     public class SaveEnvironmentAsPreservationServiceProvider : ScriptableObjectProvider<ISaveEnvironmentService>
     {
-        [SerializeField] private MapCharacteristicRepositoryProvider mapCharacteristicRepositoryProvider;
+        [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
         [SerializeField] private SelectedEditorPaletteRepositoryProvider editorPaletteRepositoryProvider;
-        
+
         private ISaveEnvironmentService _saveEnvironmentService;
 
         private void OnEnable()
         {
             _saveEnvironmentService = new SaveEnvironmentAsPreservationService(
-                mapCharacteristicRepositoryProvider.Provide(),
                 editorPaletteRepositoryProvider.Provide()
             );
         }

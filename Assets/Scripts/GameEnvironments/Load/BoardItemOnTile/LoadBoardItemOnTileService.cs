@@ -18,8 +18,8 @@ namespace GameEnvironments.Load.BoardItemOnTile
         void Load(IReadOnlyList<TBoardItemData> boardItemDatas,
                   IObjectProvider<IList<Transform>> tilesTransformProvider,
                   IGameObjectAndComponentProvider<THolder> holderProvider,
-                  int mapXSize,
-                  int mapZSize);
+                  int mapWidth,
+                  int mapHeight);
     }
 
     public class LoadBoardItemOnTileService<THolder, TBoardItem, TBoardItemData> : ILoadBoardItemOnTileService<THolder, TBoardItem, TBoardItemData>
@@ -39,15 +39,15 @@ namespace GameEnvironments.Load.BoardItemOnTile
         public void Load(IReadOnlyList<TBoardItemData> boardItemDatas,
                          IObjectProvider<IList<Transform>> tilesTransformProvider,
                          IGameObjectAndComponentProvider<THolder> holderProvider,
-                         int mapXSize,
-                         int mapZSize)
+                         int mapWidth,
+                         int mapHeight)
         {
             var tileTransforms = tilesTransformProvider.Provide();
 
-            for (var i = 0; i < mapZSize; i++)
-            for (var j = 0; j < mapXSize; j++)
+            for (var i = 0; i < mapHeight; i++)
+            for (var j = 0; j < mapWidth; j++)
             {
-                var index = i * mapXSize + j;
+                var index = i * mapWidth + j;
                 var boardItemData = boardItemDatas[index];
                 if (boardItemData == null) 
                 {

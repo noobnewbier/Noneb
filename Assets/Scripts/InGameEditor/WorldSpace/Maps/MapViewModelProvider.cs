@@ -5,7 +5,7 @@ using UnityUtils.Constants;
 
 namespace InGameEditor.WorldSpace.Maps
 {
-    [CreateAssetMenu(fileName = nameof(MapViewModelProvider), menuName = MenuName.Providers + "ProvidersMapViewModel")]
+    [CreateAssetMenu(fileName = nameof(MapViewModelProvider), menuName = MenuName.Providers + nameof(MapViewModel))]
     public class MapViewModelProvider : ScriptableObjectProvider<MapViewModel>
     {
         public override MapViewModel Provide()

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Common.Providers;
-using Maps.Repositories;
 using Tiles.Holders.Repository;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -14,7 +13,7 @@ namespace Maps
         [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
         private TileHolderRepositoryProvider tileHolderRepositoryProvider;
 
-        [SerializeField] private MapCharacteristicRepositoryProvider mapCharacteristicRepositoryProvider;
+        [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
 
 
         public override Map Provide()
@@ -23,7 +22,7 @@ namespace Maps
             {
                 var tileHoldersRepository = tileHolderRepositoryProvider.Provide();
                 _map = new Map(tileHoldersRepository.GetAllFlatten().Select(t => t.Value).ToList(),
-                    mapCharacteristicRepositoryProvider.Provide());
+                    mapConfigurationProvider.Provide());
             }
 
             return _map;

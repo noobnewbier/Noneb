@@ -3,18 +3,17 @@ using System.Linq;
 using Common.Providers;
 using Constructs;
 using JetBrains.Annotations;
-using Maps;
 using Strongholds;
 using Tiles.Data;
 using Units;
 using UnityEngine;
+using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Data
+namespace GameEnvironments.Common.Data.LevelDatas
 {
-    [CreateAssetMenu(menuName = "Data/GameEnvironment", fileName = nameof(GameEnvironmentScriptable))]
-    public class GameEnvironmentScriptable : ScriptableObject
+    [CreateAssetMenu(menuName = MenuName.Data + nameof(LevelDataScriptable), fileName = nameof(LevelDataScriptable))]
+    public class LevelDataScriptable : ScriptableObject
     {
-        [SerializeField] private MapConfiguration mapConfiguration;
         [SerializeField] private TileData[] tileDatas;
         [SerializeField] private GameObjectProvider[] tileGameObjectProviders;
         [SerializeField] private ConstructData[] constructDatas;
@@ -30,10 +29,9 @@ namespace GameEnvironments.Common.Data
         private string devInformation;
 #endif
 
-        public GameEnvironment ToGameEnvironment()
+        public LevelData ToLevelData()
         {
-            return new GameEnvironment(
-                mapConfiguration,
+            return new LevelData(
                 tileDatas,
                 tileGameObjectProviders,
                 constructDatas,
@@ -46,21 +44,20 @@ namespace GameEnvironments.Common.Data
             );
         }
 
-        public static GameEnvironmentScriptable CreateScriptableFromGameEnvironment(GameEnvironment gameEnvironment)
+        public static LevelDataScriptable CreateScriptableFromLevelData(LevelData levelData)
         {
-            var newInstance = CreateInstance<GameEnvironmentScriptable>();
-            newInstance.mapConfiguration = gameEnvironment.MapConfiguration;
-            newInstance.tileDatas = gameEnvironment.TileDatas;
-            newInstance.tileGameObjectProviders = gameEnvironment.TileGameObjectProviders;
-            newInstance.constructDatas = gameEnvironment.ConstructDatas;
-            newInstance.constructGameObjectProviders = gameEnvironment.ConstructGameObjectProviders;
-            newInstance.unitDatas = gameEnvironment.UnitDatas;
-            newInstance.unitGameObjectProviders = gameEnvironment.UnitGameObjectProviders;
-            newInstance.strongholdDatas = gameEnvironment.StrongholdDatas
+            var newInstance = CreateInstance<LevelDataScriptable>();
+            newInstance.tileDatas = levelData.TileDatas;
+            newInstance.tileGameObjectProviders = levelData.TileGameObjectProviders;
+            newInstance.constructDatas = levelData.ConstructDatas;
+            newInstance.constructGameObjectProviders = levelData.ConstructGameObjectProviders;
+            newInstance.unitDatas = levelData.UnitDatas;
+            newInstance.unitGameObjectProviders = levelData.UnitGameObjectProviders;
+            newInstance.strongholdDatas = levelData.StrongholdDatas
                 .Select(data => data != null ? new StrongholdDataWrapper(data.UnitData, data.ConstructData) : null)
                 .ToArray();
-            newInstance.strongholdUnitGameObjectProviders = gameEnvironment.StrongholdUnitGameObjectProviders;
-            newInstance.strongholdConstructGameObjectProviders = gameEnvironment.StrongholdConstructGameObjectProviders;
+            newInstance.strongholdUnitGameObjectProviders = levelData.StrongholdUnitGameObjectProviders;
+            newInstance.strongholdConstructGameObjectProviders = levelData.StrongholdConstructGameObjectProviders;
 
             return newInstance;
         }

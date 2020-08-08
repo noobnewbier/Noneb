@@ -1,5 +1,6 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Data;
+﻿using System.Collections.Immutable;
+using Common.Providers;
+using GameEnvironments.Common.Repositories.LevelDatas;
 using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
 using Units;
 using Units.Holders;
@@ -17,9 +18,9 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
             return loadUnitServiceProvider.Provide();
         }
 
-        protected override UnitData[] GetDatasFromEnvironment(GameEnvironment gameEnvironment)
+        protected override ImmutableArray<UnitData> GetDatasFromRepository(ILevelDataRepository levelDataRepository)
         {
-            return gameEnvironment.UnitDatas;
+            return levelDataRepository.UnitDatas;
         }
 
         protected override IGameObjectAndComponentProvider<UnitHolder> GetHolderProvider()

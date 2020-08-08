@@ -1,33 +1,57 @@
 ﻿using UnityEngine;
+using UnityUtils.Constants;
 
 namespace Maps
 {
-    [CreateAssetMenu(fileName = nameof(MapConfiguration), menuName = "Data/" + nameof(MapConfiguration))]
+    [CreateAssetMenu(fileName = nameof(MapConfiguration), menuName = MenuName.Data + nameof(MapConfiguration))]
     public class MapConfiguration : ScriptableObject
     {
-        [Range(0f, 10f)] [SerializeField] private float innerRadius;
         [Range(1, 10)] [SerializeField] private int xSize;
         [Range(1, 10)] [SerializeField] private int zSize;
-        [SerializeField] private Vector3 upAxis;
-
-        public Vector3 UpAxis => upAxis;
+        
+        //todo: consider removing these two, they are just duplicates atm
         public int XSize => xSize;
         public int ZSize => zSize;
 
-        public float InnerRadius => innerRadius;
-
-        // 0.866025 -> sqrt(3) / 2, read https://catlikecoding.com/unity/tutorials/hex-map/part-1/, session "about hexagons" for details
-        public float OuterRadius => innerRadius / 0.86602540378f;
-
-        //Origin from center, begin from top, rotate clockwise
-        public Vector3[] Corners => new[]
+        // may have to consider making MapConfiguration a plain class and the scriptable a wrapper,
+        // don't really like how we have to sort of manually create this
+        public static MapConfiguration Create(int xSize, int zSize)
         {
-            new Vector3(0f, 0f, OuterRadius),
-            new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
-            new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
-            new Vector3(0f, 0f, -OuterRadius),
-            new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
-            new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius)
-        };
+            var instance = CreateInstance<MapConfiguration>();
+
+            instance.xSize = xSize;
+            instance.zSize = zSize;
+
+            return instance;
+        }
+
+        #region Methods - Consider moving them to a service or repo...
+
+        public int GetMap2DArrayWidth()
+        {
+            return XSize + ZSize / 2;
+        }
+
+        public int GetMap2DArrayHeight()
+        {
+            return ZSize;
+        }
+        
+        public int GetMap2DActualWidth()
+        {
+            return XSize;
+        }
+
+        public int GetMap2DActualHeight()
+        {
+            return ZSize;
+        }
+
+        public int GetFlattenMapArrayLength()
+        {
+            return GetMap2DArrayWidth() * GetMap2DArrayHeight();
+        }
+
+        #endregion
     }
 }

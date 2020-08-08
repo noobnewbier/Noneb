@@ -11,14 +11,9 @@ namespace InGameEditor.Repositories.SelectedEditorPalettes
 
         private ISelectedEditorPaletteRepository _repository;
 
-        private void OnEnable()
-        {
-            _repository = new SelectedEditorPaletteRepository(editorPalette);
-        }
-
         public override ISelectedEditorPaletteRepository Provide()
         {
-            return _repository;
+            return _repository ?? (_repository = new SelectedEditorPaletteRepository(editorPalette));
         }
     }
 }

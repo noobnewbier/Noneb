@@ -1,13 +1,8 @@
-﻿using Common.Providers;
-using Constructs;
-using GameEnvironments.Common.Data.LevelDatas;
+﻿using GameEnvironments.Common.Data.LevelDatas;
 using Maps;
-using Strongholds;
-using Tiles.Data;
-using Units;
 using WorldConfigurations;
 
-namespace GameEnvironments.Common.Data.GameEnvironments
+namespace GameEnvironments.Common.Data
 {
     /// <summary>
     /// Basically a game level, including all data one required to load a level(both visually and "backend" wise)

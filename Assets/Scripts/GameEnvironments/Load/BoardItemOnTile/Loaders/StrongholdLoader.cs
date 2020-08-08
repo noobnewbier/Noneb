@@ -1,7 +1,6 @@
 ﻿using System.Collections.Immutable;
 using Common.Providers;
 using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Data.GameEnvironments;
 using GameEnvironments.Common.Data.LevelDatas;
 using GameEnvironments.Common.Repositories.LevelDatas;
 using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;

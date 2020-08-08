@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Common.Constants;
 using GameEnvironments.Common;
-using GameEnvironments.Common.Data.GameEnvironments;
+using GameEnvironments.Common.Data;
 using InGameEditor.Data;
 using InGameEditor.Data.Availables;
 using InGameEditor.Repositories.SelectedEditorPalettes;

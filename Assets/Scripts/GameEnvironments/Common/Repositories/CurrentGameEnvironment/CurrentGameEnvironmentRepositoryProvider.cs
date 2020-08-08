@@ -1,6 +1,5 @@
 ﻿using Common.Providers;
 using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Data.GameEnvironments;
 using UnityEngine;
 using UnityUtils.Constants;
 

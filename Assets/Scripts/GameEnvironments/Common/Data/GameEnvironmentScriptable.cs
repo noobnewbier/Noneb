@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Linq;
-using Common.Providers;
 using Constructs;
 using GameEnvironments.Common.Data.LevelDatas;
 using JetBrains.Annotations;
 using Maps;
 using Strongholds;
-using Tiles.Data;
 using Units;
 using UnityEngine;
 using WorldConfigurations;
 
-namespace GameEnvironments.Common.Data.GameEnvironments
+namespace GameEnvironments.Common.Data
 {
     [CreateAssetMenu(menuName = "Data/GameEnvironment", fileName = nameof(GameEnvironmentScriptable))]
     public class GameEnvironmentScriptable : ScriptableObject

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameEnvironments.Common.Data.GameEnvironments
+namespace GameEnvironments.Common.Data
 {
     //label everything with int and hence ordering in the palette matters
     //todo: add mechanism to convert to GameEnvironment

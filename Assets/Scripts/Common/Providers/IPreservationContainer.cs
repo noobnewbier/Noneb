@@ -1,4 +1,4 @@
-﻿using GameEnvironments.Common.Data.GameEnvironments;
+﻿using GameEnvironments.Common.Data;
 
 namespace Common.Providers
 {

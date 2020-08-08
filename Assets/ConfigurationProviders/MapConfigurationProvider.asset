@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa592d8d3af4fdb89bdda4fc4cc55a8, type: 3}
   m_Name: MapConfigurationProvider
   m_EditorClassIdentifier: 
-  mpaConfiguration: {fileID: 11400000, guid: 6b267b412d0995c41b8aebc9db4e6a0f, type: 2}
+  gameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
+    type: 2}

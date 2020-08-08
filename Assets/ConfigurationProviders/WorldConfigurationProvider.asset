@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fa7f3154f8382409baa234f94993ba, type: 3}
   m_Name: WorldConfigurationProvider
   m_EditorClassIdentifier: 
-  worldConfiguration: {fileID: 11400000, guid: 07cfa84990e09f844bccc20381f53b25, type: 2}
+  gameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
+    type: 2}

@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431bfe481afbb524bbd31b07810d7f71, type: 3}
   m_Name: MapConfiguration
   m_EditorClassIdentifier: 
-  innerRadius: 1.815
   xSize: 5
   zSize: 5
-  upAxis: {x: 0, y: 0, z: 1}

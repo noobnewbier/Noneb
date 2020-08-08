@@ -5,10 +5,13 @@ using System.Linq;
 using Common.Constants;
 using GameEnvironments.Common;
 using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Data.LevelDatas;
 using InGameEditor.Data;
 using InGameEditor.Data.Availables;
 using InGameEditor.Repositories.SelectedEditorPalettes;
+using Maps;
 using UnityEngine;
+using WorldConfigurations;
 
 namespace GameEnvironments.Save
 {
@@ -55,7 +58,7 @@ namespace GameEnvironments.Save
                     Debug.Log($"path: {fullPath} is too long");
                     return SavingResult.Error;
                 }
-                catch (DirectoryNotFoundException e)
+                catch (DirectoryNotFoundException)
                 {
                     Debug.Log($"path: {fullPath} is invalid, is it on an unmapped drive?(FWIW I don't even know what is an unmapped drive");
                     return SavingResult.Error;
@@ -79,15 +82,41 @@ namespace GameEnvironments.Save
         private static GameEnvironmentJson CreateEnvironmentJson(GameEnvironment gameEnvironment, EditorPalette editorPalette)
         {
             var mapConfiguration = gameEnvironment.MapConfiguration;
-            var arrayLength = mapConfiguration.GetTotalMapSize();
-            var levelData = gameEnvironment.LevelData;
+            var datasLength = mapConfiguration.GetTotalMapSize();
 
-            var tileDataAsInts = new int[arrayLength];
-            var tileGameObjectAsInts = new int[arrayLength];
-            var constructDataAsInts = new int[arrayLength];
-            var constructGameObjectAsInts = new int[arrayLength];
-            var unitDataAsInts = new int[arrayLength];
-            var unitGameObjectAsInts = new int[arrayLength];
+            var levelDataJson = CreateLevelDataJson(gameEnvironment.LevelData, datasLength, editorPalette);
+            var mapConfigJson = CreateMapConfigurationJson(gameEnvironment.MapConfiguration);
+            var worldConfigJson = CreateWorldConfigurationJson(gameEnvironment.WorldConfiguration);
+
+            return new GameEnvironmentJson(
+                mapConfigJson,
+                worldConfigJson,
+                levelDataJson
+            );
+        }
+
+        private static WorldConfigurationJson CreateWorldConfigurationJson(WorldConfiguration worldConfiguration)
+        {
+            return new WorldConfigurationJson(worldConfiguration.InnerRadius, worldConfiguration.UpAxis);
+        }
+
+        private static MapConfigurationJson CreateMapConfigurationJson(MapConfiguration mapConfiguration)
+        {
+            return new MapConfigurationJson(mapConfiguration.XSize, mapConfiguration.ZSize);
+        }
+
+        private static LevelDataJson CreateLevelDataJson(LevelData levelData, int datasLength, EditorPalette editorPalette)
+        {
+            var tileDataAsInts = new int[datasLength];
+            var tileGameObjectAsInts = new int[datasLength];
+            var constructDataAsInts = new int[datasLength];
+            var constructGameObjectAsInts = new int[datasLength];
+            var unitDataAsInts = new int[datasLength];
+            var unitGameObjectAsInts = new int[datasLength];
+            var strongholdUnitDataAsInts = new int[datasLength];
+            var strongholdUnitGameObjectProvidersAsInts = new int[datasLength];
+            var strongholdConstructDataAsInts = new int[datasLength];
+            var strongholdConstructGameObjectProvidersAsInts = new int[datasLength];
 
             FillArrayWithMatchingIndex(editorPalette.AvailableTileData, levelData.TileDatas, tileDataAsInts);
             FillArrayWithMatchingIndex(
@@ -95,12 +124,14 @@ namespace GameEnvironments.Save
                 levelData.TileGameObjectProviders,
                 tileGameObjectAsInts
             );
+
             FillArrayWithMatchingIndex(editorPalette.AvailableConstructData, levelData.ConstructDatas, constructDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableConstructGameObjectProviders,
                 levelData.ConstructGameObjectProviders,
                 constructGameObjectAsInts
             );
+
             FillArrayWithMatchingIndex(editorPalette.AvailableUnitData, levelData.UnitDatas, unitDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableUnitGameObjectProviders,
@@ -108,17 +139,40 @@ namespace GameEnvironments.Save
                 unitGameObjectAsInts
             );
 
-            return new GameEnvironmentJson(
+            FillArrayWithMatchingIndex(
+                editorPalette.AvailableConstructData,
+                levelData.StrongholdDatas.Select(d => d?.ConstructData).ToList(),
+                strongholdConstructDataAsInts
+            );
+            FillArrayWithMatchingIndex(
+                editorPalette.AvailableConstructGameObjectProviders,
+                levelData.StrongholdConstructGameObjectProviders,
+                strongholdConstructGameObjectProvidersAsInts
+            );
+
+            FillArrayWithMatchingIndex(
+                editorPalette.AvailableUnitData,
+                levelData.StrongholdDatas.Select(d => d?.UnitData).ToList(),
+                strongholdUnitDataAsInts
+            );
+            FillArrayWithMatchingIndex(
+                editorPalette.AvailableUnitGameObjectProviders,
+                levelData.StrongholdUnitGameObjectProviders,
+                strongholdUnitGameObjectProvidersAsInts
+            );
+
+
+            return new LevelDataJson(
                 tileDataAsInts,
                 tileGameObjectAsInts,
                 constructDataAsInts,
                 constructGameObjectAsInts,
                 unitDataAsInts,
                 unitGameObjectAsInts,
-                gameEnvironment.WorldConfiguration.InnerRadius,
-                mapConfiguration.GetMap2DArrayWidth(),
-                mapConfiguration.GetMap2DArrayHeight(),
-                gameEnvironment.WorldConfiguration.UpAxis
+                strongholdUnitDataAsInts,
+                strongholdUnitGameObjectProvidersAsInts,
+                strongholdConstructDataAsInts,
+                strongholdConstructGameObjectProvidersAsInts
             );
         }
 

@@ -1,71 +1,31 @@
 ﻿using System;
+using GameEnvironments.Common.Data.LevelDatas;
+using Maps;
 using UnityEngine;
+using WorldConfigurations;
 
 namespace GameEnvironments.Common.Data
 {
     //label everything with int and hence ordering in the palette matters
-    //todo: add mechanism to convert to GameEnvironment
     //todo: handle overrides
     [Serializable]
     public class GameEnvironmentJson
     {
-        #region LevelData
+        [SerializeField] private MapConfigurationJson mapConfigurationJson;
+        [SerializeField] private WorldConfigurationJson worldConfigurationJson;
+        [SerializeField] private LevelDataJson levelDataJson;
 
-        [SerializeField] private int[] tileDatas;
-        [SerializeField] private int[] tileGameObjectProviders;
-        [SerializeField] private int[] constructDatas;
-        [SerializeField] private int[] constructGameObjectProviders;
-        [SerializeField] private int[] unitDatas;
-        [SerializeField] private int[] unitGameObjectProviders;
-
-        #endregion
-
-        #region MapConfiguration
-
-        [SerializeField] private int xSize;
-        [SerializeField] private int zSize;
-
-        #endregion
-
-        #region WorldConfig
-
-        [SerializeField] private float innerRadius;
-        [SerializeField] private Vector3 upAxis;
-
-        #endregion
-
-        public GameEnvironmentJson(int[] tileDatas,
-                                   int[] tileGameObjectProviders,
-                                   int[] constructDatas,
-                                   int[] constructGameObjectProviders,
-                                   int[] unitDatas,
-                                   int[] unitGameObjectProviders,
-                                   float innerRadius,
-                                   int xSize,
-                                   int zSize,
-                                   Vector3 upAxis)
+        public GameEnvironmentJson(MapConfigurationJson mapConfigurationJson,
+                                   WorldConfigurationJson worldConfigurationJson,
+                                   LevelDataJson levelDataJson)
         {
-            this.tileDatas = tileDatas;
-            this.tileGameObjectProviders = tileGameObjectProviders;
-            this.constructDatas = constructDatas;
-            this.constructGameObjectProviders = constructGameObjectProviders;
-            this.unitDatas = unitDatas;
-            this.unitGameObjectProviders = unitGameObjectProviders;
-            this.innerRadius = innerRadius;
-            this.xSize = xSize;
-            this.zSize = zSize;
-            this.upAxis = upAxis;
+            this.mapConfigurationJson = mapConfigurationJson;
+            this.worldConfigurationJson = worldConfigurationJson;
+            this.levelDataJson = levelDataJson;
         }
 
-        public int[] TileDatas => tileDatas;
-        public int[] TileGameObjectProviders => tileGameObjectProviders;
-        public int[] ConstructDatas => constructDatas;
-        public int[] ConstructGameObjectProviders => constructGameObjectProviders;
-        public int[] UnitDatas => unitDatas;
-        public int[] UnitGameObjectProviders => unitGameObjectProviders;
-        public float InnerRadius => innerRadius;
-        public int XSize => xSize;
-        public int ZSize => zSize;
-        public Vector3 UpAxis => upAxis;
+        public MapConfigurationJson MapConfigurationJson => mapConfigurationJson;
+        public WorldConfigurationJson WorldConfigurationJson => worldConfigurationJson;
+        public LevelDataJson LevelDataJson => levelDataJson;
     }
 }

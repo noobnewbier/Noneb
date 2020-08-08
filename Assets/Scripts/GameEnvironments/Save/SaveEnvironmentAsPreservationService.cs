@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Common.Constants;
 using GameEnvironments.Common;
 using GameEnvironments.Common.Data;
@@ -78,7 +79,7 @@ namespace GameEnvironments.Save
         private static GameEnvironmentJson CreateEnvironmentJson(GameEnvironment gameEnvironment, EditorPalette editorPalette)
         {
             var mapConfiguration = gameEnvironment.MapConfiguration;
-            var arrayLength = mapConfiguration.GetFlattenMapArrayLength();
+            var arrayLength = mapConfiguration.GetTotalMapSize();
             var levelData = gameEnvironment.LevelData;
 
             var tileDataAsInts = new int[arrayLength];
@@ -124,9 +125,14 @@ namespace GameEnvironments.Save
         private static void FillArrayWithMatchingIndex<T>(AvailableSet<T> availableSet, IReadOnlyList<T> datas, IList<int> arrayToFill)
         {
             var availableSetData = availableSet.Set;
-            for (var i = 0; i < availableSetData.Length; i++)
+            for (var i = 0; i < datas.Count; i++)
             {
                 var index = Array.IndexOf(availableSetData, datas[i]);
+
+                if (index == -1 && datas[i] != null) //if there is a data, but could not be found in palette
+                {
+                    throw new InvalidDataException($"In {typeof(T).Name}'s data, entry {i} cannot be seen in the editor palette");
+                }
 
                 arrayToFill[i] = index;
             }

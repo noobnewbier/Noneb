@@ -27,7 +27,7 @@ namespace GameEnvironments.Validation
 
         private bool AllDataOfCorrectSize(LevelData levelData, MapConfiguration mapConfiguration)
         {
-            var arraysSize = mapConfiguration.GetFlattenMapArrayLength();
+            var arraysSize = mapConfiguration.GetTotalMapSize();
 
             return levelData.TileDatas.Length == arraysSize &&
                    levelData.TileGameObjectProviders.Length == arraysSize &&

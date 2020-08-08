@@ -47,9 +47,9 @@ namespace Maps
             return ZSize;
         }
 
-        public int GetFlattenMapArrayLength()
+        public int GetTotalMapSize()
         {
-            return GetMap2DArrayWidth() * GetMap2DArrayHeight();
+            return GetMap2DActualWidth() * GetMap2DActualHeight();
         }
 
         #endregion

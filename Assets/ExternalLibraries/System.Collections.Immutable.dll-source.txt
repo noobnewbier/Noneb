@@ -1,0 +1,4 @@
+Using version 1.7.1, net461
+
+
+https://www.nuget.org/packages/System.Collections.Immutable/

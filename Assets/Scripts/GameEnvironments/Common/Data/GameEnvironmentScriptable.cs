@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Maps;
 using Strongholds;
 using Units;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using WorldConfigurations;
 
@@ -13,6 +14,7 @@ namespace GameEnvironments.Common.Data
     [CreateAssetMenu(menuName = "Data/GameEnvironment", fileName = nameof(GameEnvironmentScriptable))]
     public class GameEnvironmentScriptable : ScriptableObject
     {
+        [SerializeField] private string environmentName;
         [SerializeField] private MapConfiguration mapConfiguration;
         [SerializeField] private WorldConfiguration worldConfiguration;
         [SerializeField] private LevelDataScriptable levelData;
@@ -28,14 +30,19 @@ namespace GameEnvironments.Common.Data
             return new GameEnvironment(
                 mapConfiguration,
                 worldConfiguration,
-                levelData.ToLevelData()
+                levelData.ToLevelData(),
+                environmentName
             );
         }
 
-        public static GameEnvironmentScriptable Create(MapConfiguration mapConfiguration, WorldConfiguration worldConfiguration, LevelDataScriptable levelDataScriptable)
+        public static GameEnvironmentScriptable Create(string environmentName,
+                                                       MapConfiguration mapConfiguration,
+                                                       WorldConfiguration worldConfiguration,
+                                                       LevelDataScriptable levelDataScriptable)
         {
             var newInstance = CreateInstance<GameEnvironmentScriptable>();
-            
+
+            newInstance.environmentName = environmentName;
             newInstance.mapConfiguration = mapConfiguration;
             newInstance.worldConfiguration = worldConfiguration;
             newInstance.levelData = levelDataScriptable;

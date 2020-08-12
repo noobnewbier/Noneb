@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameEnvironments.Common.Data.LevelDatas
+namespace ObsoleteJsonRelated
 {
     [Serializable]
     public class LevelDataJson

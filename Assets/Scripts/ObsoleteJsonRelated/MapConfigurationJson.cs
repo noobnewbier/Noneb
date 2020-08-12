@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Maps
+namespace ObsoleteJsonRelated
 {
     [Serializable]
     public class MapConfigurationJson

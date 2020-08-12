@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace WorldConfigurations
+namespace ObsoleteJsonRelated
 {
     [Serializable]
     public class WorldConfigurationJson

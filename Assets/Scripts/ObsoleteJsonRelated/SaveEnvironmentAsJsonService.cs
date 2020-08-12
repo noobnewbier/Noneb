@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Constants;
 using GameEnvironments.Common;
 using GameEnvironments.Common.Data;
 using GameEnvironments.Common.Data.LevelDatas;
+using GameEnvironments.Common.Services.GetEnvironmentFilenameServices;
+using GameEnvironments.Common.Services.GetInGameEditorDirectoryService;
+using GameEnvironments.Save;
 using InGameEditor.Data;
 using InGameEditor.Data.Availables;
 using InGameEditor.Repositories.SelectedEditorPalettes;
@@ -13,29 +15,30 @@ using Maps;
 using UnityEngine;
 using WorldConfigurations;
 
-namespace GameEnvironments.Save
+namespace ObsoleteJsonRelated
 {
     /// <summary>
     /// Try to save the environment as json, return value indicates if it is successful
     /// Prime reason that saving is not successful is that there already exist a file with the same name
     /// </summary>
     /// <returns>Enum indicates whether saving is successful</returns>
-    public class SaveEnvironmentAsPreservationService : ISaveEnvironmentService
+    public class SaveEnvironmentAsJsonService : ISaveEnvironmentService
     {
-        private const string JsonFileExtension = ".json";
-
         private readonly ISelectedEditorPaletteRepository _editorPaletteRepository;
+        private readonly IGetEnvironmentFilenameService _getEnvironmentFilenameService;
+        private readonly IGetInGameEditorDirectoryService _getInGameEditorDirectoryService;
 
-        public SaveEnvironmentAsPreservationService(ISelectedEditorPaletteRepository editorPaletteRepository)
+        public SaveEnvironmentAsJsonService(ISelectedEditorPaletteRepository editorPaletteRepository, IGetEnvironmentFilenameService getEnvironmentFilenameService, IGetInGameEditorDirectoryService getInGameEditorDirectoryService)
         {
             _editorPaletteRepository = editorPaletteRepository;
+            _getEnvironmentFilenameService = getEnvironmentFilenameService;
+            _getInGameEditorDirectoryService = getInGameEditorDirectoryService;
         }
 
         public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string environmentName)
         {
-            var pathPrefix = Application.isEditor ? Application.dataPath : Application.persistentDataPath;
-            var parentFolder = Path.Combine(pathPrefix, DirectoryNames.Environments, $"{environmentName}/");
-            var fullPath = Path.Combine(parentFolder, $"{environmentName}{JsonFileExtension}");
+            var parentFolder = _getInGameEditorDirectoryService.GetFullDirectoryToSpecificEnvironment(environmentName);
+            var fullPath = Path.Combine(parentFolder, _getEnvironmentFilenameService.GetEnvironmentAsJsonFilename(environmentName));
 
             if (!File.Exists(fullPath))
             {
@@ -91,7 +94,8 @@ namespace GameEnvironments.Save
             return new GameEnvironmentJson(
                 mapConfigJson,
                 worldConfigJson,
-                levelDataJson
+                levelDataJson,
+                gameEnvironment.EnvironmentName
             );
         }
 
@@ -118,21 +122,21 @@ namespace GameEnvironments.Save
             var strongholdConstructDataAsInts = new int[datasLength];
             var strongholdConstructGameObjectProvidersAsInts = new int[datasLength];
 
-            FillArrayWithMatchingIndex(editorPalette.AvailableTileData, levelData.TileDatas, tileDataAsInts);
+            FillArrayWithMatchingIndex(editorPalette.AvailableTileDatas, levelData.TileDatas, tileDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableTileGameObjectProviders,
                 levelData.TileGameObjectProviders,
                 tileGameObjectAsInts
             );
 
-            FillArrayWithMatchingIndex(editorPalette.AvailableConstructData, levelData.ConstructDatas, constructDataAsInts);
+            FillArrayWithMatchingIndex(editorPalette.AvailableConstructDatas, levelData.ConstructDatas, constructDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableConstructGameObjectProviders,
                 levelData.ConstructGameObjectProviders,
                 constructGameObjectAsInts
             );
 
-            FillArrayWithMatchingIndex(editorPalette.AvailableUnitData, levelData.UnitDatas, unitDataAsInts);
+            FillArrayWithMatchingIndex(editorPalette.AvailableUnitDatas, levelData.UnitDatas, unitDataAsInts);
             FillArrayWithMatchingIndex(
                 editorPalette.AvailableUnitGameObjectProviders,
                 levelData.UnitGameObjectProviders,
@@ -140,7 +144,7 @@ namespace GameEnvironments.Save
             );
 
             FillArrayWithMatchingIndex(
-                editorPalette.AvailableConstructData,
+                editorPalette.AvailableConstructDatas,
                 levelData.StrongholdDatas.Select(d => d?.ConstructData).ToList(),
                 strongholdConstructDataAsInts
             );
@@ -151,7 +155,7 @@ namespace GameEnvironments.Save
             );
 
             FillArrayWithMatchingIndex(
-                editorPalette.AvailableUnitData,
+                editorPalette.AvailableUnitDatas,
                 levelData.StrongholdDatas.Select(d => d?.UnitData).ToList(),
                 strongholdUnitDataAsInts
             );

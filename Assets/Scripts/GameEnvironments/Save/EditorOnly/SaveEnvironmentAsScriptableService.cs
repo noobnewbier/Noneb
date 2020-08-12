@@ -4,6 +4,8 @@ using Common.Constants;
 using GameEnvironments.Common;
 using GameEnvironments.Common.Data;
 using GameEnvironments.Common.Data.LevelDatas;
+using GameEnvironments.Common.Services.GetEnvironmentFilenameServices;
+using GameEnvironments.Common.Services.GetInGameEditorDirectoryService;
 using Maps;
 using UnityEditor;
 using UnityEngine;
@@ -13,18 +15,24 @@ namespace GameEnvironments.Save.EditorOnly
 {
     public class SaveEnvironmentAsScriptableService : ISaveEnvironmentService
     {
-        private const string AssetFileExtension = ".asset";
+        private readonly IGetEnvironmentFilenameService _environmentFilenameService;
+        private readonly IGetInGameEditorDirectoryService _getInGameEditorDirectoryService;
+
+        public SaveEnvironmentAsScriptableService(IGetEnvironmentFilenameService environmentFilenameService,
+                                                  IGetInGameEditorDirectoryService getInGameEditorDirectoryService)
+        {
+            _environmentFilenameService = environmentFilenameService;
+            _getInGameEditorDirectoryService = getInGameEditorDirectoryService;
+        }
 
         public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string environmentName)
         {
-            var parentFolder = Path.Combine("Assets/", DirectoryNames.Environments);
-            var childFolder = environmentName;
-            var path = Path.Combine(parentFolder, childFolder);
+            var path = _getInGameEditorDirectoryService.GetRelativeDirectoryToSpecificEnvironmentForAssetDatabase(environmentName);
 
-            var levelDataFilename = environmentName + nameof(LevelData) + AssetFileExtension;
-            var gameEnvironmentFilename = environmentName + nameof(GameEnvironment) + AssetFileExtension;
-            var mapConfigFilename = environmentName + nameof(MapConfiguration) + AssetFileExtension;
-            var worldConfigFilename = environmentName + nameof(WorldConfiguration) + AssetFileExtension;
+            var levelDataFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(LevelData));
+            var gameEnvironmentFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(GameEnvironment));
+            var mapConfigFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(MapConfiguration));
+            var worldConfigFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(WorldConfiguration));
 
             if (!File.Exists(Path.Combine(path, gameEnvironmentFilename)))
             {
@@ -32,7 +40,7 @@ namespace GameEnvironments.Save.EditorOnly
                 {
                     if (!AssetDatabase.IsValidFolder(path))
                     {
-                        AssetDatabase.CreateFolder(parentFolder, childFolder);
+                        Directory.CreateDirectory(path);
                     }
 
                     CreateAndSaveAsset(
@@ -41,7 +49,8 @@ namespace GameEnvironments.Save.EditorOnly
                         levelDataFilename,
                         gameEnvironmentFilename,
                         mapConfigFilename,
-                        worldConfigFilename
+                        worldConfigFilename,
+                        environmentName
                     );
 
                     return SavingResult.Success;
@@ -82,7 +91,8 @@ namespace GameEnvironments.Save.EditorOnly
                                                string levelDataFilename,
                                                string gameEnvironmentFilename,
                                                string mapConfigFilename,
-                                               string worldConfigFilename)
+                                               string worldConfigFilename,
+                                               string environmentName)
         {
             //create new instances as they cannot be referencing the old configs
             var levelDataScriptable = LevelDataScriptable.CreateScriptableFromLevelData(
@@ -98,6 +108,7 @@ namespace GameEnvironments.Save.EditorOnly
             );
 
             var gameEnvironmentScriptable = GameEnvironmentScriptable.Create(
+                environmentName,
                 mapConfiguration,
                 worldConfiguration,
                 levelDataScriptable

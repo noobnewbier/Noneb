@@ -15,13 +15,16 @@ namespace GameEnvironments.Common.Data
     {
         public GameEnvironment(MapConfiguration mapConfiguration,
                                WorldConfiguration worldConfiguration,
-                               LevelData levelData)
+                               LevelData levelData,
+                               string environmentName)
         {
             MapConfiguration = mapConfiguration;
             WorldConfiguration = worldConfiguration;
             LevelData = levelData;
+            EnvironmentName = environmentName;
         }
 
+        public string EnvironmentName { get; }
         public LevelData LevelData { get; }
         public WorldConfiguration WorldConfiguration { get; }
         public MapConfiguration MapConfiguration { get; }

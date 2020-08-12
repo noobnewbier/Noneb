@@ -3,7 +3,7 @@ using Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Services
+namespace InGameEditor.Services.InGameEditorMessageServices
 {
     [CreateAssetMenu(
         fileName = nameof(InGameEditorMessageServiceProvider),

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
 using Common.Providers;
 using Constructs;
-using GameEnvironments.Common.Repositories.LevelDatas;
+using GameEnvironments.Common.Repositories.CurrentLevelData;
 using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
 using UnityEngine;
 
@@ -17,9 +17,9 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
             return loadConstructServiceProvider.Provide();
         }
 
-        protected override ImmutableArray<ConstructData> GetDatasFromRepository(ILevelDataRepository levelDataRepository)
+        protected override ImmutableArray<ConstructData> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
         {
-            return levelDataRepository.ConstructDatas;
+            return currentLevelDataRepository.ConstructDatas;
         }
 
         protected override IGameObjectAndComponentProvider<ConstructHolder> GetHolderProvider()

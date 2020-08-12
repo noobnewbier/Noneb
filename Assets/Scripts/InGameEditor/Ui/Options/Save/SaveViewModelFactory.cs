@@ -1,21 +1,25 @@
 ﻿using System;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
-using GameEnvironments.Save;
 using GameEnvironments.Save.EditorOnly;
-using InGameEditor.Services;
+using InGameEditor.Services.InGameEditorMessageServices;
+using ObsoleteJsonRelated;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityUtils.Constants;
 
 namespace InGameEditor.Ui.Options.Save
 {
-    [CreateAssetMenu(menuName = "Factory/SaveViewModel", fileName = nameof(SaveViewModelFactory))]
-    public partial class SaveViewModelFactory : ScriptableObject
+    [CreateAssetMenu(menuName = MenuName.Factory + nameof(SaveViewModel), fileName = nameof(SaveViewModelFactory))]
+    public class SaveViewModelFactory : ScriptableObject
     {
-        [SerializeField] private SaveEnvironmentAsPreservationServiceProvider saveEnvironmentAsPreservationServiceProvider;
+        [FormerlySerializedAs("saveEnvironmentAsPreservationServiceProvider")] [SerializeField]
+        private SaveEnvironmentAsJsonServiceProvider saveEnvironmentAsJsonServiceProvider;
+
         [SerializeField] private SaveEnvironmentAsScriptableServiceProvider saveEnvironmentAsScriptableServiceProvider;
 
         [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
-        
-        public SaveViewModel Create(ICurrentGameEnvironmentRepository repository ,SaveType saveType)
+
+        public SaveViewModel Create(ICurrentGameEnvironmentRepository repository, SaveType saveType)
         {
             switch (saveType)
             {
@@ -27,7 +31,7 @@ namespace InGameEditor.Ui.Options.Save
                     );
                 case SaveType.Preservation:
                     return new SaveViewModel(
-                        saveEnvironmentAsPreservationServiceProvider.Provide(),
+                        saveEnvironmentAsJsonServiceProvider.Provide(),
                         repository,
                         messageServiceProvider.Provide()
                     );

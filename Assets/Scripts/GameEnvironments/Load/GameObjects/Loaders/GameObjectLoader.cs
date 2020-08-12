@@ -1,16 +1,20 @@
 ﻿using System.Collections.Immutable;
 using Common.Providers;
-using GameEnvironments.Common.Repositories.LevelDatas;
+using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
 using Tiles;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.GameObjects.Loaders
 {
     public abstract class GameObjectLoader : MonoBehaviour
     {
         [SerializeField] private GameObjectLoadServiceProvider serviceProvider;
-        [SerializeField] private LevelDataRepositoryProvider levelDataRepositoryProvider;
+
+        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
+        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
+
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
         [SerializeField] private MapConfigurationProvider mapConfigProvider;
 
@@ -19,7 +23,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
         public void Load()
         {
             var gameObjectLoadService = serviceProvider.Provide();
-            var levelDataRepository = levelDataRepositoryProvider.Provide();
+            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
             var mapConfig = mapConfigProvider.Provide();
 
             gameObjectLoadService.Load(
@@ -30,6 +34,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
             );
         }
 
-        protected abstract ImmutableArray<GameObjectProvider> GetGameObjectProvidersFromRepository(ILevelDataRepository levelDataRepository);
+        protected abstract ImmutableArray<GameObjectProvider> GetGameObjectProvidersFromRepository(
+            ICurrentLevelDataRepository currentLevelDataRepository);
     }
 }

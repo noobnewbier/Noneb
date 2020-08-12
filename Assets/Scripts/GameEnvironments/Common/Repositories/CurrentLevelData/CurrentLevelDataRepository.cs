@@ -6,9 +6,9 @@ using Strongholds;
 using Tiles.Data;
 using Units;
 
-namespace GameEnvironments.Common.Repositories.LevelDatas
+namespace GameEnvironments.Common.Repositories.CurrentLevelData
 {
-    public interface ILevelDataRepository
+    public interface ICurrentLevelDataRepository
     {
         ImmutableArray<TileData> TileDatas { get; }
         ImmutableArray<GameObjectProvider> TileGameObjectProviders { get; }
@@ -21,11 +21,11 @@ namespace GameEnvironments.Common.Repositories.LevelDatas
         ImmutableArray<GameObjectProvider> StrongholdConstructGameObjectProviders { get; }
     }
 
-    public class LevelDataRepository : ILevelDataRepository
+    public class CurrentLevelDataRepository : ICurrentLevelDataRepository
     {
         private readonly LevelData _levelData;
 
-        public LevelDataRepository(LevelData levelData)
+        public CurrentLevelDataRepository(LevelData levelData)
         {
             _levelData = levelData;
         }

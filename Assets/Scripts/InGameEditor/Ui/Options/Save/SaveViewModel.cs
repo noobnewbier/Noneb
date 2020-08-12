@@ -2,7 +2,7 @@
 using GameEnvironments.Common;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save;
-using InGameEditor.Services;
+using InGameEditor.Services.InGameEditorMessageServices;
 
 namespace InGameEditor.Ui.Options.Save
 {

@@ -1,9 +1,8 @@
 ﻿using System;
-using Experiment.CrossPlatformLiveData;
 using InGameEditor.Events;
 using UniRx;
 
-namespace InGameEditor.Services
+namespace InGameEditor.Services.InGameEditorMessageServices
 {
     public interface IInGameEditorMessageService : IDisposable
     {
@@ -15,12 +14,12 @@ namespace InGameEditor.Services
     {
         private readonly Subject<InGameEditorUiMessage> _inGameEditorUiMessageStream;
 
-        public ISubject<InGameEditorUiMessage> InGameEditorUiMessageStream => _inGameEditorUiMessageStream;
-
         public InGameEditorMessageService()
         {
             _inGameEditorUiMessageStream = new Subject<InGameEditorUiMessage>();
         }
+
+        public ISubject<InGameEditorUiMessage> InGameEditorUiMessageStream => _inGameEditorUiMessageStream;
 
         public void PublishMessage(string message)
         {

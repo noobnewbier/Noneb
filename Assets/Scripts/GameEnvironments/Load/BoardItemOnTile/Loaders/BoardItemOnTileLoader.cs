@@ -3,10 +3,11 @@ using Common.BoardItems;
 using Common.Holders;
 using Common.Providers;
 using Common.TagInterface;
-using GameEnvironments.Common.Repositories.LevelDatas;
+using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
 using Tiles;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.BoardItemOnTile.Loaders
 {
@@ -15,7 +16,9 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
         where TBoardItemOnTile : BoardItem, IOnTile
         where TData : IBoardItemData
     {
-        [SerializeField] private LevelDataRepositoryProvider levelDataRepositoryProvider;
+        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
+        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
+
         [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
@@ -23,7 +26,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
         {
             var mapConfiguration = mapConfigurationProvider.Provide();
             var loadOnTileService = GetService();
-            var levelDataRepository = levelDataRepositoryProvider.Provide();
+            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
             loadOnTileService.Load(
                 GetDatasFromRepository(levelDataRepository),
                 tilesTransformProvider,
@@ -34,7 +37,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
         }
 
         protected abstract ILoadBoardItemOnTileService<THolder, TBoardItemOnTile, TData> GetService();
-        protected abstract ImmutableArray<TData> GetDatasFromRepository(ILevelDataRepository levelDataRepository);
+        protected abstract ImmutableArray<TData> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository);
         protected abstract IGameObjectAndComponentProvider<THolder> GetHolderProvider();
     }
 }

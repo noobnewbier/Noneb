@@ -1,7 +1,8 @@
-﻿using GameEnvironments.Common.Repositories.LevelDatas;
+﻿using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
 using Tiles.Holders;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.Tiles
 {
@@ -9,7 +10,10 @@ namespace GameEnvironments.Load.Tiles
     {
         [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
         [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
-        [SerializeField] private LevelDataRepositoryProvider levelDataRepositoryProvider;
+
+        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
+        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
+
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
         [SerializeField] private TileHolderProvider tileHolderProvider;
         [SerializeField] private GameObject rowPrefab;
@@ -19,7 +23,7 @@ namespace GameEnvironments.Load.Tiles
         public void Load()
         {
             var mapLoadService = mapLoadServiceProvider.Provide();
-            var levelDataRepository = levelDataRepositoryProvider.Provide();
+            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
             var mapConfiguration = mapConfigurationProvider.Provide();
 
             mapLoadService.Load(

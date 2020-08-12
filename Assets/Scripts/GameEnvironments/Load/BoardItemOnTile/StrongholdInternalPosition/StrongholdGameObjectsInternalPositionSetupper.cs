@@ -1,8 +1,8 @@
 ﻿using Common.Constants;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
-using GameEnvironments.Common.Repositories.LevelDatas;
+using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Tiles;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils;
 
 namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
@@ -11,22 +11,24 @@ namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
     {
         [SerializeField] private SetupStrongholdGameObjectsInternalPositionServiceProvider serviceProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
-        [SerializeField] private LevelDataRepositoryProvider levelDataRepositoryProvider;
-        
+
+        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
+        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
+
         private ISetupStrongholdGameObjectsInternalPositionService _setupStrongholdGameObjectsInternalPositionService;
-        private ILevelDataRepository _levelDataRepository;
+        private ICurrentLevelDataRepository _currentLevelDataRepository;
 
         private void OnEnable()
         {
             _setupStrongholdGameObjectsInternalPositionService = serviceProvider.Provide();
-            _levelDataRepository = levelDataRepositoryProvider.Provide();
+            _currentLevelDataRepository = currentLevelDataRepositoryProvider.Provide();
         }
 
         [ContextMenu(nameof(Setup))]
         public void Setup()
         {
             var tiles = tilesTransformProvider.Provide();
-            var strongholdDatas = _levelDataRepository.StrongholdDatas;
+            var strongholdDatas = _currentLevelDataRepository.StrongholdDatas;
 
             for (var i = 0; i < strongholdDatas.Length; i++)
             {

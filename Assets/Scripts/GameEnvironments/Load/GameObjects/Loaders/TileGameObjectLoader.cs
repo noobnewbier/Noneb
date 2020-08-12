@@ -1,15 +1,15 @@
 ﻿using System.Collections.Immutable;
 using Common.Providers;
-using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Repositories.LevelDatas;
+using GameEnvironments.Common.Repositories.CurrentLevelData;
 
 namespace GameEnvironments.Load.GameObjects.Loaders
 {
     public class TileGameObjectLoader : GameObjectLoader
     {
-        protected override ImmutableArray<GameObjectProvider> GetGameObjectProvidersFromRepository(ILevelDataRepository levelDataRepository)
+        protected override ImmutableArray<GameObjectProvider> GetGameObjectProvidersFromRepository(
+            ICurrentLevelDataRepository currentLevelDataRepository)
         {
-            return levelDataRepository.TileGameObjectProviders;
+            return currentLevelDataRepository.TileGameObjectProviders;
         }
     }
 }

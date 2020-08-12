@@ -1,7 +1,7 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
 using InGameEditor.Events;
-using InGameEditor.Services;
+using InGameEditor.Services.InGameEditorMessageServices;
 using UniRx;
 
 namespace InGameEditor.Ui.EditorMessageShower
@@ -24,7 +24,7 @@ namespace InGameEditor.Ui.EditorMessageShower
             var observer = Observer.Create<InGameEditorUiMessage>(
                 message => MessageLiveData.PostValue(message.Value)
             );
-            
+
             _disposable = messageService.InGameEditorUiMessageStream.Subscribe(observer);
         }
 

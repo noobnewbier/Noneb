@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99d9e06baec46a092b1c09c0e79237d, type: 3}
-  m_Name: AvailableConstructData
+  m_Script: {fileID: 11500000, guid: b3b063a9e5b04956a508eef1c545e483, type: 3}
+  m_Name: FooWorldConfiguration
   m_EditorClassIdentifier: 
-  set:
-  - {fileID: 11400000, guid: c1246cdd20052e844b7a42a8b2a89d03, type: 2}
+  innerRadius: 1.813
+  upAxis: {x: 0, y: 0, z: 1}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db789c491d645e39c4b9561b8505299, type: 3}
   m_Name: GameEnvironmentScriptable
   m_EditorClassIdentifier: 
+  environmentName: Dummy
   mapConfiguration: {fileID: 11400000, guid: 6b267b412d0995c41b8aebc9db4e6a0f, type: 2}
   worldConfiguration: {fileID: 11400000, guid: 07cfa84990e09f844bccc20381f53b25, type: 2}
   levelData: {fileID: 11400000, guid: 14f3d81425456d541932d8bb3dd1a6d7, type: 2}

@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99d9e06baec46a092b1c09c0e79237d, type: 3}
-  m_Name: AvailableConstructData
+  m_Script: {fileID: 11500000, guid: 38764d2d2c2d4772931fdd91d84915a3, type: 3}
+  m_Name: ClickableGameEnvironmentViewProvider
   m_EditorClassIdentifier: 
-  set:
-  - {fileID: 11400000, guid: c1246cdd20052e844b7a42a8b2a89d03, type: 2}
+  prefab: {fileID: 8613393542192559797, guid: 603fc09051bee3940bb89ee7f9bd5526, type: 3}

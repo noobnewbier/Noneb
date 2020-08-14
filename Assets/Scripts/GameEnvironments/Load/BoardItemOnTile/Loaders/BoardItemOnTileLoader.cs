@@ -5,6 +5,7 @@ using Common.Providers;
 using Common.TagInterface;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
+using Maps.Repositories;
 using Tiles;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -19,12 +20,12 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
         [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
         private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
 
-        [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
+        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
         public void Load()
         {
-            var mapConfiguration = mapConfigurationProvider.Provide();
+            var mapConfiguration = mapConfigurationRepositoryProvider.Provide().Get();
             var loadOnTileService = GetService();
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
             loadOnTileService.Load(

@@ -3,13 +3,14 @@ using Maps;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WorldConfigurations;
+using WorldConfigurations.Repositories;
 
 namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {
         [FormerlySerializedAs("config")] [SerializeField] private MapConfiguration mapConfig;
-        [SerializeField] private WorldConfigurationProvider worldConfigurationProvider;
+        [SerializeField] private WorldConfigurationRepositoryProvider worldConfigurationRepositoryProvider;
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
 
 
@@ -18,7 +19,7 @@ namespace DebugUtils
         [ContextMenu("GenerateVertices")]
         private void GenerateVertices()
         {
-            var worldConfig = worldConfigurationProvider.Provide();
+            var worldConfig = worldConfigurationRepositoryProvider.Provide().Get();
             var positions = tilesPositionProvider.Provide().ToArray();
             _vertices = new Vector3[mapConfig.XSize * mapConfig.ZSize * 6];
 

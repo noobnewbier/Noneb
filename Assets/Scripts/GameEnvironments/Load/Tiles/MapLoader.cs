@@ -1,5 +1,6 @@
 ﻿using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
+using Maps.Repositories;
 using Tiles.Holders;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,7 +10,7 @@ namespace GameEnvironments.Load.Tiles
     public class MapLoader : MonoBehaviour
     {
         [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
-        [SerializeField] private MapConfigurationProvider mapConfigurationProvider;
+        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
 
         [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
         private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
@@ -24,7 +25,7 @@ namespace GameEnvironments.Load.Tiles
         {
             var mapLoadService = mapLoadServiceProvider.Provide();
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
-            var mapConfiguration = mapConfigurationProvider.Provide();
+            var mapConfiguration = mapConfigurationRepositoryProvider.Provide().Get();
 
             mapLoadService.Load(
                 levelDataRepository.TileDatas,

@@ -4,6 +4,7 @@ using Units.Holders;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WorldConfigurations;
+using WorldConfigurations.Repositories;
 
 namespace Maps.Create
 {
@@ -12,7 +13,7 @@ namespace Maps.Create
         [Range(0f, 1f)] [SerializeField] private float chanceOfConstructOnTile;
         [Range(0f, 1f)] [SerializeField] private float chanceOfUnitOnTile;
         [FormerlySerializedAs("config")] [SerializeField] private MapConfiguration mapConfig;
-        [SerializeField] private WorldConfigurationProvider worldConfigurationProvider;
+        [SerializeField] private WorldConfigurationRepositoryProvider worldConfigurationRepositoryProvider;
         
         [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField] private ConstructHolderProvider constructHolderProvider;
         [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField] private TileHolderProvider tileHolderProvider;
@@ -26,7 +27,7 @@ namespace Maps.Create
         {
             var selfTransform = transform;
             var positions = tilesPositionProvider.Provide();
-            var worldConfig = worldConfigurationProvider.Provide();
+            var worldConfig = worldConfigurationRepositoryProvider.Provide().Get();
 
             for (var i = 0; i < mapConfig.ZSize; i++)
             {

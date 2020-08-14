@@ -1,5 +1,6 @@
 ﻿using Common;
 using Maps;
+using Maps.Repositories;
 using Tiles;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -11,7 +12,7 @@ namespace DebugUtils
     /// </summary>
     public class CoordinateSetter : MonoBehaviour
     {
-        [SerializeField] private MapConfigurationProvider mapConfigProvider;
+        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
         /// <summary>
@@ -21,7 +22,7 @@ namespace DebugUtils
         private void SetCoordinates()
         {
             var tilesTransform = tilesTransformProvider.Provide();
-            var config = mapConfigProvider.Provide();
+            var config = mapConfigurationRepositoryProvider.Provide().Get();
 
             Assert.AreEqual(tilesTransform.Count, config.ZSize * config.XSize, "Number of tile representation is different from the configuration");
 

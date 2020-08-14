@@ -19,7 +19,7 @@ namespace GameEnvironments.Common.Repositories.CurrentLevelData
         {
             return _cache ??
                    (_cache = new CurrentLevelDataRepository(
-                       currentGameEnvironmentRepositoryProvider.Provide().Get().LevelData
+                       currentGameEnvironmentRepositoryProvider.Provide()
                    ));
         }
     }

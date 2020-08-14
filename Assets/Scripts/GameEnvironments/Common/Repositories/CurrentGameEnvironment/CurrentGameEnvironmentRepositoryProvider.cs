@@ -11,13 +11,13 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
     )]
     public class CurrentGameEnvironmentRepositoryProvider : ScriptableObjectProvider<ICurrentGameEnvironmentRepository>
     {
-        [SerializeField] private GameEnvironmentScriptable gameEnvironmentScriptable;
+        [SerializeField] private RuntimeSelectedGameEnvironment runtimeSelectedGameEnvironment;
 
         private ICurrentGameEnvironmentRepository _cache;
 
         public override ICurrentGameEnvironmentRepository Provide()
         {
-            return _cache ?? (_cache = new CurrentGameEnvironmentRepository(gameEnvironmentScriptable.ToGameEnvironment()));
+            return _cache ?? (_cache = new CurrentGameEnvironmentRepository(runtimeSelectedGameEnvironment));
         }
     }
 }

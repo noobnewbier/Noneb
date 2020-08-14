@@ -1,4 +1,5 @@
 ﻿using GameEnvironments.Common.Data;
+using UnityUtils.ScriptableReference;
 
 namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {
@@ -9,13 +10,14 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 
     public class CurrentGameEnvironmentRepository : ICurrentGameEnvironmentRepository
     {
-        private readonly GameEnvironment _environment;
+        private readonly RuntimeReference<GameEnvironment> _environment;
 
-        public CurrentGameEnvironmentRepository(GameEnvironment environment)
+        public CurrentGameEnvironmentRepository(RuntimeReference<GameEnvironment> environment)
         {
             _environment = environment;
         }
 
-        public GameEnvironment Get() => _environment;
+
+        public GameEnvironment Get() => _environment.CurrentReference;
     }
 }

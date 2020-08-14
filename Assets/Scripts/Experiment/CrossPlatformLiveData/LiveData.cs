@@ -11,6 +11,7 @@ using UniRx;
  *     1. doesn't make sense to use subscribe, should implement "Observe" instead
  *     2. Not sure about thread safety...
  *     3. ATTEMPTED TO FIX: try to use versioning instead of instance matching(which makes more sense anyway)
+ *     4. It's not live cycle aware whatsoever, so really it's just a fancy observable atm
  *
  * consider to fully(or partly) translate the whole thing from Android instead of using this:
  * https://github.com/aosp-mirror/platform_frameworks_support/blob/b9cd83371e928380610719dfbf97c87c58e80916/lifecycle/lifecycle-livedata-core/src/main/java/androidx/lifecycle/LiveData.java
@@ -71,6 +72,7 @@ namespace Experiment.CrossPlatformLiveData
         public void PostValue(T value)
         {
             Interlocked.Increment(ref _version);
+            Value = value;
             _subject.OnNext(value);
         }
 
@@ -90,8 +92,6 @@ namespace Experiment.CrossPlatformLiveData
                 .ObserveOn(_rxSchedulers.Ui())
                 .Subscribe(observerWrapper);
         }
-
-        #region Added by Noob
 
         /// <summary>
         /// Subscribes to LiveData, if allowDuplicatesInSequenceAndOnResume flag is set, duplicates in sequence will be allowed
@@ -169,7 +169,5 @@ namespace Experiment.CrossPlatformLiveData
                 _observer.OnNext(value.Data);
             }
         }
-
-        #endregion
     }
 }

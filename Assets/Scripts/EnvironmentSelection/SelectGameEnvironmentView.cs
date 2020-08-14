@@ -19,7 +19,7 @@ namespace EnvironmentSelection
         {
             _viewModel = viewModelFactory.Create();
 
-            _viewModel.SelectedGameEnvironmentLiveData.Subscribe(ShowSelectedGameEnvironment);
+            _viewModel.CurrentlyInspectingGameEnvironmentLiveData.Subscribe(ShowSelectedGameEnvironment);
             _viewModel.AvailableGameEnvironmentLiveData.Subscribe(ShowAvailableGameEnvironmentList);
 
             _viewModel.RefreshAvailableGameEnvironmentList();
@@ -38,8 +38,13 @@ namespace EnvironmentSelection
             foreach (var environment in gameEnvironments)
             {
                 var goAndComponent = clickableGameEnvironmentViewProvider.Provide(gameEnvironmentsParentTransform, false);
-                goAndComponent.Component.Instantiate(environment, _viewModel.SelectGameEnvironment);
+                goAndComponent.Component.Instantiate(environment, _viewModel.InspectGameEnvironment);
             }
+        }
+
+        public void SelectCurrentlyInspectedEnvironment()
+        {
+            _viewModel.SelectCurrentlyInspectedGameEnvironment();
         }
     }
 }

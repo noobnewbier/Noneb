@@ -1,4 +1,5 @@
-﻿using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
+﻿using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
 using UnityEngine;
 using UnityUtils.Constants;
 
@@ -11,10 +12,11 @@ namespace EnvironmentSelection
     public class SelectGameEnvironmentViewModelFactory : ScriptableObject
     {
         [SerializeField] private AvailableGameEnvironmentRepositoryProvider availableGameEnvironmentRepositoryProvider;
+        [SerializeField] private RuntimeSelectedGameEnvironment runtimeSelectedGameEnvironment;
 
         public ISelectGameEnvironmentViewModel Create()
         {
-            return new SelectGameEnvironmentViewModel(availableGameEnvironmentRepositoryProvider.Provide());
+            return new SelectGameEnvironmentViewModel(availableGameEnvironmentRepositoryProvider.Provide(), runtimeSelectedGameEnvironment);
         }
     }
 }

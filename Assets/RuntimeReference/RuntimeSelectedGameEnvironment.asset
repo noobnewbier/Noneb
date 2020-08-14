@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5246763319b4d34b169a32e9343b1a8, type: 3}
-  m_Name: CurrentGameEnvironmentRepositoryProvider
+  m_Script: {fileID: 11500000, guid: bb9e83bab1ad484f88ac06606c253420, type: 3}
+  m_Name: RuntimeSelectedGameEnvironment
   m_EditorClassIdentifier: 
-  runtimeSelectedGameEnvironment: {fileID: 11400000, guid: 02b5a94dcc979ca44acfae29baf8dba7,
-    type: 2}
+  canBeNullWhenAccessed: 0

@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6d00e72c854287b9934362804b41b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
-  mapConfigurationProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac,
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
   tilesTransformProvider: {fileID: 0}
   loadUnitServiceProvider: {fileID: 11400000, guid: dd46508eeb2a1b4408be84c85e450690,
@@ -95,10 +95,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serviceProvider: {fileID: 11400000, guid: 4da769447e8cfc7499bd3dfff1a5a165, type: 2}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
   tilesTransformProvider: {fileID: 0}
-  mapConfigProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac, type: 2}
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}
 --- !u!1 &1286162358114880345
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,10 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serviceProvider: {fileID: 11400000, guid: 4da769447e8cfc7499bd3dfff1a5a165, type: 2}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
   tilesTransformProvider: {fileID: 0}
-  mapConfigProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac, type: 2}
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}
 --- !u!1 &1286162358239820975
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,10 +193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serviceProvider: {fileID: 11400000, guid: 4da769447e8cfc7499bd3dfff1a5a165, type: 2}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
   tilesTransformProvider: {fileID: 0}
-  mapConfigProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac, type: 2}
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}
 --- !u!1 &1286162358288781233
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,9 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea301b2f64846a79ad7757f6f6213ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
-  mapConfigurationProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac,
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
   tilesTransformProvider: {fileID: 0}
   loadConstructServiceProvider: {fileID: 11400000, guid: dc52c1f65a31512449cf0eb034786ed1,
@@ -292,9 +295,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapLoadServiceProvider: {fileID: 11400000, guid: 9ad903f4a75c5fd459d11730d2220b24,
     type: 2}
-  mapConfigurationProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac,
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
   tilesPositionProvider: {fileID: 0}
   tileHolderProvider: {fileID: 11400000, guid: 8cd59ff7806020541889a49d35b00969, type: 2}
@@ -386,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serviceProvider: {fileID: 11400000, guid: 7a2b033aa5101cf44a554a56af7735e5, type: 2}
   tilesTransformProvider: {fileID: 0}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
 --- !u!1 &1286162359014652394
 GameObject:
@@ -432,10 +435,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serviceProvider: {fileID: 11400000, guid: 4da769447e8cfc7499bd3dfff1a5a165, type: 2}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
   tilesTransformProvider: {fileID: 0}
-  mapConfigProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac, type: 2}
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}
 --- !u!1 &1286162359293790227
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,9 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a828d938ea403aaa82256b12fd94cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
-  mapConfigurationProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac,
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
   tilesTransformProvider: {fileID: 0}
   loadStrongholdServiceProvider: {fileID: 11400000, guid: 9c6506036c6889f4b8a2adfc6613aa9f,
@@ -532,7 +536,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serviceProvider: {fileID: 11400000, guid: 4da769447e8cfc7499bd3dfff1a5a165, type: 2}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
     type: 2}
   tilesTransformProvider: {fileID: 0}
-  mapConfigProvider: {fileID: 11400000, guid: 0dc82bad97a99aa40a02369344e9e4ac, type: 2}
+  mapConfigurationRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}

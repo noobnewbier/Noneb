@@ -129,7 +129,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 02f0fea788e70934ab4713d45a240723, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 530213afbb2686447b6d506305ff53d9, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -271,4 +271,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  devInformation: 
+  devInformation: "Obstacles\t: 2,5,8\nUnit\t\t: 4,12\nConstruct\t: 7\nStronghold\t:
+    15"

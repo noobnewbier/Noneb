@@ -1,27 +1,31 @@
-﻿using Experiment.CrossPlatformLiveData;
+﻿using System;
+using Experiment.CrossPlatformLiveData;
 using GameEnvironments.Common;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save;
 using InGameEditor.Services.InGameEditorMessageServices;
+using UniRx;
 
 namespace InGameEditor.Ui.Options.Save
 {
-    public class SaveViewModel
+    public class SaveViewModel : IDisposable
     {
         public readonly ILiveData<SavingResult> SavingResultEvent;
         public readonly ILiveData<bool> SavingDetailDialogVisibilityEvent;
 
         private readonly ISaveEnvironmentService _saveEnvironmentService;
-        private readonly ICurrentGameEnvironmentRepository _currentGameEnvironmentRepository;
+        private readonly ICurrentGameEnvironmentGetRepository _currentGameEnvironmentGetRepository;
         private readonly IInGameEditorMessageService _messageService;
 
+        private IDisposable _disposable;
+
         public SaveViewModel(ISaveEnvironmentService saveEnvironmentService,
-                             ICurrentGameEnvironmentRepository currentGameEnvironmentRepository,
+                             ICurrentGameEnvironmentGetRepository currentGameEnvironmentGetRepository,
                              IInGameEditorMessageService messageService)
         {
             _saveEnvironmentService = saveEnvironmentService;
             _saveEnvironmentService = saveEnvironmentService;
-            _currentGameEnvironmentRepository = currentGameEnvironmentRepository;
+            _currentGameEnvironmentGetRepository = currentGameEnvironmentGetRepository;
             _messageService = messageService;
 
             SavingResultEvent = new LiveData<SavingResult>();
@@ -30,9 +34,14 @@ namespace InGameEditor.Ui.Options.Save
 
         public void Save(string filename)
         {
-            var saveResult = _saveEnvironmentService.TrySaveEnvironment(_currentGameEnvironmentRepository.Get(), filename);
-
-            SavingResultEvent.PostValue(saveResult);
+            _disposable = _currentGameEnvironmentGetRepository.Get()
+                .Subscribe(
+                    env =>
+                    {
+                        var saveResult = _saveEnvironmentService.TrySaveEnvironment(env, filename);
+                        SavingResultEvent.PostValue(saveResult);
+                    }
+                );
         }
 
         public void ShowEditorMessage(string message)
@@ -48,6 +57,11 @@ namespace InGameEditor.Ui.Options.Save
         public void ClickedCancelInSavingDetail()
         {
             SavingDetailDialogVisibilityEvent.PostValue(false);
+        }
+
+        public void Dispose()
+        {
+            _disposable?.Dispose();
         }
     }
 }

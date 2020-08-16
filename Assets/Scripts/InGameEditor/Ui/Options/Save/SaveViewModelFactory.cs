@@ -19,20 +19,20 @@ namespace InGameEditor.Ui.Options.Save
 
         [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
 
-        public SaveViewModel Create(ICurrentGameEnvironmentRepository repository, SaveType saveType)
+        public SaveViewModel Create(ICurrentGameEnvironmentGetRepository getRepository, SaveType saveType)
         {
             switch (saveType)
             {
                 case SaveType.Scriptable:
                     return new SaveViewModel(
                         saveEnvironmentAsScriptableServiceProvider.Provide(),
-                        repository,
+                        getRepository,
                         messageServiceProvider.Provide()
                     );
                 case SaveType.Preservation:
                     return new SaveViewModel(
                         saveEnvironmentAsJsonServiceProvider.Provide(),
-                        repository,
+                        getRepository,
                         messageServiceProvider.Provide()
                     );
                 default:

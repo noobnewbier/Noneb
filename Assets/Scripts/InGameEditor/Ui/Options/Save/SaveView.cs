@@ -14,7 +14,6 @@ namespace InGameEditor.Ui.Options.Save
 
         [SerializeField] private GameObject savingDetailDialog;
         [SerializeField] private SaveViewModelFactory viewModelFactory;
-        [SerializeField] private SelectedEditorPaletteRepositoryProvider editorPaletteRepositoryProvider;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
         [SerializeField] private TMP_InputField filenameInputField;
 
@@ -112,6 +111,7 @@ namespace InGameEditor.Ui.Options.Save
         private void OnDisable()
         {
             _compositeDisposable.Dispose();
+            _viewModel.Dispose();
         }
     }
 }

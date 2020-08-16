@@ -21,16 +21,12 @@ namespace Experiment.CrossPlatformLiveData
 {
     public class LiveData<T> : ILiveData<T>
     {
+        private const int StartVersion = -1;
         private readonly BehaviorSubject<T> _subject;
         private readonly IRxSchedulersFacade _rxSchedulers = new RxSchedulersFacade();
         private readonly ConcurrentBag<LiveDataObserverWrapper> _observers;
-
-        #region Added by Noob
-
         private int _version;
-        private const int StartVersion = -1;
 
-        #endregion
 
         /// <summary>
         /// First emitted value will be type default
@@ -138,13 +134,14 @@ namespace Experiment.CrossPlatformLiveData
 
         private class LiveDataObserverWrapper : IObserver<VersionedData>
         {
-            private int LastVersion { get; set; } = StartVersion;
             private readonly IObserver<T> _observer;
 
             public LiveDataObserverWrapper(IObserver<T> observer)
             {
                 _observer = observer;
             }
+
+            private int LastVersion { get; set; } = StartVersion;
 
 
             public void OnCompleted()

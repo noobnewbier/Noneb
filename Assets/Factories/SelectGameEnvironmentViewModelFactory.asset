@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: eb868ed8a0da44b4a9573d3932c80c45,
     type: 2}
-  runtimeSelectedGameEnvironment: {fileID: 11400000, guid: 02b5a94dcc979ca44acfae29baf8dba7,
+  currentGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
     type: 2}

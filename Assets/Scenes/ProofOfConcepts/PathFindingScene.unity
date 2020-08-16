@@ -362,7 +362,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 433128425}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -492,7 +492,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669474102}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -622,7 +622,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1108656303}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -954,7 +954,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1520613213}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1770,7 +1770,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1438008391}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2910,7 +2910,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1365180257}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3089,7 +3089,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 340073189}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3720,7 +3720,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1206748418}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3898,7 +3898,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 141931039}
-        m_MethodName: Load
+        m_MethodName: LoadAndForget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

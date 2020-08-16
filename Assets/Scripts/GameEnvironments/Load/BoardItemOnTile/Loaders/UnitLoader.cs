@@ -1,10 +1,13 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using Common.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
+using UniRx;
 using Units;
 using Units.Holders;
 using UnityEngine;
+using Unit = Units.Unit;
 
 namespace GameEnvironments.Load.BoardItemOnTile.Loaders
 {
@@ -18,9 +21,9 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
             return loadUnitServiceProvider.Provide();
         }
 
-        protected override ImmutableArray<UnitData> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
+        protected override IObservable<ImmutableArray<UnitData>> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
         {
-            return currentLevelDataRepository.UnitDatas;
+            return currentLevelDataRepository.Get().Select(d => d.UnitDatas.ToImmutableArray());
         }
 
         protected override IGameObjectAndComponentProvider<UnitHolder> GetHolderProvider()

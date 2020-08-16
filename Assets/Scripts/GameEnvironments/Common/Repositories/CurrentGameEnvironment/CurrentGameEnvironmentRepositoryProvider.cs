@@ -9,13 +9,13 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
         fileName = nameof(CurrentGameEnvironmentRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(CurrentGameEnvironmentRepository)
     )]
-    public class CurrentGameEnvironmentRepositoryProvider : ScriptableObjectProvider<ICurrentGameEnvironmentRepository>
+    public class CurrentGameEnvironmentRepositoryProvider : ScriptableObjectProvider<CurrentGameEnvironmentRepository>
     {
         [SerializeField] private RuntimeSelectedGameEnvironment runtimeSelectedGameEnvironment;
 
-        private ICurrentGameEnvironmentRepository _cache;
+        private CurrentGameEnvironmentRepository _cache;
 
-        public override ICurrentGameEnvironmentRepository Provide()
+        public override CurrentGameEnvironmentRepository Provide()
         {
             return _cache ?? (_cache = new CurrentGameEnvironmentRepository(runtimeSelectedGameEnvironment));
         }

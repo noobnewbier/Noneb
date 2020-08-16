@@ -1,23 +1,44 @@
-﻿using GameEnvironments.Common.Data;
+﻿using System;
+using GameEnvironments.Common.Data;
+using UniRx;
 using UnityUtils.ScriptableReference;
 
 namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {
-    public interface ICurrentGameEnvironmentRepository
+    public interface ICurrentGameEnvironmentGetRepository
     {
-        GameEnvironment Get();
+        IObservable<GameEnvironment> Get();
     }
 
-    public class CurrentGameEnvironmentRepository : ICurrentGameEnvironmentRepository
+    public interface ICurrentGameEnvironmentSetRepository
     {
-        private readonly RuntimeReference<GameEnvironment> _environment;
+        void Set(GameEnvironment gameEnvironment);
+    }
 
-        public CurrentGameEnvironmentRepository(RuntimeReference<GameEnvironment> environment)
+    public class CurrentGameEnvironmentRepository : ICurrentGameEnvironmentGetRepository, ICurrentGameEnvironmentSetRepository
+    {
+        //might not need this now, a plain reference would probably do the trick...
+        private readonly RuntimeReference<GameEnvironment> _runtimeReference;
+        private readonly BehaviorSubject<GameEnvironment> _subject;
+
+        public CurrentGameEnvironmentRepository(RuntimeReference<GameEnvironment> runtimeReference)
         {
-            _environment = environment;
+            _runtimeReference = runtimeReference;
+
+            _subject = new BehaviorSubject<GameEnvironment>(default);
         }
 
+        public IObservable<GameEnvironment> Get()
+        {
+            //we are using a behaviour subject so the most recent value is emitted when subscribe, but we don't want the default value(null) to be included
+            return _subject.Where(e => e != null);
+        }
 
-        public GameEnvironment Get() => _environment.CurrentReference;
+        public void Set(GameEnvironment gameEnvironment)
+        {
+            _runtimeReference.CurrentReference = gameEnvironment;
+
+            _subject.OnNext(_runtimeReference.CurrentReference);
+        }
     }
 }

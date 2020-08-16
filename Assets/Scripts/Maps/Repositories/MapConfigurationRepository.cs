@@ -1,21 +1,26 @@
-﻿using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+﻿using System;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using UniRx;
 
 namespace Maps.Repositories
 {
     public interface IMapConfigurationRepository
     {
-        MapConfiguration Get();
+        IObservable<MapConfiguration> Get();
     }
 
     public class MapConfigurationRepository : IMapConfigurationRepository
     {
-        private readonly ICurrentGameEnvironmentRepository _gameEnvironmentRepository;
+        private readonly ICurrentGameEnvironmentGetRepository _gameEnvironmentGetRepository;
 
-        public MapConfigurationRepository(ICurrentGameEnvironmentRepository gameEnvironmentRepository)
+        public MapConfigurationRepository(ICurrentGameEnvironmentGetRepository gameEnvironmentGetRepository)
         {
-            _gameEnvironmentRepository = gameEnvironmentRepository;
+            _gameEnvironmentGetRepository = gameEnvironmentGetRepository;
         }
 
-        public MapConfiguration Get() => _gameEnvironmentRepository.Get().MapConfiguration;
+        public IObservable<MapConfiguration> Get()
+        {
+            return _gameEnvironmentGetRepository.Get().Select(d => d.MapConfiguration);
+        }
     }
 }

@@ -1,13 +1,18 @@
-﻿using GameEnvironments.Common.Repositories.CurrentLevelData;
+﻿using System;
+using System.Collections.Generic;
+using Common.Loaders;
+using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
 using Maps.Repositories;
+using Tiles.Data;
 using Tiles.Holders;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.Tiles
 {
-    public class MapLoader : MonoBehaviour
+    public class MapLoader : MonoBehaviour, ILoader
     {
         [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
         [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
@@ -20,22 +25,69 @@ namespace GameEnvironments.Load.Tiles
         [SerializeField] private GameObject rowPrefab;
         [SerializeField] private Transform mapTransform;
 
-        [ContextMenu(nameof(Load))]
-        public void Load()
+        private IDisposable _disposable;
+
+        [ContextMenu(nameof(LoadAndForget))]
+        public void LoadAndForget()
+        {
+            DisposeDisposables();
+            _disposable = GetDataTupleObservable()
+                .Subscribe(
+                    tuple =>
+                    {
+                        var (datas, config) = tuple;
+                        InvokeLoadService(datas, config);
+                    }
+                );
+        }
+
+        public IObservable<Unit> LoadObservable()
+        {
+            return GetDataTupleObservable()
+                .Select(
+                    tuple =>
+                    {
+                        var (datas, config) = tuple;
+                        InvokeLoadService(datas, config);
+
+                        return Unit.Default;
+                    }
+                );
+        }
+
+        private IObservable<(TileData[] datas, MapConfiguration config)> GetDataTupleObservable()
+        {
+            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
+            var mapConfigObservable = mapConfigurationRepositoryProvider.Provide().Get();
+
+            return levelDataRepository.Get()
+                .Select(levelData => levelData.TileDatas)
+                .Zip(mapConfigObservable, (datas, config) => (datas, config))
+                .Take(1);
+        }
+
+        private void InvokeLoadService(IList<TileData> datas, MapConfiguration config)
         {
             var mapLoadService = mapLoadServiceProvider.Provide();
-            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
-            var mapConfiguration = mapConfigurationRepositoryProvider.Provide().Get();
-
             mapLoadService.Load(
-                levelDataRepository.TileDatas,
+                datas,
                 tilesPositionProvider,
                 tileHolderProvider,
                 rowPrefab,
                 mapTransform,
-                mapConfiguration.GetMap2DActualWidth(),
-                mapConfiguration.GetMap2DActualHeight()
+                config.GetMap2DActualWidth(),
+                config.GetMap2DActualHeight()
             );
+        }
+
+        private void OnDisable()
+        {
+            DisposeDisposables();
+        }
+
+        private void DisposeDisposables()
+        {
+            _disposable?.Dispose();
         }
     }
 }

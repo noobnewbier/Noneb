@@ -1,28 +1,67 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Common.Providers;
 using Maps;
 using Maps.Repositories;
+using UniRx;
 using UnityEngine;
 
 namespace Tiles.Holders.Repository
 {
+    /// <summary>
+    /// This is a bit convoluted as we want to be both lazy about the initialization, while keeping everything up to date
+    /// in the long term we probably need to refactor the whole provider thingy, they are not so straightforward to use
+    /// once you include async operation(which has its pros and cons, to think)
+    /// </summary>
     public class TileHolderRepositoryProvider : MonoObjectProvider<ITileHoldersRepository>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
         [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
+
+        private ITileHoldersRepository _cache;
+        private MapConfiguration _currentMapConfig;
+        private bool _isCacheUpToDate;
+        private IMapConfigurationRepository _mapConfigurationRepository;
+        private IDisposable _disposable;
+
         
-        private ITileHoldersRepository _repository;
-        
+        private void OnEnable()
+        {
+            _mapConfigurationRepository = mapConfigurationRepositoryProvider.Provide();
+            _disposable = _mapConfigurationRepository.Get()
+                .Subscribe(
+                    config =>
+                    {
+                        _currentMapConfig = config;
+                        _isCacheUpToDate = false;
+                    }
+                );
+        }
+
         public override ITileHoldersRepository Provide()
         {
-            if (_repository == null)
+            if (!_isCacheUpToDate)
             {
-                var mapConfig = mapConfigurationRepositoryProvider.Provide().Get();
-                var representations = tilesTransformProvider.Provide().Select(t => t.GetComponent<TileHolder>()).ToList();
-                _repository = new TileHoldersRepository(representations, mapConfig.XSize, mapConfig.ZSize);                
+                _cache = CreateTileHoldersRepository();
             }
 
-            return _repository;
+            return _cache;
+        }
+
+        private ITileHoldersRepository CreateTileHoldersRepository()
+        {
+            if (_currentMapConfig == null)
+            {
+                throw new InvalidOperationException($"{nameof(_currentMapConfig)} is null, you probably haven't provide a proper map config yet");
+            }
+            
+            var representations = tilesTransformProvider.Provide().Select(t => t.GetComponent<TileHolder>()).ToList();
+            return new TileHoldersRepository(representations, _currentMapConfig.XSize, _currentMapConfig.ZSize);
+        }
+
+        private void OnDisable()
+        {
+            _disposable?.Dispose();
         }
     }
 }

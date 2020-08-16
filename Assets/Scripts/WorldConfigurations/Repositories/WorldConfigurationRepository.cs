@@ -1,21 +1,26 @@
-﻿using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+﻿using System;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using UniRx;
 
 namespace WorldConfigurations.Repositories
 {
     public interface IWorldConfigurationRepository
     {
-        WorldConfiguration Get();
+        IObservable<WorldConfiguration> Get();
     }
 
     public class WorldConfigurationRepository : IWorldConfigurationRepository
     {
-        private readonly ICurrentGameEnvironmentRepository _repository;
+        private readonly ICurrentGameEnvironmentGetRepository _getRepository;
 
-        public WorldConfigurationRepository(ICurrentGameEnvironmentRepository repository)
+        public WorldConfigurationRepository(ICurrentGameEnvironmentGetRepository getRepository)
         {
-            _repository = repository;
+            _getRepository = getRepository;
         }
 
-        public WorldConfiguration Get() => _repository.Get().WorldConfiguration;
+        public IObservable<WorldConfiguration> Get()
+        {
+            return _getRepository.Get().Select(d => d.WorldConfiguration);
+        }
     }
 }

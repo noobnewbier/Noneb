@@ -1,40 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Maps;
+using Maps.Repositories;
 using Tiles.Holders.Repository;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UniRx;
 
 namespace DebugUtils
 {
     public class PathShower : MonoBehaviour
     {
         private IList<Vector3> _points;
+        private IDisposable _disposable;
         [SerializeField] private Coordinate goal;
         [SerializeField] private Coordinate start;
-        [SerializeField] private MapProvider mapProvider;
 
         [Range(0, 65535)] [SerializeField] private int maxCost;
-
-
+        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
+        
         //in axial instead of grid
         [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
         private TileHolderRepositoryProvider tileHolderRepositoryProvider;
 
 
-        [ContextMenu("ShowPath")]
+        [ContextMenu(nameof(ShowPath))]
         private void ShowPath()
         {
-            if (!Pathfinding.TryFindPath(start, goal, mapProvider.Provide(), out var path, maxCost, true))
-            {
-                Debug.Log("No valid path found");
-                _points = null;
-                return;
-            }
+            var mapRepository = mapRepositoryProvider.Provide();
 
-            var tileHoldersRepository = tileHolderRepositoryProvider.Provide();
-            var holders = path.Select(c => tileHoldersRepository.Get(c));
-            _points = holders.Select(r => r.transform.position).ToList();
+            _disposable = mapRepository.Get()
+                .Subscribe(
+                    map =>
+                    {
+                        if (!Pathfinding.TryFindPath(start, goal, map, out var path, maxCost, true))
+                        {
+                            Debug.Log("No valid path found");
+                            _points = null;
+                            return;
+                        }
+
+                        var tileHoldersRepository = tileHolderRepositoryProvider.Provide();
+                        var holders = path.Select(c => tileHoldersRepository.Get(c));
+                        _points = holders.Select(r => r.transform.position).ToList();
+                    }
+                );
+
+        }
+
+        private void OnDisable()
+        {
+            _disposable?.Dispose();
         }
 
         private void OnDrawGizmosSelected()

@@ -2,6 +2,7 @@
 using Experiment.CrossPlatformLiveData;
 using GameEnvironments.Common.Data;
 using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 
 namespace EnvironmentSelection
 {
@@ -17,12 +18,13 @@ namespace EnvironmentSelection
     public class SelectGameEnvironmentViewModel : ISelectGameEnvironmentViewModel
     {
         private readonly IAvailableGameEnvironmentRepository _availableGameEnvironmentRepository;
-        private readonly RuntimeSelectedGameEnvironment _runtimeSelectedGameEnvironment;
+        private readonly ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
 
-        public SelectGameEnvironmentViewModel(IAvailableGameEnvironmentRepository availableGameEnvironmentRepository, RuntimeSelectedGameEnvironment runtimeSelectedGameEnvironment)
+        public SelectGameEnvironmentViewModel(IAvailableGameEnvironmentRepository availableGameEnvironmentRepository,
+                                              ICurrentGameEnvironmentSetRepository gameEnvironmentSetRepository)
         {
             _availableGameEnvironmentRepository = availableGameEnvironmentRepository;
-            _runtimeSelectedGameEnvironment = runtimeSelectedGameEnvironment;
+            _gameEnvironmentSetRepository = gameEnvironmentSetRepository;
             CurrentlyInspectingGameEnvironmentLiveData = new LiveData<GameEnvironment>();
             AvailableGameEnvironmentLiveData = new LiveData<IEnumerable<GameEnvironment>>();
         }
@@ -42,7 +44,7 @@ namespace EnvironmentSelection
 
         public void SelectCurrentlyInspectedGameEnvironment()
         {
-            _runtimeSelectedGameEnvironment.CurrentReference = CurrentlyInspectingGameEnvironmentLiveData.Value;
+            _gameEnvironmentSetRepository.Set(CurrentlyInspectingGameEnvironmentLiveData.Value);
         }
     }
 }

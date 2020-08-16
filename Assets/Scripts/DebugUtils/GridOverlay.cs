@@ -1,40 +1,45 @@
 ﻿using System.Linq;
 using Maps;
+using Maps.Repositories;
+using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
-using WorldConfigurations;
 using WorldConfigurations.Repositories;
 
 namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {
-        [FormerlySerializedAs("config")] [SerializeField] private MapConfiguration mapConfig;
+        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
         [SerializeField] private WorldConfigurationRepositoryProvider worldConfigurationRepositoryProvider;
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
-
 
         private Vector3[] _vertices;
 
         [ContextMenu("GenerateVertices")]
         private void GenerateVertices()
         {
-            var worldConfig = worldConfigurationRepositoryProvider.Provide().Get();
+            var mapConfigObservable = mapConfigurationRepositoryProvider.Provide().Get();
+            var worldConfigObservable = worldConfigurationRepositoryProvider.Provide().Get();
             var positions = tilesPositionProvider.Provide().ToArray();
-            _vertices = new Vector3[mapConfig.XSize * mapConfig.ZSize * 6];
 
-            for (var i = 0; i < mapConfig.ZSize; i++)
-            {
-                for (var j = 0; j < mapConfig.XSize; j++)
-                {
-                    for (var k = 0; k < 6; k++)
+            mapConfigObservable.Zip(worldConfigObservable, (mapConfig, worldConfig) => new {mapConfig, worldConfig})
+                .Subscribe(
+                    pair =>
                     {
-                        var vertex = worldConfig.TileCorners[k] + positions[i * mapConfig.XSize + j];
+                        var mapConfig = pair.mapConfig;
+                        var worldConfig = pair.worldConfig;
+                        _vertices = new Vector3[mapConfig.XSize * mapConfig.ZSize * 6];
 
-                        _vertices[(i * mapConfig.XSize + j) * 6 + k] = vertex;
+                        for (var i = 0; i < mapConfig.ZSize; i++)
+                        for (var j = 0; j < mapConfig.XSize; j++)
+                        for (var k = 0; k < 6; k++)
+                        {
+                            var vertex = worldConfig.TileCorners[k] + positions[i * mapConfig.XSize + j];
+
+                            _vertices[(i * mapConfig.XSize + j) * 6 + k] = vertex;
+                        }
                     }
-                }
-            }
+                );
         }
 
         private void OnDrawGizmosSelected()
@@ -63,10 +68,7 @@ namespace DebugUtils
         {
             Gizmos.color = Color.red;
 
-            for (var i = 1; i < _vertices.Length; i++)
-            {
-                Gizmos.DrawLine(_vertices[i], i % 6 == 5 ? _vertices[i - 5] : _vertices[i + 1]);
-            }
+            for (var i = 1; i < _vertices.Length; i++) Gizmos.DrawLine(_vertices[i], i % 6 == 5 ? _vertices[i - 5] : _vertices[i + 1]);
         }
     }
 }

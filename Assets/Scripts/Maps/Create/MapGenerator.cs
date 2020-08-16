@@ -1,9 +1,11 @@
-﻿using Constructs;
+﻿using System;
+using Constructs;
+using Maps.Repositories;
 using Tiles.Holders;
+using UniRx;
 using Units.Holders;
 using UnityEngine;
 using UnityEngine.Serialization;
-using WorldConfigurations;
 using WorldConfigurations.Repositories;
 
 namespace Maps.Create
@@ -12,36 +14,62 @@ namespace Maps.Create
     {
         [Range(0f, 1f)] [SerializeField] private float chanceOfConstructOnTile;
         [Range(0f, 1f)] [SerializeField] private float chanceOfUnitOnTile;
-        [FormerlySerializedAs("config")] [SerializeField] private MapConfiguration mapConfig;
+        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
         [SerializeField] private WorldConfigurationRepositoryProvider worldConfigurationRepositoryProvider;
-        
-        [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField] private ConstructHolderProvider constructHolderProvider;
-        [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField] private TileHolderProvider tileHolderProvider;
+
+        [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField]
+        private ConstructHolderProvider constructHolderProvider;
+
+        [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]
+        private TileHolderProvider tileHolderProvider;
+
         [SerializeField] private TilesPositionProvider tilesPositionProvider;
-        [FormerlySerializedAs("unitHoldersProvider")] [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField] private UnitHolderProvider unitHolderProvider;
+
+        [FormerlySerializedAs("unitHoldersProvider")] [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField]
+        private UnitHolderProvider unitHolderProvider;
+
         [SerializeField] private GameObject rowPrefab;
 
+        private IDisposable _disposable;
 
         [ContextMenu("GenerateMap")]
         private void GenerateMap()
         {
-            var selfTransform = transform;
-            var positions = tilesPositionProvider.Provide();
-            var worldConfig = worldConfigurationRepositoryProvider.Provide().Get();
+            var worldConfigObservable = worldConfigurationRepositoryProvider.Provide().Get();
+            var mapConfigObservable = mapConfigurationRepositoryProvider.Provide().Get();
 
-            for (var i = 0; i < mapConfig.ZSize; i++)
-            {
-                var row = Instantiate(rowPrefab).transform;
-                row.parent = selfTransform;
-                for (var j = 0; j < mapConfig.XSize; j++)
-                {
-                    var newTile = tileHolderProvider.Provide().GameObject.transform;
+            _disposable = mapConfigObservable
+                .Zip(
+                    worldConfigObservable,
+                    (mapConfig, worldConfig) =>
+                        (mapConfig, worldConfig)
+                )
+                .Subscribe(
+                    tuple =>
+                    {
+                        var selfTransform = transform;
+                        var positions = tilesPositionProvider.Provide();
+                        var (mapConfig, worldConfig) = tuple;
+                        for (var i = 0; i < mapConfig.ZSize; i++)
+                        {
+                            var row = Instantiate(rowPrefab).transform;
+                            row.parent = selfTransform;
+                            for (var j = 0; j < mapConfig.XSize; j++)
+                            {
+                                var newTile = tileHolderProvider.Provide().GameObject.transform;
 
-                    newTile.parent = row;
-                    newTile.rotation *= Quaternion.AngleAxis(30f, worldConfig.UpAxis);
-                    newTile.position = positions[i * mapConfig.XSize + j];
-                }
-            }
+                                newTile.parent = row;
+                                newTile.rotation *= Quaternion.AngleAxis(30f, worldConfig.UpAxis);
+                                newTile.position = positions[i * mapConfig.XSize + j];
+                            }
+                        }
+                    }
+                );
+        }
+
+        private void OnDisable()
+        {
+            _disposable?.Dispose();
         }
     }
 }

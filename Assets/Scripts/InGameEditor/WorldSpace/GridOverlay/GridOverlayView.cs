@@ -73,6 +73,11 @@ namespace InGameEditor.WorldSpace.GridOverlay
         {
             var tilesPositions = updateCellsSettingsParameter.TilesPositions;
             var worldConfiguration = updateCellsSettingsParameter.WorldConfiguration;
+            if (_cells.Count < tilesPositions.Count)
+            {
+                //MapConfig is changed, no need to do anything as we are generating new cells - this approach might change tho
+                return;
+            }
 
             for (var i = 0; i < tilesPositions.Count; i++)
             {
@@ -84,6 +89,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
         private void OnDisable()
         {
             _compositeDisposable?.Dispose();
+            _viewModel.Dispose();
         }
 
         public class GenerateCellsParameter

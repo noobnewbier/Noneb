@@ -19,24 +19,13 @@ namespace InGameEditor.WorldSpace.GridOverlay
                                     Transform centerTransform)
         {
             UpdateCellsLiveData = new LiveData<GridOverlayView.UpdateCellsSettingsParameter>();
-            CoordinateVisibilityLiveData = new LiveData<bool>();
-            GridVisibilityLiveData = new LiveData<bool>();
+            CoordinateVisibilityLiveData = new LiveData<bool>(true);
+            GridVisibilityLiveData = new LiveData<bool>(true);
             GenerateCellsLiveData = new LiveData<GridOverlayView.GenerateCellsParameter>();
 
             var tilesPositionObservable = tilesPositionService.GetObservableStream(centerTransform.position.y);
             _compositeDisposable = new CompositeDisposable
             {
-                currentWorldConfigRepository.GetObservableStream()
-                    .ZipLatest(tilesPositionObservable, (config, position) => (config, position))
-                    .Subscribe(
-                        // ReSharper disable once ImplicitlyCapturedClosure : It's fine, it's not that big and we are cleaning it up anyway
-                        tuple =>
-                        {
-                            var (config, positions) = tuple;
-                            UpdateCellsLiveData.PostValue(new GridOverlayView.UpdateCellsSettingsParameter(config, positions));
-                        }
-                    ),
-
                 currentMapConfigRepository.GetObservableStream()
                     .ZipLatest(
                         currentWorldConfigRepository.GetObservableStream(),
@@ -49,6 +38,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
                             var (mapConfig, worldConfig, positions) = tuple;
                             var coordinates = coordinateService.GetFlattenCoordinates(mapConfig);
                             GenerateCellsLiveData.PostValue(new GridOverlayView.GenerateCellsParameter(worldConfig, positions, coordinates));
+                            UpdateCellsLiveData.PostValue(new GridOverlayView.UpdateCellsSettingsParameter(worldConfig, positions));
                         }
                     )
             };

@@ -42,6 +42,7 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
 
         private void UpdateCellLineSettings(WorldConfig worldConfiguration)
         {
+            lineRenderer.positionCount = worldConfiguration.TileCorners.Length;
             lineRenderer.SetPositions(worldConfiguration.TileCorners);
         }
 

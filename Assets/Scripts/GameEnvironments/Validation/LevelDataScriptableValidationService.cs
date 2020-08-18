@@ -9,7 +9,6 @@ using Tiles.Data;
 
 namespace GameEnvironments.Validation
 {
-    //todo: there should be one for preservation as well, and they should ideally share the same interface
     public interface ILevelDataScriptableValidationService
     {
         bool Validate(LevelData levelData, MapConfig mapConfiguration, EditorPalette editorPalette);

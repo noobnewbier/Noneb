@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using InGameEditor.WorldSpace.GridOverlay.CellOverlay;
 using Maps;
 using Maps.Services;
@@ -35,8 +37,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
             {
                 _viewModel.CoordinateVisibilityLiveData.Subscribe(SetCoordinatesVisibility),
                 _viewModel.GridVisibilityLiveData.Subscribe(SetGridVisibility),
-                _viewModel.GenerateCellsLiveData.Subscribe(GenerateCells),
-                _viewModel.UpdateCellsLiveData.Subscribe(UpdateCellsSettings)
+                _viewModel.GridParameterLiveData.Subscribe(ShowGridCells),
             };
         }
 
@@ -50,9 +51,31 @@ namespace InGameEditor.WorldSpace.GridOverlay
             _cells.ForEach(c => c.OnSetLineVisibility(visibility));
         }
 
-        private void GenerateCells(GenerateCellsParameter generateCellsParameter)
+        private void ShowGridCells(GenerateCellsParameter generateCellsParameter)
         {
-            for (var i = 0; i < generateCellsParameter.TilesPositions.Count; i++)
+            var requiredCellsCount = generateCellsParameter.TilesPositions.Count;
+            var worldConfig = generateCellsParameter.WorldConfiguration;
+            var tilePositions = generateCellsParameter.TilesPositions;
+            var coordinates = generateCellsParameter.Coordinates;
+            var currentCellsCount = _cells.Count;
+            
+            //update existing cells
+            for (var i = 0; i < Math.Min(requiredCellsCount, currentCellsCount); i++)
+            {
+                UpdateExistingCellsSettings(worldConfig, tilePositions[i], coordinates[i], _cells[i]);
+            }
+            
+            //delete cells if there too many of them
+            for (var i = requiredCellsCount; i < currentCellsCount; i++)
+            {
+                var toDestroy = _cells.Last();
+                _cells.Remove(toDestroy);
+                
+                toDestroy.OnReceivedDestructionInstruction();
+            }
+            
+            //create cells if there are not enough
+            for (var i = currentCellsCount; i < requiredCellsCount; i++)
             {
                 var cellOverlayView = cellOverlayViewProvider.Provide(gridTransform).Component;
                 var cellOverlayViewModel = cellOverlayViewModelFactory.Create(
@@ -67,23 +90,14 @@ namespace InGameEditor.WorldSpace.GridOverlay
 
                 _cells.Add(cellOverlayViewModel);
             }
+            
         }
 
-        private void UpdateCellsSettings(UpdateCellsSettingsParameter updateCellsSettingsParameter)
+        private static void UpdateExistingCellsSettings(WorldConfig worldConfig, Vector3 tilePosition, Coordinate coordinate, CellOverlayViewModel toUpdate)
         {
-            var tilesPositions = updateCellsSettingsParameter.TilesPositions;
-            var worldConfiguration = updateCellsSettingsParameter.WorldConfiguration;
-            if (_cells.Count < tilesPositions.Count)
-            {
-                //MapConfig is changed, no need to do anything as we are generating new cells - this approach might change tho
-                return;
-            }
-
-            for (var i = 0; i < tilesPositions.Count; i++)
-            {
-                _cells[i].OnUpdatePosition(tilesPositions[i]);
-                _cells[i].OnUpdateWorldConfiguration(worldConfiguration);
-            }
+            toUpdate.OnUpdatePosition(tilePosition);
+            toUpdate.OnUpdateWorldConfiguration(worldConfig);
+            toUpdate.OnUpdateCoordinate(coordinate);
         }
 
         private void OnDisable()
@@ -104,18 +118,6 @@ namespace InGameEditor.WorldSpace.GridOverlay
             }
 
             public IReadOnlyList<Coordinate> Coordinates { get; }
-            public IReadOnlyList<Vector3> TilesPositions { get; }
-            public WorldConfig WorldConfiguration { get; }
-        }
-
-        public class UpdateCellsSettingsParameter
-        {
-            public UpdateCellsSettingsParameter(WorldConfig worldConfiguration, IReadOnlyList<Vector3> tilesPositions)
-            {
-                WorldConfiguration = worldConfiguration;
-                TilesPositions = tilesPositions;
-            }
-
             public IReadOnlyList<Vector3> TilesPositions { get; }
             public WorldConfig WorldConfiguration { get; }
         }

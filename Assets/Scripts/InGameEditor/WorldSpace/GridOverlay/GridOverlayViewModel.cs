@@ -18,10 +18,9 @@ namespace InGameEditor.WorldSpace.GridOverlay
                                     ITilesPositionService tilesPositionService,
                                     Transform centerTransform)
         {
-            UpdateCellsLiveData = new LiveData<GridOverlayView.UpdateCellsSettingsParameter>();
             CoordinateVisibilityLiveData = new LiveData<bool>(true);
             GridVisibilityLiveData = new LiveData<bool>(true);
-            GenerateCellsLiveData = new LiveData<GridOverlayView.GenerateCellsParameter>();
+            GridParameterLiveData = new LiveData<GridOverlayView.GenerateCellsParameter>();
 
             var tilesPositionObservable = tilesPositionService.GetObservableStream(centerTransform.position.y);
             _compositeDisposable = new CompositeDisposable
@@ -37,8 +36,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
                         {
                             var (mapConfig, worldConfig, positions) = tuple;
                             var coordinates = coordinateService.GetFlattenCoordinates(mapConfig);
-                            GenerateCellsLiveData.PostValue(new GridOverlayView.GenerateCellsParameter(worldConfig, positions, coordinates));
-                            UpdateCellsLiveData.PostValue(new GridOverlayView.UpdateCellsSettingsParameter(worldConfig, positions));
+                            GridParameterLiveData.PostValue(new GridOverlayView.GenerateCellsParameter(worldConfig, positions, coordinates));
                         }
                     )
             };
@@ -46,8 +44,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
 
         public ILiveData<bool> CoordinateVisibilityLiveData { get; }
         public ILiveData<bool> GridVisibilityLiveData { get; }
-        public ILiveData<GridOverlayView.GenerateCellsParameter> GenerateCellsLiveData { get; }
-        public ILiveData<GridOverlayView.UpdateCellsSettingsParameter> UpdateCellsLiveData { get; }
+        public ILiveData<GridOverlayView.GenerateCellsParameter> GridParameterLiveData { get; }
 
         public void Dispose()
         {

@@ -63,7 +63,7 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
 
         private void SelfDestroy()
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         private void OnDisable()

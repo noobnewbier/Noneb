@@ -53,9 +53,8 @@ namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
         
         private IObservable<StrongholdData[]> GetDataTupleObservable()
         {
-            return _currentLevelDataRepository.Get()
-                .Select(d => d.StrongholdDatas)
-                .Take(1);
+            return _currentLevelDataRepository.GetMostRecent()
+                .Select(d => d.StrongholdDatas);
         }
 
         private void SetupTilesWithStronghold(IReadOnlyList<StrongholdData> strongholdDatas)

@@ -5,7 +5,6 @@ using GameEnvironments.Load.GameObjects.Loaders;
 using GameEnvironments.Load.Tiles;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Manager
 {
@@ -23,28 +22,37 @@ namespace Manager
         [SerializeField] private StrongholdConstructGameObjectLoader strongholdConstructGameObjectLoader;
         [SerializeField] private StrongholdGameObjectsInternalPositionLoader strongholdGameObjectsInternalPositionLoader;
 
+        private IDisposable _disposable;
+
         [ContextMenu(nameof(Load))]
         public void Load()
         {
-            mapLoader.LoadObservable()
+            _disposable = mapLoader.LoadObservable()
                 .Concat(LoadBoardItemOnTileHolders())
                 .Concat(LoadGameObjects())
                 .Subscribe();
         }
 
+        private void OnDisable()
+        {
+            _disposable?.Dispose();
+        }
+
         private IObservable<Unit> LoadBoardItemOnTileHolders()
         {
             return unitLoader.LoadObservable()
-                .Zip(constructLoader.LoadObservable(), 
+                .Zip(
+                    constructLoader.LoadObservable(),
                     strongholdLoader.LoadObservable(),
                     delegate { return Unit.Default; }
                 );
         }
-        
+
         private IObservable<Unit> LoadGameObjects()
         {
             return tileGameObjectLoader.LoadObservable()
-                .Zip(unitGameObjectLoader.LoadObservable(), 
+                .Zip(
+                    unitGameObjectLoader.LoadObservable(),
                     constructGameObjectLoader.LoadObservable(),
                     strongholdUnitGameObjectLoader.LoadObservable(),
                     strongholdConstructGameObjectLoader.LoadObservable(),

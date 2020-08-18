@@ -12,12 +12,12 @@ namespace GameEnvironments.Validation
     //todo: there should be one for preservation as well, and they should ideally share the same interface
     public interface ILevelDataScriptableValidationService
     {
-        bool Validate(LevelData levelData, MapConfiguration mapConfiguration, EditorPalette editorPalette);
+        bool Validate(LevelData levelData, MapConfig mapConfiguration, EditorPalette editorPalette);
     }
 
     public class LevelDataScriptableValidationService : ILevelDataScriptableValidationService
     {
-        public bool Validate(LevelData levelData, MapConfiguration mapConfiguration, EditorPalette editorPalette)
+        public bool Validate(LevelData levelData, MapConfig mapConfiguration, EditorPalette editorPalette)
         {
             return AllDataOfCorrectSize(levelData, mapConfiguration) &&
                    AllTileHasData(levelData.TileDatas, levelData.TileGameObjectProviders) &&
@@ -25,7 +25,7 @@ namespace GameEnvironments.Validation
                    NoOtherOnTileBoardItemWhenThereIsStronghold(levelData);
         }
 
-        private bool AllDataOfCorrectSize(LevelData levelData, MapConfiguration mapConfiguration)
+        private bool AllDataOfCorrectSize(LevelData levelData, MapConfig mapConfiguration)
         {
             var arraysSize = mapConfiguration.GetTotalMapSize();
 
@@ -59,10 +59,9 @@ namespace GameEnvironments.Validation
             var strongholdDatas = levelData.StrongholdDatas;
             var unitDatas = levelData.UnitDatas;
             var constructDatas = levelData.ConstructDatas;
-            
+
             // ReSharper disable once LoopCanBeConvertedToQuery : for readability
             for (var i = 0; i < strongholdDatas.Length; i++)
-            {
                 if (strongholdDatas[i] != null) // if there is a stronghold
                 {
                     if (unitDatas[i] != null || constructDatas[i] != null) // there should be no unit or construct
@@ -70,8 +69,7 @@ namespace GameEnvironments.Validation
                         return false;
                     }
                 }
-            }
-            
+
             return true;
         }
 
@@ -80,13 +78,11 @@ namespace GameEnvironments.Validation
         {
             // ReSharper disable once LoopCanBeConvertedToQuery : for readability
             for (var i = 0; i < boardItemDatas.Count; i++)
-            {
                 if (boardItemDatas[i] != null && gameObjectProviders[i] == null || //have data but not corresponding gameObjectProvider
                     boardItemDatas[i] == null && gameObjectProviders[i] != null) //have gameObjectProvider but not corresponding data 
                 {
                     return false;
                 }
-            }
 
             return true;
         }

@@ -3,21 +3,21 @@ using UnityUtils.Constants;
 
 namespace Maps
 {
-    [CreateAssetMenu(fileName = nameof(MapConfiguration), menuName = MenuName.Data + nameof(MapConfiguration))]
-    public class MapConfiguration : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(MapConfig), menuName = MenuName.Data + nameof(MapConfig))]
+    public class MapConfig : ScriptableObject
     {
         [Range(1, 10)] [SerializeField] private int xSize;
         [Range(1, 10)] [SerializeField] private int zSize;
-        
+
         //todo: consider removing these two, they are just duplicates atm
         public int XSize => xSize;
         public int ZSize => zSize;
 
         // may have to consider making MapConfiguration a plain class and the scriptable a wrapper,
         // don't really like how we have to sort of manually create this
-        public static MapConfiguration Create(int xSize, int zSize)
+        public static MapConfig Create(int xSize, int zSize)
         {
-            var instance = CreateInstance<MapConfiguration>();
+            var instance = CreateInstance<MapConfig>();
 
             instance.xSize = xSize;
             instance.zSize = zSize;
@@ -36,7 +36,7 @@ namespace Maps
         {
             return ZSize;
         }
-        
+
         public int GetMap2DActualWidth()
         {
             return XSize;

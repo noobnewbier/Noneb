@@ -5,6 +5,7 @@ using Maps;
 using Maps.Repositories;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Tiles.Holders.Repository
 {
@@ -16,19 +17,19 @@ namespace Tiles.Holders.Repository
     public class TileHolderRepositoryProvider : MonoObjectProvider<ITileHoldersRepository>
     {
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
-        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         private ITileHoldersRepository _cache;
-        private MapConfiguration _currentMapConfig;
+        private MapConfig _currentMapConfig;
         private bool _isCacheUpToDate;
-        private IMapConfigurationRepository _mapConfigurationRepository;
+        private ICurrentMapConfigRepository _currentMapConfigRepository;
         private IDisposable _disposable;
 
-        
+
         private void OnEnable()
         {
-            _mapConfigurationRepository = mapConfigurationRepositoryProvider.Provide();
-            _disposable = _mapConfigurationRepository.Get()
+            _currentMapConfigRepository = currentMapConfigRepositoryProvider.Provide();
+            _disposable = _currentMapConfigRepository.GetObservableStream()
                 .Subscribe(
                     config =>
                     {
@@ -54,7 +55,7 @@ namespace Tiles.Holders.Repository
             {
                 throw new InvalidOperationException($"{nameof(_currentMapConfig)} is null, you probably haven't provide a proper map config yet");
             }
-            
+
             var representations = tilesTransformProvider.Provide().Select(t => t.GetComponent<TileHolder>()).ToList();
             return new TileHoldersRepository(representations, _currentMapConfig.XSize, _currentMapConfig.ZSize);
         }

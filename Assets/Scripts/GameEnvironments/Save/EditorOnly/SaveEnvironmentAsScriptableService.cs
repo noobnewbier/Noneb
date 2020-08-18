@@ -30,8 +30,8 @@ namespace GameEnvironments.Save.EditorOnly
 
             var levelDataFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(LevelData));
             var gameEnvironmentFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(GameEnvironment));
-            var mapConfigFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(MapConfiguration));
-            var worldConfigFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(WorldConfiguration));
+            var mapConfigFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(MapConfig));
+            var worldConfigFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(WorldConfig));
 
             if (!File.Exists(Path.Combine(path, gameEnvironmentFilename)))
             {
@@ -97,11 +97,11 @@ namespace GameEnvironments.Save.EditorOnly
             var levelDataScriptable = LevelDataScriptable.CreateScriptableFromLevelData(
                 gameEnvironment.LevelData
             );
-            var mapConfiguration = MapConfiguration.Create(
+            var mapConfiguration = MapConfig.Create(
                 gameEnvironment.MapConfiguration.XSize,
                 gameEnvironment.MapConfiguration.ZSize
             );
-            var worldConfiguration = WorldConfiguration.Create(
+            var worldConfiguration = WorldConfig.Create(
                 gameEnvironment.WorldConfiguration.UpAxis,
                 gameEnvironment.WorldConfiguration.InnerRadius
             );

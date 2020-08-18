@@ -6,6 +6,7 @@ using Tiles;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UniRx;
+using UnityEngine.Serialization;
 
 namespace DebugUtils
 {
@@ -14,7 +15,7 @@ namespace DebugUtils
     /// </summary>
     public class CoordinateSetter : MonoBehaviour
     {
-        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
         private IDisposable _disposable;
@@ -26,8 +27,8 @@ namespace DebugUtils
         private void SetCoordinates()
         {
             var tilesTransform = tilesTransformProvider.Provide();
-            _disposable = mapConfigurationRepositoryProvider.Provide()
-                .Get()
+            _disposable = currentMapConfigRepositoryProvider.Provide()
+                .GetMostRecent()
                 .Subscribe(
                     config =>
                     {

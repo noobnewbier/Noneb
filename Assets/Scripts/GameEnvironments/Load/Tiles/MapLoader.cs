@@ -15,12 +15,11 @@ namespace GameEnvironments.Load.Tiles
     public class MapLoader : MonoBehaviour, ILoader
     {
         [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
-        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
         private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
 
-        [SerializeField] private TilesPositionProvider tilesPositionProvider;
         [SerializeField] private TileHolderProvider tileHolderProvider;
         [SerializeField] private GameObject rowPrefab;
         [SerializeField] private Transform mapTransform;
@@ -32,46 +31,43 @@ namespace GameEnvironments.Load.Tiles
         {
             DisposeDisposables();
             _disposable = GetDataTupleObservable()
-                .Subscribe(
+                .SelectMany(
                     tuple =>
                     {
                         var (datas, config) = tuple;
-                        InvokeLoadService(datas, config);
+                        return GetLoadServiceObservable(datas, config);
                     }
-                );
+                )
+                .Subscribe();
         }
 
         public IObservable<Unit> LoadObservable()
         {
             return GetDataTupleObservable()
-                .Select(
+                .SelectMany(
                     tuple =>
                     {
                         var (datas, config) = tuple;
-                        InvokeLoadService(datas, config);
-
-                        return Unit.Default;
+                        return GetLoadServiceObservable(datas, config);
                     }
                 );
         }
 
-        private IObservable<(TileData[] datas, MapConfiguration config)> GetDataTupleObservable()
+        private IObservable<(TileData[] datas, MapConfig config)> GetDataTupleObservable()
         {
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
-            var mapConfigObservable = mapConfigurationRepositoryProvider.Provide().Get();
+            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
 
-            return levelDataRepository.Get()
+            return levelDataRepository.GetMostRecent()
                 .Select(levelData => levelData.TileDatas)
-                .Zip(mapConfigObservable, (datas, config) => (datas, config))
-                .Take(1);
+                .Zip(mapConfigObservable, (datas, config) => (datas, config));
         }
 
-        private void InvokeLoadService(IList<TileData> datas, MapConfiguration config)
+        private IObservable<Unit> GetLoadServiceObservable(IList<TileData> datas, MapConfig config)
         {
             var mapLoadService = mapLoadServiceProvider.Provide();
-            mapLoadService.Load(
+            return mapLoadService.Load(
                 datas,
-                tilesPositionProvider,
                 tileHolderProvider,
                 rowPrefab,
                 mapTransform,

@@ -23,7 +23,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
         [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
         private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
 
-        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
         private IDisposable _disposable;
@@ -55,9 +55,9 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
                 );
         }
 
-        private IObservable<(ImmutableArray<TData> datas, MapConfiguration config)> GetDataTupleObservable()
+        private IObservable<(ImmutableArray<TData> datas, MapConfig config)> GetDataTupleObservable()
         {
-            var mapConfigurationObservable = mapConfigurationRepositoryProvider.Provide().Get();
+            var mapConfigurationObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
 
             return GetDatasFromRepository(levelDataRepository)
@@ -65,7 +65,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
                 .Take(1);
         }
 
-        private void InvokeLoadService(ImmutableArray<TData> datas, MapConfiguration config)
+        private void InvokeLoadService(ImmutableArray<TData> datas, MapConfig config)
         {
             var loadOnTileService = GetService();
 

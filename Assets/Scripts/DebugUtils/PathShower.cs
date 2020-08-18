@@ -30,7 +30,7 @@ namespace DebugUtils
         {
             var mapRepository = mapRepositoryProvider.Provide();
 
-            _disposable = mapRepository.Get()
+            _disposable = mapRepository.GetObservableStream()
                 .Subscribe(
                     map =>
                     {

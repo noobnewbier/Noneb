@@ -23,7 +23,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
 
         protected override IObservable<ImmutableArray<UnitData>> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
         {
-            return currentLevelDataRepository.Get().Select(d => d.UnitDatas.ToImmutableArray());
+            return currentLevelDataRepository.GetMostRecent().Select(d => d.UnitDatas.ToImmutableArray());
         }
 
         protected override IGameObjectAndComponentProvider<UnitHolder> GetHolderProvider()

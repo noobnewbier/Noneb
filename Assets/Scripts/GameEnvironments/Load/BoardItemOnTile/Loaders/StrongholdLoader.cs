@@ -21,7 +21,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
 
         protected override IObservable<ImmutableArray<StrongholdData>> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
         {
-            return currentLevelDataRepository.Get().Select(d => d.StrongholdDatas.ToImmutableArray());
+            return currentLevelDataRepository.GetMostRecent().Select(d => d.StrongholdDatas.ToImmutableArray());
         }
 
         protected override IGameObjectAndComponentProvider<StrongholdHolder> GetHolderProvider()

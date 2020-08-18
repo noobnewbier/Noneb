@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getCoordinateServiceProvider: {fileID: 11400000, guid: e6e8477fc92f3cc4aa13606ad223378d,
     type: 2}
+  tilesPositionServiceProvider: {fileID: 11400000, guid: cb87d0f20fab2304faf4b83ab84b5d94,
+    type: 2}

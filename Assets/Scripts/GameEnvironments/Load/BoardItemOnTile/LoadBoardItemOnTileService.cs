@@ -49,15 +49,15 @@ namespace GameEnvironments.Load.BoardItemOnTile
             {
                 var index = i * mapWidth + j;
                 var boardItemData = boardItemDatas[index];
-                if (boardItemData == null) 
+                if (boardItemData == null)
                 {
                     continue;
                 }
-                
+
                 var tileTransform = tileTransforms[index];
                 var holderAndGo = holderProvider.Provide(tileTransform, false);
 
-                holderAndGo.Component.Initialize(_factory.Create(boardItemData, _getCoordinateService.GetAxialCoordinate(j, i)));
+                holderAndGo.Component.Initialize(_factory.Create(boardItemData, _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i)));
             }
         }
     }

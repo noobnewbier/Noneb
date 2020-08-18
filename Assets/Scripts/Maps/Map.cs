@@ -4,18 +4,21 @@ using Tiles;
 
 namespace Maps
 {
-    //A map holds tile and their coordinates(gameplay-wise), it has nothing to do with any other stuffs
+    /*
+     * A map holds tile and their coordinates(gameplay-wise), it has nothing to do with any other stuffs
+     * the storage is in axial coordinate with grid(jagged array) for easy access.
+     */
     public class Map
     {
         private readonly Tile[,] _grid;
 
-        public Map(IReadOnlyList<Tile> tiles, MapConfiguration mapConfig)
+        public Map(IReadOnlyList<Tile> tiles, MapConfig mapConfig)
         {
             var map2DArrayWidth = mapConfig.GetMap2DArrayWidth();
             var map2dArrayHeight = mapConfig.GetMap2DArrayHeight();
             var map2DActualWidth = mapConfig.GetMap2DActualWidth();
             var map2dActualHeight = mapConfig.GetMap2DActualHeight();
-            
+
             _grid = new Tile[map2DArrayWidth, map2dArrayHeight];
             for (var i = 0; i < map2dActualHeight; i++)
             for (var j = 0; j < map2DActualWidth; j++)

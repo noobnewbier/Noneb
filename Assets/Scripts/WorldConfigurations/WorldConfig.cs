@@ -3,8 +3,8 @@ using UnityUtils.Constants;
 
 namespace WorldConfigurations
 {
-    [CreateAssetMenu(fileName = nameof(WorldConfiguration), menuName = MenuName.Data + nameof(WorldConfiguration))]
-    public class WorldConfiguration : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(WorldConfig), menuName = MenuName.Data + nameof(WorldConfig))]
+    public class WorldConfig : ScriptableObject
     {
         [Range(0f, 10f)] [SerializeField] private float innerRadius;
         [SerializeField] private Vector3 upAxis;
@@ -26,9 +26,9 @@ namespace WorldConfigurations
             new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius)
         };
 
-        public static WorldConfiguration Create(Vector3 upAxis, float innerRadius)
+        public static WorldConfig Create(Vector3 upAxis, float innerRadius)
         {
-            var toReturn = CreateInstance<WorldConfiguration>();
+            var toReturn = CreateInstance<WorldConfig>();
 
             toReturn.upAxis = upAxis;
             toReturn.innerRadius = innerRadius;

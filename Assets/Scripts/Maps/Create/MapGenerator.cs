@@ -1,6 +1,7 @@
 ﻿using System;
 using Constructs;
 using Maps.Repositories;
+using Maps.Services;
 using Tiles.Holders;
 using UniRx;
 using Units.Holders;
@@ -14,8 +15,8 @@ namespace Maps.Create
     {
         [Range(0f, 1f)] [SerializeField] private float chanceOfConstructOnTile;
         [Range(0f, 1f)] [SerializeField] private float chanceOfUnitOnTile;
-        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
-        [SerializeField] private WorldConfigurationRepositoryProvider worldConfigurationRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
 
         [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField]
         private ConstructHolderProvider constructHolderProvider;
@@ -23,33 +24,37 @@ namespace Maps.Create
         [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]
         private TileHolderProvider tileHolderProvider;
 
-        [SerializeField] private TilesPositionProvider tilesPositionProvider;
+        [FormerlySerializedAs("tilesPositionProvider")] [SerializeField]
+        private TilesPositionServiceProvider tilesPositionServiceProvider;
 
         [FormerlySerializedAs("unitHoldersProvider")] [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField]
         private UnitHolderProvider unitHolderProvider;
 
         [SerializeField] private GameObject rowPrefab;
+        [SerializeField] private Transform mapTransform;
+
 
         private IDisposable _disposable;
 
         [ContextMenu("GenerateMap")]
         private void GenerateMap()
         {
-            var worldConfigObservable = worldConfigurationRepositoryProvider.Provide().Get();
-            var mapConfigObservable = mapConfigurationRepositoryProvider.Provide().Get();
+            var worldConfigObservable = currentWorldConfigRepositoryProvider.Provide().GetMostRecent();
+            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
+            var positionsObservable = tilesPositionServiceProvider.Provide().GetObservableStream(mapTransform.position.y);
 
             _disposable = mapConfigObservable
-                .Zip(
+                .ZipLatest(
                     worldConfigObservable,
-                    (mapConfig, worldConfig) =>
-                        (mapConfig, worldConfig)
+                    positionsObservable,
+                    (mapConfig, worldConfig, positions) =>
+                        (mapConfig, worldConfig, positions)
                 )
                 .Subscribe(
                     tuple =>
                     {
                         var selfTransform = transform;
-                        var positions = tilesPositionProvider.Provide();
-                        var (mapConfig, worldConfig) = tuple;
+                        var (mapConfig, worldConfig, positions) = tuple;
                         for (var i = 0; i < mapConfig.ZSize; i++)
                         {
                             var row = Instantiate(rowPrefab).transform;

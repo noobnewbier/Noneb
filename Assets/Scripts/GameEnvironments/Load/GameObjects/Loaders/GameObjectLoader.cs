@@ -20,7 +20,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
         private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
 
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
-        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         private IDisposable _disposable;
 
@@ -53,17 +53,16 @@ namespace GameEnvironments.Load.GameObjects.Loaders
                 );
         }
 
-        private IObservable<(ImmutableArray<GameObjectProvider> gameObjectProviders, MapConfiguration config)> GetDataTupleObservable()
+        private IObservable<(ImmutableArray<GameObjectProvider> gameObjectProviders, MapConfig config)> GetDataTupleObservable()
         {
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
-            var mapConfigObservable = mapConfigurationRepositoryProvider.Provide().Get();
+            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
 
             return GetGameObjectProvidersFromRepository(levelDataRepository)
-                .Zip(mapConfigObservable, (gameObjectProviders, config) => (gameObjectProviders, config))
-                .Take(1);
+                .Zip(mapConfigObservable, (gameObjectProviders, config) => (gameObjectProviders, config));
         }
 
-        private void InvokeLoadService(ImmutableArray<GameObjectProvider> gameObjectProviders, MapConfiguration config)
+        private void InvokeLoadService(ImmutableArray<GameObjectProvider> gameObjectProviders, MapConfig config)
         {
             var gameObjectLoadService = serviceProvider.Provide();
             gameObjectLoadService.Load(

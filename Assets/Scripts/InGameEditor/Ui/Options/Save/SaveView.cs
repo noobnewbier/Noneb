@@ -1,7 +1,6 @@
 ﻿using System;
 using GameEnvironments.Common;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
-using InGameEditor.Repositories.SelectedEditorPalettes;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -96,7 +95,6 @@ namespace InGameEditor.Ui.Options.Save
         {
             _viewModel.ClickedSaveMenuButton();
         }
-
 
         public void OnClickSaveInSavingDetailDialog()
         {

@@ -28,7 +28,9 @@ namespace ObsoleteJsonRelated
         private readonly IGetEnvironmentFilenameService _getEnvironmentFilenameService;
         private readonly IGetInGameEditorDirectoryService _getInGameEditorDirectoryService;
 
-        public SaveEnvironmentAsJsonService(ISelectedEditorPaletteRepository editorPaletteRepository, IGetEnvironmentFilenameService getEnvironmentFilenameService, IGetInGameEditorDirectoryService getInGameEditorDirectoryService)
+        public SaveEnvironmentAsJsonService(ISelectedEditorPaletteRepository editorPaletteRepository,
+                                            IGetEnvironmentFilenameService getEnvironmentFilenameService,
+                                            IGetInGameEditorDirectoryService getInGameEditorDirectoryService)
         {
             _editorPaletteRepository = editorPaletteRepository;
             _getEnvironmentFilenameService = getEnvironmentFilenameService;
@@ -99,12 +101,12 @@ namespace ObsoleteJsonRelated
             );
         }
 
-        private static WorldConfigurationJson CreateWorldConfigurationJson(WorldConfiguration worldConfiguration)
+        private static WorldConfigurationJson CreateWorldConfigurationJson(WorldConfig worldConfiguration)
         {
             return new WorldConfigurationJson(worldConfiguration.InnerRadius, worldConfiguration.UpAxis);
         }
 
-        private static MapConfigurationJson CreateMapConfigurationJson(MapConfiguration mapConfiguration)
+        private static MapConfigurationJson CreateMapConfigurationJson(MapConfig mapConfiguration)
         {
             return new MapConfigurationJson(mapConfiguration.XSize, mapConfiguration.ZSize);
         }

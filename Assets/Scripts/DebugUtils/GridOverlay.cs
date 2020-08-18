@@ -1,33 +1,42 @@
 ﻿using System.Linq;
-using Maps;
 using Maps.Repositories;
+using Maps.Services;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WorldConfigurations.Repositories;
 
 namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {
-        [SerializeField] private MapConfigurationRepositoryProvider mapConfigurationRepositoryProvider;
-        [SerializeField] private WorldConfigurationRepositoryProvider worldConfigurationRepositoryProvider;
-        [SerializeField] private TilesPositionProvider tilesPositionProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+        [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
+        [SerializeField] private Transform mapTransform;
+
 
         private Vector3[] _vertices;
 
         [ContextMenu("GenerateVertices")]
         private void GenerateVertices()
         {
-            var mapConfigObservable = mapConfigurationRepositoryProvider.Provide().Get();
-            var worldConfigObservable = worldConfigurationRepositoryProvider.Provide().Get();
-            var positions = tilesPositionProvider.Provide().ToArray();
+            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetObservableStream();
+            var worldConfigObservable = currentWorldConfigRepositoryProvider.Provide().GetObservableStream();
+            var positionsObservable = tilesPositionServiceProvider.Provide().GetObservableStream(mapTransform.position.y);
 
-            mapConfigObservable.Zip(worldConfigObservable, (mapConfig, worldConfig) => new {mapConfig, worldConfig})
+            mapConfigObservable.Zip(
+                    worldConfigObservable,
+                    positionsObservable,
+                    (mapConfig, worldConfig, positions) => new {mapConfig, worldConfig, positions}
+                )
                 .Subscribe(
                     pair =>
                     {
                         var mapConfig = pair.mapConfig;
                         var worldConfig = pair.worldConfig;
+                        var positions = pair.positions;
+
                         _vertices = new Vector3[mapConfig.XSize * mapConfig.ZSize * 6];
 
                         for (var i = 0; i < mapConfig.ZSize; i++)

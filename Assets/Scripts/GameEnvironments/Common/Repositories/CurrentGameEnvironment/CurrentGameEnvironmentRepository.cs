@@ -7,7 +7,8 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {
     public interface ICurrentGameEnvironmentGetRepository
     {
-        IObservable<GameEnvironment> Get();
+        IObservable<GameEnvironment> GetObservableStream();
+        IObservable<GameEnvironment> GetMostRecent();
     }
 
     public interface ICurrentGameEnvironmentSetRepository
@@ -20,6 +21,7 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
         //might not need this now, a plain reference would probably do the trick...
         private readonly RuntimeReference<GameEnvironment> _runtimeReference;
         private readonly BehaviorSubject<GameEnvironment> _subject;
+        private IObservable<GameEnvironment> _single;
 
         public CurrentGameEnvironmentRepository(RuntimeReference<GameEnvironment> runtimeReference)
         {
@@ -28,16 +30,22 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
             _subject = new BehaviorSubject<GameEnvironment>(default);
         }
 
-        public IObservable<GameEnvironment> Get()
+        public IObservable<GameEnvironment> GetObservableStream()
         {
             //we are using a behaviour subject so the most recent value is emitted when subscribe, but we don't want the default value(null) to be included
-            return _subject.Where(e => e != null);
+            return _subject.Where(e => e != null).TakeLast(1);
+        }
+
+        public IObservable<GameEnvironment> GetMostRecent()
+        {
+            return _single;
         }
 
         public void Set(GameEnvironment gameEnvironment)
         {
             _runtimeReference.CurrentReference = gameEnvironment;
 
+            _single = Observable.Return(gameEnvironment);
             _subject.OnNext(_runtimeReference.CurrentReference);
         }
     }

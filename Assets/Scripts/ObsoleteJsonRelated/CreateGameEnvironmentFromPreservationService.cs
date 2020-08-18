@@ -57,14 +57,14 @@ namespace ObsoleteJsonRelated
             );
         }
 
-        private MapConfiguration CreateMapConfiguration(MapConfigurationJson mapConfigurationJson)
+        private MapConfig CreateMapConfiguration(MapConfigurationJson mapConfigurationJson)
         {
-            return MapConfiguration.Create(mapConfigurationJson.XSize, mapConfigurationJson.ZSize);
+            return MapConfig.Create(mapConfigurationJson.XSize, mapConfigurationJson.ZSize);
         }
 
-        private WorldConfiguration CreateWorldConfiguration(WorldConfigurationJson worldConfigurationJson)
+        private WorldConfig CreateWorldConfiguration(WorldConfigurationJson worldConfigurationJson)
         {
-            return WorldConfiguration.Create(worldConfigurationJson.UpAxis, worldConfigurationJson.InnerRadius);
+            return WorldConfig.Create(worldConfigurationJson.UpAxis, worldConfigurationJson.InnerRadius);
         }
 
         private StrongholdData[] CreateStrongholdDatas(AvailableSet<UnitData> availableUnits,

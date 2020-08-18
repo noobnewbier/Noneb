@@ -11,7 +11,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
         protected override IObservable<ImmutableArray<GameObjectProvider>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository)
         {
-            return currentLevelDataRepository.Get().Select(d => d.UnitGameObjectProviders.ToImmutableArray());
+            return currentLevelDataRepository.GetMostRecent().Select(d => d.UnitGameObjectProviders.ToImmutableArray());
         }
     }
 }

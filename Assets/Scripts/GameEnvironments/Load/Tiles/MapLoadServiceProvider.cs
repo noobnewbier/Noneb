@@ -9,17 +9,13 @@ namespace GameEnvironments.Load.Tiles
     public class MapLoadServiceProvider : ScriptableObjectProvider<IMapLoadService>
     {
         [SerializeField] private GetCoordinateServiceProvider getCoordinateServiceProvider;
+        [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
 
-        private IMapLoadService _service;
-
-        private void OnEnable()
-        {
-            _service = new MapLoadService(getCoordinateServiceProvider.Provide());
-        }
+        private IMapLoadService _cache;
 
         public override IMapLoadService Provide()
         {
-            return _service;
+            return _cache ?? (_cache = new MapLoadService(getCoordinateServiceProvider.Provide(), tilesPositionServiceProvider.Provide()));
         }
     }
 }

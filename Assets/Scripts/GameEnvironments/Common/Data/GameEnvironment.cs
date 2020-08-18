@@ -6,15 +6,14 @@ namespace GameEnvironments.Common.Data
 {
     /// <summary>
     /// Basically a game level, including all data one required to load a level(both visually and "backend" wise)
-    /// 
     /// todo: implement a fucking environment validator
     /// todo: collection better be readonly, in case you accidentally assign stuffs... or should they?
     /// todo: handle overrides
     /// </summary>
     public class GameEnvironment
     {
-        public GameEnvironment(MapConfiguration mapConfiguration,
-                               WorldConfiguration worldConfiguration,
+        public GameEnvironment(MapConfig mapConfiguration,
+                               WorldConfig worldConfiguration,
                                LevelData levelData,
                                string environmentName)
         {
@@ -26,7 +25,7 @@ namespace GameEnvironments.Common.Data
 
         public string EnvironmentName { get; }
         public LevelData LevelData { get; }
-        public WorldConfiguration WorldConfiguration { get; }
-        public MapConfiguration MapConfiguration { get; }
+        public WorldConfig WorldConfiguration { get; }
+        public MapConfig MapConfiguration { get; }
     }
 }

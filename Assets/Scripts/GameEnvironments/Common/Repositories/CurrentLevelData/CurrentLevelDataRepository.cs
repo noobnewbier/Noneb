@@ -7,7 +7,8 @@ namespace GameEnvironments.Common.Repositories.CurrentLevelData
 {
     public interface ICurrentLevelDataRepository
     {
-        IObservable<LevelData> Get();
+        IObservable<LevelData> GetObservableStream();
+        IObservable<LevelData> GetMostRecent();
     }
 
     public class CurrentLevelDataRepository : ICurrentLevelDataRepository
@@ -19,9 +20,14 @@ namespace GameEnvironments.Common.Repositories.CurrentLevelData
             _gameEnvironmentGetRepository = currentGameEnvironmentGetRepository;
         }
 
-        public IObservable<LevelData> Get()
+        public IObservable<LevelData> GetObservableStream()
         {
-            return _gameEnvironmentGetRepository.Get().Select(d => d.LevelData);
+            return _gameEnvironmentGetRepository.GetObservableStream().Select(d => d.LevelData);
+        }
+
+        public IObservable<LevelData> GetMostRecent()
+        {
+            return _gameEnvironmentGetRepository.GetMostRecent().Select(d => d.LevelData);
         }
     }
 }

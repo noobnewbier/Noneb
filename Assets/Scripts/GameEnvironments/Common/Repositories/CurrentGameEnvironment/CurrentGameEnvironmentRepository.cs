@@ -33,7 +33,7 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
         public IObservable<GameEnvironment> GetObservableStream()
         {
             //we are using a behaviour subject so the most recent value is emitted when subscribe, but we don't want the default value(null) to be included
-            return _subject.Where(e => e != null).TakeLast(1);
+            return _subject.Where(e => e != null);
         }
 
         public IObservable<GameEnvironment> GetMostRecent()

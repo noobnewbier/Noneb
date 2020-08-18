@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EnvironmentSelection.ClickableGameEnvironments;
 using GameEnvironments.Common.Data;
 using TMPro;
+using UniRx;
 using UnityEngine;
 
 namespace EnvironmentSelection
@@ -14,15 +16,24 @@ namespace EnvironmentSelection
         [SerializeField] private ClickableGameEnvironmentViewProvider clickableGameEnvironmentViewProvider;
 
         private ISelectGameEnvironmentViewModel _viewModel;
+        private IDisposable _compositeDisposable;
 
         private void OnEnable()
         {
             _viewModel = viewModelFactory.Create();
 
-            _viewModel.CurrentlyInspectingGameEnvironmentLiveData.Subscribe(ShowSelectedGameEnvironment);
-            _viewModel.AvailableGameEnvironmentLiveData.Subscribe(ShowAvailableGameEnvironmentList);
-
+            _compositeDisposable = new CompositeDisposable
+            {
+                _viewModel.CurrentlyInspectingGameEnvironmentLiveData.Subscribe(ShowSelectedGameEnvironment),
+                _viewModel.AvailableGameEnvironmentLiveData.Subscribe(ShowAvailableGameEnvironmentList)
+            };
+            
             _viewModel.RefreshAvailableGameEnvironmentList();
+        }
+
+        private void OnDisable()
+        {
+            _compositeDisposable?.Dispose();
         }
 
         private void ShowSelectedGameEnvironment(GameEnvironment gameEnvironment)

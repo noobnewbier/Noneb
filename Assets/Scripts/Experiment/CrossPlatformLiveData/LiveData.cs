@@ -44,6 +44,7 @@ namespace Experiment.CrossPlatformLiveData
         public LiveData(T initValue)
         {
             _subject = new BehaviorSubject<T>(initValue);
+            Value = initValue;
             _version = StartVersion + 1;
         }
 
@@ -56,6 +57,7 @@ namespace Experiment.CrossPlatformLiveData
         {
             _subject = new BehaviorSubject<T>(initValue);
             _rxSchedulers = rxSchedulers;
+            Value = initValue;
             _version = StartVersion + 1;
         }
 

@@ -6,8 +6,8 @@ namespace Maps
     [CreateAssetMenu(fileName = nameof(MapConfig), menuName = MenuName.Data + nameof(MapConfig))]
     public class MapConfig : ScriptableObject
     {
-        [Range(1, 10)] [SerializeField] private int xSize;
-        [Range(1, 10)] [SerializeField] private int zSize;
+        [Range(1, 100)] [SerializeField] private int xSize;
+        [Range(1, 100)] [SerializeField] private int zSize;
 
         //todo: consider removing these two, they are just duplicates atm
         public int XSize => xSize;

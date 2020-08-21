@@ -30,7 +30,17 @@ namespace Manager
             _disposable = mapLoader.LoadObservable()
                 .Concat(LoadBoardItemOnTileHolders())
                 .Concat(LoadGameObjects())
-                .Subscribe();
+                .Subscribe(
+                    _ =>
+                    {
+                        //todo: proper error handling
+                        Debug.Log("success");
+                    },
+                    e =>
+                    {
+                        Debug.Log(e);
+                    }
+                );
         }
 
         private void OnDisable()

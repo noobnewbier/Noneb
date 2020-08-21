@@ -1,5 +1,5 @@
-﻿using System.Threading;
-using UniRx;
+﻿using UniRx;
+using System.Threading;
 
 
 namespace Experiment.CrossPlatformLiveData.Internal.Facade

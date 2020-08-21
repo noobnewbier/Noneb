@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8efb384e584bc19abbdd4e84590b9f, type: 3}
   m_Name: InGameEditorCameraViewModelFactory
   m_EditorClassIdentifier: 
-  cameraSizeInViewServiceProvider: {fileID: 0}
-  tilesPositionServiceProvider: {fileID: 0}
+  cameraSizeInViewServiceProvider: {fileID: 11400000, guid: 0db125be5ccb03940a44b3531a2738c1,
+    type: 2}
+  tilesPositionServiceProvider: {fileID: 11400000, guid: cb87d0f20fab2304faf4b83ab84b5d94,
+    type: 2}

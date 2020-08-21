@@ -16,3 +16,7 @@ MonoBehaviour:
   bufferToClampingEdge: 4.7
   edgePercentageToPan: 0.85
   smoothFactor: 5
+  maxZoomingSpeed: 150
+  minDistanceToMap: 1
+  targetFramesToFullyDecelerate: 20
+  isInvertedWheel: 1

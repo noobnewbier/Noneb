@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Linq;
-using InGameEditor.Services.InGameEditorCameraSizeInViewServices;
-using Maps.Services;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityUtils;
 
 namespace InGameEditor.Cameras
@@ -16,7 +12,7 @@ namespace InGameEditor.Cameras
         [SerializeField] private Transform mapTransform;
         [SerializeField] private InGameEditorCameraConfig config;
         [SerializeField] private InGameEditorCameraViewModelFactory viewModelFactory;
-                
+
 
         private InGameEditorCameraViewModel _viewModel;
         private IDisposable _disposable;
@@ -24,14 +20,18 @@ namespace InGameEditor.Cameras
         private float _downBound;
         private float _leftBound;
         private float _rightBound;
+        private float _accumulatedZoomingValue;
+        private float _accumulatedZoomingDecelerationValue;
+        private float _currentZoomingDirection;
 
 
         private void OnEnable()
         {
             _viewModel = viewModelFactory.Create(editorCamera, mapTransform, config);
-            
+
             _disposable = new CompositeDisposable(
-                _viewModel.CameraPositionLiveData.Subscribe(OnUpdateCameraPosition)
+                _viewModel.CameraPositionLiveData.Subscribe(OnUpdateCameraPosition),
+                _viewModel.CameraYPosition.Subscribe(OnUpdateCameraYPosition)
             );
         }
 
@@ -44,6 +44,7 @@ namespace InGameEditor.Cameras
         private void Update()
         {
             Panning();
+            Zooming();
         }
 
         #region Panning
@@ -91,6 +92,62 @@ namespace InGameEditor.Cameras
                 Mathf.Abs(distanceInPercentage - thresholdDistanceInPercentage / (1f - thresholdDistanceInPercentage)),
                 config.SmoothFactor
             );
+        }
+
+        #endregion
+
+        #region Zooming
+
+        private void Zooming()
+        {
+            _viewModel.OnZooming(GetZoomingStrength(), Time.deltaTime);
+        }
+
+
+        private float GetZoomingStrength()
+        {
+            var zoomInput = Input.GetAxis("Mouse ScrollWheel");
+            var inputStrength = Mathf.Abs(zoomInput);
+            if (!FloatUtil.NearlyEqual(zoomInput, 0f))
+            {
+                _currentZoomingDirection = Mathf.Sign(zoomInput) * (config.IsInvertedWheel ? -1f : 1f);
+            }
+
+            if (!FloatUtil.NearlyEqual(zoomInput, 0f))
+            {
+                //accelerating
+                _accumulatedZoomingDecelerationValue = 0;
+                _accumulatedZoomingValue += inputStrength;
+                _accumulatedZoomingValue = Mathf.Clamp01(_accumulatedZoomingValue);
+            }
+            else if (!FloatUtil.NearlyEqual(_accumulatedZoomingValue, 0f))
+            {
+                //decelerating
+
+                _accumulatedZoomingDecelerationValue += config.DecelerationSpeed * Time.deltaTime;
+                _accumulatedZoomingDecelerationValue = Mathf.Clamp01(_accumulatedZoomingDecelerationValue);
+
+                _accumulatedZoomingValue -= Easing.ExponentialEaseInOut(_accumulatedZoomingDecelerationValue, config.SmoothFactor);
+                _accumulatedZoomingValue = Mathf.Clamp01(_accumulatedZoomingValue);
+            }
+            else
+            {
+                //all is set, do nothing
+                _currentZoomingDirection = 0f;
+                return 0;
+            }
+
+            return _currentZoomingDirection * Easing.ExponentialEaseInOut(_accumulatedZoomingValue, config.SmoothFactor);
+        }
+
+
+        private void OnUpdateCameraYPosition(float y)
+        {
+            var cameraTransform = editorCamera.transform;
+            var cameraPosition = cameraTransform.position;
+            cameraPosition = new Vector3(cameraPosition.x, y, cameraPosition.z);
+
+            cameraTransform.position = cameraPosition;
         }
 
         #endregion

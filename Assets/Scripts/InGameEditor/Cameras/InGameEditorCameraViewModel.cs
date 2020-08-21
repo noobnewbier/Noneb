@@ -25,7 +25,7 @@ namespace InGameEditor.Cameras
         private float _leftBound;
         private Vector2 _cameraViewSize;
         private Vector2 _mapSize;
-        private BehaviorSubject<float> _cameraYPositionSubject;
+        private readonly BehaviorSubject<float> _cameraYPositionSubject;
 
         public InGameEditorCameraViewModel(IInGameEditorCameraSizeInViewService cameraSizeInViewService,
                                            Camera editorCamera,

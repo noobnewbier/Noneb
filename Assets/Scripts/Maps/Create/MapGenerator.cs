@@ -1,10 +1,8 @@
 ﻿using System;
-using Constructs;
 using Maps.Repositories;
 using Maps.Services;
 using Tiles.Holders;
 using UniRx;
-using Units.Holders;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WorldConfigurations.Repositories;
@@ -13,22 +11,17 @@ namespace Maps.Create
 {
     public class MapGenerator : MonoBehaviour
     {
-        [Range(0f, 1f)] [SerializeField] private float chanceOfConstructOnTile;
-        [Range(0f, 1f)] [SerializeField] private float chanceOfUnitOnTile;
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
-        [FormerlySerializedAs("constructRepresentationProvider")] [SerializeField]
-        private ConstructHolderProvider constructHolderProvider;
+        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
 
         [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]
         private TileHolderProvider tileHolderProvider;
 
         [FormerlySerializedAs("tilesPositionProvider")] [SerializeField]
         private TilesPositionServiceProvider tilesPositionServiceProvider;
-
-        [FormerlySerializedAs("unitHoldersProvider")] [FormerlySerializedAs("unitRepresentationProvider")] [SerializeField]
-        private UnitHolderProvider unitHolderProvider;
 
         [SerializeField] private GameObject rowPrefab;
         [SerializeField] private Transform mapTransform;

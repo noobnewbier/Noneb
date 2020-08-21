@@ -18,10 +18,6 @@ namespace InGameEditor.WorldSpace.GridOverlay
 
         [SerializeField] private CellOverlayViewProvider cellOverlayViewProvider;
         [SerializeField] private CellOverlayViewModelFactory cellOverlayViewModelFactory;
-
-        [FormerlySerializedAs("tilesPositionProvider")] [SerializeField]
-        private TilesPositionServiceProvider tilesPositionServiceProvider;
-
         [SerializeField] private Transform gridTransform;
 
         private GridOverlayViewModel _viewModel;

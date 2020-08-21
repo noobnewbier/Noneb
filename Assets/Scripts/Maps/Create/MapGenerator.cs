@@ -41,10 +41,10 @@ namespace Maps.Create
         {
             var worldConfigObservable = currentWorldConfigRepositoryProvider.Provide().GetMostRecent();
             var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
-            var positionsObservable = tilesPositionServiceProvider.Provide().GetObservableStream(mapTransform.position.y);
+            var positionsObservable = tilesPositionServiceProvider.Provide().GetMostRecent(mapTransform.position.y);
 
             _disposable = mapConfigObservable
-                .ZipLatest(
+                .CombineLatest(
                     worldConfigObservable,
                     positionsObservable,
                     (mapConfig, worldConfig, positions) =>

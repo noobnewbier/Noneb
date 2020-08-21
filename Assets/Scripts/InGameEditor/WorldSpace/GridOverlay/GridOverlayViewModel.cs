@@ -26,7 +26,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
             _compositeDisposable = new CompositeDisposable
             {
                 currentMapConfigRepository.GetObservableStream()
-                    .ZipLatest(
+                    .CombineLatest(
                         currentWorldConfigRepository.GetObservableStream(),
                         tilesPositionObservable,
                         (mapConfig, worldConfig, positions) => (mapConfig, worldConfig, positions)

@@ -31,7 +31,7 @@ namespace Maps.Services
         public IObservable<IReadOnlyList<Vector3>> GetObservableStream(float yPosition)
         {
             return _currentMapConfigRepository.GetObservableStream()
-                .ZipLatest(_currentWorldConfigRepository.GetObservableStream(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
+                .CombineLatest(_currentWorldConfigRepository.GetObservableStream(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
                 .Select(
                     tuple =>
                     {
@@ -44,7 +44,7 @@ namespace Maps.Services
         public IObservable<IReadOnlyList<Vector3>> GetMostRecent(float yPosition)
         {
             return _currentMapConfigRepository.GetMostRecent()
-                .ZipLatest(_currentWorldConfigRepository.GetMostRecent(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
+                .CombineLatest(_currentWorldConfigRepository.GetMostRecent(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
                 .Select(
                     tuple =>
                     {

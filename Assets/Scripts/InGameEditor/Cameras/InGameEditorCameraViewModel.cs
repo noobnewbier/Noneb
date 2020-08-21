@@ -25,6 +25,7 @@ namespace InGameEditor.Cameras
         private float _leftBound;
         private Vector2 _cameraViewSize;
         private Vector2 _mapSize;
+        private BehaviorSubject<float> _cameraYPositionSubject;
 
         public InGameEditorCameraViewModel(IInGameEditorCameraSizeInViewService cameraSizeInViewService,
                                            Camera editorCamera,
@@ -48,13 +49,13 @@ namespace InGameEditor.Cameras
              * we are trying to avoid having a whole bunch of setting and getting service/repo for the camera
              * but if more class need this thing we will need to refactor
              */
-            var cameraYPositionSubject = new BehaviorSubject<float>(_editorCamera.transform.position.y);
+            _cameraYPositionSubject = new BehaviorSubject<float>(_editorCamera.transform.position.y);
             _disposable = new CompositeDisposable
             {
-                cameraYPositionSubject.Subscribe(CameraYPosition.PostValue),
+                _cameraYPositionSubject.Subscribe(CameraYPosition.PostValue),
                 tilesPositionService
                     .GetObservableStream(mapPosition.y)
-                    .ZipLatest(cameraYPositionSubject, (positions, _) => positions) //update bounds whenever the camera's height is updated
+                    .CombineLatest(_cameraYPositionSubject, (positions, _) => positions) //update bounds whenever the camera's height is updated
                     .Subscribe(CalculateCameraRelatedMetrics)
             };
         }
@@ -84,9 +85,9 @@ namespace InGameEditor.Cameras
         //negative zooming strength for zooming in, positive for zooming out
         public void OnZooming(float zoomingStrength, float deltaTime)
         {
-            if (zoomingStrength < 0f)
+            if (zoomingStrength > 0f)
             {
-                if (_cameraViewSize.x > _mapSize.x && _cameraViewSize.y > _mapSize.y)
+                if (_cameraViewSize.x > _mapSize.x && _cameraViewSize.y > _mapSize.y && _cameraViewSize.y > _minCameraY)
                 {
                     //don't zoom out too far
                     return;
@@ -97,7 +98,7 @@ namespace InGameEditor.Cameras
             var newYPosition = currentYPosition + zoomingStrength * deltaTime * _config.MaxZoomingSpeed;
             newYPosition = Mathf.Max(newYPosition, _minCameraY);
             
-            CameraYPosition.PostValue(newYPosition);
+            _cameraYPositionSubject.OnNext(newYPosition);
         }
 
         private void CalculateCameraRelatedMetrics(IReadOnlyList<Vector3> tilesPositions)

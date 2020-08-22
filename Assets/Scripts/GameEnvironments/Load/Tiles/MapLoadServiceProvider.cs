@@ -1,4 +1,5 @@
-﻿using Common.Providers;
+﻿using System;
+using Common.Providers;
 using Maps.Services;
 using UnityEngine;
 using UnityUtils.Constants;
@@ -16,6 +17,11 @@ namespace GameEnvironments.Load.Tiles
         public override IMapLoadService Provide()
         {
             return _cache ?? (_cache = new MapLoadService(getCoordinateServiceProvider.Provide(), tilesPositionServiceProvider.Provide()));
+        }
+
+        private void OnDisable()
+        {
+            _cache?.Dispose();
         }
     }
 }

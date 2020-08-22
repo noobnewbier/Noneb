@@ -4,9 +4,9 @@ using System.Linq;
 using Maps;
 using Maps.Repositories;
 using Tiles.Holders.Repository;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UniRx;
 
 namespace DebugUtils
 {
@@ -19,10 +19,10 @@ namespace DebugUtils
 
         [Range(0, 65535)] [SerializeField] private int maxCost;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
-        
+
         //in axial instead of grid
-        [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
-        private TileHolderRepositoryProvider tileHolderRepositoryProvider;
+        [FormerlySerializedAs("tileHolderRepositoryProvider")] [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
+        private TileHoldersRepositoryProvider tileHoldersRepositoryProvider;
 
 
         [ContextMenu(nameof(ShowPath))]
@@ -31,22 +31,33 @@ namespace DebugUtils
             var mapRepository = mapRepositoryProvider.Provide();
 
             _disposable = mapRepository.GetObservableStream()
-                .Subscribe(
+                .SelectMany(
                     map =>
                     {
                         if (!Pathfinding.TryFindPath(start, goal, map, out var path, maxCost, true))
                         {
-                            Debug.Log("No valid path found");
                             _points = null;
-                            return;
+                            throw new InvalidOperationException("No valid path found");
                         }
 
-                        var tileHoldersRepository = tileHolderRepositoryProvider.Provide();
-                        var holders = path.Select(c => tileHoldersRepository.Get(c));
-                        _points = holders.Select(r => r.transform.position).ToList();
+                        var tileHoldersRepository = tileHoldersRepositoryProvider.Provide();
+                        return path.Select(c => tileHoldersRepository.GetAtCoordinateSingle(c)).Zip();
+                    }
+                )
+                .Subscribe(
+                    holders => { _points = holders.Select(r => r.transform.position).ToList(); },
+                    e =>
+                    {
+                        if (e is InvalidOperationException)
+                        {
+                            Debug.Log("No valid path found");
+                        }
+                        else
+                        {
+                            throw e;
+                        }
                     }
                 );
-
         }
 
         private void OnDisable()

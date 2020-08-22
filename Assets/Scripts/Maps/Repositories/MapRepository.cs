@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Tiles;
 using Tiles.Holders.Repository;
 using UniRx;
 
@@ -24,17 +26,25 @@ namespace Maps.Repositories
 
         public IObservable<Map> GetObservableStream()
         {
-            return _currentMapConfigRepository.GetObservableStream().Where(m => m != null).Select(CreateMap);
+            // _tileHoldersRepository.GetAllFlattenSingle().Select(t => t.Value).ToList()
+            return _currentMapConfigRepository.GetObservableStream()
+                .ZipLatest(_tileHoldersRepository.GetAllFlattenSingle(), (config, tileHolders) => (config, tileHolders))
+                .Where(tuple => tuple.config != null)
+                .Select(tuple => CreateMap(tuple.config, tuple.tileHolders.Select(t => t.Value).ToList()));
         }
 
         public IObservable<Map> GetMostRecent()
         {
-            return _currentMapConfigRepository.GetMostRecent().Where(m => m != null).Select(CreateMap);
+            return _currentMapConfigRepository.GetMostRecent()
+                .Where(m => m != null)
+                .ZipLatest(_tileHoldersRepository.GetAllFlattenSingle(), (config, tileHolders) => (config, tileHolders))
+                .Where(tuple => tuple.config != null)
+                .Select(tuple => CreateMap(tuple.config, tuple.tileHolders.Select(t => t.Value).ToList()));
         }
 
-        private Map CreateMap(MapConfig config)
+        private Map CreateMap(MapConfig config, IReadOnlyList<Tile> tiles)
         {
-            return new Map(_tileHoldersRepository.GetAllFlatten().Select(t => t.Value).ToList(), config);
+            return new Map(tiles, config);
         }
     }
 }

@@ -1,44 +1,83 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Maps;
+using Maps.Repositories;
+using Maps.Services;
+using UniRx;
+using UnityEngine;
 
 namespace Tiles.Holders.Repository
 {
-    public interface ITileHoldersRepository
+    public interface ITileHoldersRepository : IDisposable
     {
-        TileHolder Get(Coordinate axialCoordinate);
-        IEnumerable<TileHolder> GetAllFlatten();
+        IObservable<TileHolder> GetAtCoordinateSingle(Coordinate axialCoordinate);
+        IObservable<IReadOnlyList<TileHolder>> GetAllFlattenSingle();
     }
 
     public class TileHoldersRepository : ITileHoldersRepository
     {
-        private readonly int _mapXSize;
-        private readonly int _mapZSize;
-        private readonly TileHolder[,] _tileHolders;
+        private IObservable<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSingle;
+        private readonly IDisposable _disposable;
 
-        public TileHoldersRepository(IReadOnlyList<TileHolder> tiles, int mapXSize, int mapZSize)
+        public TileHoldersRepository(ICurrentTilesTransformGetRepository currentTilesTransformGetRepository, ICurrentMapConfigRepository currentMapConfigRepository)
         {
-            _mapXSize = mapXSize;
-            _mapZSize = mapZSize;
-            _tileHolders = new TileHolder[_mapXSize + _mapZSize / 2, _mapZSize];
-            for (var i = 0; i < _mapZSize; i++)
-            for (var j = 0; j < _mapXSize; j++)
-                _tileHolders[j + i % 2 + i / 2, i] = tiles[i * _mapXSize + j];
+            _disposable = currentMapConfigRepository.GetObservableStream()
+                .CombineLatest(currentTilesTransformGetRepository.GetObservableStream(), (config, tileTransforms) => (config, tileTransforms))
+                .Subscribe(
+                    tuple =>
+                    {
+                        var (config, tileTransforms) = tuple;
+                        _tileHoldersAndConfigSingle = Observable.Return((GetTileHolders(tileTransforms, config), config));
+                    }
+                );
         }
 
-        public TileHolder Get(Coordinate axialCoordinate)
+        public IObservable<TileHolder> GetAtCoordinateSingle(Coordinate axialCoordinate)
         {
-            return _tileHolders[axialCoordinate.X, axialCoordinate.Z];
+            return _tileHoldersAndConfigSingle
+                .Select(tuple => tuple.tileHolders[axialCoordinate.X, axialCoordinate.Z])
+                .Single();
         }
 
-        public IEnumerable<TileHolder> GetAllFlatten()
+        public IObservable<IReadOnlyList<TileHolder>> GetAllFlattenSingle()
         {
-            var toReturn = new TileHolder[_mapXSize * _mapZSize];
+            return _tileHoldersAndConfigSingle.Select(
+                    tuple =>
+                    {
+                        var (holders, config) = tuple;
+                        var mapXSize = config.XSize;
+                        var mapZSize = config.ZSize;
+                        
+                        var toReturn = new TileHolder[mapXSize * mapZSize];
 
-            for (var i = 0; i < _mapZSize; i++)
-            for (var j = 0; j < _mapXSize; j++)
-                toReturn[i * _mapXSize + j] = _tileHolders[j + i % 2 + i / 2, i];
+                        for (var i = 0; i < mapZSize; i++)
+                        for (var j = 0; j < mapXSize; j++)
+                            toReturn[i * mapXSize + j] = holders[j + i % 2 + i / 2, i];
 
-            return toReturn;
+                        return toReturn;
+                    }
+                )
+                .Single();
+        }
+
+        private static TileHolder[,] GetTileHolders(IEnumerable<Transform> tilesTransforms, MapConfig mapConfig)
+        {
+            var mapXSize = mapConfig.XSize;
+            var mapZSize = mapConfig.ZSize;
+            var tiles = tilesTransforms.Select(t => t.GetComponent<TileHolder>()).ToList();
+
+            var tileHolders = new TileHolder[mapXSize + mapZSize / 2, mapZSize];
+            for (var i = 0; i < mapZSize; i++)
+            for (var j = 0; j < mapXSize; j++)
+                tileHolders[j + i % 2 + i / 2, i] = tiles[i * mapXSize + j];
+
+            return tileHolders;
+        }
+
+        public void Dispose()
+        {
+            _disposable?.Dispose();
         }
     }
 }

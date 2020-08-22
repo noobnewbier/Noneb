@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common.Providers;
+using EventManagement;
 using GameEnvironments.Load.BoardItemOnTile;
 using Maps.Services;
 using Tiles;
@@ -17,7 +18,7 @@ namespace GameEnvironments.Load.Tiles
     /// as it's the only board item that needs to have it's position initialized
     /// todo: dangerously similar to <see cref="ILoadBoardItemOnTileService{THolder,TBoardItem,TBoardItemData}" />
     /// </summary>
-    public interface IMapLoadService
+    public interface IMapLoadService : IDisposable
     {
         IObservable<Unit> Load(IList<TileData> tileDatas,
                                IGameObjectAndComponentProvider<TileHolder> tileHolderProvider,
@@ -25,17 +26,26 @@ namespace GameEnvironments.Load.Tiles
                                Transform mapTransform,
                                int mapXSize,
                                int mapZSize);
+
+        Subject<Unit> GetFinishedLoadingEventStream();
     }
 
     public class MapLoadService : IMapLoadService
     {
         private readonly IGetCoordinateService _getCoordinateService;
         private readonly ITilesPositionService _tilesPositionService;
+        private readonly Subject<Unit> _finishedLoadingEventStream;
 
         public MapLoadService(IGetCoordinateService getCoordinateService, ITilesPositionService tilesPositionService)
         {
             _getCoordinateService = getCoordinateService;
             _tilesPositionService = tilesPositionService;
+            _finishedLoadingEventStream = new Subject<Unit>();
+        }
+
+        public Subject<Unit> GetFinishedLoadingEventStream()
+        {
+            return _finishedLoadingEventStream;
         }
 
         public IObservable<Unit> Load(IList<TileData> tileDatas,
@@ -65,9 +75,16 @@ namespace GameEnvironments.Load.Tiles
                                 );
                             }
                         }
+                        
+                        _finishedLoadingEventStream.OnNext(Unit.Default);
                         return Unit.Default;
                     }
                 );
+        }
+
+        public void Dispose()
+        {
+            _finishedLoadingEventStream?.Dispose();
         }
     }
 }

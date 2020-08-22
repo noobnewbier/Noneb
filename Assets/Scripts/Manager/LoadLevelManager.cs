@@ -3,6 +3,7 @@ using GameEnvironments.Load.BoardItemOnTile.Loaders;
 using GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition;
 using GameEnvironments.Load.GameObjects.Loaders;
 using GameEnvironments.Load.Tiles;
+using Maps;
 using UniRx;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace Manager
 {
     public class LoadLevelManager : MonoBehaviour
     {
+        [SerializeField] private CurrentTilesTransformSetter currentTilesTransformSetter;
+
         [SerializeField] private MapLoader mapLoader;
         [SerializeField] private UnitLoader unitLoader;
         [SerializeField] private ConstructLoader constructLoader;
@@ -27,7 +30,8 @@ namespace Manager
         [ContextMenu(nameof(Load))]
         public void Load()
         {
-            _disposable = mapLoader.LoadObservable()
+            _disposable = LoadPreliminaries()
+                .Concat(mapLoader.LoadObservable())
                 .Concat(LoadBoardItemOnTileHolders())
                 .Concat(LoadGameObjects())
                 .Subscribe(
@@ -36,16 +40,20 @@ namespace Manager
                         //todo: proper error handling
                         Debug.Log("success");
                     },
-                    e =>
-                    {
-                        Debug.Log(e);
-                    }
+                    Debug.Log
                 );
         }
 
         private void OnDisable()
         {
             _disposable?.Dispose();
+        }
+
+        private IObservable<Unit> LoadPreliminaries()
+        {
+            currentTilesTransformSetter.Set();
+
+            return Observable.ReturnUnit();
         }
 
         private IObservable<Unit> LoadBoardItemOnTileHolders()

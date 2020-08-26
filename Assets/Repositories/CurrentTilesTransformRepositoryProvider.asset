@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: CurrentTilesTransformRepositoryProvider
   m_EditorClassIdentifier: Assembly-CSharp:Maps.Services:CurrentTilesTransformRepositoryProvider
-  mapLoadServiceProvider: {fileID: 0}
+  mapLoadServiceProvider: {fileID: 11400000, guid: 9ad903f4a75c5fd459d11730d2220b24,
+    type: 2}

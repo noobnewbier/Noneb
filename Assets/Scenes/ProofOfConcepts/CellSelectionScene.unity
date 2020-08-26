@@ -460,10 +460,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849524807}
-  - component: {fileID: 849524812}
   - component: {fileID: 849524811}
   - component: {fileID: 849524806}
   - component: {fileID: 849524808}
+  - component: {fileID: 849524809}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -491,7 +491,8 @@ MonoBehaviour:
     z: 3
   maxCost: 5
   mapRepositoryProvider: {fileID: 849524808}
-  tileHolderRepositoryProvider: {fileID: 849524812}
+  tileHoldersRepositoryProvider: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
+    type: 2}
 --- !u!4 &849524807
 Transform:
   m_ObjectHideFlags: 0
@@ -520,7 +521,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
-  tileHolderRepositoryProvider: {fileID: 849524812}
+  tileHoldersRepositoryProvider: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
+    type: 2}
+--- !u!114 &849524809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849524805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6053acb0d65b47eaae72a4dfd1933d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTilesTransformRepositoryProvider: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+    type: 2}
+  tilesTransformProvider: {fileID: 849524811}
 --- !u!114 &849524811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,21 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011f42325789483ba1743953a12fa122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &849524812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849524805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33237fc8606d4018b86a23a4a94b1496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilesTransformProvider: {fileID: 849524811}
-  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
-    type: 2}
 --- !u!1 &1178581236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,26 +2082,56 @@ PrefabInstance:
       propertyPath: tilesTransformProvider
       value: 
       objectReference: {fileID: 849524811}
+    - target: {fileID: 1286162357587569858, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: currentTilesTransformRepositoryProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
     - target: {fileID: 1286162358050475766, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: tilesTransformProvider
+      value: 
+      objectReference: {fileID: 849524811}
+    - target: {fileID: 1286162358050475766, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: currentTilesTransformRepositoryProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
+    - target: {fileID: 1286162358114880347, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: tilesTransformProvider
       value: 
       objectReference: {fileID: 849524811}
     - target: {fileID: 1286162358114880347, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
+      propertyPath: currentTilesTransformRepositoryProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
+    - target: {fileID: 1286162358239820969, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
       propertyPath: tilesTransformProvider
       value: 
       objectReference: {fileID: 849524811}
     - target: {fileID: 1286162358239820969, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: currentTilesTransformRepositoryProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
+    - target: {fileID: 1286162358288781235, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: tilesTransformProvider
       value: 
       objectReference: {fileID: 849524811}
     - target: {fileID: 1286162358288781235, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
-      propertyPath: tilesTransformProvider
+      propertyPath: currentTilesTransformRepositoryProvider
       value: 
-      objectReference: {fileID: 849524811}
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
     - target: {fileID: 1286162358361699477, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: tilesPositionProvider
@@ -2175,20 +2207,49 @@ PrefabInstance:
       propertyPath: tilesTransformProvider
       value: 
       objectReference: {fileID: 849524811}
+    - target: {fileID: 1286162358824316415, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: currentTilesTransformRepositoryProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
     - target: {fileID: 1286162359014652395, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: tilesTransformProvider
+      value: 
+      objectReference: {fileID: 849524811}
+    - target: {fileID: 1286162359014652395, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: currentTilesTransformRepositoryProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
+    - target: {fileID: 1286162359293790237, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: tilesTransformProvider
       value: 
       objectReference: {fileID: 849524811}
     - target: {fileID: 1286162359293790237, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
-      propertyPath: tilesTransformProvider
+      propertyPath: currentTilesTransformRepositoryProvider
       value: 
-      objectReference: {fileID: 849524811}
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
     - target: {fileID: 1286162359353299217, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: tilesTransformProvider
       value: 
       objectReference: {fileID: 849524811}
+    - target: {fileID: 1286162359353299217, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: currentTilesTransformRepositoryProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+        type: 2}
+    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: currentTilesTransformSetter
+      value: 
+      objectReference: {fileID: 849524809}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9703e44d14b8847830ba7aa6ee1bdb, type: 3}

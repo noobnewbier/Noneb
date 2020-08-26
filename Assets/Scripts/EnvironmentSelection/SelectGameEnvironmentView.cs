@@ -15,7 +15,7 @@ namespace EnvironmentSelection
         [SerializeField] private Transform gameEnvironmentsParentTransform;
         [SerializeField] private ClickableGameEnvironmentViewProvider clickableGameEnvironmentViewProvider;
 
-        private ISelectGameEnvironmentViewModel _viewModel;
+        private SelectGameEnvironmentViewModel _viewModel;
         private IDisposable _compositeDisposable;
 
         private void OnEnable()

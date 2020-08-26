@@ -30,8 +30,7 @@ namespace InGameEditor.Cameras
             _viewModel = viewModelFactory.Create(editorCamera, mapTransform, config);
 
             _disposable = new CompositeDisposable(
-                _viewModel.CameraPositionLiveData.Subscribe(OnUpdateCameraPosition),
-                _viewModel.CameraYPosition.Subscribe(OnUpdateCameraYPosition)
+                _viewModel.CameraPositionLiveData.Subscribe(OnUpdateCameraPosition)
             );
         }
 
@@ -56,6 +55,12 @@ namespace InGameEditor.Cameras
 
         private void Panning() //consider adding panning with middle mouse button
         {
+            var panningStrength = GetPanningStrength();
+            if (FloatUtil.NearlyEqual(panningStrength, 0f))
+            {
+                return;
+            }
+            
             var mousePosition = Input.mousePosition;
 
             var panningDirection = (mousePosition - new Vector3(Screen.width / 2f, Screen.height / 2f, 0)).normalized;
@@ -100,7 +105,13 @@ namespace InGameEditor.Cameras
 
         private void Zooming()
         {
-            _viewModel.OnZooming(GetZoomingStrength(), Time.deltaTime);
+            var zoomingStrength = GetZoomingStrength();
+            if (FloatUtil.NearlyEqual(zoomingStrength, 0f))
+            {
+                return;
+            }
+            
+            _viewModel.OnZooming(zoomingStrength, Time.deltaTime);
         }
 
 
@@ -139,17 +150,7 @@ namespace InGameEditor.Cameras
 
             return _currentZoomingDirection * Easing.ExponentialEaseInOut(_accumulatedZoomingValue, config.SmoothFactor);
         }
-
-
-        private void OnUpdateCameraYPosition(float y)
-        {
-            var cameraTransform = editorCamera.transform;
-            var cameraPosition = cameraTransform.position;
-            cameraPosition = new Vector3(cameraPosition.x, y, cameraPosition.z);
-
-            cameraTransform.position = cameraPosition;
-        }
-
+        
         #endregion
     }
 }

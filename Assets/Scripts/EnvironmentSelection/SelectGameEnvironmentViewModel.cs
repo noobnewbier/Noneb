@@ -6,16 +6,7 @@ using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 
 namespace EnvironmentSelection
 {
-    public interface ISelectGameEnvironmentViewModel
-    {
-        ILiveData<GameEnvironment> CurrentlyInspectingGameEnvironmentLiveData { get; }
-        ILiveData<IEnumerable<GameEnvironment>> AvailableGameEnvironmentLiveData { get; }
-        void RefreshAvailableGameEnvironmentList();
-        void InspectGameEnvironment(GameEnvironment environment);
-        void SelectCurrentlyInspectedGameEnvironment();
-    }
-
-    public class SelectGameEnvironmentViewModel : ISelectGameEnvironmentViewModel
+    public class SelectGameEnvironmentViewModel
     {
         private readonly IAvailableGameEnvironmentRepository _availableGameEnvironmentRepository;
         private readonly ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;

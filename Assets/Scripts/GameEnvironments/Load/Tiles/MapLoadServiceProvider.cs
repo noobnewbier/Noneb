@@ -1,5 +1,4 @@
-﻿using System;
-using Common.Providers;
+﻿using Common.Providers;
 using Maps.Services;
 using UnityEngine;
 using UnityUtils.Constants;

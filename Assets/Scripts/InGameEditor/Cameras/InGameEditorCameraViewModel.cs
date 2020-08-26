@@ -42,7 +42,6 @@ namespace InGameEditor.Cameras
             _minCameraY = _config.MinDistanceToMap + mapPosition.y;
 
             CameraPositionLiveData = new LiveData<Vector3>();
-            CameraYPosition = new LiveData<float>();
 
 
             /*
@@ -52,7 +51,7 @@ namespace InGameEditor.Cameras
             _cameraYPositionSubject = new BehaviorSubject<float>(_editorCamera.transform.position.y);
             _disposable = new CompositeDisposable
             {
-                _cameraYPositionSubject.Subscribe(CameraYPosition.PostValue),
+                _cameraYPositionSubject.Subscribe(OnZoomingLevelUpdated),
                 tilesPositionService
                     .GetObservableStream(mapPosition.y)
                     .CombineLatest(_cameraYPositionSubject, (positions, _) => positions) //update bounds whenever the camera's height is updated
@@ -61,7 +60,6 @@ namespace InGameEditor.Cameras
         }
 
         public ILiveData<Vector3> CameraPositionLiveData { get; } //handles panning, in theory y is never changing through this livedata
-        public ILiveData<float> CameraYPosition { get; } //handles zooming
 
         public void Dispose()
         {
@@ -75,9 +73,7 @@ namespace InGameEditor.Cameras
 
             newCameraPosition += panningDirection * (_config.MaxPanningSpeed * deltaTime * panningStrength);
 
-            //clamping
-            newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, _leftBound, _rightBound);
-            newCameraPosition.z = Mathf.Clamp(newCameraPosition.z, _downBound, _upBound);
+            newCameraPosition = GetClampedCameraPosition(newCameraPosition);
 
             CameraPositionLiveData.PostValue(newCameraPosition);
         }
@@ -99,6 +95,25 @@ namespace InGameEditor.Cameras
             newYPosition = Mathf.Max(newYPosition, _minCameraY);
             
             _cameraYPositionSubject.OnNext(newYPosition);
+        }
+
+        private void OnZoomingLevelUpdated(float newY)
+        {
+            var currentPosition = CameraPositionLiveData.Value;
+
+            currentPosition.y = newY;
+            currentPosition = GetClampedCameraPosition(currentPosition);
+            
+            CameraPositionLiveData.PostValue(currentPosition);
+        }
+
+        private Vector3 GetClampedCameraPosition(Vector3 unclampedPosition)
+        {
+            unclampedPosition.x = Mathf.Clamp(unclampedPosition.x, _leftBound, _rightBound);
+            unclampedPosition.z = Mathf.Clamp(unclampedPosition.z, _downBound, _upBound);
+            unclampedPosition.y = Mathf.Max(unclampedPosition.y, _minCameraY);
+
+            return unclampedPosition;
         }
 
         private void CalculateCameraRelatedMetrics(IReadOnlyList<Vector3> tilesPositions)

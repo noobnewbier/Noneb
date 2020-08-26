@@ -31,7 +31,7 @@ namespace Manager
         public void Load()
         {
             _disposable = LoadPreliminaries()
-                .Concat(mapLoader.LoadObservable())
+                .Concat(LoadMap())
                 .Concat(LoadBoardItemOnTileHolders())
                 .Concat(LoadGameObjects())
                 .Subscribe(
@@ -56,19 +56,24 @@ namespace Manager
             return Observable.ReturnUnit();
         }
 
+        private IObservable<Unit> LoadMap()
+        {
+            return Observable.Defer(() => mapLoader.LoadObservable());
+        }
+
         private IObservable<Unit> LoadBoardItemOnTileHolders()
         {
-            return unitLoader.LoadObservable()
+            return Observable.Defer(() =>unitLoader.LoadObservable()
                 .Zip(
                     constructLoader.LoadObservable(),
                     strongholdLoader.LoadObservable(),
                     delegate { return Unit.Default; }
-                );
+                ));
         }
 
         private IObservable<Unit> LoadGameObjects()
         {
-            return tileGameObjectLoader.LoadObservable()
+            return Observable.Defer(() =>tileGameObjectLoader.LoadObservable()
                 .Zip(
                     unitGameObjectLoader.LoadObservable(),
                     constructGameObjectLoader.LoadObservable(),
@@ -76,7 +81,7 @@ namespace Manager
                     strongholdConstructGameObjectLoader.LoadObservable(),
                     strongholdGameObjectsInternalPositionLoader.LoadObservable(),
                     delegate { return Unit.Default; }
-                );
+                ));
         }
     }
 }

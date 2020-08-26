@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common.Providers;
-using EventManagement;
 using GameEnvironments.Load.BoardItemOnTile;
 using Maps.Services;
 using Tiles;
@@ -27,7 +26,7 @@ namespace GameEnvironments.Load.Tiles
                                int mapXSize,
                                int mapZSize);
 
-        Subject<Unit> GetFinishedLoadingEventStream();
+        IObservable<Unit> GetFinishedLoadingEventStream();
     }
 
     public class MapLoadService : IMapLoadService
@@ -43,7 +42,7 @@ namespace GameEnvironments.Load.Tiles
             _finishedLoadingEventStream = new Subject<Unit>();
         }
 
-        public Subject<Unit> GetFinishedLoadingEventStream()
+        public IObservable<Unit> GetFinishedLoadingEventStream()
         {
             return _finishedLoadingEventStream;
         }

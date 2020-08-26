@@ -14,7 +14,7 @@ namespace EnvironmentSelection
         [SerializeField] private AvailableGameEnvironmentRepositoryProvider availableGameEnvironmentRepositoryProvider;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
 
-        public ISelectGameEnvironmentViewModel Create()
+        public SelectGameEnvironmentViewModel Create()
         {
             return new SelectGameEnvironmentViewModel(
                 availableGameEnvironmentRepositoryProvider.Provide(),

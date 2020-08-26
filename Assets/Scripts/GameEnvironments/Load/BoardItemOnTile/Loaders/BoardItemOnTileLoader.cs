@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using Common.BoardItems;
 using Common.Holders;
@@ -8,6 +9,7 @@ using Common.TagInterface;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
 using Maps.Repositories;
+using Maps.Services;
 using Tiles;
 using UniRx;
 using UnityEngine;
@@ -23,8 +25,11 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
         [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
         private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
 
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-        [SerializeField] private TilesTransformProvider tilesTransformProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+
+        [SerializeField] private CurrentTilesTransformRepositoryProvider currentTilesTransformRepositoryProvider;
+
 
         private IDisposable _disposable;
 
@@ -35,8 +40,8 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
                 .Subscribe(
                     tuple =>
                     {
-                        var (datas, config) = tuple;
-                        InvokeLoadService(datas, config);
+                        var (datas, config, tilesTransform) = tuple;
+                        InvokeLoadService(datas, config, tilesTransform);
                     }
                 );
         }
@@ -47,31 +52,32 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
                 .Select(
                     tuple =>
                     {
-                        var (datas, config) = tuple;
-                        InvokeLoadService(datas, config);
+                        var (datas, config, tilesTransform) = tuple;
+                        InvokeLoadService(datas, config, tilesTransform);
 
                         return Unit.Default;
                     }
                 );
         }
 
-        private IObservable<(ImmutableArray<TData> datas, MapConfig config)> GetDataTupleObservable()
+        private IObservable<(ImmutableArray<TData> datas, MapConfig config, IList<Transform> tilesTransform)> GetDataTupleObservable()
         {
             var mapConfigurationObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
+            var tilesTransformObservable = currentTilesTransformRepositoryProvider.Provide().GetMostRecent();
 
             return GetDatasFromRepository(levelDataRepository)
-                .Zip(mapConfigurationObservable, (datas, config) => (datas, config))
+                .Zip(mapConfigurationObservable, tilesTransformObservable, (datas, config, tilesTransform) => (datas, config, tilesTransform))
                 .Take(1);
         }
 
-        private void InvokeLoadService(ImmutableArray<TData> datas, MapConfig config)
+        private void InvokeLoadService(ImmutableArray<TData> datas, MapConfig config, IList<Transform> tilesTransform)
         {
             var loadOnTileService = GetService();
 
             loadOnTileService.Load(
                 datas,
-                tilesTransformProvider,
+                tilesTransform,
                 GetHolderProvider(),
                 config.GetMap2DActualWidth(),
                 config.GetMap2DActualHeight()

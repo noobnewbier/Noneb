@@ -16,7 +16,7 @@ namespace GameEnvironments.Load.BoardItemOnTile
         where TBoardItemData : IBoardItemData // and uses IBoardItemData to initialize itself
     {
         void Load(IReadOnlyList<TBoardItemData> boardItemDatas,
-                  IObjectProvider<IList<Transform>> tilesTransformProvider,
+                  IList<Transform> tilesTransform,
                   IGameObjectAndComponentProvider<THolder> holderProvider,
                   int mapWidth,
                   int mapHeight);
@@ -37,12 +37,11 @@ namespace GameEnvironments.Load.BoardItemOnTile
         }
 
         public void Load(IReadOnlyList<TBoardItemData> boardItemDatas,
-                         IObjectProvider<IList<Transform>> tilesTransformProvider,
+                         IList<Transform> tilesTransform,
                          IGameObjectAndComponentProvider<THolder> holderProvider,
                          int mapWidth,
                          int mapHeight)
         {
-            var tileTransforms = tilesTransformProvider.Provide();
 
             for (var i = 0; i < mapHeight; i++)
             for (var j = 0; j < mapWidth; j++)
@@ -54,7 +53,7 @@ namespace GameEnvironments.Load.BoardItemOnTile
                     continue;
                 }
 
-                var tileTransform = tileTransforms[index];
+                var tileTransform = tilesTransform[index];
                 var holderAndGo = holderProvider.Provide(tileTransform, false);
 
                 holderAndGo.Component.Initialize(_factory.Create(boardItemData, _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i)));

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33237fc8606d4018b86a23a4a94b1496, type: 3}
   m_Name: TileHoldersRepositoryProvider
   m_EditorClassIdentifier: 
-  tilesTransformRepositoryProvider: {fileID: 0}
-  currentMapConfigRepositoryProvider: {fileID: 0}
+  tilesTransformRepositoryProvider: {fileID: 11400000, guid: e4ef5bce0df146348bdbd1b095213986,
+    type: 2}
+  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}

@@ -1,4 +1,4 @@
-﻿using InGameEditor.Services.InGameEditorMessageServices;
+﻿using InGameEditor.Services.InGameEditorMessage;
 using UnityEngine;
 using UnityUtils.Constants;
 

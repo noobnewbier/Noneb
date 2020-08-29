@@ -1,4 +1,5 @@
-﻿using InGameEditor.Services.InGameEditorCameraSizeInViewServices;
+﻿using InGameEditor.Repositories.InGameEditorCamera;
+using InGameEditor.Services.InGameEditorCameraSizeInView;
 using Maps.Services;
 using UnityEngine;
 using UnityUtils.Constants;
@@ -10,16 +11,16 @@ namespace InGameEditor.Cameras
     {
         [SerializeField] private InGameEditorCameraSizeInViewServiceProvider cameraSizeInViewServiceProvider;
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
+        [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
 
-
-        public InGameEditorCameraViewModel Create(Camera editorCamera, Transform mapTransform, InGameEditorCameraConfig config)
+        public InGameEditorCameraViewModel Create(Transform mapTransform, InGameEditorCameraConfig config)
         {
             return new InGameEditorCameraViewModel(
                 cameraSizeInViewServiceProvider.Provide(),
-                editorCamera,
                 mapTransform,
                 config,
-                tilesPositionServiceProvider.Provide()
+                tilesPositionServiceProvider.Provide(),
+                cameraRepositoryProvider.Provide()
             );
         }
     }

@@ -5,7 +5,6 @@ using Common.Loaders;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps.Services;
 using Strongholds;
-using Tiles;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -33,7 +32,8 @@ namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
 
             _disposable = GetDataTupleObservable()
                 .ZipLatest(_currentTilesTransformGetRepository.GetMostRecent(), (datas, tilesTransform) => (datas, tilesTransform))
-                .Subscribe(tuple =>
+                .Subscribe(
+                    tuple =>
                     {
                         var (datas, tilesTransform) = tuple;
                         SetupTilesWithStronghold(datas, tilesTransform);
@@ -62,7 +62,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
             _currentLevelDataRepository = currentLevelDataRepositoryProvider.Provide();
             _currentTilesTransformGetRepository = currentTilesTransformRepositoryProvider.Provide();
         }
-        
+
         private IObservable<StrongholdData[]> GetDataTupleObservable()
         {
             return _currentLevelDataRepository.GetMostRecent()
@@ -81,7 +81,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
                 SetupIndividualTileWithStronghold(tilesTransform[i]);
             }
         }
-        
+
         private void SetupIndividualTileWithStronghold(Transform tileTransform)
         {
             var unitGameObject = tileTransform.FindChildWithTag(ObjectTags.UnitGameObject).gameObject;

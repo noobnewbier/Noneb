@@ -10,7 +10,6 @@ using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
 using Maps.Repositories;
 using Maps.Services;
-using Tiles;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;

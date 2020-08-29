@@ -18,7 +18,6 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
             _compositeDisposable = new CompositeDisposable
             {
                 cellOverlayViewModel.PositionLiveData.Subscribe(UpdatePosition),
-                cellOverlayViewModel.PositionLiveData.Subscribe(UpdatePosition),
                 cellOverlayViewModel.WorldConfigLiveData.Subscribe(UpdateCellLineSettings),
                 cellOverlayViewModel.WorldConfigLiveData.Subscribe(UpdateCoordinateTextSettings),
                 cellOverlayViewModel.CoordinateVisibilityLiveData.Subscribe(SetTextVisibility),

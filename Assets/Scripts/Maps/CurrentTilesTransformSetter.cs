@@ -9,17 +9,10 @@ namespace Maps
         [SerializeField] private CurrentTilesTransformRepositoryProvider currentTilesTransformRepositoryProvider;
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
-        private ICurrentTilesTransformSetRepository _setRepository;
-
-        private void OnEnable()
-        {
-            _setRepository = currentTilesTransformRepositoryProvider.Provide();
-        }
-
         [ContextMenu(nameof(Set))]
         public void Set()
         {
-            _setRepository.SetTransformProvider(tilesTransformProvider);
+            currentTilesTransformRepositoryProvider.Provide().Set(tilesTransformProvider);
         }
     }
 }

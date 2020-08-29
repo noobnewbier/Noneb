@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
+using Maps;
 using Maps.Repositories;
 using Maps.Services;
 using UniRx;
 using UnityEngine;
+using WorldConfigurations;
 using WorldConfigurations.Repositories;
 
 namespace InGameEditor.WorldSpace.GridOverlay
@@ -20,15 +23,17 @@ namespace InGameEditor.WorldSpace.GridOverlay
         {
             CoordinateVisibilityLiveData = new LiveData<bool>(true);
             GridVisibilityLiveData = new LiveData<bool>(true);
-            GridParameterLiveData = new LiveData<GridOverlayView.GenerateCellsParameter>();
+            CellsCountLiveData = new LiveData<int>();
+            CellsPositionLiveData = new LiveData<IReadOnlyList<Vector3>>();
+            WorldConfigLiveData = new LiveData<WorldConfig>();
+            CoordinatesLiveData = new LiveData<IReadOnlyList<Coordinate>>();
 
-            var tilesPositionObservable = tilesPositionService.GetObservableStream(centerTransform.position.y);
             _compositeDisposable = new CompositeDisposable
             {
                 currentMapConfigRepository.GetObservableStream()
                     .CombineLatest(
                         currentWorldConfigRepository.GetObservableStream(),
-                        tilesPositionObservable,
+                        tilesPositionService.GetObservableStream(centerTransform.position.y),
                         (mapConfig, worldConfig, positions) => (mapConfig, worldConfig, positions)
                     )
                     .Subscribe(
@@ -36,7 +41,11 @@ namespace InGameEditor.WorldSpace.GridOverlay
                         {
                             var (mapConfig, worldConfig, positions) = tuple;
                             var coordinates = coordinateService.GetFlattenCoordinates(mapConfig);
-                            GridParameterLiveData.PostValue(new GridOverlayView.GenerateCellsParameter(worldConfig, positions, coordinates));
+
+                            UpdateCellsCountsWhenNeeded(coordinates.Count);
+                            UpdateCellsPositionWhenNeeded(positions);
+                            UpdateWorldConfigWhenNeeded(worldConfig);
+                            UpdateCoordinatesWhenNeeded(coordinates);
                         }
                     )
             };
@@ -44,11 +53,82 @@ namespace InGameEditor.WorldSpace.GridOverlay
 
         public ILiveData<bool> CoordinateVisibilityLiveData { get; }
         public ILiveData<bool> GridVisibilityLiveData { get; }
-        public ILiveData<GridOverlayView.GenerateCellsParameter> GridParameterLiveData { get; }
+        public ILiveData<int> CellsCountLiveData { get; }
+        public ILiveData<IReadOnlyList<Vector3>> CellsPositionLiveData { get; }
+        public ILiveData<WorldConfig> WorldConfigLiveData { get; }
+        public ILiveData<IReadOnlyList<Coordinate>> CoordinatesLiveData { get; }
 
         public void Dispose()
         {
             _compositeDisposable?.Dispose();
+        }
+
+        private void UpdateCellsCountsWhenNeeded(int newValue)
+        {
+            if (CellsCountLiveData.Value != newValue)
+            {
+                CellsCountLiveData.PostValue(newValue);
+            }
+        }
+
+        private void UpdateWorldConfigWhenNeeded(WorldConfig newValue)
+        {
+            if (WorldConfigLiveData.Value != newValue)
+            {
+                WorldConfigLiveData.PostValue(newValue);
+            }
+        }
+
+        private void UpdateCoordinatesWhenNeeded(IReadOnlyList<Coordinate> newValue)
+        {
+            var currentValue = CoordinatesLiveData.Value;
+            var isLengthEqual = newValue.Count == currentValue?.Count;
+            var needUpdate = false;
+
+            if (isLengthEqual)
+            {
+                for (var i = 0; i < currentValue?.Count; i++)
+                    if (currentValue[i] != newValue[i])
+                    {
+                        needUpdate = true;
+                    }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+
+
+            if (needUpdate)
+            {
+                CoordinatesLiveData.PostValue(newValue);
+            }
+        }
+
+        private void UpdateCellsPositionWhenNeeded(IReadOnlyList<Vector3> newValue)
+        {
+            var currentValue = CellsPositionLiveData.Value;
+            var isLengthEqual = newValue.Count == currentValue?.Count;
+            var needUpdate = false;
+
+            if (isLengthEqual)
+            {
+                for (var i = 0; i < currentValue?.Count; i++)
+                    if (currentValue[i] != newValue[i])
+                    {
+                        needUpdate = true;
+                    }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+
+
+            if (needUpdate)
+            {
+                CellsPositionLiveData.PostValue(newValue);
+            }
         }
     }
 }

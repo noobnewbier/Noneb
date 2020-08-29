@@ -8,17 +8,13 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
 {
     public class CellOverlayViewModel
     {
-        public CellOverlayViewModel(Vector3 position,
-                                    WorldConfig worldConfig,
-                                    bool coordinateVisibility,
-                                    bool lineVisibility,
-                                    Coordinate coordinate)
+        public CellOverlayViewModel(bool coordinateVisibility, bool cellVisibility)
         {
-            PositionLiveData = new LiveData<Vector3>(position);
-            WorldConfigLiveData = new LiveData<WorldConfig>(worldConfig);
+            PositionLiveData = new LiveData<Vector3>();
+            WorldConfigLiveData = new LiveData<WorldConfig>();
             CoordinateVisibilityLiveData = new LiveData<bool>(coordinateVisibility);
-            LineVisibilityLiveData = new LiveData<bool>(lineVisibility);
-            CoordinateLiveData = new LiveData<Coordinate>(coordinate);
+            LineVisibilityLiveData = new LiveData<bool>(cellVisibility);
+            CoordinateLiveData = new LiveData<Coordinate>();
             DestructionInstructionLiveData = new LiveData<Unit>();
         }
 
@@ -29,7 +25,7 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
         public ILiveData<Coordinate> CoordinateLiveData { get; }
         public ILiveData<Unit> DestructionInstructionLiveData { get; }
 
-        public void OnUpdateWorldConfiguration(WorldConfig worldConfiguration)
+        public void OnUpdateWorldConfig(WorldConfig worldConfiguration)
         {
             WorldConfigLiveData.PostValue(worldConfiguration);
         }

@@ -3,7 +3,7 @@ using Experiment.CrossPlatformLiveData;
 using GameEnvironments.Common;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save;
-using InGameEditor.Services.InGameEditorMessageServices;
+using InGameEditor.Services.InGameEditorMessage;
 using UniRx;
 
 namespace InGameEditor.Ui.Options.Save
@@ -32,6 +32,11 @@ namespace InGameEditor.Ui.Options.Save
             SavingDetailDialogVisibilityEvent = new LiveData<bool>();
         }
 
+        public void Dispose()
+        {
+            _disposable?.Dispose();
+        }
+
         public void Save(string filename)
         {
             _disposable = _currentGameEnvironmentGetRepository.GetMostRecent()
@@ -57,11 +62,6 @@ namespace InGameEditor.Ui.Options.Save
         public void ClickedCancelInSavingDetail()
         {
             SavingDetailDialogVisibilityEvent.PostValue(false);
-        }
-
-        public void Dispose()
-        {
-            _disposable?.Dispose();
         }
     }
 }

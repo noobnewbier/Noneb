@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 2}
   tilesPositionServiceProvider: {fileID: 11400000, guid: cb87d0f20fab2304faf4b83ab84b5d94,
     type: 2}
+  cameraRepositoryProvider: {fileID: 11400000, guid: dadd88eea9591fb49a539cf4bdd33d9b,
+    type: 2}

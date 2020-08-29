@@ -13,22 +13,31 @@ namespace Tiles.Holders.Repository
     {
         IObservable<TileHolder> GetAtCoordinateSingle(Coordinate axialCoordinate);
         IObservable<IReadOnlyList<TileHolder>> GetAllFlattenSingle();
+        IObservable<IReadOnlyList<TileHolder>> GetAllFlattenStream();
     }
 
+    //todo: maybe we can refactor this in to a data repository...
     public class TileHoldersRepository : ITileHoldersRepository
     {
         private IObservable<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSingle;
+        private readonly BehaviorSubject<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSubject;
         private readonly IDisposable _disposable;
 
-        public TileHoldersRepository(ICurrentTilesTransformGetRepository currentTilesTransformGetRepository, ICurrentMapConfigRepository currentMapConfigRepository)
+        public TileHoldersRepository(ICurrentTilesTransformGetRepository currentTilesTransformGetRepository,
+                                     ICurrentMapConfigRepository currentMapConfigRepository)
         {
+            _tileHoldersAndConfigSubject = new BehaviorSubject<(TileHolder[,] tileHolders, MapConfig config)>(default);
+            _tileHoldersAndConfigSingle = Observable.Throw<(TileHolder[,], MapConfig)>(new InvalidOperationException("Value is not set yet"));
+
             _disposable = currentMapConfigRepository.GetObservableStream()
                 .CombineLatest(currentTilesTransformGetRepository.GetObservableStream(), (config, tileTransforms) => (config, tileTransforms))
                 .Subscribe(
                     tuple =>
                     {
                         var (config, tileTransforms) = tuple;
-                        _tileHoldersAndConfigSingle = Observable.Return((GetTileHolders(tileTransforms, config), config));
+                        var holdersAndConfig = (GetTileHolders(tileTransforms, config), config);
+                        _tileHoldersAndConfigSingle = Observable.Return(holdersAndConfig);
+                        _tileHoldersAndConfigSubject.OnNext(holdersAndConfig);
                     }
                 );
         }
@@ -46,19 +55,49 @@ namespace Tiles.Holders.Repository
                     tuple =>
                     {
                         var (holders, config) = tuple;
-                        var mapXSize = config.XSize;
-                        var mapZSize = config.ZSize;
-                        
-                        var toReturn = new TileHolder[mapXSize * mapZSize];
 
-                        for (var i = 0; i < mapZSize; i++)
-                        for (var j = 0; j < mapXSize; j++)
-                            toReturn[i * mapXSize + j] = holders[j + i % 2 + i / 2, i];
-
-                        return toReturn;
+                        return GetAllFlattenTileHoldersFromTileHoldersAndConfig(holders, config);
                     }
                 )
                 .Single();
+        }
+
+        public IObservable<IReadOnlyList<TileHolder>> GetAllFlattenStream()
+        {
+            return _tileHoldersAndConfigSubject
+                .Where(tuple => !tuple.Equals(default))
+                .Select(
+                    tuple =>
+                    {
+                        var (holders, config) = tuple;
+
+                        return GetAllFlattenTileHoldersFromTileHoldersAndConfig(holders, config);
+                    }
+                );
+        }
+
+        // private bool IsTupleValid((TileHolder[,] tileHolders, MapConfig config) tuple)
+        // {
+        //     return tuple.tileHolders != null && tuple.config != null;
+        // }
+
+        public void Dispose()
+        {
+            _disposable?.Dispose();
+        }
+
+        private IReadOnlyList<TileHolder> GetAllFlattenTileHoldersFromTileHoldersAndConfig(TileHolder[,] holders, MapConfig config)
+        {
+            var mapXSize = config.XSize;
+            var mapZSize = config.ZSize;
+
+            var toReturn = new TileHolder[mapXSize * mapZSize];
+
+            for (var i = 0; i < mapZSize; i++)
+            for (var j = 0; j < mapXSize; j++)
+                toReturn[i * mapXSize + j] = holders[j + i % 2 + i / 2, i];
+
+            return toReturn;
         }
 
         private static TileHolder[,] GetTileHolders(IEnumerable<Transform> tilesTransforms, MapConfig mapConfig)
@@ -73,11 +112,6 @@ namespace Tiles.Holders.Repository
                 tileHolders[j + i % 2 + i / 2, i] = tiles[i * mapXSize + j];
 
             return tileHolders;
-        }
-
-        public void Dispose()
-        {
-            _disposable?.Dispose();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Data;
+﻿using System;
+using Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
@@ -11,13 +11,12 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
     )]
     public class CurrentGameEnvironmentRepositoryProvider : ScriptableObjectProvider<CurrentGameEnvironmentRepository>
     {
-        [SerializeField] private RuntimeSelectedGameEnvironment runtimeSelectedGameEnvironment;
-
-        private CurrentGameEnvironmentRepository _cache;
+        private readonly Lazy<CurrentGameEnvironmentRepository> _lazyInstance =
+            new Lazy<CurrentGameEnvironmentRepository>(() => new CurrentGameEnvironmentRepository());
 
         public override CurrentGameEnvironmentRepository Provide()
         {
-            return _cache ?? (_cache = new CurrentGameEnvironmentRepository(runtimeSelectedGameEnvironment));
+            return _lazyInstance.Value;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save.EditorOnly;
-using InGameEditor.Services.InGameEditorMessageServices;
+using InGameEditor.Services.InGameEditorMessage;
 using ObsoleteJsonRelated;
 using UnityEngine;
 using UnityEngine.Serialization;

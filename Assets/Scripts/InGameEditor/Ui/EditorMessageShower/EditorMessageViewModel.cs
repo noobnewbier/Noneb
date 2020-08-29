@@ -1,7 +1,7 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
 using InGameEditor.Events;
-using InGameEditor.Services.InGameEditorMessageServices;
+using InGameEditor.Services.InGameEditorMessage;
 using UniRx;
 
 namespace InGameEditor.Ui.EditorMessageShower

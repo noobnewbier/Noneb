@@ -5,14 +5,11 @@ using UnityUtils;
 
 namespace InGameEditor.Cameras
 {
-    //todo: add zooming
     public class InGameEditorCameraView : MonoBehaviour
     {
-        [SerializeField] private Camera editorCamera;
         [SerializeField] private Transform mapTransform;
         [SerializeField] private InGameEditorCameraConfig config;
         [SerializeField] private InGameEditorCameraViewModelFactory viewModelFactory;
-
 
         private InGameEditorCameraViewModel _viewModel;
         private IDisposable _disposable;
@@ -27,7 +24,7 @@ namespace InGameEditor.Cameras
 
         private void OnEnable()
         {
-            _viewModel = viewModelFactory.Create(editorCamera, mapTransform, config);
+            _viewModel = viewModelFactory.Create(mapTransform, config);
 
             _disposable = new CompositeDisposable(
                 _viewModel.CameraPositionLiveData.Subscribe(OnUpdateCameraPosition)
@@ -50,7 +47,7 @@ namespace InGameEditor.Cameras
 
         private void OnUpdateCameraPosition(Vector3 newPosition)
         {
-            editorCamera.transform.position = newPosition;
+            _viewModel.CameraLiveData.Value.transform.position = newPosition;
         }
 
         private void Panning() //consider adding panning with middle mouse button
@@ -60,7 +57,7 @@ namespace InGameEditor.Cameras
             {
                 return;
             }
-            
+
             var mousePosition = Input.mousePosition;
 
             var panningDirection = (mousePosition - new Vector3(Screen.width / 2f, Screen.height / 2f, 0)).normalized;
@@ -110,7 +107,7 @@ namespace InGameEditor.Cameras
             {
                 return;
             }
-            
+
             _viewModel.OnZooming(zoomingStrength, Time.deltaTime);
         }
 
@@ -150,7 +147,7 @@ namespace InGameEditor.Cameras
 
             return _currentZoomingDirection * Easing.ExponentialEaseInOut(_accumulatedZoomingValue, config.SmoothFactor);
         }
-        
+
         #endregion
     }
 }

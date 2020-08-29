@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common;
 using Common.Providers;
 using GameEnvironments.Load.Tiles;
 using UniRx;
@@ -7,18 +8,15 @@ using UnityEngine;
 
 namespace Maps.Services
 {
-    public interface ICurrentTilesTransformSetRepository
+    public interface ICurrentTilesTransformProviderSetRepository : IDataSetRepository<IObjectProvider<IList<Transform>>>
     {
-        void SetTransformProvider(IObjectProvider<IList<Transform>> transformProvider);
     }
 
-    public interface ICurrentTilesTransformGetRepository
+    public interface ICurrentTilesTransformGetRepository : IDataGetRepository<IList<Transform>>
     {
-        IObservable<IList<Transform>> GetMostRecent();
-        IObservable<IList<Transform>> GetObservableStream();
     }
 
-    public class CurrentTilesTransformRepository : ICurrentTilesTransformSetRepository, ICurrentTilesTransformGetRepository, IDisposable
+    public class CurrentTilesTransformRepository : ICurrentTilesTransformProviderSetRepository, ICurrentTilesTransformGetRepository, IDisposable
     {
         private readonly BehaviorSubject<IList<Transform>> _subject;
         private readonly IDisposable _disposable;
@@ -31,14 +29,7 @@ namespace Maps.Services
 
             _disposable = mapLoadService
                 .GetFinishedLoadingEventStream()
-                .Subscribe( _ => UpdateValues());
-        }
-
-        public void SetTransformProvider(IObjectProvider<IList<Transform>> transformProvider)
-        {
-            _tilesTransformProvider = transformProvider;
-            
-            UpdateValues();
+                .Subscribe(_ => UpdateValues());
         }
 
         public IObservable<IList<Transform>> GetMostRecent()
@@ -51,18 +42,23 @@ namespace Maps.Services
             return _subject.Where(t => t != null);
         }
 
-        private void UpdateValues()
+        public void Set(IObjectProvider<IList<Transform>> transformProvider)
         {
-            var transforms = _tilesTransformProvider.Provide();
-            
-            _subject.OnNext(transforms);
-            _single = Observable.Return(transforms);
+            _tilesTransformProvider = transformProvider;
         }
 
         public void Dispose()
         {
             _subject?.Dispose();
             _disposable?.Dispose();
+        }
+
+        private void UpdateValues()
+        {
+            var transforms = _tilesTransformProvider.Provide();
+
+            _subject.OnNext(transforms);
+            _single = Observable.Return(transforms);
         }
     }
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using InGameEditor.WorldSpace.GridOverlay.CellOverlay;
 using Maps;
-using Maps.Services;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -33,7 +31,10 @@ namespace InGameEditor.WorldSpace.GridOverlay
             {
                 _viewModel.CoordinateVisibilityLiveData.Subscribe(SetCoordinatesVisibility),
                 _viewModel.GridVisibilityLiveData.Subscribe(SetGridVisibility),
-                _viewModel.GridParameterLiveData.Subscribe(ShowGridCells),
+                _viewModel.CellsCountLiveData.Subscribe(OnUpdateCellsCount),
+                _viewModel.CellsPositionLiveData.Subscribe(OnUpdateCellsPosition),
+                _viewModel.WorldConfigLiveData.Subscribe(OnUpdateWorldConfig),
+                _viewModel.CoordinatesLiveData.Subscribe(OnUpdateCoordinates)
             };
         }
 
@@ -47,75 +48,52 @@ namespace InGameEditor.WorldSpace.GridOverlay
             _cells.ForEach(c => c.OnSetLineVisibility(visibility));
         }
 
-        private void ShowGridCells(GenerateCellsParameter generateCellsParameter)
+        private void OnUpdateCellsCount(int requiredCellsCount)
         {
-            var requiredCellsCount = generateCellsParameter.TilesPositions.Count;
-            var worldConfig = generateCellsParameter.WorldConfiguration;
-            var tilePositions = generateCellsParameter.TilesPositions;
-            var coordinates = generateCellsParameter.Coordinates;
             var currentCellsCount = _cells.Count;
-            
-            //update existing cells
-            for (var i = 0; i < Math.Min(requiredCellsCount, currentCellsCount); i++)
-            {
-                UpdateExistingCellsSettings(worldConfig, tilePositions[i], coordinates[i], _cells[i]);
-            }
-            
+
             //delete cells if there too many of them
             for (var i = requiredCellsCount; i < currentCellsCount; i++)
             {
                 var toDestroy = _cells.Last();
                 _cells.Remove(toDestroy);
-                
+
                 toDestroy.OnReceivedDestructionInstruction();
             }
-            
+
             //create cells if there are not enough
             for (var i = currentCellsCount; i < requiredCellsCount; i++)
             {
                 var cellOverlayView = cellOverlayViewProvider.Provide(gridTransform).Component;
                 var cellOverlayViewModel = cellOverlayViewModelFactory.Create(
-                    generateCellsParameter.TilesPositions[i],
-                    generateCellsParameter.WorldConfiguration,
                     _viewModel.CoordinateVisibilityLiveData.Value,
-                    _viewModel.GridVisibilityLiveData.Value,
-                    generateCellsParameter.Coordinates[i]
+                    _viewModel.GridVisibilityLiveData.Value
                 );
 
                 cellOverlayView.Initialize(cellOverlayViewModel);
-
                 _cells.Add(cellOverlayViewModel);
             }
-            
         }
 
-        private static void UpdateExistingCellsSettings(WorldConfig worldConfig, Vector3 tilePosition, Coordinate coordinate, CellOverlayViewModel toUpdate)
+        private void OnUpdateCellsPosition(IReadOnlyList<Vector3> positions)
         {
-            toUpdate.OnUpdatePosition(tilePosition);
-            toUpdate.OnUpdateWorldConfiguration(worldConfig);
-            toUpdate.OnUpdateCoordinate(coordinate);
+            for (var i = 0; i < _cells.Count; i++) _cells[i].OnUpdatePosition(positions[i]);
+        }
+
+        private void OnUpdateWorldConfig(WorldConfig config)
+        {
+            foreach (var cell in _cells) cell.OnUpdateWorldConfig(config);
+        }
+
+        private void OnUpdateCoordinates(IReadOnlyList<Coordinate> coordinates)
+        {
+            for (var i = 0; i < _cells.Count; i++) _cells[i].OnUpdateCoordinate(coordinates[i]);
         }
 
         private void OnDisable()
         {
             _compositeDisposable?.Dispose();
             _viewModel.Dispose();
-        }
-
-        public class GenerateCellsParameter
-        {
-            public GenerateCellsParameter(WorldConfig worldConfiguration,
-                                          IReadOnlyList<Vector3> tilesPositions,
-                                          IReadOnlyList<Coordinate> coordinates)
-            {
-                WorldConfiguration = worldConfiguration;
-                TilesPositions = tilesPositions;
-                Coordinates = coordinates;
-            }
-
-            public IReadOnlyList<Coordinate> Coordinates { get; }
-            public IReadOnlyList<Vector3> TilesPositions { get; }
-            public WorldConfig WorldConfiguration { get; }
         }
     }
 }

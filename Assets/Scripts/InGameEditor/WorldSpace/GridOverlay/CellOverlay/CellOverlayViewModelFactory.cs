@@ -1,7 +1,5 @@
-﻿using Maps;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityUtils.Constants;
-using WorldConfigurations;
 
 namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
 {
@@ -9,19 +7,9 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
     public class CellOverlayViewModelFactory : ScriptableObject
     {
         // ReSharper disable once MemberCanBeMadeStatic.Global
-        public CellOverlayViewModel Create(Vector3 position,
-                                           WorldConfig worldConfig,
-                                           bool coordinateVisibility,
-                                           bool lineVisibility,
-                                           Coordinate coordinate)
+        public CellOverlayViewModel Create(bool coordinateVisibility, bool cellVisibility)
         {
-            return new CellOverlayViewModel(
-                position,
-                worldConfig,
-                coordinateVisibility,
-                lineVisibility,
-                coordinate
-            );
+            return new CellOverlayViewModel(coordinateVisibility, cellVisibility);
         }
     }
 }

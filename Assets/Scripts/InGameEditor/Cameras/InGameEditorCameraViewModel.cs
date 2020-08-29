@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Experiment.CrossPlatformLiveData;
-using InGameEditor.Services.InGameEditorCameraSizeInViewServices;
+using InGameEditor.Repositories.InGameEditorCamera;
+using InGameEditor.Services.InGameEditorCameraSizeInView;
 using Maps.Services;
 using UniRx;
 using UnityEngine;
@@ -12,8 +13,6 @@ namespace InGameEditor.Cameras
     public class InGameEditorCameraViewModel : IDisposable
     {
         private readonly IInGameEditorCameraSizeInViewService _cameraSizeInViewService;
-
-        private readonly Camera _editorCamera;
         private readonly Transform _mapTransform;
         private readonly InGameEditorCameraConfig _config;
         private readonly IDisposable _disposable;
@@ -25,33 +24,34 @@ namespace InGameEditor.Cameras
         private float _leftBound;
         private Vector2 _cameraViewSize;
         private Vector2 _mapSize;
-        private readonly BehaviorSubject<float> _cameraYPositionSubject;
+        private readonly Subject<float> _cameraYPositionSubject;
 
         public InGameEditorCameraViewModel(IInGameEditorCameraSizeInViewService cameraSizeInViewService,
-                                           Camera editorCamera,
                                            Transform mapTransform,
                                            InGameEditorCameraConfig config,
-                                           ITilesPositionService tilesPositionService)
+                                           ITilesPositionService tilesPositionService,
+                                           IInGameEditorCameraGetRepository getCameraRepository)
         {
             _cameraSizeInViewService = cameraSizeInViewService;
-            _editorCamera = editorCamera;
             _mapTransform = mapTransform;
             _config = config;
-            
+
             var mapPosition = mapTransform.position;
             _minCameraY = _config.MinDistanceToMap + mapPosition.y;
 
             CameraPositionLiveData = new LiveData<Vector3>();
+            CameraLiveData = new LiveData<Camera>();
 
 
             /*
              * we are trying to avoid having a whole bunch of setting and getting service/repo for the camera
              * but if more class need this thing we will need to refactor
              */
-            _cameraYPositionSubject = new BehaviorSubject<float>(_editorCamera.transform.position.y);
+            _cameraYPositionSubject = new Subject<float>();
             _disposable = new CompositeDisposable
             {
                 _cameraYPositionSubject.Subscribe(OnZoomingLevelUpdated),
+                getCameraRepository.GetObservableStream().Subscribe(CameraLiveData.PostValue),
                 tilesPositionService
                     .GetObservableStream(mapPosition.y)
                     .CombineLatest(_cameraYPositionSubject, (positions, _) => positions) //update bounds whenever the camera's height is updated
@@ -60,6 +60,7 @@ namespace InGameEditor.Cameras
         }
 
         public ILiveData<Vector3> CameraPositionLiveData { get; } //handles panning, in theory y is never changing through this livedata
+        public ILiveData<Camera> CameraLiveData { get; }
 
         public void Dispose()
         {
@@ -68,7 +69,7 @@ namespace InGameEditor.Cameras
 
         public void OnPanning(Vector3 panningDirection, float panningStrength, float deltaTime)
         {
-            var currentCameraPosition = _editorCamera.transform.position;
+            var currentCameraPosition = CameraLiveData.Value.transform.position;
             var newCameraPosition = currentCameraPosition;
 
             newCameraPosition += panningDirection * (_config.MaxPanningSpeed * deltaTime * panningStrength);
@@ -90,10 +91,10 @@ namespace InGameEditor.Cameras
                 }
             }
 
-            var currentYPosition = _editorCamera.transform.position.y;
+            var currentYPosition = CameraLiveData.Value.transform.position.y;
             var newYPosition = currentYPosition + zoomingStrength * deltaTime * _config.MaxZoomingSpeed;
             newYPosition = Mathf.Max(newYPosition, _minCameraY);
-            
+
             _cameraYPositionSubject.OnNext(newYPosition);
         }
 
@@ -103,7 +104,7 @@ namespace InGameEditor.Cameras
 
             currentPosition.y = newY;
             currentPosition = GetClampedCameraPosition(currentPosition);
-            
+
             CameraPositionLiveData.PostValue(currentPosition);
         }
 
@@ -119,7 +120,7 @@ namespace InGameEditor.Cameras
         private void CalculateCameraRelatedMetrics(IReadOnlyList<Vector3> tilesPositions)
         {
             var (minWidth, distanceToTop, distanceToBottom) =
-                _cameraSizeInViewService.GetViewDistanceToFrustumOnPlaneInWorldSpace(_editorCamera, _mapTransform);
+                _cameraSizeInViewService.GetViewDistanceToFrustumOnPlaneInWorldSpace(CameraLiveData.Value, _mapTransform);
             var mapMaxHeight = tilesPositions.Max(p => p.z);
             var mapMinHeight = tilesPositions.Min(p => p.z);
             var mapMaxWidth = tilesPositions.Max(p => p.x);

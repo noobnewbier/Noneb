@@ -54,7 +54,7 @@ namespace Maps.Create
                             row.parent = selfTransform;
                             for (var j = 0; j < mapConfig.XSize; j++)
                             {
-                                var newTile = tileHolderProvider.Provide().GameObject.transform;
+                                var newTile = tileHolderProvider.Provide().gameObject.transform;
 
                                 newTile.parent = row;
                                 newTile.rotation *= Quaternion.AngleAxis(30f, worldConfig.UpAxis);

@@ -50,7 +50,7 @@ namespace EnvironmentSelection
             foreach (var environment in gameEnvironments)
             {
                 var goAndComponent = clickableGameEnvironmentViewProvider.Provide(gameEnvironmentsParentTransform, false);
-                goAndComponent.Component.Instantiate(environment, _viewModel.InspectGameEnvironment);
+                goAndComponent.component.Instantiate(environment, _viewModel.InspectGameEnvironment);
             }
         }
 

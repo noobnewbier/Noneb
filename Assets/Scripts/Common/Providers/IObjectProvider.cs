@@ -12,8 +12,8 @@ namespace Common.Providers
         GameObject Provide(Transform parentTransform, bool instantiateInWorldSpace = true);
     }
 
-    public interface IGameObjectAndComponentProvider<T> : IObjectProvider<GameObjectAndComponent<T>> where T : Component
+    public interface IGameObjectAndComponentProvider<T> : IObjectProvider<(T component, GameObject gameObject)> where T : Component
     {
-        GameObjectAndComponent<T> Provide(Transform parentTransform, bool instantiateInWorldSpace = true);
+        (T component, GameObject gameObject) Provide(Transform parentTransform, bool instantiateInWorldSpace = true);
     }
 }

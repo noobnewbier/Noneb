@@ -64,7 +64,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
             //create cells if there are not enough
             for (var i = currentCellsCount; i < requiredCellsCount; i++)
             {
-                var cellOverlayView = cellOverlayViewProvider.Provide(gridTransform).Component;
+                var cellOverlayView = cellOverlayViewProvider.Provide(gridTransform).component;
                 var cellOverlayViewModel = cellOverlayViewModelFactory.Create(
                     _viewModel.CoordinateVisibilityLiveData.Value,
                     _viewModel.GridVisibilityLiveData.Value

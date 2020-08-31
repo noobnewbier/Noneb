@@ -54,7 +54,6 @@ namespace GameEnvironments.Load.Tiles
                                       int mapXSize,
                                       int mapZSize)
         {
-
             return _tilesPositionService.GetMostRecent(mapTransform.position.y)
                 .Select(
                     positions =>
@@ -65,16 +64,16 @@ namespace GameEnvironments.Load.Tiles
                             row.parent = mapTransform;
                             for (var j = 0; j < mapXSize; j++)
                             {
-                                var tileAndGo = tileHolderProvider.Provide(row, false);
+                                var (component, gameObject) = tileHolderProvider.Provide(row, false);
                                 var index = i * mapXSize + j;
 
-                                tileAndGo.GameObject.transform.position = positions[index];
-                                tileAndGo.Component.Initialize(
+                                gameObject.transform.position = positions[index];
+                                component.Initialize(
                                     new Tile(tileDatas[index], _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i))
                                 );
                             }
                         }
-                        
+
                         _finishedLoadingEventStream.OnNext(Unit.Default);
                         return Unit.Default;
                     }

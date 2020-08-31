@@ -42,7 +42,6 @@ namespace GameEnvironments.Load.BoardItemOnTile
                          int mapWidth,
                          int mapHeight)
         {
-
             for (var i = 0; i < mapHeight; i++)
             for (var j = 0; j < mapWidth; j++)
             {
@@ -56,7 +55,7 @@ namespace GameEnvironments.Load.BoardItemOnTile
                 var tileTransform = tilesTransform[index];
                 var holderAndGo = holderProvider.Provide(tileTransform, false);
 
-                holderAndGo.Component.Initialize(_factory.Create(boardItemData, _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i)));
+                holderAndGo.component.Initialize(_factory.Create(boardItemData, _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i)));
             }
         }
     }

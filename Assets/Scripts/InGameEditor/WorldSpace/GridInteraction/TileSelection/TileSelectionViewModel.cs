@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Experiment.CrossPlatformLiveData;
 using InGameEditor.Repositories.InGameEditorCamera;
 using InGameEditor.Repositories.InGameEditorCurrentHoveredTileHolder;
+using InGameEditor.Repositories.InGameEditorCurrentSelectedTileHolder;
 using Tiles.Holders;
 using Tiles.Holders.Repository;
 using UniRx;
@@ -12,12 +12,13 @@ using UnityUtils;
 using WorldConfigurations;
 using WorldConfigurations.Repositories;
 
-namespace InGameEditor.WorldSpace.GridInteraction
+namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
     public class TileSelectionViewModel : IDisposable
     {
         private readonly IDisposable _disposable;
-        private readonly IInGameEditorCurrentlyHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
+        private readonly IInGameEditorCurrentHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
+        private readonly IInGameEditorCurrentSelectedTileHolderSetRepository _currentSelectedTileHolderSetRepository;
         private readonly Transform _mapTransform;
 
         private IReadOnlyList<TileHolder> _currentTileHolders;
@@ -27,15 +28,14 @@ namespace InGameEditor.WorldSpace.GridInteraction
 
         public TileSelectionViewModel(ITileHoldersRepository tileHoldersRepository,
                                       ICurrentWorldConfigRepository worldConfigRepository,
-                                      IInGameEditorCurrentlyHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
-                                      IInGameEditorCurrentlyHoveredTileHolderGetRepository getRepository,
+                                      IInGameEditorCurrentHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
+                                      IInGameEditorCurrentSelectedTileHolderSetRepository currentSelectedTileHolderSetRepository,
                                       IInGameEditorCameraGetRepository cameraGetRepository,
                                       Transform mapTransform)
         {
             _hoveredTileHolderSetRepository = hoveredTileHolderSetRepository;
             _mapTransform = mapTransform;
-            CurrentlyHoveredTileHolderLiveData = new LiveData<TileHolder>();
-            CurrentlySelectedTileHolderLiveData = new LiveData<TileHolder>();
+            _currentSelectedTileHolderSetRepository = currentSelectedTileHolderSetRepository;
 
             _disposable = new CompositeDisposable
             {
@@ -48,13 +48,9 @@ namespace InGameEditor.WorldSpace.GridInteraction
                             _currentTileHolders = holders;
                         }
                     ),
-                worldConfigRepository.GetObservableStream().Subscribe(config => _currentWorldConfig = config),
-                getRepository.GetObservableStream().Subscribe(CurrentlyHoveredTileHolderLiveData.PostValue)
+                worldConfigRepository.GetObservableStream().Subscribe(config => _currentWorldConfig = config)
             };
         }
-
-        public LiveData<TileHolder> CurrentlySelectedTileHolderLiveData { get; }
-        public LiveData<TileHolder> CurrentlyHoveredTileHolderLiveData { get; }
 
         public void Dispose()
         {
@@ -68,7 +64,7 @@ namespace InGameEditor.WorldSpace.GridInteraction
                 return;
             }
 
-            CurrentlySelectedTileHolderLiveData.PostValue(
+            _currentSelectedTileHolderSetRepository.Set(
                 GetClosestTileHolderFromPosition(
                     GetMousePositionWorldSpace(mousePositionScreenSpace)
                 )

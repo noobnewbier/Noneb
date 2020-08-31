@@ -10,7 +10,7 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
     )]
     public class CurrentHoveredTileCoordinateViewModelFactory : ScriptableObject
     {
-        [SerializeField] private InGameEditorCurrentlyHoveredTileHolderRepositoryProvider repositoryProvider;
+        [SerializeField] private InGameEditorCurrentHoveredTileHolderRepositoryProvider repositoryProvider;
 
         public CurrentHoveredTileCoordinateViewModel Create()
         {

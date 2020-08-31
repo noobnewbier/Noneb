@@ -10,7 +10,7 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
     {
         private readonly IDisposable _disposable;
 
-        public CurrentHoveredTileCoordinateViewModel(IInGameEditorCurrentlyHoveredTileHolderGetRepository repository)
+        public CurrentHoveredTileCoordinateViewModel(IInGameEditorCurrentHoveredTileHolderGetRepository repository)
         {
             CoordinateLiveData = new LiveData<Coordinate>();
 

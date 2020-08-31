@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8690da0a0cad4332858c1268af176c99, type: 3}
-  m_Name: InGameEditorCurrentlyHoveredTileHolderRepositoryProvider
+  m_Script: {fileID: 11500000, guid: 96dff248759544279527fc970e6549c5, type: 3}
+  m_Name: HoveredTileIndicatorControllerProvider
   m_EditorClassIdentifier: 
+  prefab: {fileID: 0}

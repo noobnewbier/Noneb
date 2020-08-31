@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56fe5f4010d7458784bd009b23444e77, type: 3}
-  m_Name: HoveredTileIndicatorGameObjectProvider
+  m_Script: {fileID: 11500000, guid: 28cb7189db02466aa155f3fad3229ebe, type: 3}
+  m_Name: IndicatorControllerConfig
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 124965864436804598, guid: b47aa8993a40538448d1536fab99fa88,
-    type: 3}
+  indicatorOffsetFromMap: 1

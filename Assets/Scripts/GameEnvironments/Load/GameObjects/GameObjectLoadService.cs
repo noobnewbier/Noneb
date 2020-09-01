@@ -22,7 +22,7 @@ namespace GameEnvironments.Load.GameObjects
                 {
                     continue;
                 }
-                
+
                 gameObjectProvider.Provide(holdersTransforms[index], false);
             }
         }

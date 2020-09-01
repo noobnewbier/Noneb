@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace GameEnvironments.Load.Manager
 {
-    public class LoadLevelManager : MonoBehaviour
+    public class LevelLoader : MonoBehaviour
     {
         [SerializeField] private CurrentTilesTransformSetter currentTilesTransformSetter;
 

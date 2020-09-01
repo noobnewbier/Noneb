@@ -8,7 +8,7 @@
         public static readonly HexDirection MinusZ = new HexDirection(new Coordinate(0, -1));
         public static readonly HexDirection PlusXPlusZ = new HexDirection(new Coordinate(1, 1));
         public static readonly HexDirection MinusXMinusZ = new HexDirection(new Coordinate(-1, -1));
-        
+
         private HexDirection(Coordinate direction)
         {
             Direction = direction;
@@ -19,6 +19,6 @@
         public static Coordinate operator +(Coordinate a, HexDirection d)
         {
             return a + d.Direction;
-        } 
+        }
     }
 }

@@ -9,7 +9,7 @@ using UnityUtils.Constants;
 namespace GameEnvironments.Load.BoardItemOnTile.ServiceProviders
 {
     [CreateAssetMenu(fileName = nameof(LoadStrongholdServiceProvider), menuName = MenuName.ScriptableService + "LoadStrongholdService")]
-    public class LoadStrongholdServiceProvider: ScriptableObjectProvider<ILoadBoardItemOnTileService<StrongholdHolder, Stronghold, StrongholdData>>
+    public class LoadStrongholdServiceProvider : ScriptableObjectProvider<ILoadBoardItemOnTileService<StrongholdHolder, Stronghold, StrongholdData>>
     {
         [SerializeField] private GetCoordinateServiceProvider coordinateServiceProvider;
 

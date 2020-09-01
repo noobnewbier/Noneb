@@ -12,15 +12,6 @@ namespace Strongholds
         [SerializeField] private ConstructPreservationContainer constructPreservationContainer;
         [SerializeField] private Coordinate coordinate;
 
-
-        protected override Stronghold CreateFromPreservation()
-        {
-            var unit = unitPreservationContainer.GetPreservation();
-            var construct = constructPreservationContainer.GetPreservation();
-
-            return new Stronghold(new StrongholdData(unit.Data, construct.Data), coordinate);
-        }
-
         public Coordinate Coordinate
         {
             set
@@ -29,6 +20,15 @@ namespace Strongholds
                 constructPreservationContainer.Coordinate = value;
                 coordinate = value;
             }
+        }
+
+
+        protected override Stronghold CreateFromPreservation()
+        {
+            var unit = unitPreservationContainer.GetPreservation();
+            var construct = constructPreservationContainer.GetPreservation();
+
+            return new Stronghold(new StrongholdData(unit.Data, construct.Data), coordinate);
         }
     }
 }

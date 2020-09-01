@@ -10,8 +10,12 @@ namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+
+        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private Transform mapTransform;
 

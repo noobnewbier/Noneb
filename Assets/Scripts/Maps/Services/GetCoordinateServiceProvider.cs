@@ -5,7 +5,7 @@ using UnityUtils.Constants;
 
 namespace Maps.Services
 {
-    [CreateAssetMenu(fileName = nameof(GetCoordinateServiceProvider), menuName = MenuName.ScriptableService+"GetCoordinateService")]
+    [CreateAssetMenu(fileName = nameof(GetCoordinateServiceProvider), menuName = MenuName.ScriptableService + "GetCoordinateService")]
     public class GetCoordinateServiceProvider : ScriptableObjectProvider<IGetCoordinateService>
     {
         //prevent occasion where other classes are instantiated before this -- this should not have any dependencies anyway.

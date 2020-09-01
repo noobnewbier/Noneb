@@ -17,6 +17,7 @@ namespace Tiles.Holders.Repository
         private void OnDisable()
         {
             _cache?.Dispose();
+            _cache = null;
         }
 
         public override ITileHoldersRepository Provide()

@@ -11,8 +11,13 @@ namespace InGameEditor.WorldSpace.GridOverlay
     public class GridOverlayViewModelFactory : ScriptableObject
     {
         [SerializeField] private GetCoordinateServiceProvider getCoordinateServiceProvider;
-        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+
+        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
 
 

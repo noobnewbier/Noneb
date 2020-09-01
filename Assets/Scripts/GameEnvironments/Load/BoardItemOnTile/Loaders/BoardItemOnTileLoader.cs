@@ -12,23 +12,18 @@ using Maps.Repositories;
 using Maps.Services;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.BoardItemOnTile.Loaders
 {
+    //todo: can be converted to ScriptableObject
     public abstract class BoardItemOnTileLoader<THolder, TBoardItemOnTile, TData> : MonoBehaviour, ILoader
         where THolder : Component, IBoardItemHolder<TBoardItemOnTile>
         where TBoardItemOnTile : BoardItem, IOnTile
         where TData : IBoardItemData
     {
-        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
-        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
-
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-
+        [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
+        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
         [SerializeField] private CurrentTilesTransformRepositoryProvider currentTilesTransformRepositoryProvider;
-
 
         private IDisposable _disposable;
 

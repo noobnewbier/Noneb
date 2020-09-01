@@ -46,14 +46,11 @@ namespace DebugUtils
             {
                 var (x, z) = GetXzGivenYFromLineEquation(targetYPosition, cameraPosition, cameraFrustumCorners[i]);
                 intersectionCorners[i] = new Vector3(x, targetYPosition, z);
-                
+
                 Handles.Label(intersectionCorners[i], i.ToString());
             }
 
-            for (var i = 0; i < intersectionCorners.Length - 1; i++)
-            {
-                Gizmos.DrawLine(intersectionCorners[i], intersectionCorners[i + 1]);
-            }
+            for (var i = 0; i < intersectionCorners.Length - 1; i++) Gizmos.DrawLine(intersectionCorners[i], intersectionCorners[i + 1]);
             Gizmos.DrawLine(intersectionCorners[0], intersectionCorners.Last());
 
             Gizmos.color = originalColor;

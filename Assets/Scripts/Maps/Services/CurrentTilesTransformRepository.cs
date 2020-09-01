@@ -16,16 +16,26 @@ namespace Maps.Services
     {
     }
 
+    /*
+     * Todo: Refactor?
+     * Note(08/31/2020):
+     * I suppose this can be separated into
+     *     1. CurrentTilesTransformGetRepository,
+     *     2. CurrentTilesTransformProviderSetRepository,
+     *     3. CurrentTilesTransformProviderGetRepository
+     *
+     * At the moment this look like a clustered piece of crap, consider refactorbating 
+     */
     public class CurrentTilesTransformRepository : ICurrentTilesTransformProviderSetRepository, ICurrentTilesTransformGetRepository, IDisposable
     {
-        private readonly BehaviorSubject<IList<Transform>> _subject;
+        private readonly ReplaySubject<IList<Transform>> _subject;
         private readonly IDisposable _disposable;
         private IObjectProvider<IList<Transform>> _tilesTransformProvider;
         private IObservable<IList<Transform>> _single;
 
         public CurrentTilesTransformRepository(IMapLoadService mapLoadService)
         {
-            _subject = new BehaviorSubject<IList<Transform>>(default);
+            _subject = new ReplaySubject<IList<Transform>>(1);
 
             _disposable = mapLoadService
                 .GetFinishedLoadingEventStream()

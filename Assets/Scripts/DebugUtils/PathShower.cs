@@ -30,7 +30,8 @@ namespace DebugUtils
         {
             var mapRepository = mapRepositoryProvider.Provide();
 
-            _disposable = mapRepository.GetObservableStream()
+            _disposable?.Dispose();
+            _disposable = mapRepository.GetMostRecent()
                 .SelectMany(
                     map =>
                     {

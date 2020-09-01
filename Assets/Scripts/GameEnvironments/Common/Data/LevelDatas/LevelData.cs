@@ -8,7 +8,6 @@ namespace GameEnvironments.Common.Data.LevelDatas
 {
     /// <summary>
     /// Basically a game level, including all data one required to load a level(both visually and "backend" wise)
-    /// 
     /// todo: implement a fucking environment validator
     /// todo: collection better be readonly, in case you accidentally assign stuffs... or should they?
     /// todo: handle overrides

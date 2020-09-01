@@ -15,7 +15,9 @@ namespace GameEnvironments.Load.Tiles
     public class MapLoader : MonoBehaviour, ILoader
     {
         [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
         private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;

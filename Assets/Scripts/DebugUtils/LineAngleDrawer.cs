@@ -16,7 +16,7 @@ namespace DebugUtils
             {
                 return;
             }
-            
+
             var origin = originTransform.position;
             var endPoint = SphericalToCartesian(distanceFromStartingPoint, polarAngle * Mathf.Deg2Rad, elevationAngle * Mathf.Deg2Rad, origin);
             Gizmos.DrawLine(origin, endPoint);

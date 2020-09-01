@@ -4,6 +4,7 @@
     {
         TOut Create(TArg1 arg1, TArg2 arg2);
     }
+
     public interface IFactory<in TArg, out TOut>
     {
         TOut Create(TArg arg);

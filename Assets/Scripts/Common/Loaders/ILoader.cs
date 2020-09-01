@@ -1,11 +1,11 @@
 ﻿using System;
-using UnityEngine;
+using UniRx;
 
 namespace Common.Loaders
 {
     public interface ILoader
     {
         void LoadAndForget();
-        IObservable<UniRx.Unit> LoadObservable();
+        IObservable<Unit> LoadObservable();
     }
 }

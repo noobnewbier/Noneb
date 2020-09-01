@@ -12,17 +12,17 @@ namespace Tiles
         [SerializeField] private Coordinate coordinate;
         [SerializeField] [CanBeNull] private UnitPreservationContainer unitPreservationContainer;
         [SerializeField] private TileData tileData;
-        
-        protected override Tile CreateFromPreservation()
-        {
-            var unit = unitPreservationContainer != null ? unitPreservationContainer.GetPreservation() : null;
-            
-            return new Tile(tileData, coordinate);
-        }
 
         public Coordinate Coordinate
         {
             set => coordinate = value;
+        }
+
+        protected override Tile CreateFromPreservation()
+        {
+            var unit = unitPreservationContainer != null ? unitPreservationContainer.GetPreservation() : null;
+
+            return new Tile(tileData, coordinate);
         }
     }
 }

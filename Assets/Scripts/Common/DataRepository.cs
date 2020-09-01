@@ -16,18 +16,19 @@ namespace Common
 
     public abstract class DataRepository<T> : IDataGetRepository<T>, IDataSetRepository<T> where T : class
     {
-        private readonly BehaviorSubject<T> _subject;
+        private readonly ReplaySubject<T> _subject;
         private IObservable<T> _single;
 
         protected DataRepository()
         {
-            _subject = new BehaviorSubject<T>(default);
+            //give the current value if there's any(including null)
+            _subject = new ReplaySubject<T>(1);
             _single = Observable.Throw<T>(new InvalidOperationException("Value is not set yet"));
         }
 
         public IObservable<T> GetObservableStream()
         {
-            return _subject.Where(t => t != null);
+            return _subject;
         }
 
         public IObservable<T> GetMostRecent()

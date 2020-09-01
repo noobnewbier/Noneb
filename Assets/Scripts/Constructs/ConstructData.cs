@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Constructs
 {
     [CreateAssetMenu(menuName = "Data/Construct", fileName = "ConstructData")]
-    public class ConstructData :ScriptableObject, IBoardItemData
+    public class ConstructData : ScriptableObject, IBoardItemData
     {
         //todo: add implementation related to stronghold
         //todo: implementation and design of construct

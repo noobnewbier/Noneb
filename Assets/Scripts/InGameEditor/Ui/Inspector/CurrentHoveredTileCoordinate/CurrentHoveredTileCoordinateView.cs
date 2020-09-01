@@ -19,8 +19,14 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
             _disposable = _viewModel.CoordinateLiveData.Subscribe(UpdateCoordinateText);
         }
 
-        private void UpdateCoordinateText(Coordinate coordinate)
+        private void UpdateCoordinateText(Coordinate? coordinate)
         {
+            if (coordinate == null)
+            {
+                coordinateText.text = string.Empty;;
+                return;
+            }
+            
             coordinateText.text = coordinate.ToString();
         }
 

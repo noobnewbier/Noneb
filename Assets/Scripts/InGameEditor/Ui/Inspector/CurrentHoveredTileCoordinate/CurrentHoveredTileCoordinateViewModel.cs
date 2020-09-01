@@ -12,16 +12,16 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
 
         public CurrentHoveredTileCoordinateViewModel(IInGameEditorCurrentHoveredTileHolderGetRepository repository)
         {
-            CoordinateLiveData = new LiveData<Coordinate>();
+            CoordinateLiveData = new LiveData<Coordinate?>();
 
             _disposable = repository.GetObservableStream()
                 .Subscribe(
                     holder =>
-                        CoordinateLiveData.PostValue(holder.Value.Coordinate)
+                        CoordinateLiveData.PostValue(holder != null ? holder.Value.Coordinate : (Coordinate?) null)
                 );
         }
 
-        public LiveData<Coordinate> CoordinateLiveData { get; }
+        public LiveData<Coordinate?> CoordinateLiveData { get; }
 
         public void Dispose()
         {

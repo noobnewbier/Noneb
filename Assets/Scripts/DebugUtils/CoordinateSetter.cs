@@ -3,9 +3,9 @@ using Common;
 using Maps;
 using Maps.Repositories;
 using Tiles;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UniRx;
 using UnityEngine.Serialization;
 
 namespace DebugUtils
@@ -15,7 +15,9 @@ namespace DebugUtils
     /// </summary>
     public class CoordinateSetter : MonoBehaviour
     {
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+
         [SerializeField] private TilesTransformProvider tilesTransformProvider;
 
         private IDisposable _disposable;
@@ -47,10 +49,7 @@ namespace DebugUtils
                             var z = i;
                             var coordinate = new Coordinate(x, z);
 
-                            foreach (var requireCoordinate in requireCoordinates)
-                            {
-                                requireCoordinate.Coordinate = coordinate;
-                            }
+                            foreach (var requireCoordinate in requireCoordinates) requireCoordinate.Coordinate = coordinate;
                         }
                     }
                 );

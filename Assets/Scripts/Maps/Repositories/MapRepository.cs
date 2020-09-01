@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Tiles;
 using Tiles.Holders.Repository;
 using UniRx;
 
@@ -30,7 +28,7 @@ namespace Maps.Repositories
             return _currentMapConfigRepository.GetObservableStream()
                 .ZipLatest(_tileHoldersRepository.GetAllFlattenSingle(), (config, tileHolders) => (config, tileHolders))
                 .Where(tuple => tuple.config != null)
-                .Select(tuple => CreateMap(tuple.config, tuple.tileHolders.Select(t => t.Value).ToList()));
+                .Select(tuple => new Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
         }
 
         public IObservable<Map> GetMostRecent()
@@ -39,12 +37,7 @@ namespace Maps.Repositories
                 .Where(m => m != null)
                 .ZipLatest(_tileHoldersRepository.GetAllFlattenSingle(), (config, tileHolders) => (config, tileHolders))
                 .Where(tuple => tuple.config != null)
-                .Select(tuple => CreateMap(tuple.config, tuple.tileHolders.Select(t => t.Value).ToList()));
-        }
-
-        private Map CreateMap(MapConfig config, IReadOnlyList<Tile> tiles)
-        {
-            return new Map(tiles, config);
+                .Select(tuple => new Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
         }
     }
 }

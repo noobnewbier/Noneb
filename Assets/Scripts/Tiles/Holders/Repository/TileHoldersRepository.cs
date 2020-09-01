@@ -20,13 +20,13 @@ namespace Tiles.Holders.Repository
     public class TileHoldersRepository : ITileHoldersRepository
     {
         private IObservable<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSingle;
-        private readonly BehaviorSubject<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSubject;
+        private readonly ReplaySubject<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSubject;
         private readonly IDisposable _disposable;
 
         public TileHoldersRepository(ICurrentTilesTransformGetRepository currentTilesTransformGetRepository,
                                      ICurrentMapConfigRepository currentMapConfigRepository)
         {
-            _tileHoldersAndConfigSubject = new BehaviorSubject<(TileHolder[,] tileHolders, MapConfig config)>(default);
+            _tileHoldersAndConfigSubject = new ReplaySubject<(TileHolder[,] tileHolders, MapConfig config)>(1);
             _tileHoldersAndConfigSingle = Observable.Throw<(TileHolder[,], MapConfig)>(new InvalidOperationException("Value is not set yet"));
 
             _disposable = currentMapConfigRepository.GetObservableStream()
@@ -86,7 +86,7 @@ namespace Tiles.Holders.Repository
             _disposable?.Dispose();
         }
 
-        private IReadOnlyList<TileHolder> GetAllFlattenTileHoldersFromTileHoldersAndConfig(TileHolder[,] holders, MapConfig config)
+        private static IReadOnlyList<TileHolder> GetAllFlattenTileHoldersFromTileHoldersAndConfig(TileHolder[,] holders, MapConfig config)
         {
             var mapXSize = config.XSize;
             var mapZSize = config.ZSize;

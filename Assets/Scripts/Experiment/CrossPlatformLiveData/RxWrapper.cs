@@ -7,10 +7,6 @@ namespace Experiment.CrossPlatformLiveData
     /// </summary>
     public class RxWrapper<T>
     {
-        public RxStatus Status { get; set; }
-        public T Data { get; set; }
-        public Exception Exception { get; set; }
-
         public RxWrapper(RxStatus status, T data, Exception e = null)
         {
             Status = status;
@@ -34,6 +30,10 @@ namespace Experiment.CrossPlatformLiveData
             Status = RxStatus.Error;
             Exception = e;
         }
+
+        public RxStatus Status { get; set; }
+        public T Data { get; set; }
+        public Exception Exception { get; set; }
 
         /// <summary>
         /// Init state
@@ -77,6 +77,11 @@ namespace Experiment.CrossPlatformLiveData
 
     public enum RxStatus
     {
-        NoData, Ok, Pending, Update, PendingUpdate, Error
+        NoData,
+        Ok,
+        Pending,
+        Update,
+        PendingUpdate,
+        Error
     }
 }

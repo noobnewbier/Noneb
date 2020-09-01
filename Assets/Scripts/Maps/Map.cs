@@ -5,7 +5,7 @@ using Tiles;
 namespace Maps
 {
     /*
-     * A map holds tile and their coordinates(gameplay-wise), it has nothing to do with any other stuffs
+     * A map holds tile according to axial coordinate, it has nothing to do with any other stuffs
      * the storage is in axial coordinate with grid(jagged array) for easy access.
      */
     public class Map

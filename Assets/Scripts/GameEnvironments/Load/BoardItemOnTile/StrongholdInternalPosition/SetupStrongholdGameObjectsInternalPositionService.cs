@@ -5,7 +5,6 @@ namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
 {
     /// <summary>
     /// Setting up unit gameObject's position within a stronghold
-    ///
     /// We assume that EVERY CONSTRUCT'S has a location provider in the root, without it this would not work.
     /// </summary>
     public interface ISetupStrongholdGameObjectsInternalPositionService

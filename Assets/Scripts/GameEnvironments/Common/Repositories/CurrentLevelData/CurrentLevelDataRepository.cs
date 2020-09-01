@@ -14,7 +14,7 @@ namespace GameEnvironments.Common.Repositories.CurrentLevelData
     public class CurrentLevelDataRepository : ICurrentLevelDataRepository
     {
         private readonly ICurrentGameEnvironmentGetRepository _gameEnvironmentGetRepository;
-        
+
         public CurrentLevelDataRepository(ICurrentGameEnvironmentGetRepository currentGameEnvironmentGetRepository)
         {
             _gameEnvironmentGetRepository = currentGameEnvironmentGetRepository;

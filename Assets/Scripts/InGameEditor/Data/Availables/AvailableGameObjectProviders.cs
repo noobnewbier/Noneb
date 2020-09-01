@@ -4,7 +4,10 @@ using UnityUtils.Constants;
 
 namespace InGameEditor.Data.Availables
 {
-    [CreateAssetMenu(fileName = nameof(AvailableGameObjectProviders), menuName = MenuName.Data + "InGameEditor/" + nameof(AvailableGameObjectProviders))]
+    [CreateAssetMenu(
+        fileName = nameof(AvailableGameObjectProviders),
+        menuName = MenuName.Data + "InGameEditor/" + nameof(AvailableGameObjectProviders)
+    )]
     public class AvailableGameObjectProviders : AvailableSet<GameObjectProvider>
     {
     }

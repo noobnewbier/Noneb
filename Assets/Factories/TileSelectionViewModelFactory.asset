@@ -16,7 +16,9 @@ MonoBehaviour:
     type: 2}
   currentWorldConfigRepositoryProvider: {fileID: 11400000, guid: 413cf4135dfea4940acd0ff86715d43a,
     type: 2}
-  currentlyHoveredTileHolderRepositoryProvider: {fileID: 11400000, guid: e42d88fd6a4dbe6418954ea1735c25ba,
+  currentSelectedTileHolderRepositoryProvider: {fileID: 11400000, guid: aba9a643e8797454a80ab84eb6939469,
+    type: 2}
+  currentHoveredTileHolderRepositoryProvider: {fileID: 11400000, guid: 3a7dd43fd839be640ae9ae9e86197da6,
     type: 2}
   cameraRepositoryProvider: {fileID: 11400000, guid: dadd88eea9591fb49a539cf4bdd33d9b,
     type: 2}

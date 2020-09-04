@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: b9dd77c67c284b24990e0a64a688d1a1, type: 3}
   m_Name: CurrentTilesTransformRepositoryProvider
-  m_EditorClassIdentifier: Assembly-CSharp:Maps.Services:CurrentTilesTransformRepositoryProvider
+  m_EditorClassIdentifier: 
   mapLoadServiceProvider: {fileID: 11400000, guid: 9ad903f4a75c5fd459d11730d2220b24,
     type: 2}

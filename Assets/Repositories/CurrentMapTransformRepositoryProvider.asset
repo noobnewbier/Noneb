@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96dff248759544279527fc970e6549c5, type: 3}
-  m_Name: HoveredTileIndicatorControllerProvider
+  m_Script: {fileID: 11500000, guid: 40a362514e8140098c3f43b2300af93a, type: 3}
+  m_Name: CurrentMapTransformRepositoryProvider
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6415089958906127922, guid: 9e3fca4462941b54794178dd226fcf31, type: 3}

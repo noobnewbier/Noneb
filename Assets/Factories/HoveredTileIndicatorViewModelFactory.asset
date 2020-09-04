@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e350f1f9ce62417f94b12a5df0a04cd1, type: 3}
   m_Name: HoveredTileIndicatorViewModelFactory
   m_EditorClassIdentifier: 
-  repositoryProvider: {fileID: 0}
+  hoveredTileHolderRepositoryProvider: {fileID: 11400000, guid: 3a7dd43fd839be640ae9ae9e86197da6,
+    type: 2}
+  selectedTileHolderRepositoryProvider: {fileID: 11400000, guid: aba9a643e8797454a80ab84eb6939469,
+    type: 2}

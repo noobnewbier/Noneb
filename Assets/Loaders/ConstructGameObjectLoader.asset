@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33237fc8606d4018b86a23a4a94b1496, type: 3}
-  m_Name: TileHoldersRepositoryProvider
+  m_Script: {fileID: 11500000, guid: fb132d4be8ec4b7da12c987edcacd6f4, type: 3}
+  m_Name: ConstructGameObjectLoader
   m_EditorClassIdentifier: 
-  tilesTransformRepositoryProvider: {fileID: 11400000, guid: 257cfec9042d9d146ad36953038b0209,
+  serviceProvider: {fileID: 11400000, guid: 4da769447e8cfc7499bd3dfff1a5a165, type: 2}
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+    type: 2}
+  currentTilesTransformRepositoryProvider: {fileID: 11400000, guid: 257cfec9042d9d146ad36953038b0209,
     type: 2}
   currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}

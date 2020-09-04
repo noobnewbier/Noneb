@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2a2da6a1574e0aa7515febe028255f, type: 3}
   m_Name: SelectedTileIndicatorViewModelFactory
   m_EditorClassIdentifier: 
-  repositoryProvider: {fileID: 0}
+  repositoryProvider: {fileID: 11400000, guid: aba9a643e8797454a80ab84eb6939469, type: 2}

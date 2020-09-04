@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96dff248759544279527fc970e6549c5, type: 3}
-  m_Name: HoveredTileIndicatorControllerProvider
+  m_Name: SelectedTileIndicatorControllerProvider
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 5671362195168891138, guid: 32f7b5f5d1cad9d4d86b6410cdaec5a8, type: 3}

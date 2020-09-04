@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284ab5fa51a24f3bbc75e42c200d81bf, type: 3}
   m_Name: CurrentHoveredTileCoordinateViewModelFactory
   m_EditorClassIdentifier: 
-  repositoryProvider: {fileID: 11400000, guid: e42d88fd6a4dbe6418954ea1735c25ba, type: 2}
+  repositoryProvider: {fileID: 11400000, guid: 3a7dd43fd839be640ae9ae9e86197da6, type: 2}

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d3b5acf50b4581ab11a5a7f43711a5, type: 3}
   m_Name: HoveredTileIndicatorViewConfig
   m_EditorClassIdentifier: 
-  indicatorControllerProvider: {fileID: 0}
+  indicatorControllerProvider: {fileID: 11400000, guid: 9f6caf2f9ee74d5418601d0afae7eff6,
+    type: 2}

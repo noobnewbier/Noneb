@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea301b2f64846a79ad7757f6f6213ed, type: 3}
+  m_Name: ConstructLoader
+  m_EditorClassIdentifier: 
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+    type: 2}
+  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}
+  currentTilesTransformRepositoryProvider: {fileID: 11400000, guid: 257cfec9042d9d146ad36953038b0209,
+    type: 2}
+  loadConstructServiceProvider: {fileID: 11400000, guid: dc52c1f65a31512449cf0eb034786ed1,
+    type: 2}
+  constructHolderProvider: {fileID: 11400000, guid: 70e2b881b4b8dbe4a9cfd0d58630899f,
+    type: 2}

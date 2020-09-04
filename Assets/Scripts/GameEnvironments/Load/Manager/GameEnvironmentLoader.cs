@@ -9,9 +9,11 @@ using UnityEngine;
 
 namespace GameEnvironments.Load.Manager
 {
-    public class LevelLoader : MonoBehaviour
+    public class GameEnvironmentLoader : MonoBehaviour
     {
         [SerializeField] private CurrentTilesTransformSetter currentTilesTransformSetter;
+        [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
+
 
         [SerializeField] private MapLoader mapLoader;
 
@@ -31,18 +33,22 @@ namespace GameEnvironments.Load.Manager
         [ContextMenu(nameof(Load))]
         public void Load()
         {
-            _disposable = LoadPreliminaries()
-                .Concat(LoadMap())
-                .Concat(LoadBoardItemOnTileHolders())
-                .Concat(LoadGameObjects())
+            _disposable = GetLoadObservable()
                 .Subscribe(
                     _ =>
                     {
                         //todo: proper error handling
                         Debug.Log("success");
-                    },
-                    Debug.Log
+                    }
                 );
+        }
+
+        public IObservable<Unit> GetLoadObservable()
+        {
+            return LoadPreliminaries()
+                .Concat(LoadMap())
+                .Concat(LoadBoardItemOnTileHolders())
+                .Concat(LoadGameObjects());
         }
 
         private void OnDisable()
@@ -53,6 +59,7 @@ namespace GameEnvironments.Load.Manager
         private IObservable<Unit> LoadPreliminaries()
         {
             currentTilesTransformSetter.Set();
+            currentMapTransformSetter.Set();
 
             return Observable.ReturnUnit();
         }

@@ -6,7 +6,7 @@ using GameEnvironments.Load.Tiles;
 using UniRx;
 using UnityEngine;
 
-namespace Maps.Services
+namespace Maps.Repositories.CurrentTilesTransform
 {
     public interface ICurrentTilesTransformProviderSetRepository : IDataSetRepository<IObjectProvider<IList<Transform>>>
     {

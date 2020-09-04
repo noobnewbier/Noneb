@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Maps.Repositories;
+using Maps.Repositories.CurrentMapConfig;
 using UniRx;
 using UnityEngine;
 using WorldConfigurations;

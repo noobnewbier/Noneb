@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Maps;
-using Maps.Repositories;
+using Maps.Repositories.Map;
 using Tiles.Holders.Repository;
 using UniRx;
 using UnityEngine;

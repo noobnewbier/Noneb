@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Immutable;
+using Common;
 using Common.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
@@ -11,6 +12,7 @@ using Unit = Units.Unit;
 
 namespace GameEnvironments.Load.BoardItemOnTile.Loaders
 {
+    [CreateAssetMenu(fileName = nameof(UnitLoader), menuName = ProjectMenuName.Loader + nameof(UnitLoader))]
     public class UnitLoader : BoardItemOnTileLoader<UnitHolder, Unit, UnitData>
     {
         [SerializeField] private LoadUnitServiceProvider loadUnitServiceProvider;

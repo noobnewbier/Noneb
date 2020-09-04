@@ -8,15 +8,14 @@ using Common.Providers;
 using Common.TagInterface;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
-using Maps.Repositories;
-using Maps.Services;
+using Maps.Repositories.CurrentMapConfig;
+using Maps.Repositories.CurrentTilesTransform;
 using UniRx;
 using UnityEngine;
 
 namespace GameEnvironments.Load.BoardItemOnTile.Loaders
 {
-    //todo: can be converted to ScriptableObject
-    public abstract class BoardItemOnTileLoader<THolder, TBoardItemOnTile, TData> : MonoBehaviour, ILoader
+    public abstract class BoardItemOnTileLoader<THolder, TBoardItemOnTile, TData> : ScriptableObject, ILoader
         where THolder : Component, IBoardItemHolder<TBoardItemOnTile>
         where TBoardItemOnTile : BoardItem, IOnTile
         where TData : IBoardItemData

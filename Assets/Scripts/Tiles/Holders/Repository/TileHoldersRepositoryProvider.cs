@@ -1,6 +1,6 @@
 ﻿using Common.Providers;
-using Maps.Repositories;
-using Maps.Services;
+using Maps.Repositories.CurrentMapConfig;
+using Maps.Repositories.CurrentTilesTransform;
 using UnityEngine;
 using UnityUtils.Constants;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using Common;
 using Maps;
-using Maps.Repositories;
+using Maps.Repositories.CurrentMapConfig;
 using Tiles;
 using UniRx;
 using UnityEngine;

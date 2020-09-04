@@ -1,5 +1,5 @@
 ﻿using System;
-using Maps.Repositories;
+using Maps.Repositories.CurrentMapConfig;
 using Maps.Services;
 using Tiles.Holders;
 using UniRx;

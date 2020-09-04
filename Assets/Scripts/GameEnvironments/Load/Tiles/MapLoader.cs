@@ -1,30 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common;
 using Common.Loaders;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
-using Maps.Repositories;
+using Maps.Repositories.CurrentMapConfig;
+using Maps.Repositories.CurrentMapTransform;
 using Tiles.Data;
 using Tiles.Holders;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.Tiles
 {
-    public class MapLoader : MonoBehaviour, ILoader
+    [CreateAssetMenu(fileName = nameof(MapLoader), menuName = ProjectMenuName.Loader + nameof(MapLoader))]
+    public class MapLoader : ScriptableObject, ILoader
     {
         [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
-
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-
-        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
-        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
-
+        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
         [SerializeField] private TileHolderProvider tileHolderProvider;
         [SerializeField] private GameObject rowPrefab;
-        [SerializeField] private Transform mapTransform;
+        [SerializeField] private CurrentMapTransformRepositoryProvider mapTransformRepositoryProvider;
+
 
         private IDisposable _disposable;
 
@@ -36,8 +34,8 @@ namespace GameEnvironments.Load.Tiles
                 .SelectMany(
                     tuple =>
                     {
-                        var (datas, config) = tuple;
-                        return GetLoadServiceObservable(datas, config);
+                        var (datas, config, mapTransform) = tuple;
+                        return GetLoadServiceObservable(datas, config, mapTransform);
                     }
                 )
                 .Subscribe();
@@ -49,23 +47,24 @@ namespace GameEnvironments.Load.Tiles
                 .SelectMany(
                     tuple =>
                     {
-                        var (datas, config) = tuple;
-                        return GetLoadServiceObservable(datas, config);
+                        var (datas, config, mapTransform) = tuple;
+                        return GetLoadServiceObservable(datas, config, mapTransform);
                     }
                 );
         }
 
-        private IObservable<(TileData[] datas, MapConfig config)> GetDataTupleObservable()
+        private IObservable<(TileData[] datas, MapConfig config, Transform mapTransform)> GetDataTupleObservable()
         {
-            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
+            var levelDataObservable = currentLevelDataRepositoryProvider.Provide().GetMostRecent();
             var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
+            var mapTransformObservable = mapTransformRepositoryProvider.Provide().GetMostRecent();
 
-            return levelDataRepository.GetMostRecent()
+            return levelDataObservable
                 .Select(levelData => levelData.TileDatas)
-                .Zip(mapConfigObservable, (datas, config) => (datas, config));
+                .Zip(mapConfigObservable, mapTransformObservable, (datas, config, mapTransform) => (datas, config, mapTransform));
         }
 
-        private IObservable<Unit> GetLoadServiceObservable(IList<TileData> datas, MapConfig config)
+        private IObservable<Unit> GetLoadServiceObservable(IList<TileData> datas, MapConfig config, Transform mapTransform)
         {
             var mapLoadService = mapLoadServiceProvider.Provide();
             return mapLoadService.Load(

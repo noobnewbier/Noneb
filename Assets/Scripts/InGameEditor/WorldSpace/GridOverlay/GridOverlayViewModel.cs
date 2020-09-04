@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
 using Maps;
-using Maps.Repositories;
+using Maps.Repositories.CurrentMapConfig;
 using Maps.Services;
 using UniRx;
 using UnityEngine;

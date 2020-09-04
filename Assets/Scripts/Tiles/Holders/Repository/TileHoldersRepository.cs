@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Maps;
-using Maps.Repositories;
-using Maps.Services;
+using Maps.Repositories.CurrentMapConfig;
+using Maps.Repositories.CurrentTilesTransform;
 using UniRx;
 using UnityEngine;
 

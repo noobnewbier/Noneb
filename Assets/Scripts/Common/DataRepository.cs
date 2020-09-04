@@ -23,7 +23,7 @@ namespace Common
         {
             //give the current value if there's any(including null)
             _subject = new ReplaySubject<T>(1);
-            _single = Observable.Throw<T>(new InvalidOperationException("Value is not set yet"));
+            _single = Observable.Throw<T>(new InvalidOperationException($"Value is not set yet for {GetType().Name}"));
         }
 
         public IObservable<T> GetObservableStream()

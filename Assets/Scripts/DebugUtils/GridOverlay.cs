@@ -1,24 +1,19 @@
 ﻿using System.Linq;
-using Maps.Repositories;
+using Maps.Repositories.CurrentMapConfig;
+using Maps.Repositories.CurrentMapTransform;
 using Maps.Services;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 using WorldConfigurations.Repositories;
 
 namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-
-        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
-
+        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
-        [SerializeField] private Transform mapTransform;
-
+        [SerializeField] private CurrentMapTransformRepositoryProvider mapTransformRepositoryProvider;
 
         private Vector3[] _vertices;
 
@@ -27,19 +22,19 @@ namespace DebugUtils
         {
             var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetObservableStream();
             var worldConfigObservable = currentWorldConfigRepositoryProvider.Provide().GetObservableStream();
-            var positionsObservable = tilesPositionServiceProvider.Provide().GetObservableStream(mapTransform.position.y);
+            var mapTransformObservable = mapTransformRepositoryProvider.Provide().GetObservableStream();
+            var positionsObservable =
+                mapTransformObservable.SelectMany(t => tilesPositionServiceProvider.Provide().GetObservableStream(t.position.y));
 
             mapConfigObservable.Zip(
                     worldConfigObservable,
                     positionsObservable,
-                    (mapConfig, worldConfig, positions) => new {mapConfig, worldConfig, positions}
+                    (mapConfig, worldConfig, positions) => (mapConfig, worldConfig, positions)
                 )
                 .Subscribe(
-                    pair =>
+                    tuple =>
                     {
-                        var mapConfig = pair.mapConfig;
-                        var worldConfig = pair.worldConfig;
-                        var positions = pair.positions;
+                        var (mapConfig, worldConfig, positions) = tuple;
 
                         _vertices = new Vector3[mapConfig.XSize * mapConfig.ZSize * 6];
 

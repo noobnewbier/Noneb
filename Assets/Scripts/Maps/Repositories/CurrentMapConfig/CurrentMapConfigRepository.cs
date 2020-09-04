@@ -2,7 +2,7 @@
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using UniRx;
 
-namespace Maps.Repositories
+namespace Maps.Repositories.CurrentMapConfig
 {
     public interface ICurrentMapConfigRepository
     {

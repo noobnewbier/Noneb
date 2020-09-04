@@ -1,4 +1,4 @@
-﻿using Maps.Repositories;
+﻿using Maps.Repositories.CurrentMapConfig;
 using Maps.Services;
 using UnityEngine;
 using UnityEngine.Serialization;

@@ -5,25 +5,19 @@ using Common.Loaders;
 using Common.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
-using Maps.Repositories;
-using Maps.Services;
+using Maps.Repositories.CurrentMapConfig;
+using Maps.Repositories.CurrentTilesTransform;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.GameObjects.Loaders
 {
-    public abstract class GameObjectLoader : MonoBehaviour, ILoader
+    public abstract class GameObjectLoader : ScriptableObject, ILoader
     {
         [SerializeField] private GameObjectLoadServiceProvider serviceProvider;
-
-        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
-        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
-
+        [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
         [SerializeField] private CurrentTilesTransformRepositoryProvider currentTilesTransformRepositoryProvider;
-
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         private ICurrentTilesTransformGetRepository _currentTilesTransformGetRepository;
         private IDisposable _disposable;

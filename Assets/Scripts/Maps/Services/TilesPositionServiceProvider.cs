@@ -1,5 +1,5 @@
 ﻿using Common.Providers;
-using Maps.Repositories;
+using Maps.Repositories.CurrentMapConfig;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;

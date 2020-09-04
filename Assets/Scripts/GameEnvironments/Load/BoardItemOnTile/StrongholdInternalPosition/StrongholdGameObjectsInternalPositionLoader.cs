@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common;
 using Common.Constants;
 using Common.Loaders;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
-using Maps.Services;
+using Maps.Repositories.CurrentTilesTransform;
 using Strongholds;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils;
 
 namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
 {
-    public class StrongholdGameObjectsInternalPositionLoader : MonoBehaviour, ILoader
+    [CreateAssetMenu(
+        fileName = nameof(StrongholdGameObjectsInternalPositionLoader),
+        menuName = ProjectMenuName.Loader + nameof(StrongholdGameObjectsInternalPositionLoader)
+    )]
+    public class StrongholdGameObjectsInternalPositionLoader : ScriptableObject, ILoader
     {
         [SerializeField] private SetupStrongholdGameObjectsInternalPositionServiceProvider serviceProvider;
         [SerializeField] private CurrentTilesTransformRepositoryProvider currentTilesTransformRepositoryProvider;
-
-        [FormerlySerializedAs("levelDataRepositoryProvider")] [SerializeField]
-        private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
+        [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
 
         private ISetupStrongholdGameObjectsInternalPositionService _setupStrongholdGameObjectsInternalPositionService;
         private ICurrentTilesTransformGetRepository _currentTilesTransformGetRepository;

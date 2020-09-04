@@ -1,4 +1,5 @@
-﻿using Common.Providers;
+﻿using System;
+using Common.Providers;
 using Constructs;
 using Strongholds;
 using Tiles.Data;
@@ -14,6 +15,20 @@ namespace GameEnvironments.Common.Data.LevelDatas
     /// </summary>
     public class LevelData
     {
+        private static readonly Lazy<LevelData> LazyEmpty = new Lazy<LevelData>(
+            () => new LevelData(
+                new TileData[0],
+                new GameObjectProvider[0],
+                new ConstructData[0],
+                new GameObjectProvider[0],
+                new UnitData[0],
+                new GameObjectProvider[0],
+                new StrongholdData[0],
+                new GameObjectProvider[0],
+                new GameObjectProvider[0]
+            )
+        );
+
         public LevelData(TileData[] tileDatas,
                          GameObjectProvider[] tileGameObjectProviders,
                          ConstructData[] constructDatas,
@@ -34,6 +49,8 @@ namespace GameEnvironments.Common.Data.LevelDatas
             StrongholdConstructGameObjectProviders = strongholdConstructGameObjectProviders;
             StrongholdDatas = strongholdDatas;
         }
+
+        public static LevelData Empty => LazyEmpty.Value;
 
         public TileData[] TileDatas { get; }
         public GameObjectProvider[] TileGameObjectProviders { get; }

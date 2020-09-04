@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityUtils.Constants;
 
 namespace Maps
@@ -6,8 +7,11 @@ namespace Maps
     [CreateAssetMenu(fileName = nameof(MapConfig), menuName = MenuName.Data + nameof(MapConfig))]
     public class MapConfig : ScriptableObject
     {
+        private static readonly Lazy<MapConfig> LazyEmpty = new Lazy<MapConfig>(() => Create(0, 0));
+
         [Range(1, 100)] [SerializeField] private int xSize;
         [Range(1, 100)] [SerializeField] private int zSize;
+        public static MapConfig Empty => LazyEmpty.Value;
 
         //todo: consider removing these two, they are just duplicates atm
         public int XSize => xSize;

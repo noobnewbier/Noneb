@@ -3,6 +3,6 @@
     public enum SaveType
     {
         Scriptable,
-        Preservation
+        Preservation //todo: remove preservation for saving and all related crap, they are obsolete 
     }
 }

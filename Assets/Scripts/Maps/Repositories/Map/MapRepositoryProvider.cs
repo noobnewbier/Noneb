@@ -1,9 +1,10 @@
 ﻿using Common.Providers;
+using Maps.Repositories.CurrentMapConfig;
 using Tiles.Holders.Repository;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Maps.Repositories
+namespace Maps.Repositories.Map
 {
     public class MapRepositoryProvider : MonoObjectProvider<IMapRepository>
     {

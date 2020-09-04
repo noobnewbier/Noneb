@@ -23,10 +23,10 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
         {
             if (coordinate == null)
             {
-                coordinateText.text = string.Empty;;
+                coordinateText.text = string.Empty;
                 return;
             }
-            
+
             coordinateText.text = coordinate.ToString();
         }
 

@@ -3,7 +3,7 @@ using GameEnvironments.Load.Tiles;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Maps.Services
+namespace Maps.Repositories.CurrentTilesTransform
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentTilesTransformRepositoryProvider),

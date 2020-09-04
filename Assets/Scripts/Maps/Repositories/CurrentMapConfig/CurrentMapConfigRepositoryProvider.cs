@@ -3,7 +3,7 @@ using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Maps.Repositories
+namespace Maps.Repositories.CurrentMapConfig
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentMapConfigRepositoryProvider),

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
+using Maps.Repositories.CurrentMapConfig;
 using Tiles.Holders.Repository;
 using UniRx;
 
-namespace Maps.Repositories
+namespace Maps.Repositories.Map
 {
     public interface IMapRepository
     {
-        IObservable<Map> GetObservableStream();
-        IObservable<Map> GetMostRecent();
+        IObservable<Maps.Map> GetObservableStream();
+        IObservable<Maps.Map> GetMostRecent();
     }
 
     public class MapRepository : IMapRepository
@@ -22,22 +23,22 @@ namespace Maps.Repositories
             _tileHoldersRepository = tileHoldersRepository;
         }
 
-        public IObservable<Map> GetObservableStream()
+        public IObservable<Maps.Map> GetObservableStream()
         {
             // _tileHoldersRepository.GetAllFlattenSingle().Select(t => t.Value).ToList()
             return _currentMapConfigRepository.GetObservableStream()
                 .ZipLatest(_tileHoldersRepository.GetAllFlattenSingle(), (config, tileHolders) => (config, tileHolders))
                 .Where(tuple => tuple.config != null)
-                .Select(tuple => new Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
+                .Select(tuple => new Maps.Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
         }
 
-        public IObservable<Map> GetMostRecent()
+        public IObservable<Maps.Map> GetMostRecent()
         {
             return _currentMapConfigRepository.GetMostRecent()
                 .Where(m => m != null)
                 .ZipLatest(_tileHoldersRepository.GetAllFlattenSingle(), (config, tileHolders) => (config, tileHolders))
                 .Where(tuple => tuple.config != null)
-                .Select(tuple => new Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
+                .Select(tuple => new Maps.Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
         }
     }
 }

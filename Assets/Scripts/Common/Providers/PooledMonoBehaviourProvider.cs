@@ -5,10 +5,10 @@ using UnityUtils;
 namespace Common.Providers
 {
     public class PooledMonoBehaviourProvider<T> : ScriptableObjectProvider<(T component, GameObject gameObject)>,
-                                               IGameObjectAndComponentProvider<T> where T : PooledMonoBehaviour
+                                                  IGameObjectAndComponentProvider<T> where T : PooledMonoBehaviour
     {
         [SerializeField] private T prefab;
-        
+
         public override (T component, GameObject gameObject) Provide()
         {
             var go = prefab.GetPooledInstance();
@@ -21,10 +21,10 @@ namespace Common.Providers
             var go = prefab.GetPooledInstance();
             go.transform.SetParent(parentTransform, instantiateInWorldSpace);
             var component = go.GetComponent<T>();
-            
+
             return (component, go);
         }
-        
+
         private void OnValidate()
         {
             if (prefab.GetComponent<T>() == null)

@@ -6,7 +6,7 @@ namespace Common
     public interface IDataRepository<T> : IDataGetRepository<T>, IDataSetRepository<T> where T : class
     {
     }
-    
+
     public interface IDataGetRepository<out T> where T : class
     {
         IObservable<T> GetObservableStream();

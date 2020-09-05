@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
-using UniRx;
 using GameEnvironments.Common.Data;
 using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using UniRx;
 
 namespace EnvironmentSelection
 {
@@ -35,6 +35,11 @@ namespace EnvironmentSelection
         public ILiveData<GameEnvironment> CurrentlyInspectingGameEnvironmentLiveData { get; }
         public ILiveData<IEnumerable<GameEnvironment>> AvailableGameEnvironmentLiveData { get; }
 
+        public void Dispose()
+        {
+            _disposable?.Dispose();
+        }
+
         public void InspectGameEnvironment(GameEnvironment environment)
         {
             CurrentlyInspectingGameEnvironmentLiveData.PostValue(environment);
@@ -43,11 +48,6 @@ namespace EnvironmentSelection
         public void SelectCurrentlyInspectedGameEnvironment()
         {
             _currentGameEnvironmentRepository.Set(CurrentlyInspectingGameEnvironmentLiveData.Value);
-        }
-
-        public void Dispose()
-        {
-            _disposable?.Dispose();
         }
     }
 }

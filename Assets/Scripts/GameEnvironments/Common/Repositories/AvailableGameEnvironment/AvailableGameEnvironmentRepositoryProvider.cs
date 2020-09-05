@@ -19,18 +19,18 @@ namespace GameEnvironments.Common.Repositories.AvailableGameEnvironment
 
         public override IAvailableGameEnvironmentRepository Provide()
         {
-            if (_cache ==null)
+            if (_cache == null)
             {
                 CreateCache();
             }
-            
+
             return _cache;
         }
 
         private void CreateCache()
         {
             _cache = new AvailableGameEnvironmentRepository();
-            
+
             _cache.Set(gameEnvironmentScriptables.Select(s => s.ToGameEnvironment()));
         }
     }

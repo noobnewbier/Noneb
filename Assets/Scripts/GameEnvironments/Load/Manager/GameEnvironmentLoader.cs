@@ -72,28 +72,30 @@ namespace GameEnvironments.Load.Manager
         private IObservable<Unit> LoadBoardItemOnTileHolders()
         {
             return Observable.Defer(
-                () => unitLoader.LoadObservable()
-                    .Zip(
-                        constructLoader.LoadObservable(),
-                        strongholdLoader.LoadObservable(),
-                        delegate { return Unit.Default; }
-                    )
-            ).Single();
+                    () => unitLoader.LoadObservable()
+                        .Zip(
+                            constructLoader.LoadObservable(),
+                            strongholdLoader.LoadObservable(),
+                            delegate { return Unit.Default; }
+                        )
+                )
+                .Single();
         }
 
         private IObservable<Unit> LoadGameObjects()
         {
             return Observable.Defer(
-                () => tileGameObjectLoader.LoadObservable()
-                    .Zip(
-                        unitGameObjectLoader.LoadObservable(),
-                        constructGameObjectLoader.LoadObservable(),
-                        strongholdUnitGameObjectLoader.LoadObservable(),
-                        strongholdConstructGameObjectLoader.LoadObservable(),
-                        strongholdGameObjectsInternalPositionLoader.LoadObservable(),
-                        delegate { return Unit.Default; }
-                    )
-            ).Single();
+                    () => tileGameObjectLoader.LoadObservable()
+                        .Zip(
+                            unitGameObjectLoader.LoadObservable(),
+                            constructGameObjectLoader.LoadObservable(),
+                            strongholdUnitGameObjectLoader.LoadObservable(),
+                            strongholdConstructGameObjectLoader.LoadObservable(),
+                            strongholdGameObjectsInternalPositionLoader.LoadObservable(),
+                            delegate { return Unit.Default; }
+                        )
+                )
+                .Single();
         }
     }
 }

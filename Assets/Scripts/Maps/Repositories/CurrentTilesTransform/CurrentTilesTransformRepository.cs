@@ -49,7 +49,7 @@ namespace Maps.Repositories.CurrentTilesTransform
 
         public IObservable<IList<Transform>> GetObservableStream()
         {
-            return _subject.Where(t => t != null);
+            return _subject;
         }
 
         public void Set(IObjectProvider<IList<Transform>> transformProvider)

@@ -3,6 +3,10 @@ using GameEnvironments.Common.Data;
 
 namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
 {
+    public interface ICurrentGameEnvironmentRepository : ICurrentGameEnvironmentGetRepository, ICurrentGameEnvironmentSetRepository
+    {
+    }
+
     public interface ICurrentGameEnvironmentGetRepository : IDataGetRepository<GameEnvironment>
     {
     }
@@ -12,8 +16,7 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
     }
 
     public class CurrentGameEnvironmentRepository : DataRepository<GameEnvironment>,
-                                                    ICurrentGameEnvironmentGetRepository,
-                                                    ICurrentGameEnvironmentSetRepository
+                                                    ICurrentGameEnvironmentRepository
     {
     }
 }

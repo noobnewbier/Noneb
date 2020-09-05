@@ -3,7 +3,11 @@ using UnityEngine;
 
 namespace Maps.Repositories.CurrentMapTransform
 {
-    public class CurrentMapTransformRepository : DataRepository<Transform>
+    public interface ICurrentMapTransformGetRepository : IDataGetRepository<Transform>
+    {
+    }
+    
+    public class CurrentMapTransformRepository : DataRepository<Transform>, ICurrentMapTransformGetRepository
     {
     }
 }

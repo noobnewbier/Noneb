@@ -55,10 +55,10 @@ namespace InGameEditor.WorldSpace.GridOverlay
             //delete cells if there too many of them
             for (var i = requiredCellsCount; i < currentCellsCount; i++)
             {
-                var toDestroy = _cells.Last();
-                _cells.Remove(toDestroy);
+                var toRemove = _cells.Last();
+                _cells.Remove(toRemove);
 
-                toDestroy.OnReceivedDestructionInstruction();
+                toRemove.OnReceivedDestructionInstruction();
             }
 
             //create cells if there are not enough

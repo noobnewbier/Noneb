@@ -19,7 +19,7 @@ namespace GameEnvironments.Common.Data
                     MapConfig.Empty,
                     WorldConfig.Empty,
                     LevelData.Empty,
-                    string.Empty
+                    "EMPTY_ENVIRONMENT"
                 )
         );
 

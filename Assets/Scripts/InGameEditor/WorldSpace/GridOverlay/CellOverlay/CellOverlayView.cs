@@ -2,11 +2,12 @@
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityUtils;
 using WorldConfigurations;
 
 namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
 {
-    public class CellOverlayView : MonoBehaviour
+    public class CellOverlayView : PooledMonoBehaviour
     {
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private TextMeshPro coordinateText;
@@ -62,7 +63,7 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
 
         private void SelfDestroy()
         {
-            Destroy(gameObject);
+            ReturnToPool();
         }
 
         private void OnDisable()

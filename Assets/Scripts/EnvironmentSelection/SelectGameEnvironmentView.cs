@@ -27,13 +27,12 @@ namespace EnvironmentSelection
                 _viewModel.CurrentlyInspectingGameEnvironmentLiveData.Subscribe(ShowSelectedGameEnvironment),
                 _viewModel.AvailableGameEnvironmentLiveData.Subscribe(ShowAvailableGameEnvironmentList)
             };
-
-            _viewModel.RefreshAvailableGameEnvironmentList();
         }
 
         private void OnDisable()
         {
             _compositeDisposable?.Dispose();
+            _viewModel.Dispose();
         }
 
         private void ShowSelectedGameEnvironment(GameEnvironment gameEnvironment)

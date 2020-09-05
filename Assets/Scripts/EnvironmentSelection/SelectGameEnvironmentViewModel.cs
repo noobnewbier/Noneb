@@ -1,32 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
+using UniRx;
 using GameEnvironments.Common.Data;
 using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 
 namespace EnvironmentSelection
 {
-    public class SelectGameEnvironmentViewModel
+    public class SelectGameEnvironmentViewModel : IDisposable
     {
-        private readonly IAvailableGameEnvironmentRepository _availableGameEnvironmentRepository;
-        private readonly ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
+        private readonly ICurrentGameEnvironmentRepository _currentGameEnvironmentRepository;
+        private readonly IDisposable _disposable;
 
-        public SelectGameEnvironmentViewModel(IAvailableGameEnvironmentRepository availableGameEnvironmentRepository,
-                                              ICurrentGameEnvironmentSetRepository gameEnvironmentSetRepository)
+        public SelectGameEnvironmentViewModel(IAvailableGameEnvironmentGetRepository availableGameEnvironmentRepository,
+                                              ICurrentGameEnvironmentRepository currentGameEnvironmentRepository)
         {
-            _availableGameEnvironmentRepository = availableGameEnvironmentRepository;
-            _gameEnvironmentSetRepository = gameEnvironmentSetRepository;
+            _currentGameEnvironmentRepository = currentGameEnvironmentRepository;
             CurrentlyInspectingGameEnvironmentLiveData = new LiveData<GameEnvironment>();
             AvailableGameEnvironmentLiveData = new LiveData<IEnumerable<GameEnvironment>>();
+
+            _disposable = new CompositeDisposable
+            {
+                availableGameEnvironmentRepository
+                    .GetObservableStream()
+                    .Subscribe(AvailableGameEnvironmentLiveData.PostValue),
+
+                _currentGameEnvironmentRepository
+                    .GetObservableStream()
+                    .Subscribe(CurrentlyInspectingGameEnvironmentLiveData.PostValue)
+            };
         }
 
         public ILiveData<GameEnvironment> CurrentlyInspectingGameEnvironmentLiveData { get; }
         public ILiveData<IEnumerable<GameEnvironment>> AvailableGameEnvironmentLiveData { get; }
-
-        public void RefreshAvailableGameEnvironmentList()
-        {
-            AvailableGameEnvironmentLiveData.PostValue(_availableGameEnvironmentRepository.GameEnvironments);
-        }
 
         public void InspectGameEnvironment(GameEnvironment environment)
         {
@@ -35,7 +42,12 @@ namespace EnvironmentSelection
 
         public void SelectCurrentlyInspectedGameEnvironment()
         {
-            _gameEnvironmentSetRepository.Set(CurrentlyInspectingGameEnvironmentLiveData.Value);
+            _currentGameEnvironmentRepository.Set(CurrentlyInspectingGameEnvironmentLiveData.Value);
+        }
+
+        public void Dispose()
+        {
+            _disposable?.Dispose();
         }
     }
 }

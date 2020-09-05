@@ -13,7 +13,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.IndicatorControllers
         {
             if (tileHolder == null)
             {
-                gameObject.SetActive(false);
+                SetDisabled();
                 return;
             }
 

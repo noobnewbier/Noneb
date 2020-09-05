@@ -121,10 +121,10 @@ namespace InGameEditor.Cameras
         {
             var (minWidth, distanceToTop, distanceToBottom) =
                 _cameraSizeInViewService.GetViewDistanceToFrustumOnPlaneInWorldSpace(CameraLiveData.Value, _mapTransform);
-            var mapMaxHeight = tilesPositions.Max(p => p.z);
-            var mapMinHeight = tilesPositions.Min(p => p.z);
-            var mapMaxWidth = tilesPositions.Max(p => p.x);
-            var mapMinWidth = tilesPositions.Min(p => p.x);
+            var mapMaxHeight = tilesPositions.DefaultIfEmpty().Max(p => p.z);
+            var mapMinHeight = tilesPositions.DefaultIfEmpty().Min(p => p.z);
+            var mapMaxWidth = tilesPositions.DefaultIfEmpty().Max(p => p.x);
+            var mapMinWidth = tilesPositions.DefaultIfEmpty().Min(p => p.x);
 
             #region bounds
 

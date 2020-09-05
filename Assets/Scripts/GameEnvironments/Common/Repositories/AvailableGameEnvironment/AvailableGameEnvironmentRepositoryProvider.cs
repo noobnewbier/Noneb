@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Common.Providers;
 using GameEnvironments.Common.Data;
 using UnityEngine;
@@ -18,7 +19,19 @@ namespace GameEnvironments.Common.Repositories.AvailableGameEnvironment
 
         public override IAvailableGameEnvironmentRepository Provide()
         {
-            return _cache ?? (_cache = new AvailableGameEnvironmentRepository(gameEnvironmentScriptables));
+            if (_cache ==null)
+            {
+                CreateCache();
+            }
+            
+            return _cache;
+        }
+
+        private void CreateCache()
+        {
+            _cache = new AvailableGameEnvironmentRepository();
+            
+            _cache.Set(gameEnvironmentScriptables.Select(s => s.ToGameEnvironment()));
         }
     }
 }

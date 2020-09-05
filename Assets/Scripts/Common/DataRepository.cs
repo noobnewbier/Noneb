@@ -3,6 +3,10 @@ using UniRx;
 
 namespace Common
 {
+    public interface IDataRepository<T> : IDataGetRepository<T>, IDataSetRepository<T> where T : class
+    {
+    }
+    
     public interface IDataGetRepository<out T> where T : class
     {
         IObservable<T> GetObservableStream();
@@ -14,7 +18,7 @@ namespace Common
         void Set(T value);
     }
 
-    public abstract class DataRepository<T> : IDataGetRepository<T>, IDataSetRepository<T> where T : class
+    public abstract class DataRepository<T> : IDataRepository<T> where T : class
     {
         private readonly ReplaySubject<T> _subject;
         private IObservable<T> _single;

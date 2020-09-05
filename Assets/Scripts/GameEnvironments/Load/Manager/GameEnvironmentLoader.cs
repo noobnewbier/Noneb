@@ -14,7 +14,6 @@ namespace GameEnvironments.Load.Manager
         [SerializeField] private CurrentTilesTransformSetter currentTilesTransformSetter;
         [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
 
-
         [SerializeField] private MapLoader mapLoader;
 
         [SerializeField] private UnitLoader unitLoader;
@@ -48,7 +47,8 @@ namespace GameEnvironments.Load.Manager
             return LoadPreliminaries()
                 .Concat(LoadMap())
                 .Concat(LoadBoardItemOnTileHolders())
-                .Concat(LoadGameObjects());
+                .Concat(LoadGameObjects())
+                .Last();
         }
 
         private void OnDisable()
@@ -61,12 +61,12 @@ namespace GameEnvironments.Load.Manager
             currentTilesTransformSetter.Set();
             currentMapTransformSetter.Set();
 
-            return Observable.ReturnUnit();
+            return Observable.ReturnUnit().Single();
         }
 
         private IObservable<Unit> LoadMap()
         {
-            return Observable.Defer(() => mapLoader.LoadObservable());
+            return Observable.Defer(() => mapLoader.LoadObservable()).Single();
         }
 
         private IObservable<Unit> LoadBoardItemOnTileHolders()
@@ -78,7 +78,7 @@ namespace GameEnvironments.Load.Manager
                         strongholdLoader.LoadObservable(),
                         delegate { return Unit.Default; }
                     )
-            );
+            ).Single();
         }
 
         private IObservable<Unit> LoadGameObjects()
@@ -93,7 +93,7 @@ namespace GameEnvironments.Load.Manager
                         strongholdGameObjectsInternalPositionLoader.LoadObservable(),
                         delegate { return Unit.Default; }
                     )
-            );
+            ).Single();
         }
     }
 }

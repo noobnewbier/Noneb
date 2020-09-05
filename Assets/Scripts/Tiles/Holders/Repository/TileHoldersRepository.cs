@@ -30,7 +30,7 @@ namespace Tiles.Holders.Repository
             _tileHoldersAndConfigSingle = Observable.Throw<(TileHolder[,], MapConfig)>(new InvalidOperationException("Value is not set yet"));
 
             _disposable = currentMapConfigRepository.GetObservableStream()
-                .CombineLatest(currentTilesTransformGetRepository.GetObservableStream(), (config, tileTransforms) => (config, tileTransforms))
+                .ZipLatest(currentTilesTransformGetRepository.GetObservableStream(), (config, tileTransforms) => (config, tileTransforms))
                 .Subscribe(
                     tuple =>
                     {
@@ -75,11 +75,6 @@ namespace Tiles.Holders.Repository
                     }
                 );
         }
-
-        // private bool IsTupleValid((TileHolder[,] tileHolders, MapConfig config) tuple)
-        // {
-        //     return tuple.tileHolders != null && tuple.config != null;
-        // }
 
         public void Dispose()
         {

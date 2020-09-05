@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3a252afa38447b8efd2040076126d1, type: 3}
   m_Name: TileHolderProvider
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3474967027299988907, guid: 73690a299f19bce4a8a23a2800b22660, type: 3}
+  prefab: {fileID: 6181830262758183419, guid: 73690a299f19bce4a8a23a2800b22660, type: 3}

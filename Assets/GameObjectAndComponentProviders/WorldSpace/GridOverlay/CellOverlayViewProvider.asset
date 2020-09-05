@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde7502c296f4ae99482335eb28d69b6, type: 3}
   m_Name: CellOverlayViewProvider
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5220666640312208312, guid: 530de296ea114364a8be0bcb77332452, type: 3}
+  prefab: {fileID: 7639825712654814385, guid: 530de296ea114364a8be0bcb77332452, type: 3}

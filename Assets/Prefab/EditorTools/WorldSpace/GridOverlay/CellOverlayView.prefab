@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9091086e7e64f58be0184c7363b016e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolSize: 500
   lineRenderer: {fileID: 1605225983590786398}
   coordinateText: {fileID: 7578905733666234854}
 --- !u!1 &7710530372433492831

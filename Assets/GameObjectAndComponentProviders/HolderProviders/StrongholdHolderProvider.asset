@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30c11a929244e479c6180107af7d36e, type: 3}
   m_Name: StrongholdHolderProvider
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2129218165278432908, guid: b19cf9e59f319b449ab7585fbb0a0731, type: 3}
+  prefab: {fileID: 1810535035449553683, guid: b19cf9e59f319b449ab7585fbb0a0731, type: 3}

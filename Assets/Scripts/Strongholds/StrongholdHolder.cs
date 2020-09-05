@@ -1,10 +1,11 @@
 ﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
+using UnityUtils;
 
 namespace Strongholds
 {
-    public class StrongholdHolder : MonoBehaviour, IBoardItemHolder<Stronghold>
+    public class StrongholdHolder : PooledMonoBehaviour, IBoardItemHolder<Stronghold>
     {
         public Stronghold Value { get; private set; }
 

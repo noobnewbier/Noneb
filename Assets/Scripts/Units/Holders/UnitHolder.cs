@@ -1,10 +1,11 @@
 ﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
+using UnityUtils;
 
 namespace Units.Holders
 {
-    public class UnitHolder : MonoBehaviour, IBoardItemHolder<Unit>
+    public class UnitHolder : PooledMonoBehaviour, IBoardItemHolder<Unit>
     {
         public Unit Value { get; private set; }
 

@@ -5,7 +5,7 @@ using UnityUtils.Constants;
 namespace Strongholds
 {
     [CreateAssetMenu(menuName = MenuName.Providers + nameof(StrongholdHolder), fileName = nameof(StrongholdHolderProvider))]
-    public class StrongholdHolderProvider : ScriptableGameObjectAndComponentProvider<StrongholdHolder>
+    public class StrongholdHolderProvider : PooledMonoBehaviourProvider<StrongholdHolder>
     {
     }
 }

@@ -1,10 +1,11 @@
 ﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
+using UnityUtils;
 
 namespace Tiles.Holders
 {
-    public class TileHolder : MonoBehaviour, IBoardItemHolder<Tile>
+    public class TileHolder : PooledMonoBehaviour, IBoardItemHolder<Tile>
     {
         //serialize to show stuffs in the inspector.
         [SerializeField] private Tile tile;

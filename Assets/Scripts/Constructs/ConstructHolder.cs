@@ -1,10 +1,11 @@
 ﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
+using UnityUtils;
 
 namespace Constructs
 {
-    public class ConstructHolder : MonoBehaviour, IBoardItemHolder<Construct>
+    public class ConstructHolder : PooledMonoBehaviour, IBoardItemHolder<Construct>
     {
         public Construct Value { get; private set; }
 

@@ -5,7 +5,7 @@ using UnityUtils.Constants;
 namespace Units.Holders
 {
     [CreateAssetMenu(menuName = MenuName.Providers + "UnitHolder", fileName = nameof(UnitHolderProvider))]
-    public class UnitHolderProvider : ScriptableGameObjectAndComponentProvider<UnitHolder>
+    public class UnitHolderProvider : PooledMonoBehaviourProvider<UnitHolder>
     {
     }
 }

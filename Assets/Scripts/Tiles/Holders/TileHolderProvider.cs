@@ -5,7 +5,7 @@ using UnityUtils.Constants;
 namespace Tiles.Holders
 {
     [CreateAssetMenu(menuName = MenuName.Providers + "TileHolder", fileName = nameof(TileHolderProvider))]
-    public class TileHolderProvider : ScriptableGameObjectAndComponentProvider<TileHolder>
+    public class TileHolderProvider : PooledMonoBehaviourProvider<TileHolder>
     {
     }
 }

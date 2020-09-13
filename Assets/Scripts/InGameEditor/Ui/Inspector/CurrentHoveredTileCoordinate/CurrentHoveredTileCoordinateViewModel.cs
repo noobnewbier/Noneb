@@ -1,6 +1,6 @@
 ﻿using System;
+using Common.Ui.Repository.CurrentHoveredTileHolder;
 using Experiment.CrossPlatformLiveData;
-using InGameEditor.Repositories.InGameEditorCurrentHoveredTileHolder;
 using Maps;
 using UniRx;
 
@@ -10,7 +10,7 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
     {
         private readonly IDisposable _disposable;
 
-        public CurrentHoveredTileCoordinateViewModel(IInGameEditorCurrentHoveredTileHolderGetRepository repository)
+        public CurrentHoveredTileCoordinateViewModel(ICurrentHoveredTileHolderGetRepository repository)
         {
             CoordinateLiveData = new LiveData<Coordinate?>();
 

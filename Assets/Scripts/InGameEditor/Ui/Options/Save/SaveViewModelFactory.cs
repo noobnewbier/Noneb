@@ -2,7 +2,6 @@
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save.EditorOnly;
 using InGameEditor.Services.InGameEditorMessage;
-using ObsoleteJsonRelated;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
@@ -12,9 +11,6 @@ namespace InGameEditor.Ui.Options.Save
     [CreateAssetMenu(menuName = MenuName.Factory + nameof(SaveViewModel), fileName = nameof(SaveViewModelFactory))]
     public class SaveViewModelFactory : ScriptableObject
     {
-        [FormerlySerializedAs("saveEnvironmentAsPreservationServiceProvider")] [SerializeField]
-        private SaveEnvironmentAsJsonServiceProvider saveEnvironmentAsJsonServiceProvider;
-
         [SerializeField] private SaveEnvironmentAsScriptableServiceProvider saveEnvironmentAsScriptableServiceProvider;
 
         [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
@@ -30,11 +26,7 @@ namespace InGameEditor.Ui.Options.Save
                         messageServiceProvider.Provide()
                     );
                 case SaveType.Preservation:
-                    return new SaveViewModel(
-                        saveEnvironmentAsJsonServiceProvider.Provide(),
-                        getRepository,
-                        messageServiceProvider.Provide()
-                    );
+                    throw new InvalidOperationException($"{nameof(SaveType.Preservation)} is now obsolete");
                 default:
                     throw new ArgumentOutOfRangeException();
             }

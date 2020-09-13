@@ -18,7 +18,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
     public abstract class BoardItemOnTileLoader<THolder, TBoardItemOnTile, TData> : ScriptableObject, ILoader
         where THolder : Component, IBoardItemHolder<TBoardItemOnTile>
         where TBoardItemOnTile : BoardItem, IOnTile
-        where TData : IBoardItemData
+        where TData : BoardItemData
     {
         [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
         [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;

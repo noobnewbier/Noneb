@@ -1,25 +1,18 @@
 ﻿using InGameEditor.Data.Availables;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityUtils.Constants;
 
 namespace InGameEditor.Data
 {
-    [CreateAssetMenu(fileName = nameof(EditorPalette), menuName = "Data/InGameEditor/EditorPalette")]
+    [CreateAssetMenu(fileName = nameof(EditorPalette), menuName = MenuName.Data + "/InGameEditor/EditorPalette")]
     public class EditorPalette : ScriptableObject
     {
-        [FormerlySerializedAs("availableTileData")] [SerializeField]
-        private AvailableTileDatas availableTileDatas;
-
+        [SerializeField] private AvailableTileDatas availableTileDatas;
         [SerializeField] private AvailableGameObjectProviders availableTileGameObjectProviders;
-
-        [FormerlySerializedAs("availableConstructData")] [SerializeField]
-        private AvailableConstructDatas availableConstructDatas;
-
+        [SerializeField] private AvailableConstructDatas availableConstructDatas;
         [SerializeField] private AvailableGameObjectProviders availableConstructGameObjectProviders;
-
-        [FormerlySerializedAs("availableUnitData")] [SerializeField]
-        private AvailableUnitDatas availableUnitDatas;
-
+        [SerializeField] private AvailableUnitDatas availableUnitDatas;
         [SerializeField] private AvailableGameObjectProviders availableUnitGameObjectProviders;
 
         public AvailableTileDatas AvailableTileDatas => availableTileDatas;

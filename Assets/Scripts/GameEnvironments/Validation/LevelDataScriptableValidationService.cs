@@ -74,7 +74,7 @@ namespace GameEnvironments.Validation
         }
 
         private bool DataHasCorrespondingGameObjectProvider<T>(IReadOnlyList<T> boardItemDatas,
-                                                               IReadOnlyList<GameObjectProvider> gameObjectProviders) where T : IBoardItemData
+                                                               IReadOnlyList<GameObjectProvider> gameObjectProviders) where T : BoardItemData
         {
             // ReSharper disable once LoopCanBeConvertedToQuery : for readability
             for (var i = 0; i < boardItemDatas.Count; i++)

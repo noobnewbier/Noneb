@@ -1,6 +1,6 @@
 ﻿using System;
+using Common.Ui.Repository.CurrentSelectedTileHolder;
 using Experiment.CrossPlatformLiveData;
-using InGameEditor.Repositories.InGameEditorCurrentSelectedTileHolder;
 using Tiles.Holders;
 using UniRx;
 
@@ -10,7 +10,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
     {
         private readonly IDisposable _disposable;
 
-        public SelectedTileIndicatorViewModel(IInGameEditorCurrentSelectedTileHolderGetRepository selectedTileHolderGetRepository)
+        public SelectedTileIndicatorViewModel(ICurrentSelectedTileHolderGetRepository selectedTileHolderGetRepository)
         {
             CurrentlySelectedTileHolderLiveData = new LiveData<TileHolder>();
 

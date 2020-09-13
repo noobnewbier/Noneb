@@ -6,7 +6,7 @@ namespace Common.BoardItems
     {
     }
 
-    public abstract class BoardItem<TData> : BoardItem where TData : IBoardItemData
+    public abstract class BoardItem<TData> : BoardItem where TData : BoardItemData
     {
         protected BoardItem(TData data, Coordinate coordinate)
         {

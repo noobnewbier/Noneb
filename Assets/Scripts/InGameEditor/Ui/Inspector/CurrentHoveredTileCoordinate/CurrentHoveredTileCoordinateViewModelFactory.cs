@@ -1,4 +1,4 @@
-﻿using InGameEditor.Repositories.InGameEditorCurrentHoveredTileHolder;
+﻿using Common.Ui.Repository.CurrentHoveredTileHolder;
 using UnityEngine;
 using UnityUtils.Constants;
 
@@ -10,7 +10,7 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
     )]
     public class CurrentHoveredTileCoordinateViewModelFactory : ScriptableObject
     {
-        [SerializeField] private InGameEditorCurrentHoveredTileHolderRepositoryProvider repositoryProvider;
+        [SerializeField] private CurrentHoveredTileHolderRepositoryProvider repositoryProvider;
 
         public CurrentHoveredTileCoordinateViewModel Create()
         {

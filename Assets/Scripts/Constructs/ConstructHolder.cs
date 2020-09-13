@@ -24,7 +24,7 @@ namespace Constructs
             var style = new GUIStyle {normal = {textColor = Color.red}};
             Handles.Label(
                 transform.position,
-                $"{Value.Data.ConstructName}",
+                $"{Value.Data.DataName}",
                 style
             );
         }

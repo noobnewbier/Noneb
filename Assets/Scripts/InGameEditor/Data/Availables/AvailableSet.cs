@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Common.BoardItems;
+using UnityEngine;
 
 namespace InGameEditor.Data.Availables
 {

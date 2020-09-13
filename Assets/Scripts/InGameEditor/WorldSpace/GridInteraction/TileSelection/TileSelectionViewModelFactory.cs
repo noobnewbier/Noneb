@@ -1,6 +1,6 @@
-﻿using InGameEditor.Repositories.InGameEditorCamera;
-using InGameEditor.Repositories.InGameEditorCurrentHoveredTileHolder;
-using InGameEditor.Repositories.InGameEditorCurrentSelectedTileHolder;
+﻿using Common.Ui.Repository.CurrentHoveredTileHolder;
+using Common.Ui.Repository.CurrentSelectedTileHolder;
+using InGameEditor.Repositories.InGameEditorCamera;
 using Tiles.Holders.Repository;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -14,10 +14,10 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
     {
         [SerializeField] private TileHoldersRepositoryProvider tileHoldersRepositoryProvider;
         [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
-        [SerializeField] private InGameEditorCurrentSelectedTileHolderRepositoryProvider currentSelectedTileHolderRepositoryProvider;
+        [SerializeField] private CurrentSelectedTileHolderRepositoryProvider currentSelectedTileHolderRepositoryProvider;
 
         [FormerlySerializedAs("currentlyHoveredTileHolderRepositoryProvider")] [SerializeField]
-        private InGameEditorCurrentHoveredTileHolderRepositoryProvider currentHoveredTileHolderRepositoryProvider;
+        private CurrentHoveredTileHolderRepositoryProvider currentHoveredTileHolderRepositoryProvider;
 
         [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
 

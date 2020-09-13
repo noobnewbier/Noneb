@@ -1,5 +1,5 @@
-﻿using InGameEditor.Repositories.InGameEditorCurrentHoveredTileHolder;
-using InGameEditor.Repositories.InGameEditorCurrentSelectedTileHolder;
+﻿using Common.Ui.Repository.CurrentHoveredTileHolder;
+using Common.Ui.Repository.CurrentSelectedTileHolder;
 using UnityEngine;
 using UnityUtils.Constants;
 
@@ -8,8 +8,8 @@ namespace InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
     [CreateAssetMenu(fileName = nameof(HoveredTileIndicatorViewModelFactory), menuName = MenuName.Factory + nameof(HoveredTileIndicatorViewModel))]
     public class HoveredTileIndicatorViewModelFactory : ScriptableObject
     {
-        [SerializeField] private InGameEditorCurrentHoveredTileHolderRepositoryProvider hoveredTileHolderRepositoryProvider;
-        [SerializeField] private InGameEditorCurrentSelectedTileHolderRepositoryProvider selectedTileHolderRepositoryProvider;
+        [SerializeField] private CurrentHoveredTileHolderRepositoryProvider hoveredTileHolderRepositoryProvider;
+        [SerializeField] private CurrentSelectedTileHolderRepositoryProvider selectedTileHolderRepositoryProvider;
 
 
         public HoveredTileIndicatorViewModel Create()

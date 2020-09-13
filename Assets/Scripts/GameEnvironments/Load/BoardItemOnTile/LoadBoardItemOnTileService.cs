@@ -13,7 +13,7 @@ namespace GameEnvironments.Load.BoardItemOnTile
     public interface ILoadBoardItemOnTileService<THolder, in TBoardItem, in TBoardItemData>
         where THolder : Component, IBoardItemHolder<TBoardItem> // THolder is a component and a BoardItemHolder that holds TBoardItem
         where TBoardItem : BoardItem, IOnTile // While TBoardItem, is a BoardItem that is on a tile
-        where TBoardItemData : IBoardItemData // and uses IBoardItemData to initialize itself
+        where TBoardItemData : BoardItemData // and uses IBoardItemData to initialize itself
     {
         void Load(IReadOnlyList<TBoardItemData> boardItemDatas,
                   IList<Transform> tilesTransform,
@@ -25,7 +25,7 @@ namespace GameEnvironments.Load.BoardItemOnTile
     public class LoadBoardItemOnTileService<THolder, TBoardItem, TBoardItemData> : ILoadBoardItemOnTileService<THolder, TBoardItem, TBoardItemData>
         where THolder : Component, IBoardItemHolder<TBoardItem>
         where TBoardItem : BoardItem, IOnTile
-        where TBoardItemData : IBoardItemData
+        where TBoardItemData : BoardItemData
     {
         private readonly IGetCoordinateService _getCoordinateService;
         private readonly IFactory<TBoardItemData, Coordinate, TBoardItem> _factory;

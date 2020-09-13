@@ -1,7 +1,7 @@
 ﻿using System;
+using Common.Ui.Repository.CurrentHoveredTileHolder;
+using Common.Ui.Repository.CurrentSelectedTileHolder;
 using Experiment.CrossPlatformLiveData;
-using InGameEditor.Repositories.InGameEditorCurrentHoveredTileHolder;
-using InGameEditor.Repositories.InGameEditorCurrentSelectedTileHolder;
 using Tiles.Holders;
 using UniRx;
 
@@ -11,8 +11,8 @@ namespace InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
     {
         private readonly IDisposable _disposable;
 
-        public HoveredTileIndicatorViewModel(IInGameEditorCurrentHoveredTileHolderGetRepository hoveredTileHolderGetRepository,
-                                             IInGameEditorCurrentSelectedTileHolderGetRepository selectedTileHolderGetRepository)
+        public HoveredTileIndicatorViewModel(ICurrentHoveredTileHolderGetRepository hoveredTileHolderGetRepository,
+                                             ICurrentSelectedTileHolderGetRepository selectedTileHolderGetRepository)
         {
             CurrentlyHoveredTileHolderLiveData = new LiveData<TileHolder>();
             CurrentlySelectedTileHolderLiveData = new LiveData<TileHolder>();

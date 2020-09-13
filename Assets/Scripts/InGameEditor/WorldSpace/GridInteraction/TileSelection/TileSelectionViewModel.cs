@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Ui.Repository.CurrentHoveredTileHolder;
+using Common.Ui.Repository.CurrentSelectedTileHolder;
 using InGameEditor.Repositories.InGameEditorCamera;
-using InGameEditor.Repositories.InGameEditorCurrentHoveredTileHolder;
-using InGameEditor.Repositories.InGameEditorCurrentSelectedTileHolder;
 using Tiles.Holders;
 using Tiles.Holders.Repository;
 using UniRx;
@@ -17,8 +17,8 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
     public class TileSelectionViewModel : IDisposable
     {
         private readonly IDisposable _disposable;
-        private readonly IInGameEditorCurrentHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
-        private readonly IInGameEditorCurrentSelectedTileHolderSetRepository _currentSelectedTileHolderSetRepository;
+        private readonly ICurrentHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
+        private readonly ICurrentSelectedTileHolderSetRepository _currentSelectedTileHolderSetRepository;
         private readonly Transform _mapTransform;
 
         private IReadOnlyList<TileHolder> _currentTileHolders;
@@ -28,8 +28,8 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
 
         public TileSelectionViewModel(ITileHoldersRepository tileHoldersRepository,
                                       ICurrentWorldConfigRepository worldConfigRepository,
-                                      IInGameEditorCurrentHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
-                                      IInGameEditorCurrentSelectedTileHolderSetRepository currentSelectedTileHolderSetRepository,
+                                      ICurrentHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
+                                      ICurrentSelectedTileHolderSetRepository currentSelectedTileHolderSetRepository,
                                       IInGameEditorCameraGetRepository cameraGetRepository,
                                       Transform mapTransform)
         {

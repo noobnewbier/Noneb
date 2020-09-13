@@ -24,7 +24,7 @@ namespace Units.Holders
             var style = new GUIStyle {normal = {textColor = Color.yellow}};
             Handles.Label(
                 transform.position,
-                $"{Value.Data.UnitName}",
+                $"{Value.Data.DataName}",
                 style
             );
         }

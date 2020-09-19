@@ -3,7 +3,6 @@ using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using GameEnvironments.Save.EditorOnly;
 using InGameEditor.Services.InGameEditorMessage;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace InGameEditor.Ui.Options.Save

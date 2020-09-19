@@ -1,13 +1,12 @@
 ﻿using System;
+using Common;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using UniRx;
 
 namespace Maps.Repositories.CurrentMapConfig
 {
-    public interface ICurrentMapConfigRepository
+    public interface ICurrentMapConfigRepository : IDataGetRepository<MapConfig>
     {
-        IObservable<MapConfig> GetObservableStream();
-        IObservable<MapConfig> GetMostRecent();
     }
 
     public class CurrentMapConfigRepository : ICurrentMapConfigRepository

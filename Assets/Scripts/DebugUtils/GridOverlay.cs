@@ -31,6 +31,8 @@ namespace DebugUtils
                     positionsObservable,
                     (mapConfig, worldConfig, positions) => (mapConfig, worldConfig, positions)
                 )
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     tuple =>
                     {

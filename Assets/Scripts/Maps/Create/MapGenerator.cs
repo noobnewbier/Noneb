@@ -49,17 +49,13 @@ namespace Maps.Create
                         var selfTransform = transform;
                         var (mapConfig, worldConfig, positions) = tuple;
                         for (var i = 0; i < mapConfig.ZSize; i++)
+                        for (var j = 0; j < mapConfig.XSize; j++)
                         {
-                            var row = Instantiate(rowPrefab).transform;
-                            row.parent = selfTransform;
-                            for (var j = 0; j < mapConfig.XSize; j++)
-                            {
-                                var newTile = tileHolderProvider.Provide().gameObject.transform;
+                            var newTile = tileHolderProvider.Provide().gameObject.transform;
 
-                                newTile.parent = row;
-                                newTile.rotation *= Quaternion.AngleAxis(30f, worldConfig.UpAxis);
-                                newTile.position = positions[i * mapConfig.XSize + j];
-                            }
+                            newTile.parent = selfTransform;
+                            newTile.rotation *= Quaternion.AngleAxis(30f, worldConfig.UpAxis);
+                            newTile.position = positions[i * mapConfig.XSize + j];
                         }
                     }
                 );

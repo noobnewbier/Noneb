@@ -38,6 +38,8 @@ namespace GameEnvironments.Load.Manager
             _disposable = ClearGameObjects()
                 .Concat(LoadEmptyEnvironment())
                 .Last()
+                .SubscribeOn(Scheduler.MainThread) //todo: use proper threading
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     _ =>
                     {

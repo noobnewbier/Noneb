@@ -45,6 +45,8 @@ namespace DebugUtils
                         return path.Select(c => tileHoldersRepository.GetAtCoordinateSingle(c)).Zip();
                     }
                 )
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     holders => { _points = holders.Select(r => r.transform.position).ToList(); },
                     e =>

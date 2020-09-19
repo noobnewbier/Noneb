@@ -14,6 +14,8 @@ namespace Units.Holders
             Value = unit;
         }
 
+        public Transform Transform => transform;
+
         private void OnDrawGizmosSelected()
         {
             if (Value == null)

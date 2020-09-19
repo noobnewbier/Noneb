@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
+using Common.Holders;
 using Common.Providers;
-using UnityEngine;
 
 namespace GameEnvironments.Load.GameObjects
 {
     public interface IGameObjectLoadService
     {
-        void Load(IList<GameObjectProvider> gameObjectProviders, IList<Transform> holdersTransforms, int mapXSize, int mapZSize);
+        void Load(IReadOnlyList<GameObjectProvider> gameObjectProviders, IReadOnlyList<IBoardItemHolder> holders, int mapXSize, int mapZSize);
     }
 
     public class GameObjectLoadService : IGameObjectLoadService
     {
-        public void Load(IList<GameObjectProvider> gameObjectProviders, IList<Transform> holdersTransforms, int mapXSize, int mapZSize)
+        public void Load(IReadOnlyList<GameObjectProvider> gameObjectProviders, IReadOnlyList<IBoardItemHolder> holders, int mapXSize, int mapZSize)
         {
             for (var i = 0; i < mapZSize; i++)
             for (var j = 0; j < mapXSize; j++)
@@ -23,7 +23,7 @@ namespace GameEnvironments.Load.GameObjects
                     continue;
                 }
 
-                gameObjectProvider.Provide(holdersTransforms[index], false);
+                gameObjectProvider.Provide(holders[index].Transform, false);
             }
         }
     }

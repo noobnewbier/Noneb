@@ -1,11 +1,12 @@
 ﻿using System;
-using GameEnvironments.Load.BoardItemOnTile.Loaders;
-using GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition;
 using GameEnvironments.Load.GameObjects.Loaders;
-using GameEnvironments.Load.Tiles;
+using GameEnvironments.Load.Obsolete.BoardItemOnTile.Loaders;
+using GameEnvironments.Load.Obsolete.BoardItemOnTile.StrongholdInternalPosition;
+using GameEnvironments.Load.Obsolete.Tiles;
 using Maps;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.Manager
 {
@@ -14,7 +15,8 @@ namespace GameEnvironments.Load.Manager
         [SerializeField] private CurrentTilesTransformSetter currentTilesTransformSetter;
         [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
 
-        [SerializeField] private MapLoader mapLoader;
+        [FormerlySerializedAs("mapLoader")] [SerializeField]
+        private TileLoader tileLoader;
 
         [SerializeField] private UnitLoader unitLoader;
         [SerializeField] private ConstructLoader constructLoader;
@@ -33,6 +35,8 @@ namespace GameEnvironments.Load.Manager
         public void Load()
         {
             _disposable = GetLoadObservable()
+                .SubscribeOn(Scheduler.MainThread) //todo: use proper threading
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     _ =>
                     {
@@ -66,7 +70,7 @@ namespace GameEnvironments.Load.Manager
 
         private IObservable<Unit> LoadMap()
         {
-            return Observable.Defer(() => mapLoader.LoadObservable()).Single();
+            return Observable.Defer(() => tileLoader.LoadObservable()).Single();
         }
 
         private IObservable<Unit> LoadBoardItemOnTileHolders()

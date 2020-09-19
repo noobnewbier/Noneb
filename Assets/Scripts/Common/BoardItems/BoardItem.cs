@@ -2,6 +2,7 @@
 
 namespace Common.BoardItems
 {
+    //Wrapper for type constraint
     public abstract class BoardItem
     {
     }

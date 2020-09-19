@@ -18,7 +18,8 @@ namespace DebugUtils
         [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
-        [SerializeField] private TilesTransformProvider tilesTransformProvider;
+        [FormerlySerializedAs("tilesTransformProvider")] [SerializeField]
+        private TilesHolderProvider tilesHolderProvider;
 
         private IDisposable _disposable;
 
@@ -28,9 +29,11 @@ namespace DebugUtils
         [ContextMenu("SetCoordinates")]
         private void SetCoordinates()
         {
-            var tilesTransform = tilesTransformProvider.Provide();
+            var tilesTransform = tilesHolderProvider.Provide();
             _disposable = currentMapConfigRepositoryProvider.Provide()
                 .GetMostRecent()
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     config =>
                     {

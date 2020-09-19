@@ -1,6 +1,5 @@
 ﻿using InGameEditor.Data.Availables;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace InGameEditor.Data

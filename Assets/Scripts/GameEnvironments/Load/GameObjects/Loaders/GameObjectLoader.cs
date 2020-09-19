@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
+using Common;
+using Common.Holders;
 using Common.Loaders;
 using Common.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
@@ -16,7 +17,6 @@ namespace GameEnvironments.Load.GameObjects.Loaders
     {
         [SerializeField] private GameObjectLoadServiceProvider serviceProvider;
         [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
-        [SerializeField] private CurrentTilesTransformRepositoryProvider currentTilesTransformRepositoryProvider;
         [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         private ICurrentTilesTransformGetRepository _currentTilesTransformGetRepository;
@@ -31,8 +31,8 @@ namespace GameEnvironments.Load.GameObjects.Loaders
                 .Subscribe(
                     tuple =>
                     {
-                        var (gameObjectProviders, config, tilesTransform) = tuple;
-                        InvokeLoadService(gameObjectProviders, config, tilesTransform);
+                        var (gameObjectProviders, config, holders) = tuple;
+                        InvokeLoadService(gameObjectProviders, config, holders);
                     }
                 );
         }
@@ -43,36 +43,37 @@ namespace GameEnvironments.Load.GameObjects.Loaders
                 .Select(
                     tuple =>
                     {
-                        var (gameObjectProviders, config, tilesTransform) = tuple;
-                        InvokeLoadService(gameObjectProviders, config, tilesTransform);
+                        var (gameObjectProviders, config, holders) = tuple;
+                        InvokeLoadService(gameObjectProviders, config, holders);
 
                         return Unit.Default;
                     }
                 );
         }
 
-        private IObservable<(ImmutableArray<GameObjectProvider> gameObjectProviders,
-            MapConfig config,
-            IList<Transform> tilesTransform)> GetDataTupleObservable()
+        private IObservable<(IReadOnlyList<GameObjectProvider> gameObjectProviders, MapConfig config, IReadOnlyList<IBoardItemHolder> holders)>
+            GetDataTupleObservable()
         {
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
             var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
-            var tilesTransformProviderObservable = currentTilesTransformRepositoryProvider.Provide().GetMostRecent();
+            var holdersObservable = GetBoardItemsHolderRepository().GetMostRecent();
 
             return GetGameObjectProvidersFromRepository(levelDataRepository)
                 .Zip(
                     mapConfigObservable,
-                    tilesTransformProviderObservable,
-                    (gameObjectProviders, config, tilesTransform) => (gameObjectProviders, config, tilesTransform)
+                    holdersObservable,
+                    (gameObjectProviders, config, holders) => (gameObjectProviders, config, holders)
                 );
         }
 
-        private void InvokeLoadService(ImmutableArray<GameObjectProvider> gameObjectProviders, MapConfig config, IList<Transform> tilesTransform)
+        private void InvokeLoadService(IReadOnlyList<GameObjectProvider> gameObjectProviders,
+                                       MapConfig config,
+                                       IReadOnlyList<IBoardItemHolder> holders)
         {
             var gameObjectLoadService = serviceProvider.Provide();
             gameObjectLoadService.Load(
                 gameObjectProviders,
-                tilesTransform,
+                holders,
                 config.GetMap2DActualWidth(),
                 config.GetMap2DActualHeight()
             );
@@ -89,7 +90,9 @@ namespace GameEnvironments.Load.GameObjects.Loaders
             DisposeDisposables();
         }
 
-        protected abstract IObservable<ImmutableArray<GameObjectProvider>> GetGameObjectProvidersFromRepository(
+        protected abstract IObservable<IReadOnlyList<GameObjectProvider>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository);
+
+        protected abstract IDataGetRepository<IReadOnlyList<IBoardItemHolder>> GetBoardItemsHolderRepository();
     }
 }

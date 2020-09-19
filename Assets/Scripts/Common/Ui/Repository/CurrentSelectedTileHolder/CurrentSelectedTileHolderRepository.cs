@@ -11,8 +11,8 @@ namespace Common.Ui.Repository.CurrentSelectedTileHolder
     }
 
     public class CurrentSelectedTileHolderRepository : DataRepository<TileHolder>,
-                                                                   ICurrentSelectedTileHolderGetRepository,
-                                                                   ICurrentSelectedTileHolderSetRepository
+                                                       ICurrentSelectedTileHolderGetRepository,
+                                                       ICurrentSelectedTileHolderSetRepository
     {
     }
 }

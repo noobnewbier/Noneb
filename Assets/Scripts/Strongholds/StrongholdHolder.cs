@@ -14,6 +14,8 @@ namespace Strongholds
             Value = stronghold;
         }
 
+        public Transform Transform => transform;
+
         private void OnDrawGizmosSelected()
         {
             if (Value == null)

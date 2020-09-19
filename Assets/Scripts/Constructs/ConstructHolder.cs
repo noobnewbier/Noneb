@@ -14,6 +14,8 @@ namespace Constructs
             Value = construct;
         }
 
+        public Transform Transform => transform;
+
         private void OnDrawGizmosSelected()
         {
             if (Value == null)

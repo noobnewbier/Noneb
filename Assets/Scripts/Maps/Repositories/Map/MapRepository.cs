@@ -25,7 +25,6 @@ namespace Maps.Repositories.Map
 
         public IObservable<Maps.Map> GetObservableStream()
         {
-            // _tileHoldersRepository.GetAllFlattenSingle().Select(t => t.Value).ToList()
             return _currentMapConfigRepository.GetObservableStream()
                 .ZipLatest(_tileHoldersRepository.GetAllFlattenSingle(), (config, tileHolders) => (config, tileHolders))
                 .Where(tuple => tuple.config != null)

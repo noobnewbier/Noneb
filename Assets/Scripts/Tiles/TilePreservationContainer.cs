@@ -4,6 +4,7 @@ using Maps;
 using Tiles.Data;
 using Units;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Tiles
 {

@@ -1,6 +1,7 @@
 ﻿using Common.Providers;
-using GameEnvironments.Load.Tiles;
+using GameEnvironments.Load.Obsolete.Tiles;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Maps.Repositories.CurrentTilesTransform
@@ -11,13 +12,14 @@ namespace Maps.Repositories.CurrentTilesTransform
     )]
     public class CurrentTilesTransformRepositoryProvider : ScriptableObjectProvider<CurrentTilesTransformRepository>
     {
-        [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
+        [FormerlySerializedAs("mapLoadServiceProvider")] [SerializeField]
+        private TileLoadServiceProvider tileLoadServiceProvider;
 
         private CurrentTilesTransformRepository _cache;
 
         public override CurrentTilesTransformRepository Provide()
         {
-            return _cache ?? (_cache = new CurrentTilesTransformRepository(mapLoadServiceProvider.Provide()));
+            return _cache ?? (_cache = new CurrentTilesTransformRepository(tileLoadServiceProvider.Provide()));
         }
 
         private void OnDisable()

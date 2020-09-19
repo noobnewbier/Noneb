@@ -23,6 +23,8 @@ namespace Tiles.Holders
             gameObject.name = "Tile: " + Value.Coordinate;
         }
 
+        public Transform Transform => transform;
+
         private void OnDrawGizmosSelected()
         {
             if (Value == null)

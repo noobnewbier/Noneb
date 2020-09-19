@@ -1,5 +1,4 @@
-﻿using Common.BoardItems;
-using Experiment.CrossPlatformLiveData;
+﻿using Experiment.CrossPlatformLiveData;
 using UnityEngine;
 
 namespace InGameEditor.Ui.DataSelection.IndividualSelectableData
@@ -10,7 +9,6 @@ namespace InGameEditor.Ui.DataSelection.IndividualSelectableData
 
         public void OnClick()
         {
-            
         }
     }
 }

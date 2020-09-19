@@ -1118,6 +1118,12 @@ PrefabInstance:
       propertyPath: currentMapTransformSetter
       value: 
       objectReference: {fileID: 409922692}
+    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: tileLoader
+      value: 
+      objectReference: {fileID: 11400000, guid: 47b84bc39aadf9840afd124293b2e471,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9703e44d14b8847830ba7aa6ee1bdb, type: 3}
 --- !u!1001 &6113279904625579157

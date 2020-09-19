@@ -1,6 +1,7 @@
 ﻿using Common;
 using Maps;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Units
 {

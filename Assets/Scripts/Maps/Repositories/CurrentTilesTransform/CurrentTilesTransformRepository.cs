@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Common;
 using Common.Providers;
-using GameEnvironments.Load.Tiles;
+using GameEnvironments.Load.Obsolete.Tiles;
 using UniRx;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace Maps.Repositories.CurrentTilesTransform
     }
 
     /*
-     * Todo: Refactor?
+     * BUG: This needs to be refactored, it's literally broken right now
      * Note(08/31/2020):
      * I suppose this can be separated into
      *     1. CurrentTilesTransformGetRepository,
@@ -33,11 +33,11 @@ namespace Maps.Repositories.CurrentTilesTransform
         private IObjectProvider<IList<Transform>> _tilesTransformProvider;
         private IObservable<IList<Transform>> _single;
 
-        public CurrentTilesTransformRepository(IMapLoadService mapLoadService)
+        public CurrentTilesTransformRepository(ITileLoadService tileLoadService)
         {
             _subject = new ReplaySubject<IList<Transform>>(1);
 
-            _disposable = mapLoadService
+            _disposable = tileLoadService
                 .GetFinishedLoadingEventStream()
                 .Subscribe(_ => UpdateValues());
         }

@@ -7,7 +7,7 @@ using Units.Holders;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.BoardItemOnTile.ServiceProviders
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.ServiceProviders
 {
     [CreateAssetMenu(fileName = nameof(LoadUnitServiceProvider), menuName = MenuName.ScriptableService + "LoadUnitService")]
     public class LoadUnitServiceProvider : ScriptableObjectProvider<ILoadBoardItemOnTileService<UnitHolder, Unit, UnitData>>

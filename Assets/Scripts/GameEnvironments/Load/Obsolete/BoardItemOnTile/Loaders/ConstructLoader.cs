@@ -4,11 +4,11 @@ using Common;
 using Common.Providers;
 using Constructs;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
-using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
+using GameEnvironments.Load.Obsolete.BoardItemOnTile.ServiceProviders;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.BoardItemOnTile.Loaders
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.Loaders
 {
     [CreateAssetMenu(fileName = nameof(ConstructLoader), menuName = ProjectMenuName.Loader + nameof(ConstructLoader))]
     public class ConstructLoader : BoardItemOnTileLoader<ConstructHolder, Construct, ConstructData>

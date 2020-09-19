@@ -10,7 +10,7 @@ using UniRx;
 using UnityEngine;
 using UnityUtils;
 
-namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.StrongholdInternalPosition
 {
     [CreateAssetMenu(
         fileName = nameof(StrongholdGameObjectsInternalPositionLoader),

@@ -13,7 +13,7 @@ using Maps.Repositories.CurrentTilesTransform;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.BoardItemOnTile.Loaders
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.Loaders
 {
     public abstract class BoardItemOnTileLoader<THolder, TBoardItemOnTile, TData> : ScriptableObject, ILoader
         where THolder : Component, IBoardItemHolder<TBoardItemOnTile>
@@ -60,8 +60,7 @@ namespace GameEnvironments.Load.BoardItemOnTile.Loaders
             var tilesTransformObservable = currentTilesTransformRepositoryProvider.Provide().GetMostRecent();
 
             return GetDatasFromRepository(levelDataRepository)
-                .Zip(mapConfigurationObservable, tilesTransformObservable, (datas, config, tilesTransform) => (datas, config, tilesTransform))
-                .Take(1);
+                .Zip(mapConfigurationObservable, tilesTransformObservable, (datas, config, tilesTransform) => (datas, config, tilesTransform));
         }
 
         private void InvokeLoadService(ImmutableArray<TData> datas, MapConfig config, IList<Transform> tilesTransform)

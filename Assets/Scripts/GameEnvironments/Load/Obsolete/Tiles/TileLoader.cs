@@ -10,17 +10,19 @@ using Tiles.Data;
 using Tiles.Holders;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace GameEnvironments.Load.Tiles
+namespace GameEnvironments.Load.Obsolete.Tiles
 {
-    [CreateAssetMenu(fileName = nameof(MapLoader), menuName = ProjectMenuName.Loader + nameof(MapLoader))]
-    public class MapLoader : ScriptableObject, ILoader
+    [CreateAssetMenu(fileName = nameof(TileLoader), menuName = ProjectMenuName.Loader + nameof(TileLoader))]
+    public class TileLoader : ScriptableObject, ILoader
     {
-        [SerializeField] private MapLoadServiceProvider mapLoadServiceProvider;
+        [FormerlySerializedAs("mapLoadServiceProvider")] [SerializeField]
+        private TileLoadServiceProvider tileLoadServiceProvider;
+
         [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
         [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
         [SerializeField] private TileHolderProvider tileHolderProvider;
-        [SerializeField] private GameObject rowPrefab;
         [SerializeField] private CurrentMapTransformRepositoryProvider mapTransformRepositoryProvider;
 
 
@@ -66,11 +68,10 @@ namespace GameEnvironments.Load.Tiles
 
         private IObservable<Unit> GetLoadServiceObservable(IList<TileData> datas, MapConfig config, Transform mapTransform)
         {
-            var mapLoadService = mapLoadServiceProvider.Provide();
-            return mapLoadService.Load(
+            var loadService = tileLoadServiceProvider.Provide();
+            return loadService.Load(
                 datas,
                 tileHolderProvider,
-                rowPrefab,
                 mapTransform,
                 config.GetMap2DActualWidth(),
                 config.GetMap2DActualHeight()

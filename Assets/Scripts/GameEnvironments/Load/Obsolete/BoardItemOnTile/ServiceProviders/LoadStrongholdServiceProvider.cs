@@ -6,7 +6,7 @@ using Strongholds;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.BoardItemOnTile.ServiceProviders
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.ServiceProviders
 {
     [CreateAssetMenu(fileName = nameof(LoadStrongholdServiceProvider), menuName = MenuName.ScriptableService + "LoadStrongholdService")]
     public class LoadStrongholdServiceProvider : ScriptableObjectProvider<ILoadBoardItemOnTileService<StrongholdHolder, Stronghold, StrongholdData>>

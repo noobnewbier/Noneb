@@ -8,7 +8,7 @@ using Maps;
 using Maps.Services;
 using UnityEngine;
 
-namespace GameEnvironments.Load.BoardItemOnTile
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile
 {
     public interface ILoadBoardItemOnTileService<THolder, in TBoardItem, in TBoardItemData>
         where THolder : Component, IBoardItemHolder<TBoardItem> // THolder is a component and a BoardItemHolder that holds TBoardItem

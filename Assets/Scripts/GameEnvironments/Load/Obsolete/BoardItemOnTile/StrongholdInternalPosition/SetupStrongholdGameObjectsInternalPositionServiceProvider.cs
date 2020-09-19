@@ -3,7 +3,7 @@ using Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.BoardItemOnTile.StrongholdInternalPosition
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.StrongholdInternalPosition
 {
     [CreateAssetMenu(
         fileName = nameof(SetupStrongholdGameObjectsInternalPositionServiceProvider),

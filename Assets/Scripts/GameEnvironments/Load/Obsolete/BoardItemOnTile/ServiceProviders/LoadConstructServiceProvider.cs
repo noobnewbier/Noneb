@@ -6,7 +6,7 @@ using Maps.Services;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.BoardItemOnTile.ServiceProviders
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.ServiceProviders
 {
     [CreateAssetMenu(fileName = nameof(LoadConstructServiceProvider), menuName = MenuName.ScriptableService + "LoadConstructService")]
     public class LoadConstructServiceProvider : ScriptableObjectProvider<ILoadBoardItemOnTileService<ConstructHolder, Construct, ConstructData>>

@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common.Providers;
-using GameEnvironments.Load.BoardItemOnTile;
+using GameEnvironments.Load.Obsolete.BoardItemOnTile;
 using Maps.Services;
 using Tiles;
 using Tiles.Data;
 using Tiles.Holders;
 using UniRx;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
-namespace GameEnvironments.Load.Tiles
+namespace GameEnvironments.Load.Obsolete.Tiles
 {
     /// <summary>
     /// Tile cannot be load like the rest of BoardItems,
     /// as it's the only board item that needs to have it's position initialized
     /// todo: dangerously similar to <see cref="ILoadBoardItemOnTileService{THolder,TBoardItem,TBoardItemData}" />
     /// </summary>
-    public interface IMapLoadService : IDisposable
+    public interface ITileLoadService : IDisposable
     {
         IObservable<Unit> Load(IList<TileData> tileDatas,
                                IGameObjectAndComponentProvider<TileHolder> tileHolderProvider,
-                               GameObject rowPrefab,
                                Transform mapTransform,
                                int mapXSize,
                                int mapZSize);
@@ -29,13 +27,13 @@ namespace GameEnvironments.Load.Tiles
         IObservable<Unit> GetFinishedLoadingEventStream();
     }
 
-    public class MapLoadService : IMapLoadService
+    public class TileLoadService : ITileLoadService
     {
         private readonly IGetCoordinateService _getCoordinateService;
         private readonly ITilesPositionService _tilesPositionService;
         private readonly Subject<Unit> _finishedLoadingEventStream;
 
-        public MapLoadService(IGetCoordinateService getCoordinateService, ITilesPositionService tilesPositionService)
+        public TileLoadService(IGetCoordinateService getCoordinateService, ITilesPositionService tilesPositionService)
         {
             _getCoordinateService = getCoordinateService;
             _tilesPositionService = tilesPositionService;
@@ -49,7 +47,6 @@ namespace GameEnvironments.Load.Tiles
 
         public IObservable<Unit> Load(IList<TileData> tileDatas,
                                       IGameObjectAndComponentProvider<TileHolder> tileHolderProvider,
-                                      GameObject rowPrefab,
                                       Transform mapTransform,
                                       int mapXSize,
                                       int mapZSize)
@@ -59,19 +56,15 @@ namespace GameEnvironments.Load.Tiles
                     positions =>
                     {
                         for (var i = 0; i < mapZSize; i++)
+                        for (var j = 0; j < mapXSize; j++)
                         {
-                            var row = Object.Instantiate(rowPrefab).transform;
-                            row.parent = mapTransform;
-                            for (var j = 0; j < mapXSize; j++)
-                            {
-                                var (component, gameObject) = tileHolderProvider.Provide(row, false);
-                                var index = i * mapXSize + j;
+                            var (component, gameObject) = tileHolderProvider.Provide(mapTransform, false);
+                            var index = i * mapXSize + j;
 
-                                gameObject.transform.position = positions[index];
-                                component.Initialize(
-                                    new Tile(tileDatas[index], _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i))
-                                );
-                            }
+                            gameObject.transform.position = positions[index];
+                            component.Initialize(
+                                new Tile(tileDatas[index], _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i))
+                            );
                         }
 
                         _finishedLoadingEventStream.OnNext(Unit.Default);

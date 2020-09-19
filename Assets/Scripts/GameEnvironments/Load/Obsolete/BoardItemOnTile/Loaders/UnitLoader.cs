@@ -3,14 +3,14 @@ using System.Collections.Immutable;
 using Common;
 using Common.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
-using GameEnvironments.Load.BoardItemOnTile.ServiceProviders;
+using GameEnvironments.Load.Obsolete.BoardItemOnTile.ServiceProviders;
 using UniRx;
 using Units;
 using Units.Holders;
 using UnityEngine;
 using Unit = Units.Unit;
 
-namespace GameEnvironments.Load.BoardItemOnTile.Loaders
+namespace GameEnvironments.Load.Obsolete.BoardItemOnTile.Loaders
 {
     [CreateAssetMenu(fileName = nameof(UnitLoader), menuName = ProjectMenuName.Loader + nameof(UnitLoader))]
     public class UnitLoader : BoardItemOnTileLoader<UnitHolder, Unit, UnitData>

@@ -19,26 +19,17 @@ namespace GameEnvironments.Load.Holders.Loaders
         public void LoadAndForget()
         {
             _disposable?.Dispose();
-            _disposable = GetDataTupleObservable()
-                .Subscribe(
-                    tuple =>
-                    {
-                        var (config, tilesTransform) = tuple;
-                        InvokeLoadService(config, tilesTransform);
-                    }
-                );
+            _disposable = LoadObservable().Subscribe();
         }
 
         public IObservable<Unit> LoadObservable()
         {
             return GetDataTupleObservable()
-                .Select(
+                .SelectMany(
                     tuple =>
                     {
                         var (config, tilesTransform) = tuple;
-                        InvokeLoadService(config, tilesTransform);
-
-                        return Unit.Default;
+                        return InvokeLoadService(config, tilesTransform);
                     }
                 );
         }
@@ -55,11 +46,11 @@ namespace GameEnvironments.Load.Holders.Loaders
                 );
         }
 
-        private void InvokeLoadService(MapConfig config, Transform mapTransform)
+        private IObservable<Unit> InvokeLoadService(MapConfig config, Transform mapTransform)
         {
             var loadService = GetService();
 
-            loadService.Load(
+            return loadService.Load(
                 mapTransform,
                 config.GetMap2DActualWidth(),
                 config.GetMap2DActualHeight()

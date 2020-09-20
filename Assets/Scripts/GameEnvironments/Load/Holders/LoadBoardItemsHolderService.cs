@@ -56,7 +56,7 @@ namespace GameEnvironments.Load.Holders
 
                             component.Initialize(items[index]);
                         }
-
+                        
                         return Unit.Default;
                     }
                 );

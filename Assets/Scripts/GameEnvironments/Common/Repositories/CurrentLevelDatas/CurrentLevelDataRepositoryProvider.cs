@@ -1,9 +1,9 @@
 ﻿using Common.Providers;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.CurrentLevelData
+namespace GameEnvironments.Common.Repositories.CurrentLevelDatas
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentLevelDataRepositoryProvider),

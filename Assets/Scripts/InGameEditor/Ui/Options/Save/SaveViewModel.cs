@@ -1,7 +1,7 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
 using GameEnvironments.Common;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
 using GameEnvironments.Save;
 using InGameEditor.Services.InGameEditorMessage;
 using UniRx;

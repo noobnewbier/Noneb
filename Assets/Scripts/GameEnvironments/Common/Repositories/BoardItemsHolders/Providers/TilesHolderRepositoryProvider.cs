@@ -12,13 +12,16 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
     {
         [SerializeField] private TilesHolderProviderRepositoryProvider providerRepositoryProvider;
         [SerializeField] private LoadTilesHolderServiceProvider loadServiceProvider;
-        
-        
+
+
         private BoardItemsHolderGetRepository<TileHolder> _cache;
 
         public override BoardItemsHolderGetRepository<TileHolder> Provide()
         {
-            return _cache ?? (_cache = new BoardItemsHolderGetRepository<TileHolder>(providerRepositoryProvider.Provide(), loadServiceProvider.Provide()));
+            return _cache ?? (_cache = new BoardItemsHolderGetRepository<TileHolder>(
+                providerRepositoryProvider.Provide(),
+                loadServiceProvider.Provide()
+            ));
         }
     }
 }

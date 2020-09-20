@@ -4,9 +4,8 @@ using Common;
 using Common.Constants;
 using Common.Holders;
 using Common.Loaders;
-using GameEnvironments.Common.Repositories.BoardItemsHolder;
-using GameEnvironments.Common.Repositories.BoardItemsHolder.Providers;
-using GameEnvironments.Load.Obsolete.BoardItemOnTile.StrongholdInternalPosition;
+using GameEnvironments.Common.Repositories.BoardItemsHolders;
+using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using Strongholds;
 using UniRx;
 using UnityEngine;
@@ -24,7 +23,7 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         [SerializeField] private StrongholdsHolderRepositoryProvider strongholdsHolderRepositoryProvider;
 
         private ISetupStrongholdGameObjectsInternalPositionService _setupStrongholdGameObjectsInternalPositionService;
-        private IBoardItemsHolderRepository<StrongholdHolder> _strongholdsHolderRepository;
+        private IBoardItemsHolderGetRepository<StrongholdHolder> _strongholdsHolderGetRepository;
         private IDisposable _disposable;
 
         [ContextMenu(nameof(LoadAndForget))]
@@ -32,13 +31,13 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         {
             DisposeDisposables();
 
-            _disposable = _strongholdsHolderRepository.GetMostRecent()
+            _disposable = _strongholdsHolderGetRepository.GetMostRecent()
                 .Subscribe(SetupTilesWithStronghold);
         }
 
         public IObservable<Unit> LoadObservable()
         {
-            return _strongholdsHolderRepository.GetMostRecent()
+            return _strongholdsHolderGetRepository.GetMostRecent()
                 .Select(
                     holders =>
                     {
@@ -52,7 +51,7 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         private void OnEnable()
         {
             _setupStrongholdGameObjectsInternalPositionService = serviceProvider.Provide();
-            _strongholdsHolderRepository = strongholdsHolderRepositoryProvider.Provide();
+            _strongholdsHolderGetRepository = strongholdsHolderRepositoryProvider.Provide();
         }
 
         private void SetupTilesWithStronghold(IReadOnlyList<StrongholdHolder> strongholdHolders)

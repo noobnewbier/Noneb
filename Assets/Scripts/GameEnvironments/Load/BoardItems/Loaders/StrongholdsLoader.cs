@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Immutable;
-using GameEnvironments.Common.Repositories.CurrentLevelData;
+using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using GameEnvironments.Load.BoardItems.Providers;
 using Strongholds;
 using UniRx;

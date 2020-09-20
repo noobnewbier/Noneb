@@ -3,7 +3,6 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityUtils;
 using UnityUtils.Pooling;
 
 namespace InGameEditor.Ui.DataSelection.IndividualSelectableData

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
 using GameEnvironments.Common.Data;
 using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
 using UniRx;
 
 namespace EnvironmentSelection

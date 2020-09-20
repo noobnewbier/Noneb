@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Common;
 using Common.Holders;
 using Common.Providers;
-using GameEnvironments.Common.Repositories.BoardItemsHolder.Providers;
-using GameEnvironments.Common.Repositories.CurrentLevelData;
+using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
+using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using UniRx;
 using UnityEngine;
 

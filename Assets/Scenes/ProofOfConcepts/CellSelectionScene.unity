@@ -327,9 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6053acb0d65b47eaae72a4dfd1933d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTilesTransformRepositoryProvider: {fileID: 11400000, guid: 257cfec9042d9d146ad36953038b0209,
-    type: 2}
-  tilesTransformProvider: {fileID: 849524811}
+  repositoryProvider: {fileID: 11400000, guid: c22d70416850e2548bfb7b93f5750df7, type: 2}
+  tilesHolderProvider: {fileID: 849524811}
 --- !u!114 &849524811
 MonoBehaviour:
   m_ObjectHideFlags: 0

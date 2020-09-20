@@ -3,7 +3,7 @@ using Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
+namespace GameEnvironments.Common.Repositories.CurrentGameEnvironments
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentGameEnvironmentRepositoryProvider),

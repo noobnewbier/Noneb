@@ -1,7 +1,6 @@
 ﻿using System;
 using Common.BoardItems;
 using Common.Providers;
-using Units;
 using Units.Holders;
 using UnityEngine;
 using UnityUtils.Constants;
@@ -12,7 +11,8 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Provide
         fileName = nameof(UnitsHolderProviderRepositoryProvider),
         menuName = MenuName.ScriptableRepository + "UnitsHolderProviderRepository"
     )]
-    public class UnitsHolderProviderRepositoryProvider : ScriptableObjectProvider<BoardItemsHolderProviderRepository<BoardItemsHolderProvider<UnitHolder>, UnitHolder>>
+    public class UnitsHolderProviderRepositoryProvider : ScriptableObjectProvider<
+        BoardItemsHolderProviderRepository<BoardItemsHolderProvider<UnitHolder>, UnitHolder>>
     {
         private readonly Lazy<BoardItemsHolderProviderRepository<BoardItemsHolderProvider<UnitHolder>, UnitHolder>> _lazyInstance =
             new Lazy<BoardItemsHolderProviderRepository<BoardItemsHolderProvider<UnitHolder>, UnitHolder>>(

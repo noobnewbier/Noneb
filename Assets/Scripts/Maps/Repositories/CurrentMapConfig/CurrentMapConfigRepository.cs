@@ -1,6 +1,6 @@
 ﻿using System;
 using Common;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
 using UniRx;
 
 namespace Maps.Repositories.CurrentMapConfig

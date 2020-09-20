@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Common;
-using GameEnvironments.Common.Repositories.BoardItemsHolder;
+using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using Maps.Repositories.CurrentMapConfig;
 using Tiles.Holders;
-using Tiles.Holders.Repository;
 using UniRx;
 
 namespace Maps.Repositories.Map
@@ -16,18 +15,19 @@ namespace Maps.Repositories.Map
     public class MapRepository : IMapRepository
     {
         private readonly ICurrentMapConfigRepository _currentMapConfigRepository;
-        private readonly IBoardItemsHolderRepository<TileHolder> _tilesHolderRepository;
+        private readonly IBoardItemsHolderGetRepository<TileHolder> _tilesHolderGetRepository;
 
-        public MapRepository(ICurrentMapConfigRepository currentMapConfigRepository, IBoardItemsHolderRepository<TileHolder> tilesHolderRepository)
+        public MapRepository(ICurrentMapConfigRepository currentMapConfigRepository,
+                             IBoardItemsHolderGetRepository<TileHolder> tilesHolderGetRepository)
         {
             _currentMapConfigRepository = currentMapConfigRepository;
-            _tilesHolderRepository = tilesHolderRepository;
+            _tilesHolderGetRepository = tilesHolderGetRepository;
         }
 
         public IObservable<Maps.Map> GetObservableStream()
         {
             return _currentMapConfigRepository.GetObservableStream()
-                .ZipLatest(_tilesHolderRepository.GetObservableStream(), (config, tileHolders) => (config, tileHolders))
+                .ZipLatest(_tilesHolderGetRepository.GetObservableStream(), (config, tileHolders) => (config, tileHolders))
                 .Where(tuple => tuple.config != null)
                 .Select(tuple => new Maps.Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
         }
@@ -36,7 +36,7 @@ namespace Maps.Repositories.Map
         {
             return _currentMapConfigRepository.GetMostRecent()
                 .Where(m => m != null)
-                .ZipLatest(_tilesHolderRepository.GetMostRecent(), (config, tileHolders) => (config, tileHolders))
+                .ZipLatest(_tilesHolderGetRepository.GetMostRecent(), (config, tileHolders) => (config, tileHolders))
                 .Where(tuple => tuple.config != null)
                 .Select(tuple => new Maps.Map(tuple.tileHolders.Select(t => t.Value).ToList(), tuple.config));
         }

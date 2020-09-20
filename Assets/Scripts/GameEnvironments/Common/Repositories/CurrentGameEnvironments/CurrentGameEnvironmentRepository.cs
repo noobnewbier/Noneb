@@ -1,7 +1,7 @@
 ﻿using Common;
 using GameEnvironments.Common.Data;
 
-namespace GameEnvironments.Common.Repositories.CurrentGameEnvironment
+namespace GameEnvironments.Common.Repositories.CurrentGameEnvironments
 {
     public interface ICurrentGameEnvironmentRepository : ICurrentGameEnvironmentGetRepository, ICurrentGameEnvironmentSetRepository
     {

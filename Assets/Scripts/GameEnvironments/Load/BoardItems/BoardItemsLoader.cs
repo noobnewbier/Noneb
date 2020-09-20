@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using Common.BoardItems;
 using Common.Loaders;
-using GameEnvironments.Common.Repositories.CurrentLevelData;
+using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using Maps;
 using Maps.Repositories.CurrentMapConfig;
 using UniRx;

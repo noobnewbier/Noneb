@@ -2,9 +2,9 @@
 using Common.Holders;
 using Constructs;
 using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Repositories.BoardItemsHolder;
-using GameEnvironments.Common.Repositories.BoardItemsHolder.Providers;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Common.Repositories.BoardItemsHolders;
+using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
 using Maps.Repositories.CurrentMapTransform;
 using Strongholds;
 using Tiles.Holders;
@@ -33,19 +33,19 @@ namespace GameEnvironments.Load.Manager
         private IDisposable _disposable;
         private ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
         private ICurrentMapTransformGetRepository _mapTransformGetRepository;
-        private IBoardItemsHolderRepository<TileHolder> _tileHoldersRepository;
-        private IBoardItemsHolderRepository<UnitHolder> _unitHoldersRepository;
-        private IBoardItemsHolderRepository<ConstructHolder> _constructHoldersRepository;
-        private IBoardItemsHolderRepository<StrongholdHolder> _strongholdHoldersRepository;
+        private IBoardItemsHolderGetRepository<TileHolder> _tileHoldersGetRepository;
+        private IBoardItemsHolderGetRepository<UnitHolder> _unitHoldersGetRepository;
+        private IBoardItemsHolderGetRepository<ConstructHolder> _constructHoldersGetRepository;
+        private IBoardItemsHolderGetRepository<StrongholdHolder> _strongholdHoldersGetRepository;
 
         private void OnEnable()
         {
             _gameEnvironmentSetRepository = currentGameEnvironmentRepositoryProvider.Provide();
             _mapTransformGetRepository = mapTransformRepositoryProvider.Provide();
-            _tileHoldersRepository = tilesHolderRepositoryProvider.Provide();
-            _unitHoldersRepository = unitsHolderRepositoryProvider.Provide();
-            _constructHoldersRepository = constructsHolderRepositoryProvider.Provide();
-            _strongholdHoldersRepository = strongholdHolderRepositoryProvider.Provide();
+            _tileHoldersGetRepository = tilesHolderRepositoryProvider.Provide();
+            _unitHoldersGetRepository = unitsHolderRepositoryProvider.Provide();
+            _constructHoldersGetRepository = constructsHolderRepositoryProvider.Provide();
+            _strongholdHoldersGetRepository = strongholdHolderRepositoryProvider.Provide();
         }
 
         [ContextMenu(nameof(Clear))]
@@ -84,25 +84,21 @@ namespace GameEnvironments.Load.Manager
                 )
                 .Single();
 
-            
 
-            return GetRecycleHoldersObservable(_tileHoldersRepository)
-                .Concat(GetRecycleHoldersObservable(_constructHoldersRepository))
-                .Concat(GetRecycleHoldersObservable(_unitHoldersRepository))
-                .Concat(GetRecycleHoldersObservable(_strongholdHoldersRepository))
+            return GetRecycleHoldersObservable(_tileHoldersGetRepository)
+                .Concat(GetRecycleHoldersObservable(_constructHoldersGetRepository))
+                .Concat(GetRecycleHoldersObservable(_unitHoldersGetRepository))
+                .Concat(GetRecycleHoldersObservable(_strongholdHoldersGetRepository))
                 .Concat(clearAllGameObjects);
         }
 
-        private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemsHolderRepository<T> holdersRepository) where T : IBoardItemHolder
+        private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemsHolderGetRepository<T> holdersGetRepository) where T : IBoardItemHolder
         {
-            return holdersRepository.GetMostRecent()
+            return holdersGetRepository.GetMostRecent()
                 .Select(
                     holders =>
                     {
-                        foreach (var holder in holders)
-                        {
-                            holder.ReturnToPool();
-                        }
+                        foreach (var holder in holders) holder.ReturnToPool();
 
                         return Unit.Default;
                     }

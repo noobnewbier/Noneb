@@ -1,6 +1,6 @@
 ﻿using System;
 using GameEnvironments.Common;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
+using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
 using TMPro;
 using UniRx;
 using UnityEngine;

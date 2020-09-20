@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameEnvironments.Common.Repositories.BoardItemsHolder;
+using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using Maps;
 using Maps.Repositories.CurrentMapConfig;
 using UniRx;
@@ -17,13 +17,13 @@ namespace Tiles.Holders.Repository
         private IObservable<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSingle;
         private readonly IDisposable _disposable;
 
-        public TilesHolderService(IBoardItemsHolderRepository<TileHolder> tileHoldersRepository,
+        public TilesHolderService(IBoardItemsHolderGetRepository<TileHolder> tileHoldersGetRepository,
                                   ICurrentMapConfigRepository currentMapConfigRepository)
         {
             _tileHoldersAndConfigSingle = Observable.Throw<(TileHolder[,], MapConfig)>(new InvalidOperationException("Value is not set yet"));
 
             _disposable = currentMapConfigRepository.GetObservableStream()
-                .ZipLatest(tileHoldersRepository.GetObservableStream(), (config, tileTransforms) => (config, tileTransforms))
+                .ZipLatest(tileHoldersGetRepository.GetObservableStream(), (config, tileTransforms) => (config, tileTransforms))
                 .Subscribe(
                     tuple =>
                     {

@@ -7,7 +7,6 @@ namespace InGameEditor.Ui.DataSelection.DataSelector
     {
         [SerializeField] private SelectableBoardItemDataViewProvider selectableBoardItemDataViewProvider;
 
-
         private DataSelectorViewModel _viewModel;
     }
 }

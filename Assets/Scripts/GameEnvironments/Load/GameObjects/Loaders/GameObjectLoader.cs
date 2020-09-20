@@ -4,7 +4,7 @@ using Common;
 using Common.Holders;
 using Common.Loaders;
 using Common.Providers;
-using GameEnvironments.Common.Repositories.CurrentLevelData;
+using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using Maps;
 using Maps.Repositories.CurrentMapConfig;
 using UniRx;

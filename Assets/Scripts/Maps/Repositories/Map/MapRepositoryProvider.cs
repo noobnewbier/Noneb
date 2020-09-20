@@ -1,5 +1,5 @@
 ﻿using Common.Providers;
-using GameEnvironments.Common.Repositories.BoardItemsHolder.Providers;
+using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using Maps.Repositories.CurrentMapConfig;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,7 +12,7 @@ namespace Maps.Repositories.Map
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         [SerializeField] private TilesHolderRepositoryProvider tilesHolderRepositoryProvider;
-        
+
 
         private IMapRepository _cache;
 

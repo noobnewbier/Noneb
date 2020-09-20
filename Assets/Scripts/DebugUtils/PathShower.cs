@@ -21,7 +21,10 @@ namespace DebugUtils
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
         //in axial instead of grid
-        [FormerlySerializedAs("tileHoldersRepositoryProvider")] [FormerlySerializedAs("tileHolderRepositoryProvider")] [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
+        [FormerlySerializedAs("tileHoldersRepositoryProvider")]
+        [FormerlySerializedAs("tileHolderRepositoryProvider")]
+        [FormerlySerializedAs("tileRepresentationRepositoryProvider")]
+        [SerializeField]
         private TilesHoldersServiceProvider tilesHoldersServiceProvider;
 
 

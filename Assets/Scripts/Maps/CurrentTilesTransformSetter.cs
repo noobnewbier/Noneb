@@ -1,4 +1,4 @@
-﻿using GameEnvironments.Common.Repositories.BoardItemsHolderProvider.Providers;
+﻿using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
 using Tiles;
 using UnityEngine;
 using UnityEngine.Serialization;

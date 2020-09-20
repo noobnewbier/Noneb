@@ -1,8 +1,5 @@
-﻿using Constructs;
-using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
+﻿using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
 using Strongholds;
-using Tiles;
-using Units;
 using UnityEngine;
 
 namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Setters

@@ -7,7 +7,6 @@ using Common.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelData;
 using Maps;
 using Maps.Repositories.CurrentMapConfig;
-using Maps.Repositories.CurrentTilesTransform;
 using UniRx;
 using UnityEngine;
 
@@ -19,7 +18,6 @@ namespace GameEnvironments.Load.GameObjects.Loaders
         [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
         [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
-        private ICurrentTilesTransformGetRepository _currentTilesTransformGetRepository;
         private IDisposable _disposable;
 
 

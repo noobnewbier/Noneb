@@ -1,33 +1,51 @@
 ﻿using System;
+using Common.Holders;
+using Constructs;
 using GameEnvironments.Common.Data;
+using GameEnvironments.Common.Repositories.BoardItemsHolder;
+using GameEnvironments.Common.Repositories.BoardItemsHolder.Providers;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironment;
 using Maps.Repositories.CurrentMapTransform;
-using Tiles.Holders.Repository;
+using Strongholds;
+using Tiles.Holders;
 using UniRx;
+using Units.Holders;
 using UnityEngine;
 
 namespace GameEnvironments.Load.Manager
 {
     /// <summary>
+    /// todo: it won't work now, you just made it compile :)
     /// We clear the scene by loading empty data
     /// </summary>
     public class GameEnvironmentClearer : MonoBehaviour
     {
         [SerializeField] private GameEnvironmentLoader gameEnvironmentLoader;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
-        [SerializeField] private TileHoldersRepositoryProvider tileHoldersRepositoryProvider;
+
         [SerializeField] private CurrentMapTransformRepositoryProvider mapTransformRepositoryProvider;
+
+        [SerializeField] private TilesHolderRepositoryProvider tilesHolderRepositoryProvider;
+        [SerializeField] private UnitsHolderRepositoryProvider unitsHolderRepositoryProvider;
+        [SerializeField] private ConstructsHolderRepositoryProvider constructsHolderRepositoryProvider;
+        [SerializeField] private StrongholdsHolderRepositoryProvider strongholdHolderRepositoryProvider;
 
         private IDisposable _disposable;
         private ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
         private ICurrentMapTransformGetRepository _mapTransformGetRepository;
-        private ITileHoldersRepository _tileHoldersRepository;
+        private IBoardItemsHolderRepository<TileHolder> _tileHoldersRepository;
+        private IBoardItemsHolderRepository<UnitHolder> _unitHoldersRepository;
+        private IBoardItemsHolderRepository<ConstructHolder> _constructHoldersRepository;
+        private IBoardItemsHolderRepository<StrongholdHolder> _strongholdHoldersRepository;
 
         private void OnEnable()
         {
             _gameEnvironmentSetRepository = currentGameEnvironmentRepositoryProvider.Provide();
-            _tileHoldersRepository = tileHoldersRepositoryProvider.Provide();
             _mapTransformGetRepository = mapTransformRepositoryProvider.Provide();
+            _tileHoldersRepository = tilesHolderRepositoryProvider.Provide();
+            _unitHoldersRepository = unitsHolderRepositoryProvider.Provide();
+            _constructHoldersRepository = constructsHolderRepositoryProvider.Provide();
+            _strongholdHoldersRepository = strongholdHolderRepositoryProvider.Provide();
         }
 
         [ContextMenu(nameof(Clear))]
@@ -66,19 +84,29 @@ namespace GameEnvironments.Load.Manager
                 )
                 .Single();
 
-            var recycleAllHolders = _tileHoldersRepository
-                .GetAllFlattenSingle()
+            
+
+            return GetRecycleHoldersObservable(_tileHoldersRepository)
+                .Concat(GetRecycleHoldersObservable(_constructHoldersRepository))
+                .Concat(GetRecycleHoldersObservable(_unitHoldersRepository))
+                .Concat(GetRecycleHoldersObservable(_strongholdHoldersRepository))
+                .Concat(clearAllGameObjects);
+        }
+
+        private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemsHolderRepository<T> holdersRepository) where T : IBoardItemHolder
+        {
+            return holdersRepository.GetMostRecent()
                 .Select(
-                    tiles =>
+                    holders =>
                     {
-                        foreach (var tile in tiles) tile.ReturnToPool();
+                        foreach (var holder in holders)
+                        {
+                            holder.ReturnToPool();
+                        }
 
                         return Unit.Default;
                     }
-                )
-                .Single();
-
-            return recycleAllHolders.Concat(clearAllGameObjects);
+                );
         }
 
         private IObservable<Unit> LoadEmptyEnvironment()

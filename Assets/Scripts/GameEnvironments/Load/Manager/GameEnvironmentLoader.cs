@@ -1,8 +1,8 @@
 ﻿using System;
+using GameEnvironments.Load.BoardItems.Loaders;
+using GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
 using GameEnvironments.Load.GameObjects.Loaders;
-using GameEnvironments.Load.Obsolete.BoardItemOnTile.Loaders;
 using GameEnvironments.Load.Obsolete.BoardItemOnTile.StrongholdInternalPosition;
-using GameEnvironments.Load.Obsolete.Tiles;
 using Maps;
 using UniRx;
 using UnityEngine;
@@ -16,11 +16,10 @@ namespace GameEnvironments.Load.Manager
         [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
 
         [FormerlySerializedAs("mapLoader")] [SerializeField]
-        private TileLoader tileLoader;
-
-        [SerializeField] private UnitLoader unitLoader;
-        [SerializeField] private ConstructLoader constructLoader;
-        [SerializeField] private StrongholdLoader strongholdLoader;
+        private TilesLoader tileLoader;
+        [SerializeField] private UnitsLoader unitLoader;
+        [SerializeField] private ConstructsLoader constructLoader;
+        [SerializeField] private StrongholdsLoader strongholdLoader;
 
         [SerializeField] private TileGameObjectLoader tileGameObjectLoader;
         [SerializeField] private UnitGameObjectLoader unitGameObjectLoader;

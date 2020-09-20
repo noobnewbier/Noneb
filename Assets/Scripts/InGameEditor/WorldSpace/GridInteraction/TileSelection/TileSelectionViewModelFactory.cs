@@ -12,7 +12,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
     [CreateAssetMenu(fileName = nameof(TileSelectionViewModelFactory), menuName = MenuName.Factory + nameof(TileSelectionViewModel))]
     public class TileSelectionViewModelFactory : ScriptableObject
     {
-        [SerializeField] private TileHoldersRepositoryProvider tileHoldersRepositoryProvider;
+        [FormerlySerializedAs("tileHoldersRepositoryProvider")] [SerializeField] private TilesHoldersServiceProvider tilesHoldersServiceProvider;
         [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
         [SerializeField] private CurrentSelectedTileHolderRepositoryProvider currentSelectedTileHolderRepositoryProvider;
 
@@ -25,7 +25,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         public TileSelectionViewModel Create(Transform mapTransform)
         {
             return new TileSelectionViewModel(
-                tileHoldersRepositoryProvider.Provide(),
+                tilesHoldersServiceProvider.Provide(),
                 currentWorldConfigRepositoryProvider.Provide(),
                 currentHoveredTileHolderRepositoryProvider.Provide(),
                 currentSelectedTileHolderRepositoryProvider.Provide(),

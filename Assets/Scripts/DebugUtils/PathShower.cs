@@ -21,8 +21,8 @@ namespace DebugUtils
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
         //in axial instead of grid
-        [FormerlySerializedAs("tileHolderRepositoryProvider")] [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
-        private TileHoldersRepositoryProvider tileHoldersRepositoryProvider;
+        [FormerlySerializedAs("tileHoldersRepositoryProvider")] [FormerlySerializedAs("tileHolderRepositoryProvider")] [FormerlySerializedAs("tileRepresentationRepositoryProvider")] [SerializeField]
+        private TilesHoldersServiceProvider tilesHoldersServiceProvider;
 
 
         [ContextMenu(nameof(ShowPath))]
@@ -41,7 +41,7 @@ namespace DebugUtils
                             throw new InvalidOperationException("No valid path found");
                         }
 
-                        var tileHoldersRepository = tileHoldersRepositoryProvider.Provide();
+                        var tileHoldersRepository = tilesHoldersServiceProvider.Provide();
                         return path.Select(c => tileHoldersRepository.GetAtCoordinateSingle(c)).Zip();
                     }
                 )

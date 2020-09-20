@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Common.Ui.Repository.CurrentHoveredTileHolder;
 using Common.Ui.Repository.CurrentSelectedTileHolder;
+using GameEnvironments.Common.Repositories.BoardItemsHolder;
 using InGameEditor.Repositories.InGameEditorCamera;
 using Tiles.Holders;
 using Tiles.Holders.Repository;
@@ -19,6 +20,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         private readonly IDisposable _disposable;
         private readonly ICurrentHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
         private readonly ICurrentSelectedTileHolderSetRepository _currentSelectedTileHolderSetRepository;
+        private readonly IBoardItemsHolderRepository<TileHolder> _holderRepository;
         private readonly Transform _mapTransform;
 
         private IReadOnlyList<TileHolder> _currentTileHolders;
@@ -26,7 +28,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         private WorldConfig _currentWorldConfig;
         private bool _haveTilesOnScreen;
 
-        public TileSelectionViewModel(ITileHoldersRepository tileHoldersRepository,
+        public TileSelectionViewModel(ITilesHolderService tilesHolderService,
                                       ICurrentWorldConfigRepository worldConfigRepository,
                                       ICurrentHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
                                       ICurrentSelectedTileHolderSetRepository currentSelectedTileHolderSetRepository,
@@ -40,7 +42,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
             _disposable = new CompositeDisposable
             {
                 cameraGetRepository.GetObservableStream().Subscribe(camera => _currentCamera = camera),
-                tileHoldersRepository.GetAllFlattenStream()
+                _holderRepository.GetObservableStream()
                     .Subscribe(
                         holders =>
                         {

@@ -6,7 +6,6 @@ using Common.Ui.Repository.CurrentSelectedTileHolder;
 using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using InGameEditor.Repositories.InGameEditorCamera;
 using Tiles.Holders;
-using Tiles.Holders.Repository;
 using UniRx;
 using UnityEngine;
 using UnityUtils;
@@ -20,7 +19,6 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         private readonly IDisposable _disposable;
         private readonly ICurrentHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
         private readonly ICurrentSelectedTileHolderSetRepository _currentSelectedTileHolderSetRepository;
-        private readonly IBoardItemsHolderGetRepository<TileHolder> _holderGetRepository;
         private readonly Transform _mapTransform;
 
         private IReadOnlyList<TileHolder> _currentTileHolders;
@@ -28,12 +26,12 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         private WorldConfig _currentWorldConfig;
         private bool _haveTilesOnScreen;
 
-        public TileSelectionViewModel(ITilesHolderService tilesHolderService,
-                                      ICurrentWorldConfigRepository worldConfigRepository,
+        public TileSelectionViewModel(ICurrentWorldConfigRepository worldConfigRepository,
                                       ICurrentHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
                                       ICurrentSelectedTileHolderSetRepository currentSelectedTileHolderSetRepository,
                                       IInGameEditorCameraGetRepository cameraGetRepository,
-                                      Transform mapTransform)
+                                      Transform mapTransform,
+                                      IBoardItemsHolderGetRepository<TileHolder> holderGetRepository)
         {
             _hoveredTileHolderSetRepository = hoveredTileHolderSetRepository;
             _mapTransform = mapTransform;
@@ -42,7 +40,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
             _disposable = new CompositeDisposable
             {
                 cameraGetRepository.GetObservableStream().Subscribe(camera => _currentCamera = camera),
-                _holderGetRepository.GetObservableStream()
+                holderGetRepository.GetObservableStream()
                     .Subscribe(
                         holders =>
                         {

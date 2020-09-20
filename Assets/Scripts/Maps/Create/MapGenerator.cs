@@ -23,7 +23,6 @@ namespace Maps.Create
         [FormerlySerializedAs("tilesPositionProvider")] [SerializeField]
         private TilesPositionServiceProvider tilesPositionServiceProvider;
 
-        [SerializeField] private GameObject rowPrefab;
         [SerializeField] private Transform mapTransform;
 
 

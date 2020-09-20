@@ -3,11 +3,11 @@ using Common.Providers;
 
 namespace Common.BoardItems
 {
-    public abstract class BoardItemsHolderProvider<THolder> : MonoObjectProvider<IList<THolder>>
+    public abstract class BoardItemsHolderProvider<THolder> : MonoObjectProvider<IReadOnlyList<THolder>>
     {
         protected abstract string HolderTag { get; }
 
-        public override IList<THolder> Provide()
+        public override IReadOnlyList<THolder> Provide()
         {
             var toReturn = new List<THolder>();
             for (var i = 0; i < transform.childCount; i++)

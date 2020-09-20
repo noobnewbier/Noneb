@@ -14,6 +14,8 @@ namespace GameEnvironments.Load.Holders
         IObservable<Unit> Load(Transform mapTransform,
                                int mapXSize,
                                int mapZSize);
+
+        Subject<Unit> FinishedLoadingEventStream { get; }
     }
 
     public class LoadBoardItemsHolderService<THolder, TBoardItem> : ILoadBoardItemsHolderService
@@ -22,8 +24,8 @@ namespace GameEnvironments.Load.Holders
     {
         private readonly ITilesPositionService _tilesPositionService;
         private readonly IBoardItemsRepository<TBoardItem> _boardItemsRepository;
-        private readonly Subject<Unit> _finishedLoadingEventStream;
         private readonly IGameObjectAndComponentProvider<THolder> _holderProvider;
+        public Subject<Unit> FinishedLoadingEventStream { get; }
 
         public LoadBoardItemsHolderService(ITilesPositionService tilesPositionService,
                                            IBoardItemsRepository<TBoardItem> boardItemsRepository,
@@ -32,8 +34,9 @@ namespace GameEnvironments.Load.Holders
             _tilesPositionService = tilesPositionService;
             _boardItemsRepository = boardItemsRepository;
             _holderProvider = holderProvider;
-            _finishedLoadingEventStream = new Subject<Unit>();
+            FinishedLoadingEventStream = new Subject<Unit>();
         }
+
 
         public IObservable<Unit> Load(Transform mapTransform, int mapXSize, int mapZSize)
         {
@@ -64,7 +67,7 @@ namespace GameEnvironments.Load.Holders
 
         public void Dispose()
         {
-            _finishedLoadingEventStream?.Dispose();
+            FinishedLoadingEventStream?.Dispose();
         }
     }
 }

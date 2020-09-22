@@ -10,8 +10,8 @@ namespace InGameEditor.Ui.Options.Save
 {
     public class SaveViewModel : IDisposable
     {
-        public readonly ILiveData<SavingResult> SavingResultEvent;
-        public readonly ILiveData<bool> SavingDetailDialogVisibilityEvent;
+        public readonly ILiveData<SavingResult> savingResultEvent;
+        public readonly ILiveData<bool> savingDetailDialogVisibilityEvent;
 
         private readonly ISaveEnvironmentService _saveEnvironmentService;
         private readonly ICurrentGameEnvironmentGetRepository _currentGameEnvironmentGetRepository;
@@ -28,8 +28,8 @@ namespace InGameEditor.Ui.Options.Save
             _currentGameEnvironmentGetRepository = currentGameEnvironmentGetRepository;
             _messageService = messageService;
 
-            SavingResultEvent = new LiveData<SavingResult>();
-            SavingDetailDialogVisibilityEvent = new LiveData<bool>();
+            savingResultEvent = new LiveData<SavingResult>();
+            savingDetailDialogVisibilityEvent = new LiveData<bool>();
         }
 
         public void Dispose()
@@ -44,7 +44,7 @@ namespace InGameEditor.Ui.Options.Save
                     env =>
                     {
                         var saveResult = _saveEnvironmentService.TrySaveEnvironment(env, filename);
-                        SavingResultEvent.PostValue(saveResult);
+                        savingResultEvent.PostValue(saveResult);
                     }
                 );
         }
@@ -56,12 +56,12 @@ namespace InGameEditor.Ui.Options.Save
 
         public void ClickedSaveMenuButton()
         {
-            SavingDetailDialogVisibilityEvent.PostValue(true);
+            savingDetailDialogVisibilityEvent.PostValue(true);
         }
 
         public void ClickedCancelInSavingDetail()
         {
-            SavingDetailDialogVisibilityEvent.PostValue(false);
+            savingDetailDialogVisibilityEvent.PostValue(false);
         }
     }
 }

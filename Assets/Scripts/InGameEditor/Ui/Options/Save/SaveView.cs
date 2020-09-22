@@ -28,7 +28,7 @@ namespace InGameEditor.Ui.Options.Save
             );
 
             _compositeDisposable.Add(
-                _viewModel.SavingResultEvent.Subscribe(
+                _viewModel.savingResultEvent.Subscribe(
                     result =>
                     {
                         switch (result)
@@ -50,7 +50,7 @@ namespace InGameEditor.Ui.Options.Save
             );
 
             _compositeDisposable.Add(
-                _viewModel.SavingDetailDialogVisibilityEvent.Subscribe(
+                _viewModel.savingDetailDialogVisibilityEvent.Subscribe(
                     visible =>
                     {
                         if (visible)

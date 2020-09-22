@@ -1,5 +1,4 @@
-﻿using Units;
-using Units.Data;
+﻿using Units.Data;
 using UnityEngine;
 using UnityUtils.Constants;
 

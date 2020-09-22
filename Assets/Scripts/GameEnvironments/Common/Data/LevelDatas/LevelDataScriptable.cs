@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Common.Providers;
-using Constructs;
 using Constructs.Data;
 using JetBrains.Annotations;
 using Strongholds;
 using Tiles.Data;
-using Units;
 using Units.Data;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -71,7 +69,9 @@ namespace GameEnvironments.Common.Data.LevelDatas
         [Serializable]
         private class StrongholdDataWrapper
         {
-            [FormerlySerializedAs("unitData")] [SerializeField] private UnitDataScriptable unitDataScriptable;
+            [FormerlySerializedAs("unitData")] [SerializeField]
+            private UnitDataScriptable unitDataScriptable;
+
             [SerializeField] private ConstructDataScriptable constructDataScriptable;
 
             public StrongholdDataWrapper(UnitDataScriptable unitDataScriptable, ConstructDataScriptable constructDataScriptable)

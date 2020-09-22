@@ -10,6 +10,7 @@ namespace Tiles.Data
         [SerializeField] private float weight;
 
         public float Weight => weight;
+
         public TileData ToData()
         {
             return new TileData(Icon, tileName, this);

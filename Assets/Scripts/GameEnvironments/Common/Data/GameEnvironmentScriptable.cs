@@ -56,8 +56,11 @@ namespace GameEnvironments.Common.Data
         [Serializable]
         private class StrongholdDataWrapper
         {
-            [FormerlySerializedAs("unitData")] [SerializeField] private UnitDataScriptable unitDataScriptable;
-            [FormerlySerializedAs("constructData")] [SerializeField] private ConstructDataScriptable constructDataScriptable;
+            [FormerlySerializedAs("unitData")] [SerializeField]
+            private UnitDataScriptable unitDataScriptable;
+
+            [FormerlySerializedAs("constructData")] [SerializeField]
+            private ConstructDataScriptable constructDataScriptable;
 
             public StrongholdDataWrapper(UnitDataScriptable unitDataScriptable, ConstructDataScriptable constructDataScriptable)
             {

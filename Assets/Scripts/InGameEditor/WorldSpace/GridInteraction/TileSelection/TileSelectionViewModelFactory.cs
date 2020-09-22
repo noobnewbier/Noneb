@@ -14,8 +14,10 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
     {
         [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
         [SerializeField] private CurrentSelectedTileHolderRepositoryProvider currentSelectedTileHolderRepositoryProvider;
+
         [FormerlySerializedAs("currentlyHoveredTileHolderRepositoryProvider")] [SerializeField]
         private CurrentHoveredTileHolderRepositoryProvider currentHoveredTileHolderRepositoryProvider;
+
         [SerializeField] private TilesHolderRepositoryProvider tileHolderRepositoryProvider;
         [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
 

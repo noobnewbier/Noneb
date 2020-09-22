@@ -1,5 +1,4 @@
-﻿using Constructs;
-using Constructs.Data;
+﻿using Constructs.Data;
 using UnityEngine;
 using UnityUtils.Constants;
 

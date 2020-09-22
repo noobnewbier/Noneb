@@ -10,7 +10,7 @@ namespace Constructs.Data
         //todo: implementation and design of construct
         [SerializeField] private string constructName;
 
-        public  ConstructData ToData()
+        public ConstructData ToData()
         {
             return new ConstructData(Icon, constructName, this);
         }

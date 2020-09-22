@@ -1,7 +1,5 @@
 ﻿using Common.BoardItems;
-using Constructs;
 using Constructs.Data;
-using Units;
 using Units.Data;
 using UnityEngine;
 
@@ -13,10 +11,6 @@ namespace Strongholds
     /// </summary>
     public class StrongholdData : BoardItemData
     {
-        public UnitData UnitData { get; }
-
-        public ConstructData ConstructData { get; }
-
         private StrongholdData(Sprite icon, string name, ConstructData constructData, UnitData unitData) :
             base(icon, name)
         {
@@ -24,8 +18,12 @@ namespace Strongholds
             UnitData = unitData;
         }
 
+        public UnitData UnitData { get; }
+
+        public ConstructData ConstructData { get; }
+
         /// <summary>
-        /// TODO: Require actual implementation 
+        /// TODO: Require actual implementation
         /// need to fix icon param, it should not be units sprite,
         /// but a mix of construct and unit(or whatever implementation you favour),
         /// it's just something to make it compile for now

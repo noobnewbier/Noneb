@@ -1,11 +1,12 @@
 ﻿using System;
-using Constructs;
+using Constructs.Data;
 using GameEnvironments.Common.Data.LevelDatas;
 using JetBrains.Annotations;
 using Maps;
 using Strongholds;
-using Units;
+using Units.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WorldConfigurations;
 
 namespace GameEnvironments.Common.Data
@@ -55,23 +56,23 @@ namespace GameEnvironments.Common.Data
         [Serializable]
         private class StrongholdDataWrapper
         {
-            [SerializeField] private UnitData unitData;
-            [SerializeField] private ConstructData constructData;
+            [FormerlySerializedAs("unitData")] [SerializeField] private UnitDataScriptable unitDataScriptable;
+            [FormerlySerializedAs("constructData")] [SerializeField] private ConstructDataScriptable constructDataScriptable;
 
-            public StrongholdDataWrapper(UnitData unitData, ConstructData constructData)
+            public StrongholdDataWrapper(UnitDataScriptable unitDataScriptable, ConstructDataScriptable constructDataScriptable)
             {
-                this.unitData = unitData;
-                this.constructData = constructData;
+                this.unitDataScriptable = unitDataScriptable;
+                this.constructDataScriptable = constructDataScriptable;
             }
 
             public StrongholdData ToStrongholdData()
             {
-                if (unitData == null && constructData == null)
+                if (unitDataScriptable == null && constructDataScriptable == null)
                 {
                     return null;
                 }
 
-                return new StrongholdData(unitData, constructData);
+                return StrongholdData.Create(constructDataScriptable.ToData(), unitDataScriptable.ToData());
             }
         }
     }

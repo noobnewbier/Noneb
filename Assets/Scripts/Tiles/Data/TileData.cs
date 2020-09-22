@@ -3,13 +3,14 @@ using UnityEngine;
 
 namespace Tiles.Data
 {
-    [CreateAssetMenu(menuName = "Data/Tile", fileName = "TileData")]
     public class TileData : BoardItemData
     {
-        [SerializeField] private string tileName;
-        [SerializeField] private float weight;
-
-        public float Weight => weight;
-        public override string DataName => tileName;
+        public TileDataScriptable Original { get; }
+        public float Weight => Original.Weight;
+        
+        public TileData(Sprite icon, string name, TileDataScriptable original) : base(icon, name)
+        {
+            Original = original;
+        }
     }
 }

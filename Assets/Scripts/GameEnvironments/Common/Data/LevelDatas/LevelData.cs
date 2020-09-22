@@ -1,9 +1,9 @@
 ﻿using System;
 using Common.Providers;
-using Constructs;
+using Constructs.Data;
 using Strongholds;
 using Tiles.Data;
-using Units;
+using Units.Data;
 
 namespace GameEnvironments.Common.Data.LevelDatas
 {

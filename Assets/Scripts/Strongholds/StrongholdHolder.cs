@@ -26,7 +26,7 @@ namespace Strongholds
             var style = new GUIStyle {normal = {textColor = Color.cyan}};
             Handles.Label(
                 transform.position,
-                $"{Value.Data.ConstructData.DataName} captured by : {Value.Data.UnitData.DataName}",
+                Value.Data.Name,
                 style
             );
         }

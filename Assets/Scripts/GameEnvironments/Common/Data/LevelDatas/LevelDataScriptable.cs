@@ -2,11 +2,14 @@
 using System.Linq;
 using Common.Providers;
 using Constructs;
+using Constructs.Data;
 using JetBrains.Annotations;
 using Strongholds;
 using Tiles.Data;
 using Units;
+using Units.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Common.Data.LevelDatas
@@ -14,11 +17,11 @@ namespace GameEnvironments.Common.Data.LevelDatas
     [CreateAssetMenu(menuName = MenuName.Data + nameof(LevelDataScriptable), fileName = nameof(LevelDataScriptable))]
     public class LevelDataScriptable : ScriptableObject
     {
-        [SerializeField] private TileData[] tileDatas;
+        [SerializeField] private TileDataScriptable[] tileDatas;
         [SerializeField] private GameObjectProvider[] tileGameObjectProviders;
-        [SerializeField] private ConstructData[] constructDatas;
+        [SerializeField] private ConstructDataScriptable[] constructDatas;
         [SerializeField] private GameObjectProvider[] constructGameObjectProviders;
-        [SerializeField] private UnitData[] unitDatas;
+        [SerializeField] private UnitDataScriptable[] unitDatas;
         [SerializeField] private GameObjectProvider[] unitGameObjectProviders;
         [SerializeField] private StrongholdDataWrapper[] strongholdDatas;
         [SerializeField] private GameObjectProvider[] strongholdUnitGameObjectProviders;
@@ -32,11 +35,11 @@ namespace GameEnvironments.Common.Data.LevelDatas
         public LevelData ToLevelData()
         {
             return new LevelData(
-                tileDatas,
+                tileDatas.Select(d => d.ToData()).ToArray(),
                 tileGameObjectProviders,
-                constructDatas,
+                constructDatas.Select(d => d.ToData()).ToArray(),
                 constructGameObjectProviders,
-                unitDatas,
+                unitDatas.Select(d => d.ToData()).ToArray(),
                 unitGameObjectProviders,
                 strongholdDatas.Select(wrapper => wrapper.ToStrongholdData()).ToArray(),
                 strongholdUnitGameObjectProviders,
@@ -44,17 +47,17 @@ namespace GameEnvironments.Common.Data.LevelDatas
             );
         }
 
-        public static LevelDataScriptable CreateScriptableFromLevelData(LevelData levelData)
+        public static LevelDataScriptable Create(LevelData levelData)
         {
             var newInstance = CreateInstance<LevelDataScriptable>();
-            newInstance.tileDatas = levelData.TileDatas;
+            newInstance.tileDatas = levelData.TileDatas.Select(d => d.Original).ToArray();
             newInstance.tileGameObjectProviders = levelData.TileGameObjectProviders;
-            newInstance.constructDatas = levelData.ConstructDatas;
+            newInstance.constructDatas = levelData.ConstructDatas.Select(d => d.Original).ToArray();
             newInstance.constructGameObjectProviders = levelData.ConstructGameObjectProviders;
-            newInstance.unitDatas = levelData.UnitDatas;
+            newInstance.unitDatas = levelData.UnitDatas.Select(d => d.Original).ToArray();
             newInstance.unitGameObjectProviders = levelData.UnitGameObjectProviders;
             newInstance.strongholdDatas = levelData.StrongholdDatas
-                .Select(data => data != null ? new StrongholdDataWrapper(data.UnitData, data.ConstructData) : null)
+                .Select(data => data != null ? new StrongholdDataWrapper(data.UnitData.Original, data.ConstructData.Original) : null)
                 .ToArray();
             newInstance.strongholdUnitGameObjectProviders = levelData.StrongholdUnitGameObjectProviders;
             newInstance.strongholdConstructGameObjectProviders = levelData.StrongholdConstructGameObjectProviders;
@@ -68,23 +71,23 @@ namespace GameEnvironments.Common.Data.LevelDatas
         [Serializable]
         private class StrongholdDataWrapper
         {
-            [SerializeField] private UnitData unitData;
-            [SerializeField] private ConstructData constructData;
+            [FormerlySerializedAs("unitData")] [SerializeField] private UnitDataScriptable unitDataScriptable;
+            [SerializeField] private ConstructDataScriptable constructDataScriptable;
 
-            public StrongholdDataWrapper(UnitData unitData, ConstructData constructData)
+            public StrongholdDataWrapper(UnitDataScriptable unitDataScriptable, ConstructDataScriptable constructDataScriptable)
             {
-                this.unitData = unitData;
-                this.constructData = constructData;
+                this.unitDataScriptable = unitDataScriptable;
+                this.constructDataScriptable = constructDataScriptable;
             }
 
             public StrongholdData ToStrongholdData()
             {
-                if (unitData == null && constructData == null)
+                if (unitDataScriptable == null && constructDataScriptable == null)
                 {
                     return null;
                 }
 
-                return new StrongholdData(unitData, constructData);
+                return StrongholdData.Create(constructDataScriptable.ToData(), unitDataScriptable.ToData());
             }
         }
     }

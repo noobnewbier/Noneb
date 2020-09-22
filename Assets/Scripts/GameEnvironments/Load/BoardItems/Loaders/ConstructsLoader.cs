@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 using Constructs;
+using Constructs.Data;
 using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using GameEnvironments.Load.BoardItems.Providers;
 using UniRx;

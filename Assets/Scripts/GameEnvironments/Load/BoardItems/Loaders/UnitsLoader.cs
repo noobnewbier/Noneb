@@ -4,6 +4,7 @@ using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using GameEnvironments.Load.BoardItems.Providers;
 using UniRx;
 using Units;
+using Units.Data;
 using UnityEngine;
 
 namespace GameEnvironments.Load.BoardItems.Loaders

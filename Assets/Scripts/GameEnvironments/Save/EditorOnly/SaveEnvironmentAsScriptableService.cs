@@ -94,7 +94,7 @@ namespace GameEnvironments.Save.EditorOnly
                                                string environmentName)
         {
             //create new instances as they cannot be referencing the old configs
-            var levelDataScriptable = LevelDataScriptable.CreateScriptableFromLevelData(
+            var levelDataScriptable = LevelDataScriptable.Create(
                 gameEnvironment.LevelData
             );
             var mapConfiguration = MapConfig.Create(

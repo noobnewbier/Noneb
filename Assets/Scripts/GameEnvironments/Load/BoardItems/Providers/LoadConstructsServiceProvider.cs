@@ -1,6 +1,7 @@
 ﻿using Common.Factories;
 using Common.Providers;
 using Constructs;
+using Constructs.Data;
 using GameEnvironments.Common.Repositories.BoardItems.Providers;
 using Maps;
 using Maps.Services;

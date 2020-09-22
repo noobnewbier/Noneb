@@ -4,6 +4,7 @@ using GameEnvironments.Common.Repositories.BoardItems.Providers;
 using Maps;
 using Maps.Services;
 using Units;
+using Units.Data;
 using UnityEngine;
 using UnityUtils.Constants;
 

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8896be6c62ff47bea241e812e7d3f3a4, type: 3}
+  m_Script: {fileID: 11500000, guid: cac7e7c9944e4904a9ed566ff4ce5671, type: 3}
   m_Name: ConstructData
   m_EditorClassIdentifier: 
-  constructName: Dummy Construct
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  constructName: Newb Castle

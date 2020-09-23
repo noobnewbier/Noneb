@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734d170ca62c53149964ae9338d50821, type: 3}
+  m_Script: {fileID: 11500000, guid: 723f2b79860940b59d660039cf1e9e4a, type: 3}
   m_Name: ObstacleTileData
   m_EditorClassIdentifier: 
-  weight: 1e+25
+  icon: {fileID: 21300000, guid: 5fb4f573651db114994e831529756c37, type: 3}
+  tileName: Obstacle
+  weight: 1e+19

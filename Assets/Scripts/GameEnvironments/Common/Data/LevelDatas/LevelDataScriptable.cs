@@ -30,14 +30,24 @@ namespace GameEnvironments.Common.Data.LevelDatas
         private string devInformation;
 #endif
 
+        public StrongholdDataWrapper[] StrongholdDatas => strongholdDatas;
+        public TileDataScriptable[] TileDatas => tileDatas;
+        public GameObjectProvider[] TileGameObjectProviders => tileGameObjectProviders;
+        public ConstructDataScriptable[] ConstructDatas => constructDatas;
+        public GameObjectProvider[] ConstructGameObjectProviders => constructGameObjectProviders;
+        public UnitDataScriptable[] UnitDatas => unitDatas;
+        public GameObjectProvider[] UnitGameObjectProviders => unitGameObjectProviders;
+        public GameObjectProvider[] StrongholdUnitGameObjectProviders => strongholdUnitGameObjectProviders;
+        public GameObjectProvider[] StrongholdConstructGameObjectProviders => strongholdConstructGameObjectProviders;
+
         public LevelData ToLevelData()
         {
             return new LevelData(
-                tileDatas.Select(d => d.ToData()).ToArray(),
+                tileDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
                 tileGameObjectProviders,
-                constructDatas.Select(d => d.ToData()).ToArray(),
+                constructDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
                 constructGameObjectProviders,
-                unitDatas.Select(d => d.ToData()).ToArray(),
+                unitDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
                 unitGameObjectProviders,
                 strongholdDatas.Select(wrapper => wrapper.ToStrongholdData()).ToArray(),
                 strongholdUnitGameObjectProviders,
@@ -67,7 +77,7 @@ namespace GameEnvironments.Common.Data.LevelDatas
         /// Required to avoid passing in empty but not null object into the environment
         /// </summary>
         [Serializable]
-        private class StrongholdDataWrapper
+        public class StrongholdDataWrapper
         {
             [FormerlySerializedAs("unitData")] [SerializeField]
             private UnitDataScriptable unitDataScriptable;
@@ -79,6 +89,9 @@ namespace GameEnvironments.Common.Data.LevelDatas
                 this.unitDataScriptable = unitDataScriptable;
                 this.constructDataScriptable = constructDataScriptable;
             }
+
+            public UnitDataScriptable UnitDataScriptable => unitDataScriptable;
+            public ConstructDataScriptable ConstructDataScriptable => constructDataScriptable;
 
             public StrongholdData ToStrongholdData()
             {

@@ -16,6 +16,7 @@ namespace GameEnvironments.Common.Data
     {
         [SerializeField] private string environmentName;
         [SerializeField] private MapConfig mapConfiguration;
+
         [SerializeField] private WorldConfig worldConfiguration;
         [SerializeField] private LevelDataScriptable levelData;
 
@@ -24,6 +25,14 @@ namespace GameEnvironments.Common.Data
         [TextArea] [SerializeField] [UsedImplicitly]
         private string devInformation;
 #endif
+
+        public string EnvironmentName => environmentName;
+
+        public MapConfig MapConfiguration => mapConfiguration;
+
+        public WorldConfig WorldConfiguration => worldConfiguration;
+
+        public LevelDataScriptable LevelData => levelData;
 
         public GameEnvironment ToGameEnvironment()
         {

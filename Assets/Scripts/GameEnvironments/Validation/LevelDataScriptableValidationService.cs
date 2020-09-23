@@ -1,90 +1,295 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using Common.BoardItems;
 using Common.Providers;
+using Constructs;
 using GameEnvironments.Common.Data.LevelDatas;
-using InGameEditor.Data;
 using Maps;
 using Tiles.Data;
+using Units;
 
 namespace GameEnvironments.Validation
 {
-    //todo: actually use this shit :)
     public interface ILevelDataScriptableValidationService
     {
-        bool Validate(LevelData levelData, MapConfig mapConfiguration, EditorPalette editorPalette);
+        ValidationResult Validate(LevelDataScriptable levelData, MapConfig mapConfiguration);
+    }
+
+    public struct ValidationResult
+    {
+        public ValidationResult(IEnumerable<string> failedReason, bool isValid)
+        {
+            FailedReason = failedReason;
+            IsValid = isValid;
+        }
+
+        public IEnumerable<string> FailedReason { get; }
+        public bool IsValid { get; }
     }
 
     public class LevelDataScriptableValidationService : ILevelDataScriptableValidationService
     {
-        public bool Validate(LevelData levelData, MapConfig mapConfiguration, EditorPalette editorPalette)
+        public ValidationResult Validate(LevelDataScriptable levelData, MapConfig mapConfiguration)
         {
-            return AllDataOfCorrectSize(levelData, mapConfiguration) &&
-                   AllTileHasData(levelData.TileDatas, levelData.TileGameObjectProviders) &&
-                   AllOnTileBoardDataHasCorrespondingGameObjectProviderAndViceVersa(levelData) &&
-                   NoOtherOnTileBoardItemWhenThereIsStronghold(levelData);
+            var result = SummarizeValidationResult(
+                AllDataOfCorrectSize(levelData, mapConfiguration),
+                AllTileHasData(levelData.TileDatas, levelData.TileGameObjectProviders),
+                UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa(levelData),
+                IsStrongHoldSetUpCorrectly(levelData),
+                NoOtherOnTileBoardItemWhenThereIsStronghold(levelData)
+            );
+
+            return result;
         }
 
-        private bool AllDataOfCorrectSize(LevelData levelData, MapConfig mapConfiguration)
+        private static ValidationResult SummarizeValidationResult(params ValidationResult[] testResults)
         {
-            var arraysSize = mapConfiguration.GetTotalMapSize();
-
-            return levelData.TileDatas.Length == arraysSize &&
-                   levelData.TileGameObjectProviders.Length == arraysSize &&
-                   levelData.ConstructDatas.Length == arraysSize &&
-                   levelData.ConstructGameObjectProviders.Length == arraysSize &&
-                   levelData.UnitDatas.Length == arraysSize &&
-                   levelData.UnitGameObjectProviders.Length == arraysSize &&
-                   levelData.StrongholdDatas.Length == arraysSize &&
-                   levelData.StrongholdUnitGameObjectProviders.Length == arraysSize &&
-                   levelData.StrongholdConstructGameObjectProviders.Length == arraysSize;
+            var result = new ValidationResult(
+                testResults.SelectMany(r => r.FailedReason).ToArray(),
+                testResults.All(r => r.IsValid)
+            );
+            return result;
         }
 
-        private bool AllTileHasData(IEnumerable<TileData> tileDatas, IEnumerable<GameObjectProvider> tileGameObjectProviders)
+        #region UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa
+
+        private ValidationResult UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa(LevelDataScriptable levelData)
         {
-            return tileDatas.All(d => d != null) &&
-                   tileGameObjectProviders.All(g => g != null);
+            return SummarizeValidationResult(
+                DataHasCorrespondingGameObjectProvider(levelData.ConstructDatas, levelData.ConstructGameObjectProviders, nameof(Construct)),
+                DataHasCorrespondingGameObjectProvider(levelData.UnitDatas, levelData.UnitGameObjectProviders, nameof(Unit))
+            );
         }
 
-        private bool AllOnTileBoardDataHasCorrespondingGameObjectProviderAndViceVersa(LevelData levelData)
+        #endregion
+
+        private ValidationResult DataHasCorrespondingGameObjectProvider(IList datas,
+                                                                        IReadOnlyList<GameObjectProvider> gameObjectProviders,
+                                                                        string datasName)
         {
-            return DataHasCorrespondingGameObjectProvider(levelData.ConstructDatas, levelData.ConstructGameObjectProviders) &&
-                   DataHasCorrespondingGameObjectProvider(levelData.UnitDatas, levelData.UnitGameObjectProviders) &&
-                   DataHasCorrespondingGameObjectProvider(levelData.StrongholdDatas, levelData.StrongholdUnitGameObjectProviders) &&
-                   DataHasCorrespondingGameObjectProvider(levelData.StrongholdDatas, levelData.StrongholdConstructGameObjectProviders);
+            var passedTest = true;
+            var failedReason = new List<string>();
+            // ReSharper disable once LoopCanBeConvertedToQuery : for readability
+            for (var i = 0; i < datas.Count; i++)
+            {
+                if (datas[i] != null && gameObjectProviders[i] == null)
+                {
+                    passedTest = false;
+                    failedReason.Add($"{datasName} has data in index ${i}, but does not have a {nameof(GameObjectProvider)} for it");
+                }
+
+                if (datas[i] == null && gameObjectProviders[i] != null)
+                {
+                    passedTest = false;
+                    failedReason.Add($"{datasName} has {nameof(GameObjectProvider)} in index ${i}, but does not have a data for it");
+                }
+            }
+
+            return new ValidationResult(failedReason, passedTest);
         }
 
-        private bool NoOtherOnTileBoardItemWhenThereIsStronghold(LevelData levelData)
+        #region NoOtherOnTileBoardItemWhenThereIsStronghold
+
+        private ValidationResult NoOtherOnTileBoardItemWhenThereIsStronghold(LevelDataScriptable levelData)
         {
             var strongholdDatas = levelData.StrongholdDatas;
             var unitDatas = levelData.UnitDatas;
             var constructDatas = levelData.ConstructDatas;
+            var passedTest = true;
+            var failedReason = new List<string>();
 
-            // ReSharper disable once LoopCanBeConvertedToQuery : for readability
             for (var i = 0; i < strongholdDatas.Length; i++)
-                if (strongholdDatas[i] != null) // if there is a stronghold
+                if (StrongholdWrapperHasAStronghold(strongholdDatas[i]))
                 {
-                    if (unitDatas[i] != null || constructDatas[i] != null) // there should be no unit or construct
+                    if (unitDatas[i] != null)
                     {
-                        return false;
+                        passedTest = false;
+                        failedReason.Add($"There is an unit and a stronghold in index {i}");
+                    }
+                    if (constructDatas[i] != null)
+                    {
+                        passedTest = false;
+                        failedReason.Add($"There is an construct and a stronghold in index {i}");
                     }
                 }
 
-            return true;
+            return new ValidationResult(failedReason, passedTest);
         }
 
-        private bool DataHasCorrespondingGameObjectProvider<T>(IReadOnlyList<T> boardItemDatas,
-                                                               IReadOnlyList<GameObjectProvider> gameObjectProviders) where T : BoardItemData
+        #endregion
+
+        private bool StrongholdWrapperHasAStronghold(LevelDataScriptable.StrongholdDataWrapper dataWrapper)
         {
-            // ReSharper disable once LoopCanBeConvertedToQuery : for readability
-            for (var i = 0; i < boardItemDatas.Count; i++)
-                if (boardItemDatas[i] != null && gameObjectProviders[i] == null || //have data but not corresponding gameObjectProvider
-                    boardItemDatas[i] == null && gameObjectProviders[i] != null) //have gameObjectProvider but not corresponding data 
+            return dataWrapper.UnitDataScriptable != null || dataWrapper.ConstructDataScriptable != null;
+        }
+
+        #region AllDataOfCorrectSize
+
+        private ValidationResult AllDataOfCorrectSize(LevelDataScriptable levelData, MapConfig mapConfiguration)
+        {
+            var arraysSize = mapConfiguration.GetTotalMapSize();
+
+            var testTileDatasResult = CheckDataIsOfCorrectSize(
+                levelData.TileDatas,
+                arraysSize,
+                nameof(levelData.TileDatas)
+            );
+
+            var testTileGameObjectProvidersResult = CheckDataIsOfCorrectSize(
+                levelData.TileGameObjectProviders,
+                arraysSize,
+                nameof(levelData.TileGameObjectProviders)
+            );
+
+            var testConstructDatasResult = CheckDataIsOfCorrectSize(
+                levelData.ConstructDatas,
+                arraysSize,
+                nameof(levelData.ConstructDatas)
+            );
+
+            var testConstructGameObjectProvidersResult = CheckDataIsOfCorrectSize(
+                levelData.ConstructGameObjectProviders,
+                arraysSize,
+                nameof(levelData.ConstructGameObjectProviders)
+            );
+
+            var testUnitDatasResult = CheckDataIsOfCorrectSize(
+                levelData.UnitDatas,
+                arraysSize,
+                nameof(levelData.UnitDatas)
+            );
+
+            var testUnitGameObjectProvidersResult = CheckDataIsOfCorrectSize(
+                levelData.UnitGameObjectProviders,
+                arraysSize,
+                nameof(levelData.UnitGameObjectProviders)
+            );
+
+            var testStrongholdDatasResult = CheckDataIsOfCorrectSize(
+                levelData.StrongholdDatas,
+                arraysSize,
+                nameof(levelData.StrongholdDatas)
+            );
+
+            var testStrongholdUnitGameObjectProvidersResult = CheckDataIsOfCorrectSize(
+                levelData.StrongholdUnitGameObjectProviders,
+                arraysSize,
+                nameof(levelData.StrongholdUnitGameObjectProviders)
+            );
+
+            var testStrongholdConstructGameObjectProvidersResult = CheckDataIsOfCorrectSize(
+                levelData.StrongholdConstructGameObjectProviders,
+                arraysSize,
+                nameof(levelData.StrongholdConstructGameObjectProviders)
+            );
+
+            var summaries = SummarizeValidationResult(
+                testTileDatasResult,
+                testTileGameObjectProvidersResult,
+                testConstructDatasResult,
+                testConstructGameObjectProvidersResult,
+                testUnitDatasResult,
+                testUnitGameObjectProvidersResult,
+                testStrongholdDatasResult,
+                testStrongholdUnitGameObjectProvidersResult,
+                testStrongholdConstructGameObjectProvidersResult
+            );
+
+            return summaries;
+        }
+
+        private static ValidationResult CheckDataIsOfCorrectSize(ICollection datas,
+                                                                 int targetSize,
+                                                                 string datasName)
+        {
+            var passedTest = true;
+            var failedReason = new List<string>();
+            if (datas.Count != targetSize)
+            {
+                passedTest = false;
+                failedReason.Add($"{datasName} size is {datas.Count}, the map size is {targetSize} ");
+            }
+
+
+            return new ValidationResult(failedReason, passedTest);
+        }
+
+        #endregion
+
+        #region AllTileHasData
+
+        private ValidationResult AllTileHasData(IReadOnlyList<TileDataScriptable> tileDatas,
+                                                IReadOnlyList<GameObjectProvider> tileGameObjectProviders)
+        {
+            return SummarizeValidationResult(
+                CheckAllDataIsNotNull(tileDatas, nameof(tileDatas)),
+                CheckAllDataIsNotNull(tileGameObjectProviders, nameof(tileGameObjectProviders))
+            );
+        }
+
+        private ValidationResult CheckAllDataIsNotNull<T>(IReadOnlyList<T> datas, string datasName)
+        {
+            var passedTest = true;
+            var failedReason = new List<string>();
+
+            for (var i = 0; i < datas.Count; i++)
+                if (datas[i] == null)
                 {
-                    return false;
+                    passedTest = false;
+                    failedReason.Add($"{datasName} has null data in index {i}, it cannot be null");
                 }
 
-            return true;
+            return new ValidationResult(failedReason, passedTest);
         }
+
+        #endregion
+
+        #region IsStrongHoldSetUpCorrectly
+
+        private ValidationResult IsStrongHoldSetUpCorrectly(LevelDataScriptable levelData)
+        {
+            var dataWrappers = levelData.StrongholdDatas;
+
+            var dataWrapperHasValidData = StrongholdDataWrapperEitherHasBothUnitAndConstructOrNone(dataWrappers);
+            var onlyHasUnitGoWhenHasUnit = DataHasCorrespondingGameObjectProvider(
+                dataWrappers.Select(d => d.UnitDataScriptable).ToList(),
+                levelData.StrongholdUnitGameObjectProviders,
+                nameof(levelData.StrongholdUnitGameObjectProviders)
+            );
+            var onlyHasConstructGoWhenHasConstruct = DataHasCorrespondingGameObjectProvider(
+                dataWrappers.Select(d => d.ConstructDataScriptable).ToList(),
+                levelData.StrongholdUnitGameObjectProviders,
+                nameof(levelData.StrongholdUnitGameObjectProviders)
+            );
+
+            return SummarizeValidationResult(
+                dataWrapperHasValidData,
+                onlyHasUnitGoWhenHasUnit,
+                onlyHasConstructGoWhenHasConstruct
+            );
+        }
+
+        private ValidationResult StrongholdDataWrapperEitherHasBothUnitAndConstructOrNone(
+            IReadOnlyList<LevelDataScriptable.StrongholdDataWrapper> dataWrappers
+        )
+        {
+            var passedTest = true;
+            var failedReason = new List<string>();
+
+            for (var i = 0; i < dataWrappers.Count; i++)
+            {
+                var dataWrapper = dataWrappers[i];
+                if (dataWrapper.UnitDataScriptable == null && dataWrapper.ConstructDataScriptable != null ||
+                    dataWrapper.UnitDataScriptable != null && dataWrapper.ConstructDataScriptable == null)
+                {
+                    passedTest = false;
+                    failedReason.Add($"{nameof(LevelDataScriptable.StrongholdDataWrapper)} in index {i} is inconsistent");
+                }
+            }
+
+            return new ValidationResult(failedReason, passedTest);
+        }
+
+        #endregion
     }
 }

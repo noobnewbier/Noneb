@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Immutable;
+using Common;
 using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using GameEnvironments.Load.BoardItems.Providers;
 using Strongholds;
@@ -8,6 +9,7 @@ using UnityEngine;
 
 namespace GameEnvironments.Load.BoardItems.Loaders
 {
+    [CreateAssetMenu(fileName = nameof(StrongholdsLoader), menuName = ProjectMenuName.Loader + nameof(StrongholdsLoader))]
     public class StrongholdsLoader : BoardItemsLoader<StrongholdData>
     {
         [SerializeField] private LoadStrongholdsServiceProvider serviceProvider;

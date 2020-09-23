@@ -25,7 +25,7 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders
                                              ILoadBoardItemsHolderService loadBoardItemsHolderService)
         {
             _stream = new ReplaySubject<IReadOnlyList<THolder>>(1);
-            _disposable = loadBoardItemsHolderService.FinishedLoadingEventStream.ZipLatest(
+            _disposable = loadBoardItemsHolderService.FinishedLoadingEventStream.CombineLatest(
                     holderProviderRepository.GetObservableStream(),
                     (_, provider) => provider
                 )

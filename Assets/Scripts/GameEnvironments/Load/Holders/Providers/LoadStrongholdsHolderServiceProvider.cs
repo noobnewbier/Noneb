@@ -7,7 +7,7 @@ using UnityUtils.Constants;
 
 namespace GameEnvironments.Load.Holders.Providers
 {
-    [CreateAssetMenu(fileName = nameof(LoadStrongholdsHolderServiceProvider), menuName = MenuName.ScriptableService + "StrongholdsHolderService")]
+    [CreateAssetMenu(fileName = nameof(LoadStrongholdsHolderServiceProvider), menuName = MenuName.ScriptableService + "LoadStrongholdsHolderService")]
     public class LoadStrongholdsHolderServiceProvider : ScriptableObjectProvider<LoadBoardItemsHolderService<StrongholdHolder, Stronghold>>
     {
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;

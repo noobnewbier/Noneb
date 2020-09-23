@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed89f6e71995441b97318d9ff3b714b3, type: 3}
   m_Name: TileSelectionViewModelFactory
   m_EditorClassIdentifier: 
-  tileHoldersRepositoryProvider: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
-    type: 2}
   currentWorldConfigRepositoryProvider: {fileID: 11400000, guid: 413cf4135dfea4940acd0ff86715d43a,
     type: 2}
   currentSelectedTileHolderRepositoryProvider: {fileID: 11400000, guid: aba9a643e8797454a80ab84eb6939469,
     type: 2}
   currentHoveredTileHolderRepositoryProvider: {fileID: 11400000, guid: 3a7dd43fd839be640ae9ae9e86197da6,
+    type: 2}
+  tileHolderRepositoryProvider: {fileID: 11400000, guid: 6c4291b493e86df429ea886542c100e3,
     type: 2}
   cameraRepositoryProvider: {fileID: 11400000, guid: dadd88eea9591fb49a539cf4bdd33d9b,
     type: 2}

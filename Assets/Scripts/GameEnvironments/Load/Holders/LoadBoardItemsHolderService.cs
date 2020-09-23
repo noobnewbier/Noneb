@@ -23,11 +23,11 @@ namespace GameEnvironments.Load.Holders
         where THolder : Component, IBoardItemHolder<TBoardItem>
     {
         private readonly ITilesPositionService _tilesPositionService;
-        private readonly IBoardItemsRepository<TBoardItem> _boardItemsRepository;
+        private readonly IBoardItemsGetRepository<TBoardItem> _boardItemsRepository;
         private readonly IGameObjectAndComponentProvider<THolder> _holderProvider;
 
         public LoadBoardItemsHolderService(ITilesPositionService tilesPositionService,
-                                           IBoardItemsRepository<TBoardItem> boardItemsRepository,
+                                           IBoardItemsGetRepository<TBoardItem> boardItemsRepository,
                                            IGameObjectAndComponentProvider<THolder> holderProvider)
         {
             _tilesPositionService = tilesPositionService;

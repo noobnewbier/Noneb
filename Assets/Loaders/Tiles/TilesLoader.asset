@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96b26e2f7c74482b5371aea9a9b609a, type: 3}
+  m_Name: TilesLoader
+  m_EditorClassIdentifier: 
+  currentLevelDataRepositoryProvider: {fileID: 11400000, guid: 04a69f9bcfd5f264d83f6e5e20fb019a,
+    type: 2}
+  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+    type: 2}
+  serviceProvider: {fileID: 11400000, guid: 089bc8c5765fd4c44a1c64767f421720, type: 2}

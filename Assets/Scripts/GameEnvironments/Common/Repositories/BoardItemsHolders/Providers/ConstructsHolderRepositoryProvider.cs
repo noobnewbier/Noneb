@@ -7,7 +7,7 @@ using UnityUtils.Constants;
 
 namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
 {
-    [CreateAssetMenu(fileName = nameof(ConstructsHolderRepositoryProvider), menuName = MenuName.Providers + "ConstructsHolderRepository")]
+    [CreateAssetMenu(fileName = nameof(ConstructsHolderRepositoryProvider), menuName = MenuName.ScriptableRepository + "ConstructsHolderRepository")]
     public class ConstructsHolderRepositoryProvider : ScriptableObjectProvider<BoardItemsHolderGetRepository<ConstructHolder>>
     {
         [SerializeField] private ConstructsHolderProviderRepositoryProvider providerRepositoryProvider;

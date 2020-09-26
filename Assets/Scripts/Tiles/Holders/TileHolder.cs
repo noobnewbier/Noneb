@@ -1,4 +1,5 @@
-﻿using Common.Holders;
+﻿using Common.BoardItems;
+using Common.Holders;
 using UnityEditor;
 using UnityEngine;
 using UnityUtils.Pooling;
@@ -15,6 +16,8 @@ namespace Tiles.Holders
             get => tile;
             private set => tile = value;
         }
+        
+        BoardItem IBoardItemHolder.Value => Value;
 
         public void Initialize(Tile t)
         {

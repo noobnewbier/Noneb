@@ -1,5 +1,6 @@
 ﻿using System;
 using Common.Providers;
+using Maps.Services;
 using UnityEngine;
 using UnityUtils.Constants;
 
@@ -8,11 +9,13 @@ namespace GameEnvironments.Load.GameObjects
     [CreateAssetMenu(fileName = nameof(GameObjectLoadServiceProvider), menuName = MenuName.ScriptableService + nameof(GameObjectLoadService))]
     public class GameObjectLoadServiceProvider : ScriptableObjectProvider<IGameObjectLoadService>
     {
-        private readonly Lazy<IGameObjectLoadService> _lazyInstance = new Lazy<IGameObjectLoadService>(() => new GameObjectLoadService());
+        [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
+
+        private IGameObjectLoadService _cache;
 
         public override IGameObjectLoadService Provide()
         {
-            return _lazyInstance.Value;
+            return _cache?? (_cache = new GameObjectLoadService(coordinateServiceProvider.Provide()));
         }
     }
 }

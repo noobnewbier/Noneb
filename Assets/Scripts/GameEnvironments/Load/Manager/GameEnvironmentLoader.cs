@@ -1,4 +1,5 @@
 ﻿using System;
+using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Setters;
 using GameEnvironments.Load.BoardItems.Loaders;
 using GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
 using GameEnvironments.Load.GameObjects.Loaders;
@@ -13,8 +14,11 @@ namespace GameEnvironments.Load.Manager
     {
         #region Prelimainaries
 
-        [SerializeField] private CurrentTilesTransformSetter currentTilesTransformSetter;
         [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
+        [SerializeField] private UnitsHolderFetcherSetter unitsHolderFetcherSetter;
+        [SerializeField] private ConstructsHolderFetcherSetter constructsFetcherSetter;
+        [SerializeField] private StrongholdsHolderFetcherSetter strongholdsFetcherSetter;
+        [SerializeField] private TilesHolderFetcherSetter tilesFetcherSetter;
 
         #endregion
 
@@ -87,8 +91,12 @@ namespace GameEnvironments.Load.Manager
 
         private IObservable<Unit> LoadPreliminaries()
         {
-            currentTilesTransformSetter.Set();
             currentMapTransformSetter.Set();
+            
+            unitsHolderFetcherSetter.Set();
+            tilesFetcherSetter.Set();
+            constructsFetcherSetter.Set();
+            strongholdsFetcherSetter.Set();
 
             return Observable.ReturnUnit().Single();
         }

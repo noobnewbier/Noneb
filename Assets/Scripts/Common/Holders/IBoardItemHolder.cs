@@ -8,11 +8,12 @@ namespace Common.Holders
     public interface IBoardItemHolder : IPoolable<GameObject>
     {
         Transform Transform { get; }
+        BoardItem Value { get; }
     }
 
     public interface IBoardItemHolder<T> : IBoardItemHolder where T : BoardItem
     {
-        T Value { get; }
+        new T Value { get; }
         void Initialize(T t);
     }
 }

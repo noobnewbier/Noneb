@@ -72,8 +72,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
             gameObjectLoadService.Load(
                 gameObjectProviders,
                 holders,
-                config.GetMap2DActualWidth(),
-                config.GetMap2DActualHeight()
+                config
             );
         }
 

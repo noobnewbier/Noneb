@@ -12,7 +12,7 @@ namespace GameEnvironments.Load.Holders
 {
     public interface ILoadBoardItemsHolderService : IDisposable
     {
-        Subject<Unit> FinishedLoadingEventStream { get; }
+        IObservable<Unit> FinishedLoadingEventStream { get; }
 
         IObservable<Unit> Load(Transform mapTransform,
                                MapConfig mapConfig);
@@ -26,6 +26,7 @@ namespace GameEnvironments.Load.Holders
         private readonly IBoardItemsGetRepository<TBoardItem> _boardItemsRepository;
         private readonly IGameObjectAndComponentProvider<THolder> _holderProvider;
         private readonly ICoordinateService _coordinateService;
+        private readonly Subject<Unit> _finishedLoadingEventStream;
 
         public LoadBoardItemsHolderService(ITilesPositionService tilesPositionService,
                                            IBoardItemsGetRepository<TBoardItem> boardItemsRepository,
@@ -36,10 +37,10 @@ namespace GameEnvironments.Load.Holders
             _boardItemsRepository = boardItemsRepository;
             _holderProvider = holderProvider;
             _coordinateService = coordinateService;
-            FinishedLoadingEventStream = new Subject<Unit>();
+            _finishedLoadingEventStream = new Subject<Unit>();
         }
 
-        public Subject<Unit> FinishedLoadingEventStream { get; }
+        public IObservable<Unit> FinishedLoadingEventStream => _finishedLoadingEventStream;
 
 
         public IObservable<Unit> Load(Transform mapTransform, MapConfig mapConfig)
@@ -63,6 +64,7 @@ namespace GameEnvironments.Load.Holders
                             component.Initialize(item);
                         }
 
+                        _finishedLoadingEventStream.OnNext(Unit.Default);
                         return Unit.Default;
                     }
                 );
@@ -70,7 +72,7 @@ namespace GameEnvironments.Load.Holders
 
         public void Dispose()
         {
-            FinishedLoadingEventStream?.Dispose();
+            _finishedLoadingEventStream?.Dispose();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Common.Holders;
+﻿using Common.BoardItems;
+using Common.Holders;
 using UnityEditor;
 using UnityEngine;
 using UnityUtils.Pooling;
@@ -15,6 +16,7 @@ namespace Constructs
         }
 
         public Transform Transform => transform;
+        BoardItem IBoardItemHolder.Value => Value;
 
         private void OnDrawGizmosSelected()
         {

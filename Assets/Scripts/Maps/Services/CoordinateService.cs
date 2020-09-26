@@ -30,7 +30,7 @@ namespace Maps.Services
 
         public int GetFlattenArrayIndexFromAxialCoordinate(int x, int z, MapConfig config)
         {
-            return z * config.GetMap2DActualWidth() + x - z;
+            return z * config.GetMap2DActualWidth() + x - z % 2 - z / 2;
         }
 
         public IReadOnlyList<Coordinate> GetFlattenCoordinates(MapConfig mapConfig)

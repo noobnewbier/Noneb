@@ -1,4 +1,5 @@
-﻿using Common.Holders;
+﻿using Common.BoardItems;
+using Common.Holders;
 using UnityEditor;
 using UnityEngine;
 using UnityUtils.Pooling;
@@ -8,6 +9,7 @@ namespace Strongholds
     public class StrongholdHolder : PooledMonoBehaviour, IBoardItemHolder<Stronghold>
     {
         public Stronghold Value { get; private set; }
+        BoardItem IBoardItemHolder.Value => Value;
 
         public void Initialize(Stronghold stronghold)
         {

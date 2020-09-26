@@ -3,6 +3,7 @@ using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
 using GameEnvironments.Load.Holders.Providers;
 using Tiles.Holders;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
@@ -10,7 +11,7 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
     [CreateAssetMenu(fileName = nameof(TilesHolderRepositoryProvider), menuName = MenuName.ScriptableRepository + "TilesHolderRepository")]
     public class TilesHolderRepositoryProvider : ScriptableObjectProvider<BoardItemsHolderGetRepository<TileHolder>>
     {
-        [SerializeField] private TilesHolderProviderRepositoryProvider providerRepositoryProvider;
+        [FormerlySerializedAs("providerRepositoryProvider")] [SerializeField] private TilesHolderFetcherRepositoryProvider fetcherRepositoryProvider;
         [SerializeField] private LoadTilesHolderServiceProvider loadServiceProvider;
 
 
@@ -19,7 +20,7 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
         public override BoardItemsHolderGetRepository<TileHolder> Provide()
         {
             return _cache ?? (_cache = new BoardItemsHolderGetRepository<TileHolder>(
-                providerRepositoryProvider.Provide(),
+                fetcherRepositoryProvider.Provide(),
                 loadServiceProvider.Provide()
             ));
         }

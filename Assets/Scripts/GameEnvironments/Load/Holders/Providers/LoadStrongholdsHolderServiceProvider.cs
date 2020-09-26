@@ -13,7 +13,7 @@ namespace GameEnvironments.Load.Holders.Providers
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private StrongholdsRepositoryProvider strongholdsRepositoryProvider;
         [SerializeField] private StrongholdHolderProvider strongholdHolderProvider;
-
+        [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsHolderService<StrongholdHolder, Stronghold> _cache;
 
@@ -22,7 +22,8 @@ namespace GameEnvironments.Load.Holders.Providers
             return _cache ?? (_cache = new LoadBoardItemsHolderService<StrongholdHolder, Stronghold>(
                 tilesPositionServiceProvider.Provide(),
                 strongholdsRepositoryProvider.Provide(),
-                strongholdHolderProvider
+                strongholdHolderProvider,
+                coordinateServiceProvider.Provide()
             ));
         }
     }

@@ -59,10 +59,10 @@ namespace Maps.Services
             var toReturn = new List<Vector3>();
             var upDistance = worldConfig.OuterRadius * 1.5f;
             var sideDistance = worldConfig.InnerRadius * 2f;
-            for (var i = 0; i < mapConfig.ZSize; i++)
+            for (var i = 0; i < mapConfig.GetMap2DActualHeight(); i++)
             {
                 var sideOffset = i % 2 * sideDistance / 2f;
-                for (var j = 0; j < mapConfig.XSize; j++)
+                for (var j = 0; j < mapConfig.GetMap2DActualWidth(); j++)
                     toReturn.Add(
                         new Vector3(
                             j * sideDistance + sideOffset,

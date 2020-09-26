@@ -6,6 +6,7 @@ using GameEnvironments.Common.Repositories.BoardItems.Providers;
 using Maps;
 using Maps.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Load.BoardItems.Providers
@@ -14,14 +15,14 @@ namespace GameEnvironments.Load.BoardItems.Providers
     public class LoadConstructsServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Construct, ConstructData>>
     {
         [SerializeField] private ConstructsRepositoryProvider constructsRepositoryProvider;
-        [SerializeField] private GetCoordinateServiceProvider getCoordinateServiceProvider;
+        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsService<Construct, ConstructData> _cache;
 
         public override LoadBoardItemsService<Construct, ConstructData> Provide()
         {
             return _cache ?? (_cache = new LoadBoardItemsService<Construct, ConstructData>(
-                getCoordinateServiceProvider.Provide(),
+                coordinateServiceProvider.Provide(),
                 Factory.Create<ConstructData, Coordinate, Construct>
                     ((data, coordinate) => new Construct(data, coordinate)),
                 constructsRepositoryProvider.Provide()

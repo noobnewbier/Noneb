@@ -15,7 +15,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
     {
         private readonly CompositeDisposable _compositeDisposable;
 
-        public GridOverlayViewModel(IGetCoordinateService coordinateService,
+        public GridOverlayViewModel(ICoordinateService coordinateService,
                                     ICurrentWorldConfigRepository currentWorldConfigRepository,
                                     ICurrentMapConfigRepository currentMapConfigRepository,
                                     ITilesPositionService tilesPositionService,

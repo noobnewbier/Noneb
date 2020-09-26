@@ -52,8 +52,7 @@ namespace GameEnvironments.Load.Holders.Loaders
 
             return loadService.Load(
                 mapTransform,
-                config.GetMap2DActualWidth(),
-                config.GetMap2DActualHeight()
+                config
             );
         }
 

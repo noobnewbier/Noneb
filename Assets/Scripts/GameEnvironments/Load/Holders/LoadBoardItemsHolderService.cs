@@ -3,6 +3,7 @@ using Common.BoardItems;
 using Common.Holders;
 using Common.Providers;
 using GameEnvironments.Common.Repositories.BoardItems;
+using Maps;
 using Maps.Services;
 using UniRx;
 using UnityEngine;
@@ -14,8 +15,7 @@ namespace GameEnvironments.Load.Holders
         Subject<Unit> FinishedLoadingEventStream { get; }
 
         IObservable<Unit> Load(Transform mapTransform,
-                               int mapXSize,
-                               int mapZSize);
+                               MapConfig mapConfig);
     }
 
     public class LoadBoardItemsHolderService<THolder, TBoardItem> : ILoadBoardItemsHolderService
@@ -25,21 +25,24 @@ namespace GameEnvironments.Load.Holders
         private readonly ITilesPositionService _tilesPositionService;
         private readonly IBoardItemsGetRepository<TBoardItem> _boardItemsRepository;
         private readonly IGameObjectAndComponentProvider<THolder> _holderProvider;
+        private readonly ICoordinateService _coordinateService;
 
         public LoadBoardItemsHolderService(ITilesPositionService tilesPositionService,
                                            IBoardItemsGetRepository<TBoardItem> boardItemsRepository,
-                                           IGameObjectAndComponentProvider<THolder> holderProvider)
+                                           IGameObjectAndComponentProvider<THolder> holderProvider,
+                                           ICoordinateService coordinateService)
         {
             _tilesPositionService = tilesPositionService;
             _boardItemsRepository = boardItemsRepository;
             _holderProvider = holderProvider;
+            _coordinateService = coordinateService;
             FinishedLoadingEventStream = new Subject<Unit>();
         }
 
         public Subject<Unit> FinishedLoadingEventStream { get; }
 
 
-        public IObservable<Unit> Load(Transform mapTransform, int mapXSize, int mapZSize)
+        public IObservable<Unit> Load(Transform mapTransform, MapConfig mapConfig)
         {
             return _tilesPositionService
                 .GetMostRecent(mapTransform.position.y)
@@ -49,16 +52,15 @@ namespace GameEnvironments.Load.Holders
                     {
                         var (positions, items) = tuple;
 
-                        for (var i = 0; i < mapZSize; i++)
-                        for (var j = 0; j < mapXSize; j++)
+                        foreach (var item in items)
                         {
                             var (component, gameObject) = _holderProvider.Provide(mapTransform, false);
-                            var index = i * mapXSize + j;
+                            var flattenedIndex = _coordinateService.GetFlattenArrayIndexFromAxialCoordinate(item.Coordinate.X, item.Coordinate.Z, mapConfig);
 
-                            gameObject.transform.position = positions[index];
+                            gameObject.transform.position = positions[flattenedIndex];
                             gameObject.transform.parent = mapTransform;
 
-                            component.Initialize(items[index]);
+                            component.Initialize(item);
                         }
 
                         return Unit.Default;

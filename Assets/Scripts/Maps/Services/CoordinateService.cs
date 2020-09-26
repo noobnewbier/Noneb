@@ -2,15 +2,16 @@
 
 namespace Maps.Services
 {
-    public interface IGetCoordinateService
+    public interface ICoordinateService
     {
         Coordinate GetAxialCoordinateFromNestedArrayIndex(int x, int z);
         Coordinate GetCoordinateFromFlattenArrayIndex(int index, MapConfig mapConfig);
+        int GetFlattenArrayIndexFromAxialCoordinate(int x, int z, MapConfig config);
 
         IReadOnlyList<Coordinate> GetFlattenCoordinates(MapConfig mapConfig);
     }
 
-    public class GetCoordinateService : IGetCoordinateService
+    public class CoordinateService : ICoordinateService
     {
         public Coordinate GetAxialCoordinateFromNestedArrayIndex(int x, int z)
         {
@@ -21,10 +22,15 @@ namespace Maps.Services
 
         public Coordinate GetCoordinateFromFlattenArrayIndex(int index, MapConfig config)
         {
-            var nestedArrayZ = index / config.ZSize;
-            var nestedArrayX = index - nestedArrayZ * config.XSize;
+            var nestedArrayZ = index / config.GetMap2DActualHeight();
+            var nestedArrayX = index - nestedArrayZ * config.GetMap2DActualWidth();
 
             return GetAxialCoordinateFromNestedArrayIndex(nestedArrayX, nestedArrayZ);
+        }
+
+        public int GetFlattenArrayIndexFromAxialCoordinate(int x, int z, MapConfig config)
+        {
+            return z * config.GetMap2DActualWidth() + x - z;
         }
 
         public IReadOnlyList<Coordinate> GetFlattenCoordinates(MapConfig mapConfig)

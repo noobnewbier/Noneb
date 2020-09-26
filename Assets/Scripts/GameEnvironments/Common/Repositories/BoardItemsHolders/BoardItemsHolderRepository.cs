@@ -21,7 +21,7 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders
         private IObservable<IReadOnlyList<THolder>> _single;
         private readonly IDisposable _disposable;
 
-        public BoardItemsHolderGetRepository(IDataGetRepository<BoardItemsHolderProvider<THolder>> holderProviderRepository,
+        public BoardItemsHolderGetRepository(IDataGetRepository<BoardItemsHolderFetcher<THolder>> holderProviderRepository,
                                              ILoadBoardItemsHolderService loadBoardItemsHolderService)
         {
             _stream = new ReplaySubject<IReadOnlyList<THolder>>(1);

@@ -13,9 +13,8 @@ namespace Maps
         [Range(1, 100)] [SerializeField] private int zSize;
         public static MapConfig Empty => LazyEmpty.Value;
 
-        //todo: consider removing these two, they are just duplicates atm
-        public int XSize => xSize;
-        public int ZSize => zSize;
+        public int GetMap2DActualWidth() => xSize;
+        public int GetMap2DActualHeight() => zSize;
 
         // may have to consider making MapConfiguration a plain class and the scriptable a wrapper,
         // don't really like how we have to sort of manually create this
@@ -33,22 +32,12 @@ namespace Maps
 
         public int GetMap2DArrayWidth()
         {
-            return XSize + ZSize / 2;
+            return GetMap2DActualWidth() + GetMap2DActualHeight() / 2;
         }
 
         public int GetMap2DArrayHeight()
         {
-            return ZSize;
-        }
-
-        public int GetMap2DActualWidth()
-        {
-            return XSize;
-        }
-
-        public int GetMap2DActualHeight()
-        {
-            return ZSize;
+            return GetMap2DActualHeight();
         }
 
         public int GetTotalMapSize()

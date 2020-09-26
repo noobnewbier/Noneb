@@ -18,15 +18,15 @@ namespace GameEnvironments.Load.BoardItems
         where TBoardItem : BoardItem
         where TBoardItemData : BoardItemData
     {
-        private readonly IGetCoordinateService _getCoordinateService;
+        private readonly ICoordinateService _coordinateService;
         private readonly IFactory<TBoardItemData, Coordinate, TBoardItem> _factory;
         private readonly IBoardItemsSetRepository<TBoardItem> _boardItemsSetRepository;
 
-        public LoadBoardItemsService(IGetCoordinateService getCoordinateService,
+        public LoadBoardItemsService(ICoordinateService coordinateService,
                                      IFactory<TBoardItemData, Coordinate, TBoardItem> factory,
                                      IBoardItemsSetRepository<TBoardItem> boardItemsSetRepository)
         {
-            _getCoordinateService = getCoordinateService;
+            _coordinateService = coordinateService;
             _factory = factory;
             _boardItemsSetRepository = boardItemsSetRepository;
         }
@@ -47,7 +47,7 @@ namespace GameEnvironments.Load.BoardItems
                     continue;
                 }
 
-                items.Add(_factory.Create(boardItemData, _getCoordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i)));
+                items.Add(_factory.Create(boardItemData, _coordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i)));
             }
 
             _boardItemsSetRepository.Set(items);

@@ -5,6 +5,7 @@ using Maps;
 using Maps.Services;
 using Strongholds;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Load.BoardItems.Providers
@@ -13,14 +14,14 @@ namespace GameEnvironments.Load.BoardItems.Providers
     public class LoadStrongholdsServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Stronghold, StrongholdData>>
     {
         [SerializeField] private StrongholdsRepositoryProvider strongholdsRepositoryProvider;
-        [SerializeField] private GetCoordinateServiceProvider getCoordinateServiceProvider;
+        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsService<Stronghold, StrongholdData> _cache;
 
         public override LoadBoardItemsService<Stronghold, StrongholdData> Provide()
         {
             return _cache ?? (_cache = new LoadBoardItemsService<Stronghold, StrongholdData>(
-                getCoordinateServiceProvider.Provide(),
+                coordinateServiceProvider.Provide(),
                 Factory.Create<StrongholdData, Coordinate, Stronghold>
                     ((data, coordinate) => new Stronghold(data, coordinate)),
                 strongholdsRepositoryProvider.Provide()

@@ -14,7 +14,7 @@ namespace GameEnvironments.Load.Holders.Providers
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
         [SerializeField] private TileHolderProvider tileHolderProvider;
-
+        [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsHolderService<TileHolder, Tile> _cache;
 
@@ -23,7 +23,8 @@ namespace GameEnvironments.Load.Holders.Providers
             return _cache ?? (_cache = new LoadBoardItemsHolderService<TileHolder, Tile>(
                 tilesPositionServiceProvider.Provide(),
                 tilesRepositoryProvider.Provide(),
-                tileHolderProvider
+                tileHolderProvider,
+                coordinateServiceProvider.Provide()
             ));
         }
     }

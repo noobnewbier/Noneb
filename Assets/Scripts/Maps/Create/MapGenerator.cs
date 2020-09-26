@@ -47,14 +47,14 @@ namespace Maps.Create
                     {
                         var selfTransform = transform;
                         var (mapConfig, worldConfig, positions) = tuple;
-                        for (var i = 0; i < mapConfig.ZSize; i++)
-                        for (var j = 0; j < mapConfig.XSize; j++)
+                        for (var i = 0; i < mapConfig.GetMap2DActualHeight(); i++)
+                        for (var j = 0; j < mapConfig.GetMap2DActualWidth(); j++)
                         {
                             var newTile = tileHolderProvider.Provide().gameObject.transform;
 
                             newTile.parent = selfTransform;
                             newTile.rotation *= Quaternion.AngleAxis(30f, worldConfig.UpAxis);
-                            newTile.position = positions[i * mapConfig.XSize + j];
+                            newTile.position = positions[i * mapConfig.GetMap2DActualWidth() + j];
                         }
                     }
                 );

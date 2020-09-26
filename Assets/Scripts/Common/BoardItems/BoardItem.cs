@@ -2,20 +2,23 @@
 
 namespace Common.BoardItems
 {
-    //Wrapper for type constraint
     public abstract class BoardItem
     {
+        protected BoardItem(Coordinate coordinate)
+        {
+            Coordinate = coordinate;
+        }
+
+        public Coordinate Coordinate { get; }
     }
 
     public abstract class BoardItem<TData> : BoardItem where TData : BoardItemData
     {
-        protected BoardItem(TData data, Coordinate coordinate)
+        protected BoardItem(TData data, Coordinate coordinate) : base(coordinate)
         {
             Data = data;
-            Coordinate = coordinate;
         }
 
         public TData Data { get; }
-        public Coordinate Coordinate { get; }
     }
 }

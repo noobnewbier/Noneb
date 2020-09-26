@@ -6,6 +6,7 @@ using Maps.Services;
 using Tiles;
 using Tiles.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Load.BoardItems.Providers
@@ -14,14 +15,14 @@ namespace GameEnvironments.Load.BoardItems.Providers
     public class LoadTilesServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Tile, TileData>>
     {
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
-        [SerializeField] private GetCoordinateServiceProvider getCoordinateServiceProvider;
+        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsService<Tile, TileData> _cache;
 
         public override LoadBoardItemsService<Tile, TileData> Provide()
         {
             return _cache ?? (_cache = new LoadBoardItemsService<Tile, TileData>(
-                getCoordinateServiceProvider.Provide(),
+                coordinateServiceProvider.Provide(),
                 Factory.Create<TileData, Coordinate, Tile>
                     ((data, coordinate) => new Tile(data, coordinate)),
                 tilesRepositoryProvider.Provide()

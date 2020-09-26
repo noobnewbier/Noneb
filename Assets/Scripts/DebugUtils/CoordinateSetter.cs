@@ -18,8 +18,8 @@ namespace DebugUtils
         [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
-        [FormerlySerializedAs("tilesTransformProvider")] [SerializeField]
-        private TilesHolderProvider tilesHolderProvider;
+        [FormerlySerializedAs("tilesHolderProvider")] [FormerlySerializedAs("tilesTransformProvider")] [SerializeField]
+        private TilesHolderFetcher tilesHolderFetcher;
 
         private IDisposable _disposable;
 
@@ -29,7 +29,7 @@ namespace DebugUtils
         [ContextMenu("SetCoordinates")]
         private void SetCoordinates()
         {
-            var tilesTransform = tilesHolderProvider.Provide();
+            var tilesTransform = tilesHolderFetcher.Provide();
             _disposable = currentMapConfigRepositoryProvider.Provide()
                 .GetMostRecent()
                 .SubscribeOn(Scheduler.ThreadPool)
@@ -39,14 +39,14 @@ namespace DebugUtils
                     {
                         Assert.AreEqual(
                             tilesTransform.Count,
-                            config.ZSize * config.XSize,
+                            config.GetMap2DActualHeight() * config.GetMap2DActualWidth(),
                             "Number of tile representation is different from the configuration"
                         );
 
-                        for (var i = 0; i < config.ZSize; i++)
-                        for (var j = 0; j < config.XSize; j++)
+                        for (var i = 0; i < config.GetMap2DActualHeight(); i++)
+                        for (var j = 0; j < config.GetMap2DActualWidth(); j++)
                         {
-                            var hexTransform = tilesTransform[i * config.XSize + j];
+                            var hexTransform = tilesTransform[i * config.GetMap2DActualWidth() + j];
                             var requireCoordinates = hexTransform.GetComponentsInChildren<IRequireCoordinate>();
                             var x = j + i % 2 + i / 2;
                             var z = i;

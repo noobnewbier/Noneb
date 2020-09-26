@@ -49,8 +49,8 @@ namespace Tiles.Holders.Repository
 
         private static TileHolder[,] Create2DTileHolders(IReadOnlyList<TileHolder> tileHolders, MapConfig mapConfig)
         {
-            var mapXSize = mapConfig.XSize;
-            var mapZSize = mapConfig.ZSize;
+            var mapXSize = mapConfig.GetMap2DActualWidth();
+            var mapZSize = mapConfig.GetMap2DActualHeight();
 
             var toReturn = new TileHolder[mapXSize + mapZSize / 2, mapZSize];
             for (var i = 0; i < mapZSize; i++)

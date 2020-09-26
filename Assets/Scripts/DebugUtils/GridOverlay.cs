@@ -38,15 +38,15 @@ namespace DebugUtils
                     {
                         var (mapConfig, worldConfig, positions) = tuple;
 
-                        _vertices = new Vector3[mapConfig.XSize * mapConfig.ZSize * 6];
+                        _vertices = new Vector3[mapConfig.GetMap2DActualWidth() * mapConfig.GetMap2DActualHeight() * 6];
 
-                        for (var i = 0; i < mapConfig.ZSize; i++)
-                        for (var j = 0; j < mapConfig.XSize; j++)
+                        for (var i = 0; i < mapConfig.GetMap2DActualHeight(); i++)
+                        for (var j = 0; j < mapConfig.GetMap2DActualWidth(); j++)
                         for (var k = 0; k < 6; k++)
                         {
-                            var vertex = worldConfig.TileCorners[k] + positions[i * mapConfig.XSize + j];
+                            var vertex = worldConfig.TileCorners[k] + positions[i * mapConfig.GetMap2DActualWidth() + j];
 
-                            _vertices[(i * mapConfig.XSize + j) * 6 + k] = vertex;
+                            _vertices[(i * mapConfig.GetMap2DActualWidth() + j) * 6 + k] = vertex;
                         }
                     }
                 );

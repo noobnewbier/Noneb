@@ -3,7 +3,7 @@ using Common.Constants;
 
 namespace Strongholds
 {
-    public class StrongholdsHolderProvider : BoardItemsHolderProvider<StrongholdHolder>
+    public class StrongholdsHolderFetcher : BoardItemsHolderFetcher<StrongholdHolder>
     {
         protected override string HolderTag => ObjectTags.StrongholdHolder;
     }

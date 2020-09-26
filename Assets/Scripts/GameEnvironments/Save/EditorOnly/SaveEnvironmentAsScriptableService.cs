@@ -98,8 +98,8 @@ namespace GameEnvironments.Save.EditorOnly
                 gameEnvironment.LevelData
             );
             var mapConfiguration = MapConfig.Create(
-                gameEnvironment.MapConfiguration.XSize,
-                gameEnvironment.MapConfiguration.ZSize
+                gameEnvironment.MapConfiguration.GetMap2DActualWidth(),
+                gameEnvironment.MapConfiguration.GetMap2DActualHeight()
             );
             var worldConfiguration = WorldConfig.Create(
                 gameEnvironment.WorldConfiguration.UpAxis,

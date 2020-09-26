@@ -3,7 +3,7 @@ using Common.Providers;
 
 namespace Common.BoardItems
 {
-    public abstract class BoardItemsHolderProvider<THolder> : MonoObjectProvider<IReadOnlyList<THolder>>
+    public abstract class BoardItemsHolderFetcher<THolder> : MonoObjectProvider<IReadOnlyList<THolder>>
     {
         protected abstract string HolderTag { get; }
 

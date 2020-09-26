@@ -4,7 +4,7 @@ using Tiles.Holders;
 
 namespace Tiles
 {
-    public class TilesHolderProvider : BoardItemsHolderProvider<TileHolder>
+    public class TilesHolderFetcher : BoardItemsHolderFetcher<TileHolder>
     {
         protected override string HolderTag => ObjectTags.TileHolder;
     }

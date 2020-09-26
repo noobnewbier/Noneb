@@ -8,15 +8,15 @@ namespace Maps
     public class CurrentTilesTransformSetter : MonoBehaviour
     {
         [FormerlySerializedAs("currentTilesTransformRepositoryProvider")] [SerializeField]
-        private TilesHolderProviderRepositoryProvider repositoryProvider;
+        private TilesHolderFetcherRepositoryProvider repositoryProvider;
 
-        [FormerlySerializedAs("tilesTransformProvider")] [SerializeField]
-        private TilesHolderProvider tilesHolderProvider;
+        [FormerlySerializedAs("tilesHolderProvider")] [FormerlySerializedAs("tilesTransformProvider")] [SerializeField]
+        private TilesHolderFetcher tilesHolderFetcher;
 
         [ContextMenu(nameof(Set))]
         public void Set()
         {
-            repositoryProvider.Provide().Set(tilesHolderProvider);
+            repositoryProvider.Provide().Set(tilesHolderFetcher);
         }
     }
 }

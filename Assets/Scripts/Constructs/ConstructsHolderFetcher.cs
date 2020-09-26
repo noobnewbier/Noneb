@@ -3,7 +3,7 @@ using Common.Constants;
 
 namespace Constructs
 {
-    public class ConstructsHolderProvider : BoardItemsHolderProvider<ConstructHolder>
+    public class ConstructsHolderFetcher : BoardItemsHolderFetcher<ConstructHolder>
     {
         protected override string HolderTag => ObjectTags.ConstructHolder;
     }

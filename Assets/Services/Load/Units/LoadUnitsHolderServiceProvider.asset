@@ -17,3 +17,5 @@ MonoBehaviour:
   unitsRepositoryProvider: {fileID: 11400000, guid: c38befb35b3790041934e05718e3b2ca,
     type: 2}
   unitHolderProvider: {fileID: 11400000, guid: 88712787292e9d3408e6bce18851fa4d, type: 2}
+  coordinateServiceProvider: {fileID: 11400000, guid: e6e8477fc92f3cc4aa13606ad223378d,
+    type: 2}

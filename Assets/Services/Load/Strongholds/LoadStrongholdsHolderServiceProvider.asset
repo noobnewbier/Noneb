@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 2}
   strongholdHolderProvider: {fileID: 11400000, guid: d18ae1033f2b0e641b2ae5f91bef0863,
     type: 2}
+  coordinateServiceProvider: {fileID: 11400000, guid: e6e8477fc92f3cc4aa13606ad223378d,
+    type: 2}

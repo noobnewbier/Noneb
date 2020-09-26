@@ -17,3 +17,5 @@ MonoBehaviour:
   tilesRepositoryProvider: {fileID: 11400000, guid: e80c3dac866061b43a2c3327325f395d,
     type: 2}
   tileHolderProvider: {fileID: 11400000, guid: 8cd59ff7806020541889a49d35b00969, type: 2}
+  coordinateServiceProvider: {fileID: 11400000, guid: e6e8477fc92f3cc4aa13606ad223378d,
+    type: 2}

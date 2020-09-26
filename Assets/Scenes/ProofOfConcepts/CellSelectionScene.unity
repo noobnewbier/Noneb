@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &40998796 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1286162358635556059, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1286162359156362228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &242913305 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
@@ -131,18 +137,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2e66a4cd1488ab47968eebe9d477895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &409922692 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8000678177018212543, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1286162359156362228}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18662b2bea584ac9bc7bfe4988681300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &532371556 stripped
@@ -256,6 +250,10 @@ GameObject:
   - component: {fileID: 849524806}
   - component: {fileID: 849524808}
   - component: {fileID: 849524809}
+  - component: {fileID: 849524810}
+  - component: {fileID: 849524814}
+  - component: {fileID: 849524813}
+  - component: {fileID: 849524812}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -283,8 +281,7 @@ MonoBehaviour:
     z: 3
   maxCost: 5
   mapRepositoryProvider: {fileID: 849524808}
-  tileHoldersRepositoryProvider: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
-    type: 2}
+  tilesHoldersServiceProvider: {fileID: 0}
 --- !u!4 &849524807
 Transform:
   m_ObjectHideFlags: 0
@@ -313,8 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
-  tileHoldersRepositoryProvider: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
-    type: 2}
+  tilesHolderRepositoryProvider: {fileID: 0}
 --- !u!114 &849524809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,8 +324,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repositoryProvider: {fileID: 11400000, guid: c22d70416850e2548bfb7b93f5750df7, type: 2}
-  tilesHolderProvider: {fileID: 849524811}
+  tilesHolderFetcher: {fileID: 849524811}
+--- !u!114 &849524810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849524805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c424ffdb1a804128b306cbe079d91e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &849524811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849524805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011f42325789483ba1743953a12fa122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &849524812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849524805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a482891fa74b0fae50b43704584dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &849524813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849524805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1659861cf49456f8a2067498e070dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &849524814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -709,6 +753,96 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1806721216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806721217}
+  - component: {fileID: 1806721221}
+  - component: {fileID: 1806721220}
+  - component: {fileID: 1806721219}
+  - component: {fileID: 1806721218}
+  m_Layer: 0
+  m_Name: '@FetcherSetters'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1806721217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806721216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 40998796}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1806721218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806721216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e35e2b2fda4d008fba22657d37a010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: ae87a6fc44198684ebe2ff81604d0f07, type: 2}
+  holdersFetcher: {fileID: 849524810}
+--- !u!114 &1806721219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806721216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca3c54c70624cfcbafeb5c1363a3497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: c22d70416850e2548bfb7b93f5750df7, type: 2}
+  holdersFetcher: {fileID: 849524811}
+--- !u!114 &1806721220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806721216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51248aee0724442a1bbf73b28bed967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: c8dacca75baf29d469d38207f831d45b, type: 2}
+  holdersFetcher: {fileID: 849524812}
+--- !u!114 &1806721221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806721216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7824084966be44c42950fccc0fb09e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: 754d1f898a3603743bfd9b437b70f056, type: 2}
+  holdersFetcher: {fileID: 849524813}
 --- !u!1 &2028336824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,12 +1160,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
         type: 2}
-    - target: {fileID: 2352182135133919323, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
-      propertyPath: mapTransformRepositoryProvider
-      value: 
-      objectReference: {fileID: 11400000, guid: 7b6d11f292cbdb54783b95bc3be76192,
-        type: 2}
     - target: {fileID: 3207256121381829245, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: m_IsActive
@@ -1078,51 +1206,30 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
-      propertyPath: tileGameObjectLoader
-      value: 
-      objectReference: {fileID: 11400000, guid: c5481e27ba7af02429d221b9130ac717,
-        type: 2}
-    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
-      propertyPath: unitGameObjectLoader
-      value: 
-      objectReference: {fileID: 11400000, guid: 5e865d98d54420c4fb54224ea6a3748d,
-        type: 2}
-    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
-      propertyPath: constructGameObjectLoader
-      value: 
-      objectReference: {fileID: 11400000, guid: 15553b630be02a140a7e73a1594242dc,
-        type: 2}
-    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
-      propertyPath: strongholdUnitGameObjectLoader
-      value: 
-      objectReference: {fileID: 11400000, guid: 1f63238200aa45e45b4fec3525076c47,
-        type: 2}
-    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
-      propertyPath: strongholdConstructGameObjectLoader
-      value: 
-      objectReference: {fileID: 11400000, guid: eb948b34964b7af4ebcb023672552574,
-        type: 2}
-    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
-      propertyPath: strongholdGameObjectsInternalPositionLoader
-      value: 
-      objectReference: {fileID: 11400000, guid: e4b376163fac53d4e9f92e7d1c2e1d22,
-        type: 2}
-    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
-      propertyPath: currentMapTransformSetter
-      value: 
-      objectReference: {fileID: 409922692}
-    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
-        type: 3}
       propertyPath: tileLoader
       value: 
       objectReference: {fileID: 11400000, guid: 47b84bc39aadf9840afd124293b2e471,
         type: 2}
+    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: unitsHolderFetcherSetter
+      value: 
+      objectReference: {fileID: 1806721218}
+    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: constructsFetcherSetter
+      value: 
+      objectReference: {fileID: 1806721221}
+    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: strongholdsFetcherSetter
+      value: 
+      objectReference: {fileID: 1806721220}
+    - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
+        type: 3}
+      propertyPath: tilesFetcherSetter
+      value: 
+      objectReference: {fileID: 1806721219}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9703e44d14b8847830ba7aa6ee1bdb, type: 3}
 --- !u!1001 &6113279904625579157

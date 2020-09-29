@@ -14,6 +14,16 @@ namespace Common.Holders
             Value = value;
         }
 
+        protected override void OnReturnToPool()
+        {
+            base.OnReturnToPool();
+
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         BoardItem IBoardItemHolder.Value => Value;
     }
 }

@@ -5,6 +5,7 @@ using Common.Ui.Repository.CurrentHoveredTileHolder;
 using Common.Ui.Repository.CurrentSelectedTileHolder;
 using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using InGameEditor.Repositories.InGameEditorCamera;
+using JetBrains.Annotations;
 using Tiles.Holders;
 using UniRx;
 using UnityEngine;
@@ -39,8 +40,13 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
 
             _disposable = new CompositeDisposable
             {
-                cameraGetRepository.GetObservableStream().Subscribe(camera => _currentCamera = camera),
+                cameraGetRepository.GetObservableStream()
+                    .SubscribeOn(Scheduler.ThreadPool)
+                    .ObserveOn(Scheduler.MainThread)
+                    .Subscribe(camera => _currentCamera = camera),
                 holderGetRepository.GetObservableStream()
+                    .SubscribeOn(Scheduler.ThreadPool)
+                    .ObserveOn(Scheduler.MainThread)
                     .Subscribe(
                         holders =>
                         {
@@ -106,12 +112,18 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
 
             //calculation is done twice on a few tiles, doesn't really matter
             var holdersWithinThreshold = _currentTileHolders
+                .Where(IsBehaviourValid)
                 .Where(h => Vector3.Distance(h.transform.position, position) < minDistanceThreshold)
                 .ToArray();
 
             return holdersWithinThreshold.Any() ?
                 holdersWithinThreshold.MinBy(h => Vector3.Distance(h.transform.position, position)) :
                 null;
+        }
+
+        private bool IsBehaviourValid(Behaviour tileHolder)
+        {
+            return tileHolder != null && tileHolder.isActiveAndEnabled;
         }
     }
 }

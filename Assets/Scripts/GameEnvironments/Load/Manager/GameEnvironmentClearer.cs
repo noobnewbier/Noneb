@@ -15,7 +15,6 @@ using UnityEngine;
 namespace GameEnvironments.Load.Manager
 {
     /// <summary>
-    /// todo: it won't work now, you just made it compile :)
     /// We clear the scene by loading empty data
     /// </summary>
     public class GameEnvironmentClearer : MonoBehaviour

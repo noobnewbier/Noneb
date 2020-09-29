@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
-  tilesHolderRepositoryProvider: {fileID: 0}
+  tilesHolderRepositoryProvider: {fileID: 11400000, guid: 6c4291b493e86df429ea886542c100e3,
+    type: 2}

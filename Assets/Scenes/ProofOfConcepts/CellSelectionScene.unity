@@ -281,7 +281,8 @@ MonoBehaviour:
     z: 3
   maxCost: 5
   mapRepositoryProvider: {fileID: 849524808}
-  tilesHoldersServiceProvider: {fileID: 0}
+  tilesHoldersServiceProvider: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
+    type: 2}
 --- !u!4 &849524807
 Transform:
   m_ObjectHideFlags: 0
@@ -310,7 +311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
-  tilesHolderRepositoryProvider: {fileID: 0}
+  tilesHolderRepositoryProvider: {fileID: 11400000, guid: 6c4291b493e86df429ea886542c100e3,
+    type: 2}
 --- !u!114 &849524809
 MonoBehaviour:
   m_ObjectHideFlags: 0

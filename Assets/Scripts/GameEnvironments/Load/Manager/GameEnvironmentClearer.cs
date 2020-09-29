@@ -53,11 +53,16 @@ namespace GameEnvironments.Load.Manager
         {
             _disposable?.Dispose();
 
-            _disposable = ClearGameObjects()
-                .Concat(LoadEmptyEnvironment())
-                .Last()
-                .SubscribeOn(Scheduler.MainThread) //todo: use proper threading
+            _disposable = SelectEmptyEnvironment()
+                .Concat(gameEnvironmentLoader.GetLoadNonGameObjectRelatedObservable())
+                .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
+                .Concat(ClearGameObjects())
+                .Concat(
+                    Observable.NextFrame()//wait till next frame as it is possible that the game objects are not properly destroyed
+                        .SelectMany(_ => gameEnvironmentLoader.GetGameObjectRelatedLoadObservable())
+                )
+                .Last()
                 .Subscribe(
                     _ =>
                     {
@@ -74,10 +79,7 @@ namespace GameEnvironments.Load.Manager
                     map =>
                     {
                         foreach (Transform child in map)
-                            if (child != map)
-                            {
-                                Destroy(child.gameObject);
-                            }
+                            Destroy(child.gameObject);
 
                         return Unit.Default;
                     }
@@ -89,7 +91,8 @@ namespace GameEnvironments.Load.Manager
                 .Concat(GetRecycleHoldersObservable(_constructHoldersGetRepository))
                 .Concat(GetRecycleHoldersObservable(_unitHoldersGetRepository))
                 .Concat(GetRecycleHoldersObservable(_strongholdHoldersGetRepository))
-                .Concat(clearAllGameObjects);
+                .Concat(clearAllGameObjects)
+                .Last();
         }
 
         private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemsHolderGetRepository<T> holdersGetRepository) where T : IBoardItemHolder
@@ -105,12 +108,13 @@ namespace GameEnvironments.Load.Manager
                 );
         }
 
-        private IObservable<Unit> LoadEmptyEnvironment()
+        private IObservable<Unit> SelectEmptyEnvironment()
         {
             _gameEnvironmentSetRepository.Set(GameEnvironment.Empty);
 
-            return gameEnvironmentLoader.GetLoadObservable().Single();
+            return Observable.ReturnUnit();
         }
+
 
         private void OnDisable()
         {

@@ -19,9 +19,7 @@ namespace Common.Holders
             base.OnReturnToPool();
 
             foreach (Transform child in transform)
-            {
                 Destroy(child.gameObject);
-            }
         }
 
         BoardItem IBoardItemHolder.Value => Value;

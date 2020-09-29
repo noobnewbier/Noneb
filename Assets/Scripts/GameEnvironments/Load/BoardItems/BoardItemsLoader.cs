@@ -55,9 +55,9 @@ namespace GameEnvironments.Load.BoardItems
 
         private void InvokeLoadService(ImmutableArray<TData> datas, MapConfig config)
         {
-            var loadOnTileService = GetService();
+            var service = GetService();
 
-            loadOnTileService.Load(
+            service.Load(
                 datas,
                 config.GetMap2DActualWidth(),
                 config.GetMap2DActualHeight()

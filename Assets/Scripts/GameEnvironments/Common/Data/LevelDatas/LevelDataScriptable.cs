@@ -93,6 +93,7 @@ namespace GameEnvironments.Common.Data.LevelDatas
             public UnitDataScriptable UnitDataScriptable => unitDataScriptable;
             public ConstructDataScriptable ConstructDataScriptable => constructDataScriptable;
 
+            [CanBeNull]
             public StrongholdData ToStrongholdData()
             {
                 if (unitDataScriptable == null && constructDataScriptable == null)

@@ -62,9 +62,11 @@ namespace GameEnvironments.Load.Manager
         [ContextMenu(nameof(Load))]
         public void Load()
         {
-            _disposable = GetLoadObservable()
-                .SubscribeOn(Scheduler.MainThread) //todo: use proper threading
+            _disposable = GetLoadNonGameObjectRelatedObservable()
+                .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
+                .Concat(GetGameObjectRelatedLoadObservable())
+                .Last()
                 .Subscribe(
                     _ =>
                     {
@@ -74,13 +76,18 @@ namespace GameEnvironments.Load.Manager
                 );
         }
 
-        public IObservable<Unit> GetLoadObservable()
+        public IObservable<Unit> GetGameObjectRelatedLoadObservable()
+        {
+            return LoadBoardItemHolders()
+                .Concat(LoadGameObjects())
+                .Concat(CleanUp())
+                .Last();
+        }
+
+        public IObservable<Unit> GetLoadNonGameObjectRelatedObservable()
         {
             return LoadPreliminaries()
                 .Concat(LoadBoardItems())
-                .Concat(LoadBoardItemHolders())
-                .Concat(LoadGameObjects())
-                .Concat(CleanUp())
                 .Last();
         }
 
@@ -92,7 +99,7 @@ namespace GameEnvironments.Load.Manager
         private IObservable<Unit> LoadPreliminaries()
         {
             currentMapTransformSetter.Set();
-            
+
             unitsHolderFetcherSetter.Set();
             tilesFetcherSetter.Set();
             constructsFetcherSetter.Set();

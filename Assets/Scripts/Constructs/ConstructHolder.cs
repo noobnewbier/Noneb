@@ -1,23 +1,11 @@
-﻿using Common.BoardItems;
-using Common.Holders;
+﻿using Common.Holders;
 using UnityEditor;
 using UnityEngine;
-using UnityUtils.Pooling;
 
 namespace Constructs
 {
-    public class ConstructHolder : PooledMonoBehaviour, IBoardItemHolder<Construct>
+    public class ConstructHolder : BoardItemHolder<Construct>
     {
-        public Construct Value { get; private set; }
-
-        public void Initialize(Construct construct)
-        {
-            Value = construct;
-        }
-
-        public Transform Transform => transform;
-        BoardItem IBoardItemHolder.Value => Value;
-
         private void OnDrawGizmosSelected()
         {
             if (Value == null)

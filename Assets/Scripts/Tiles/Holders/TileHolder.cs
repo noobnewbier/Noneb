@@ -1,32 +1,15 @@
-﻿using Common.BoardItems;
-using Common.Holders;
+﻿using Common.Holders;
 using UnityEditor;
-using UnityEngine;
-using UnityUtils.Pooling;
 
 namespace Tiles.Holders
 {
-    public class TileHolder : PooledMonoBehaviour, IBoardItemHolder<Tile>
+    public class TileHolder : BoardItemHolder<Tile>
     {
-        //serialize to show stuffs in the inspector.
-        [SerializeField] private Tile tile;
-
-        public Tile Value
+        public override void Initialize(Tile value)
         {
-            get => tile;
-            private set => tile = value;
-        }
-        
-        BoardItem IBoardItemHolder.Value => Value;
-
-        public void Initialize(Tile t)
-        {
-            Value = t;
-
+            base.Initialize(value);
             gameObject.name = "Tile: " + Value.Coordinate;
         }
-
-        public Transform Transform => transform;
 
         private void OnDrawGizmosSelected()
         {

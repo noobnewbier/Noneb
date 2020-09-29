@@ -14,6 +14,6 @@ namespace Common.Holders
     public interface IBoardItemHolder<T> : IBoardItemHolder where T : BoardItem
     {
         new T Value { get; }
-        void Initialize(T t);
+        void Initialize(T value);
     }
 }

@@ -45,7 +45,6 @@ namespace EnvironmentSelection
             //Kill all and than instantiate new ones, not efficient but will work for now
             foreach (Transform child in gameEnvironmentsParentTransform) Destroy(child);
 
-            //bug: unknown NRE occasionally on start up
             foreach (var environment in gameEnvironments)
             {
                 var goAndComponent = clickableGameEnvironmentViewProvider.Provide(gameEnvironmentsParentTransform, false);

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common;
 using Common.Holders;
 using Common.Loaders;
 using Common.Providers;
+using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using Maps;
 using Maps.Repositories.CurrentMapConfig;
@@ -54,7 +54,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
         {
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
             var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
-            var holdersObservable = GetBoardItemsHolderRepository().GetMostRecent();
+            var holdersObservable = GetBoardItemsHolderFetchingService().Fetch();
 
             return GetGameObjectProvidersFromRepository(levelDataRepository)
                 .Zip(
@@ -90,6 +90,6 @@ namespace GameEnvironments.Load.GameObjects.Loaders
         protected abstract IObservable<IReadOnlyList<GameObjectProvider>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository);
 
-        protected abstract IDataGetRepository<IReadOnlyList<IBoardItemHolder>> GetBoardItemsHolderRepository();
+        protected abstract IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService();
     }
 }

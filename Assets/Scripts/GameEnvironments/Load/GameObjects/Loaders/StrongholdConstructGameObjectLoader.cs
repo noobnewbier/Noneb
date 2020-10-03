@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Common;
 using Common.Holders;
 using Common.Providers;
+using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using UniRx;
@@ -16,7 +17,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
     )]
     public class StrongholdConstructGameObjectLoader : GameObjectLoader
     {
-        [SerializeField] private StrongholdsHolderRepositoryProvider repositoryProvider;
+        [SerializeField] private StrongholdHoldersFetchingServiceRepositoryProvider repositoryProvider;
 
         protected override IObservable<IReadOnlyList<GameObjectProvider>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository)
@@ -24,7 +25,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
             return currentLevelDataRepository.GetMostRecent().Select(d => d.StrongholdConstructGameObjectProviders);
         }
 
-        protected override IDataGetRepository<IReadOnlyList<IBoardItemHolder>> GetBoardItemsHolderRepository()
+        protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService()
         {
             return repositoryProvider.Provide();
         }

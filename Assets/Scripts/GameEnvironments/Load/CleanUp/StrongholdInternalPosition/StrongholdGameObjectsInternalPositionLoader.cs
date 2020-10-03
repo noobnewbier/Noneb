@@ -9,6 +9,7 @@ using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using Strongholds;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils;
 
 namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
@@ -20,10 +21,10 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
     public class StrongholdGameObjectsInternalPositionLoader : ScriptableObject, ILoader
     {
         [SerializeField] private SetupStrongholdGameObjectsInternalPositionServiceProvider serviceProvider;
-        [SerializeField] private StrongholdsHolderRepositoryProvider strongholdsHolderRepositoryProvider;
+        [FormerlySerializedAs("strongholdsFetchingServiceRepositoryProvider")] [FormerlySerializedAs("strongholdsHolderRepositoryProvider")] [SerializeField] private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHoldersFetchingServiceRepositoryProvider;
 
         private ISetupStrongholdGameObjectsInternalPositionService _setupStrongholdGameObjectsInternalPositionService;
-        private IBoardItemsHolderGetRepository<StrongholdHolder> _strongholdsHolderGetRepository;
+        private IBoardItemHoldersFetchingService<StrongholdHolder> _strongholdsHolderFetchingService;
         private IDisposable _disposable;
 
         [ContextMenu(nameof(LoadAndForget))]
@@ -31,13 +32,13 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         {
             DisposeDisposables();
 
-            _disposable = _strongholdsHolderGetRepository.GetMostRecent()
+            _disposable = _strongholdsHolderFetchingService.Fetch()
                 .Subscribe(SetupTilesWithStronghold);
         }
 
         public IObservable<Unit> LoadObservable()
         {
-            return _strongholdsHolderGetRepository.GetMostRecent()
+            return _strongholdsHolderFetchingService.Fetch()
                 .Select(
                     holders =>
                     {
@@ -51,7 +52,7 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         private void OnEnable()
         {
             _setupStrongholdGameObjectsInternalPositionService = serviceProvider.Provide();
-            _strongholdsHolderGetRepository = strongholdsHolderRepositoryProvider.Provide();
+            _strongholdsHolderFetchingService = strongholdHoldersFetchingServiceRepositoryProvider.Provide();
         }
 
         private void SetupTilesWithStronghold(IReadOnlyList<StrongholdHolder> strongholdHolders)

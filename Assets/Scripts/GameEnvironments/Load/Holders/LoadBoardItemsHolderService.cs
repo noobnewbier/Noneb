@@ -17,7 +17,7 @@ namespace GameEnvironments.Load.Holders
         IObservable<Unit> Load(Transform mapTransform,
                                MapConfig mapConfig);
     }
-
+    
     public class LoadBoardItemsHolderService<THolder, TBoardItem> : ILoadBoardItemsHolderService
         where TBoardItem : BoardItem
         where THolder : Component, IBoardItemHolder<TBoardItem>
@@ -26,7 +26,7 @@ namespace GameEnvironments.Load.Holders
         private readonly IBoardItemsGetRepository<TBoardItem> _boardItemsRepository;
         private readonly IGameObjectAndComponentProvider<THolder> _holderProvider;
         private readonly ICoordinateService _coordinateService;
-        private readonly Subject<Unit> _finishedLoadingEventStream;
+        private readonly ReplaySubject<Unit> _finishedLoadingEventStream;
 
         public LoadBoardItemsHolderService(ITilesPositionService tilesPositionService,
                                            IBoardItemsGetRepository<TBoardItem> boardItemsRepository,
@@ -37,7 +37,7 @@ namespace GameEnvironments.Load.Holders
             _boardItemsRepository = boardItemsRepository;
             _holderProvider = holderProvider;
             _coordinateService = coordinateService;
-            _finishedLoadingEventStream = new Subject<Unit>();
+            _finishedLoadingEventStream = new ReplaySubject<Unit>(1);
         }
 
         public IObservable<Unit> FinishedLoadingEventStream => _finishedLoadingEventStream;
@@ -75,4 +75,5 @@ namespace GameEnvironments.Load.Holders
             _finishedLoadingEventStream?.Dispose();
         }
     }
+
 }

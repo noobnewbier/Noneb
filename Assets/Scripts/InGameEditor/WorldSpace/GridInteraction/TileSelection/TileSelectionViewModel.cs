@@ -4,8 +4,9 @@ using System.Linq;
 using Common.Ui.Repository.CurrentHoveredTileHolder;
 using Common.Ui.Repository.CurrentSelectedTileHolder;
 using GameEnvironments.Common.Repositories.BoardItemsHolders;
+using GameEnvironments.Load.Holders;
 using InGameEditor.Repositories.InGameEditorCamera;
-using JetBrains.Annotations;
+using Tiles;
 using Tiles.Holders;
 using UniRx;
 using UnityEngine;
@@ -17,50 +18,52 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
     public class TileSelectionViewModel : IDisposable
     {
-        private readonly IDisposable _disposable;
+        private readonly IDisposable _compositeDisposable;
         private readonly ICurrentHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
         private readonly ICurrentSelectedTileHolderSetRepository _currentSelectedTileHolderSetRepository;
         private readonly Transform _mapTransform;
+        private readonly IBoardItemHoldersFetchingService<TileHolder> _holderFetchingService;
 
         private IReadOnlyList<TileHolder> _currentTileHolders;
         private Camera _currentCamera;
         private WorldConfig _currentWorldConfig;
         private bool _haveTilesOnScreen;
+        private IDisposable _fetchingServiceDisposable;
 
         public TileSelectionViewModel(ICurrentWorldConfigRepository worldConfigRepository,
                                       ICurrentHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
                                       ICurrentSelectedTileHolderSetRepository currentSelectedTileHolderSetRepository,
                                       IInGameEditorCameraGetRepository cameraGetRepository,
                                       Transform mapTransform,
-                                      IBoardItemsHolderGetRepository<TileHolder> holderGetRepository)
+                                      IBoardItemHoldersFetchingService<TileHolder> holderFetchingService,
+                                      LoadBoardItemsHolderService<TileHolder, Tile> tileHolderLoadService)
         {
             _hoveredTileHolderSetRepository = hoveredTileHolderSetRepository;
             _mapTransform = mapTransform;
+            _holderFetchingService = holderFetchingService;
             _currentSelectedTileHolderSetRepository = currentSelectedTileHolderSetRepository;
 
-            _disposable = new CompositeDisposable
+            _compositeDisposable = new CompositeDisposable
             {
                 cameraGetRepository.GetObservableStream()
                     .SubscribeOn(Scheduler.ThreadPool)
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(camera => _currentCamera = camera),
-                holderGetRepository.GetObservableStream()
+                worldConfigRepository.GetObservableStream()
                     .SubscribeOn(Scheduler.ThreadPool)
                     .ObserveOn(Scheduler.MainThread)
-                    .Subscribe(
-                        holders =>
-                        {
-                            _haveTilesOnScreen = holders != null && holders.Count > 0;
-                            _currentTileHolders = holders;
-                        }
-                    ),
-                worldConfigRepository.GetObservableStream().Subscribe(config => _currentWorldConfig = config)
+                    .Subscribe(config => _currentWorldConfig = config),
+                tileHolderLoadService.FinishedLoadingEventStream
+                    .SubscribeOn(Scheduler.ThreadPool)
+                    .ObserveOn(Scheduler.MainThread)
+                    .Subscribe(_ => UpdateCurrentTileHolders())
             };
+            
         }
 
         public void Dispose()
         {
-            _disposable?.Dispose();
+            _compositeDisposable?.Dispose();
         }
 
         public void OnClicked(Vector3 mousePositionScreenSpace)
@@ -124,6 +127,20 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         private bool IsBehaviourValid(Behaviour tileHolder)
         {
             return tileHolder != null && tileHolder.isActiveAndEnabled;
+        }
+
+        private void UpdateCurrentTileHolders()
+        {
+            _fetchingServiceDisposable = _holderFetchingService.Fetch()
+                .Subscribe(
+                    holders =>
+                    {
+                        //todo : suspicous null check
+                        _haveTilesOnScreen = holders != null && holders.Count > 0;
+                        _currentTileHolders = holders;
+                    },
+                    () => _fetchingServiceDisposable?.Dispose()
+                );
         }
     }
 }

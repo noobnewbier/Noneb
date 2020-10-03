@@ -15,6 +15,8 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
             CoordinateLiveData = new LiveData<Coordinate?>();
 
             _disposable = repository.GetObservableStream()
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     holder =>
                         CoordinateLiveData.PostValue(holder != null ? holder.Value.Coordinate : (Coordinate?) null)

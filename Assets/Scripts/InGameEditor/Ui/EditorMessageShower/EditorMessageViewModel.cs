@@ -19,13 +19,14 @@ namespace InGameEditor.Ui.EditorMessageShower
         public EditorMessageViewModel(IInGameEditorMessageService messageService)
         {
             _messageService = messageService;
-            //something is weird with my liveData...
             MessageLiveData = new LiveData<string>();
-            var observer = Observer.Create<InGameEditorUiMessage>(
-                message => MessageLiveData.PostValue(message.Value)
-            );
 
-            _disposable = messageService.InGameEditorUiMessageStream.Subscribe(observer);
+            _disposable = messageService.InGameEditorUiMessageStream
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
+                .Subscribe(
+                    message => MessageLiveData.PostValue(message.Value)
+                );
         }
 
         public LiveData<string> MessageLiveData { get; }

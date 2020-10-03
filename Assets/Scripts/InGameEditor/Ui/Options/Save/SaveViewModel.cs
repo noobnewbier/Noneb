@@ -39,7 +39,10 @@ namespace InGameEditor.Ui.Options.Save
 
         public void Save(string filename)
         {
-            _disposable = _currentGameEnvironmentGetRepository.GetMostRecent()
+            _disposable = _currentGameEnvironmentGetRepository
+                .GetMostRecent()
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     env =>
                     {

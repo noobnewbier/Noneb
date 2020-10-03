@@ -24,10 +24,14 @@ namespace EnvironmentSelection
             {
                 availableGameEnvironmentRepository
                     .GetObservableStream()
+                    .SubscribeOn(Scheduler.ThreadPool)
+                    .ObserveOn(Scheduler.MainThread)
                     .Subscribe(AvailableGameEnvironmentLiveData.PostValue),
 
                 _currentGameEnvironmentRepository
                     .GetObservableStream()
+                    .SubscribeOn(Scheduler.ThreadPool)
+                    .ObserveOn(Scheduler.MainThread)
                     .Subscribe(CurrentlyInspectingGameEnvironmentLiveData.PostValue)
             };
         }

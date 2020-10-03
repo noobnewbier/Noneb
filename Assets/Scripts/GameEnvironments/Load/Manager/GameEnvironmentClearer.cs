@@ -11,6 +11,7 @@ using Tiles.Holders;
 using UniRx;
 using Units.Holders;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.Manager
 {
@@ -24,34 +25,36 @@ namespace GameEnvironments.Load.Manager
 
         [SerializeField] private CurrentMapTransformRepositoryProvider mapTransformRepositoryProvider;
 
-        [SerializeField] private TilesHolderRepositoryProvider tilesHolderRepositoryProvider;
-        [SerializeField] private UnitsHolderRepositoryProvider unitsHolderRepositoryProvider;
-        [SerializeField] private ConstructsHolderRepositoryProvider constructsHolderRepositoryProvider;
-        [SerializeField] private StrongholdsHolderRepositoryProvider strongholdHolderRepositoryProvider;
+        [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField] private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
+        [FormerlySerializedAs("unitsHolderRepositoryProvider")] [SerializeField] private UnitHoldersFetchingServiceProvider unitHoldersFetchingServiceProvider;
+        [FormerlySerializedAs("constructsHolderRepositoryProvider")] [SerializeField] private ConstructsHoldersFetchingServiceProvider constructsHoldersFetchingServiceProvider;
+        [FormerlySerializedAs("strongholdFetchingServiceRepositoryProvider")] [FormerlySerializedAs("strongholdHolderRepositoryProvider")] [SerializeField] private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHolderFetchingServiceRepositoryProvider;
 
         private IDisposable _disposable;
         private ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
         private ICurrentMapTransformGetRepository _mapTransformGetRepository;
-        private IBoardItemsHolderGetRepository<TileHolder> _tileHoldersGetRepository;
-        private IBoardItemsHolderGetRepository<UnitHolder> _unitHoldersGetRepository;
-        private IBoardItemsHolderGetRepository<ConstructHolder> _constructHoldersGetRepository;
-        private IBoardItemsHolderGetRepository<StrongholdHolder> _strongholdHoldersGetRepository;
+        private IBoardItemHoldersFetchingService<TileHolder> _tileHoldersFetchingService;
+        private IBoardItemHoldersFetchingService<UnitHolder> _unitHoldersFetchingService;
+        private IBoardItemHoldersFetchingService<ConstructHolder> _constructHoldersFetchingService;
+        private IBoardItemHoldersFetchingService<StrongholdHolder> _strongholdHoldersFetchingService;
 
-        private void OnEnable()
+        private void Initialize()
         {
             _gameEnvironmentSetRepository = currentGameEnvironmentRepositoryProvider.Provide();
             _mapTransformGetRepository = mapTransformRepositoryProvider.Provide();
-            _tileHoldersGetRepository = tilesHolderRepositoryProvider.Provide();
-            _unitHoldersGetRepository = unitsHolderRepositoryProvider.Provide();
-            _constructHoldersGetRepository = constructsHolderRepositoryProvider.Provide();
-            _strongholdHoldersGetRepository = strongholdHolderRepositoryProvider.Provide();
+            _tileHoldersFetchingService = tileHoldersFetchingServiceProvider.Provide();
+            _unitHoldersFetchingService = unitHoldersFetchingServiceProvider.Provide();
+            _constructHoldersFetchingService = constructsHoldersFetchingServiceProvider.Provide();
+            _strongholdHoldersFetchingService = strongholdHolderFetchingServiceRepositoryProvider.Provide();
         }
 
         [ContextMenu(nameof(Clear))]
         public void Clear()
         {
             _disposable?.Dispose();
-
+            
+            Initialize();
+            
             _disposable = SelectEmptyEnvironment()
                 .Concat(gameEnvironmentLoader.GetLoadNonGameObjectRelatedObservable())
                 .SubscribeOn(Scheduler.ThreadPool)
@@ -73,30 +76,16 @@ namespace GameEnvironments.Load.Manager
 
         private IObservable<Unit> ClearGameObjects()
         {
-            var clearAllGameObjects = _mapTransformGetRepository.GetMostRecent()
-                .Select(
-                    map =>
-                    {
-                        foreach (Transform child in map)
-                            Destroy(child.gameObject);
-
-                        return Unit.Default;
-                    }
-                )
-                .Single();
-
-
-            return GetRecycleHoldersObservable(_tileHoldersGetRepository)
-                .Concat(GetRecycleHoldersObservable(_constructHoldersGetRepository))
-                .Concat(GetRecycleHoldersObservable(_unitHoldersGetRepository))
-                .Concat(GetRecycleHoldersObservable(_strongholdHoldersGetRepository))
-                .Concat(clearAllGameObjects)
+            return GetRecycleHoldersObservable(_tileHoldersFetchingService)
+                .Concat(GetRecycleHoldersObservable(_constructHoldersFetchingService))
+                .Concat(GetRecycleHoldersObservable(_unitHoldersFetchingService))
+                .Concat(GetRecycleHoldersObservable(_strongholdHoldersFetchingService))
                 .Last();
         }
 
-        private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemsHolderGetRepository<T> holdersGetRepository) where T : IBoardItemHolder
+        private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemHoldersFetchingService<T> holdersFetchingService) where T : IBoardItemHolder
         {
-            return holdersGetRepository.GetMostRecent()
+            return holdersFetchingService.Fetch()
                 .Select(
                     holders =>
                     {

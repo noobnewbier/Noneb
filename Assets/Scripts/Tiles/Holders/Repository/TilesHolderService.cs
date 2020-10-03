@@ -17,13 +17,13 @@ namespace Tiles.Holders.Repository
         private IObservable<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSingle;
         private readonly IDisposable _disposable;
 
-        public TilesHolderService(IBoardItemsHolderGetRepository<TileHolder> tileHoldersGetRepository,
+        public TilesHolderService(IBoardItemHoldersFetchingService<TileHolder> tileHoldersFetchingService,
                                   ICurrentMapConfigRepository currentMapConfigRepository)
         {
             _tileHoldersAndConfigSingle = Observable.Throw<(TileHolder[,], MapConfig)>(new InvalidOperationException("Value is not set yet"));
 
             _disposable = currentMapConfigRepository.GetObservableStream()
-                .ZipLatest(tileHoldersGetRepository.GetObservableStream(), (config, tileTransforms) => (config, tileTransforms))
+                .ZipLatest(tileHoldersFetchingService.Fetch(), (config, tileTransforms) => (config, tileTransforms))
                 .Subscribe(
                     tuple =>
                     {

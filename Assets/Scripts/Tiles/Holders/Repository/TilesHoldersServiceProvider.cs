@@ -2,6 +2,7 @@
 using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using Maps.Repositories.CurrentMapConfig;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Tiles.Holders.Repository
@@ -10,7 +11,7 @@ namespace Tiles.Holders.Repository
     public class TilesHoldersServiceProvider : ScriptableObjectProvider<ITilesHolderService>
     {
         [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-        [SerializeField] private TilesHolderRepositoryProvider tilesHolderRepositoryProvider;
+        [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField] private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
 
 
         private ITilesHolderService _cache;
@@ -24,7 +25,7 @@ namespace Tiles.Holders.Repository
         public override ITilesHolderService Provide()
         {
             return _cache ?? (_cache = new TilesHolderService(
-                tilesHolderRepositoryProvider.Provide(),
+                tileHoldersFetchingServiceProvider.Provide(),
                 currentMapConfigRepositoryProvider.Provide()
             ));
         }

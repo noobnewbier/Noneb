@@ -42,6 +42,8 @@ namespace Maps.Create
                     (mapConfig, worldConfig, positions) =>
                         (mapConfig, worldConfig, positions)
                 )
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
                     tuple =>
                     {

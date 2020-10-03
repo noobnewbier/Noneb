@@ -1,6 +1,7 @@
 ﻿using Common.Ui.Repository.CurrentHoveredTileHolder;
 using Common.Ui.Repository.CurrentSelectedTileHolder;
 using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
+using GameEnvironments.Load.Holders.Providers;
 using InGameEditor.Repositories.InGameEditorCamera;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -14,13 +15,11 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
     {
         [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
         [SerializeField] private CurrentSelectedTileHolderRepositoryProvider currentSelectedTileHolderRepositoryProvider;
-
-        [FormerlySerializedAs("currentlyHoveredTileHolderRepositoryProvider")] [SerializeField]
-        private CurrentHoveredTileHolderRepositoryProvider currentHoveredTileHolderRepositoryProvider;
-
-        [SerializeField] private TilesHolderRepositoryProvider tileHolderRepositoryProvider;
+        [SerializeField] private CurrentHoveredTileHolderRepositoryProvider currentHoveredTileHolderRepositoryProvider;
+        [SerializeField] private TileHoldersFetchingServiceProvider tileHolderRepositoryProvider;
         [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
-
+        [SerializeField] private LoadTilesHolderServiceProvider loadTilesHolderServiceProvider;
+        
 
         public TileSelectionViewModel Create(Transform mapTransform)
         {
@@ -30,7 +29,8 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
                 currentSelectedTileHolderRepositoryProvider.Provide(),
                 cameraRepositoryProvider.Provide(),
                 mapTransform,
-                tileHolderRepositoryProvider.Provide()
+                tileHolderRepositoryProvider.Provide(),
+                loadTilesHolderServiceProvider.Provide()
             );
         }
     }

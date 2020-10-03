@@ -36,7 +36,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
                                       IInGameEditorCameraGetRepository cameraGetRepository,
                                       Transform mapTransform,
                                       IBoardItemHoldersFetchingService<TileHolder> holderFetchingService,
-                                      LoadBoardItemsHolderService<TileHolder, Tile> tileHolderLoadService)
+                                      ILoadBoardItemsHolderService tileHolderLoadService)
         {
             _hoveredTileHolderSetRepository = hoveredTileHolderSetRepository;
             _mapTransform = mapTransform;

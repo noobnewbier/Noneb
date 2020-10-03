@@ -58,11 +58,11 @@ namespace GameEnvironments.Common.Data.LevelDatas
         public static LevelDataScriptable Create(LevelData levelData)
         {
             var newInstance = CreateInstance<LevelDataScriptable>();
-            newInstance.tileDatas = levelData.TileDatas.Select(d => d.Original).ToArray();
+            newInstance.tileDatas = levelData.TileDatas.Select(d => d?.Original).ToArray();
             newInstance.tileGameObjectProviders = levelData.TileGameObjectProviders;
-            newInstance.constructDatas = levelData.ConstructDatas.Select(d => d.Original).ToArray();
+            newInstance.constructDatas = levelData.ConstructDatas.Select(d => d?.Original).ToArray();
             newInstance.constructGameObjectProviders = levelData.ConstructGameObjectProviders;
-            newInstance.unitDatas = levelData.UnitDatas.Select(d => d.Original).ToArray();
+            newInstance.unitDatas = levelData.UnitDatas.Select(d => d?.Original).ToArray();
             newInstance.unitGameObjectProviders = levelData.UnitGameObjectProviders;
             newInstance.strongholdDatas = levelData.StrongholdDatas
                 .Select(data => data != null ? new StrongholdDataWrapper(data.UnitData.Original, data.ConstructData.Original) : null)

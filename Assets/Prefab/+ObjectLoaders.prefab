@@ -30,6 +30,7 @@ Transform:
   - {fileID: 8784332846785211368}
   - {fileID: 6113251127291002251}
   - {fileID: 2649463653728505741}
+  - {fileID: 2860427223165102101}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,8 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e66a4cd1488ab47968eebe9d477895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTilesTransformSetter: {fileID: 0}
   currentMapTransformSetter: {fileID: 8000678177018212543}
+  unitsHolderFetcherSetter: {fileID: 8497448313061749894}
+  constructsFetcherSetter: {fileID: 3773546009733323431}
+  strongholdsFetcherSetter: {fileID: 8683965961919145549}
+  tilesFetcherSetter: {fileID: 2845800987218894017}
   unitsLoader: {fileID: 11400000, guid: a5e408acbc79fe143988077acdabcc80, type: 2}
   constructsLoader: {fileID: 11400000, guid: 706debf849f583a4681f56324b166348, type: 2}
   strongholdsLoader: {fileID: 11400000, guid: 0548e6fd63a25ce44b75d5baa92e1165, type: 2}
@@ -201,3 +205,93 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repositoryProvider: {fileID: 11400000, guid: 7b6d11f292cbdb54783b95bc3be76192, type: 2}
   mapTransform: {fileID: 0}
+--- !u!1 &6202445591106662454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2860427223165102101}
+  - component: {fileID: 3773546009733323431}
+  - component: {fileID: 8683965961919145549}
+  - component: {fileID: 2845800987218894017}
+  - component: {fileID: 8497448313061749894}
+  m_Layer: 0
+  m_Name: '@FetcherSetters'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2860427223165102101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202445591106662454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1286162358635556059}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3773546009733323431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202445591106662454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7824084966be44c42950fccc0fb09e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: 754d1f898a3603743bfd9b437b70f056, type: 2}
+  holdersFetcher: {fileID: 0}
+--- !u!114 &8683965961919145549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202445591106662454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51248aee0724442a1bbf73b28bed967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: c8dacca75baf29d469d38207f831d45b, type: 2}
+  holdersFetcher: {fileID: 0}
+--- !u!114 &2845800987218894017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202445591106662454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca3c54c70624cfcbafeb5c1363a3497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: c22d70416850e2548bfb7b93f5750df7, type: 2}
+  holdersFetcher: {fileID: 0}
+--- !u!114 &8497448313061749894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202445591106662454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e35e2b2fda4d008fba22657d37a010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryProvider: {fileID: 11400000, guid: ae87a6fc44198684ebe2ff81604d0f07, type: 2}
+  holdersFetcher: {fileID: 0}

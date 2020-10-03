@@ -1,3 +1,0 @@
-﻿<component name="DependencyValidationManager">
-  <scope name="Script but non-unity-utils" pattern="file[riderModule]:Assets/Scripts//*&amp;&amp;!file[riderModule]:Assets/Scripts/UnityUtils//*&amp;&amp;!file[riderModule]:Assets/Scripts/EventManagement//*" />
-</component>

@@ -22,3 +22,5 @@ MonoBehaviour:
     type: 2}
   cameraRepositoryProvider: {fileID: 11400000, guid: dadd88eea9591fb49a539cf4bdd33d9b,
     type: 2}
+  loadTilesHolderServiceProvider: {fileID: 11400000, guid: c7229ec88f6a0b841902064e1791083e,
+    type: 2}

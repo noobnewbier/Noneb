@@ -2,7 +2,7 @@
 
 namespace InGameEditor.Ui.EditorMessageShower
 {
-    public class EditorMessageView : MonoBehaviour
+    public class DebugLogMessageView : MonoBehaviour
     {
         [SerializeField] private EditorMessageViewModelFactory viewModelFactory;
 

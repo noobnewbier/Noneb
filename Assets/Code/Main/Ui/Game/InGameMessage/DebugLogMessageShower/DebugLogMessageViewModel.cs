@@ -5,17 +5,17 @@ using UniRx;
 
 namespace InGameEditor.Ui.EditorMessageShower
 {
-    public interface IEditorMessageViewModel : IDisposable
+    public interface IDebugLogMessageViewModel : IDisposable
     {
         LiveData<string> MessageLiveData { get; }
     }
 
-    public class EditorMessageViewModel : IEditorMessageViewModel
+    public class DebugLogMessageViewModel : IDebugLogMessageViewModel
     {
         private readonly IInGameMessageService _messageService;
         private readonly IDisposable _disposable;
 
-        public EditorMessageViewModel(IInGameMessageService messageService)
+        public DebugLogMessageViewModel(IInGameMessageService messageService)
         {
             _messageService = messageService;
             MessageLiveData = new LiveData<string>();

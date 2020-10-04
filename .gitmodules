@@ -1,6 +1,6 @@
 [submodule "Assets/Scripts/UnityUtils"]
-	path = Assets/Scripts/UnityUtils
+	path = Assets/UnityUtils
 	url = https://github.com/noobnewbier/UnityUtils.git
 [submodule "Assets/Scripts/EventManagement"]
-	path = Assets/Scripts/EventManagement
+	path = Assets/EventManagement
 	url = https://github.com/noobnewbier/EventManagement.git

@@ -135,8 +135,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
                 .Subscribe(
                     holders =>
                     {
-                        //todo : suspicous null check
-                        _haveTilesOnScreen = holders != null && holders.Count > 0;
+                        _haveTilesOnScreen = holders.Count > 0;
                         _currentTileHolders = holders;
                     },
                     () => _fetchingServiceDisposable?.Dispose()

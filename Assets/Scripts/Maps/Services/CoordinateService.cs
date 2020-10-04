@@ -28,10 +28,7 @@ namespace Maps.Services
             return GetAxialCoordinateFromNestedArrayIndex(nestedArrayX, nestedArrayZ);
         }
 
-        public int GetFlattenArrayIndexFromAxialCoordinate(int x, int z, MapConfig config)
-        {
-            return z * config.GetMap2DActualWidth() + x - z % 2 - z / 2;
-        }
+        public int GetFlattenArrayIndexFromAxialCoordinate(int x, int z, MapConfig config) => z * config.GetMap2DActualWidth() + x - z % 2 - z / 2;
 
         public IReadOnlyList<Coordinate> GetFlattenCoordinates(MapConfig mapConfig)
         {

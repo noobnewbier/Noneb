@@ -11,9 +11,6 @@ namespace Tiles.Data
 
         public float Weight => weight;
 
-        public TileData ToData()
-        {
-            return new TileData(Icon, tileName, this);
-        }
+        public TileData ToData() => new TileData(Icon, tileName, this);
     }
 }

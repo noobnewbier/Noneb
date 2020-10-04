@@ -17,9 +17,9 @@ namespace Maps.Repositories.Map
 
         private IMapRepository _cache;
 
-        public override IMapRepository Provide()
-        {
-            return _cache ?? (_cache = new MapRepository(currentMapConfigRepositoryProvider.Provide(), tilesRepositoryProvider.Provide()));
-        }
+        public override IMapRepository Provide() => _cache ?? (_cache = new MapRepository(
+            currentMapConfigRepositoryProvider.Provide(),
+            tilesRepositoryProvider.Provide()
+        ));
     }
 }

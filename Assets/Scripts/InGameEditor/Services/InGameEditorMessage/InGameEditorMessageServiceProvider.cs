@@ -14,9 +14,6 @@ namespace InGameEditor.Services.InGameEditorMessage
         private readonly Lazy<IInGameEditorMessageService> _lazyInstance =
             new Lazy<IInGameEditorMessageService>(() => new InGameEditorMessageService());
 
-        public override IInGameEditorMessageService Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override IInGameEditorMessageService Provide() => _lazyInstance.Value;
     }
 }

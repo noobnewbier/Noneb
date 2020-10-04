@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Common;
 using Common.Factories;
 using Common.Holders;
-using Common.Providers;
 using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelDatas;
@@ -23,9 +22,6 @@ namespace GameEnvironments.Load.GameObjects.Loaders
             return currentLevelDataRepository.GetMostRecent().Select(d => d.TileGameObjectProviders);
         }
 
-        protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService()
-        {
-            return repositoryProvider.Provide();
-        }
+        protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService() => repositoryProvider.Provide();
     }
 }

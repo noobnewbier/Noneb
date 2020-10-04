@@ -4,15 +4,10 @@ namespace Common.Factories
 {
     public static class Factory
     {
-        public static IFactory<TArg, TOut> Create<TArg, TOut>(Func<TArg, TOut> factoryMethod)
-        {
-            return new AnonymousFactory<TArg, TOut>(factoryMethod);
-        }
+        public static IFactory<TArg, TOut> Create<TArg, TOut>(Func<TArg, TOut> factoryMethod) => new AnonymousFactory<TArg, TOut>(factoryMethod);
 
-        public static IFactory<TArg1, TArg2, TOut> Create<TArg1, TArg2, TOut>(Func<TArg1, TArg2, TOut> factoryMethod)
-        {
-            return new AnonymousFactory<TArg1, TArg2, TOut>(factoryMethod);
-        }
+        public static IFactory<TArg1, TArg2, TOut> Create<TArg1, TArg2, TOut>(Func<TArg1, TArg2, TOut> factoryMethod) =>
+            new AnonymousFactory<TArg1, TArg2, TOut>(factoryMethod);
 
         private class AnonymousFactory<TArg, TOut> : IFactory<TArg, TOut>
         {
@@ -23,10 +18,7 @@ namespace Common.Factories
                 _factoryMethod = factoryMethod;
             }
 
-            public TOut Create(TArg arg)
-            {
-                return _factoryMethod.Invoke(arg);
-            }
+            public TOut Create(TArg arg) => _factoryMethod.Invoke(arg);
         }
 
         private class AnonymousFactory<TArg1, TArg2, TOut> : IFactory<TArg1, TArg2, TOut>
@@ -38,10 +30,7 @@ namespace Common.Factories
                 _factoryMethod = factoryMethod;
             }
 
-            public TOut Create(TArg1 arg1, TArg2 arg2)
-            {
-                return _factoryMethod.Invoke(arg1, arg2);
-            }
+            public TOut Create(TArg1 arg1, TArg2 arg2) => _factoryMethod.Invoke(arg1, arg2);
         }
     }
 }

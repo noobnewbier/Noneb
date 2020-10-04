@@ -14,10 +14,7 @@ namespace GameEnvironments.Load.BoardItems.Loaders
     {
         [SerializeField] private LoadConstructsServiceProvider serviceProvider;
 
-        protected override ILoadBoardItemsService<ConstructData> GetService()
-        {
-            return serviceProvider.Provide();
-        }
+        protected override ILoadBoardItemsService<ConstructData> GetService() => serviceProvider.Provide();
 
         protected override IObservable<ImmutableArray<ConstructData>> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
         {

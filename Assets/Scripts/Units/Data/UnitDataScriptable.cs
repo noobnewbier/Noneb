@@ -14,9 +14,6 @@ namespace Units.Data
         public float MaxHealth => maxHealth;
         public float Health => health;
 
-        public UnitData ToData()
-        {
-            return new UnitData(Icon, unitName, this);
-        }
+        public UnitData ToData() => new UnitData(Icon, unitName, this);
     }
 }

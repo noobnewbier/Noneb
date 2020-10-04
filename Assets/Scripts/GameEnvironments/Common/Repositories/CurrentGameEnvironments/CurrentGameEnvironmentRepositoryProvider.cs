@@ -14,9 +14,6 @@ namespace GameEnvironments.Common.Repositories.CurrentGameEnvironments
         private readonly Lazy<CurrentGameEnvironmentRepository> _lazyInstance =
             new Lazy<CurrentGameEnvironmentRepository>(() => new CurrentGameEnvironmentRepository());
 
-        public override CurrentGameEnvironmentRepository Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override CurrentGameEnvironmentRepository Provide() => _lazyInstance.Value;
     }
 }

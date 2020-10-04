@@ -14,9 +14,6 @@ namespace InGameEditor.Services.InGameEditorCameraSizeInView
         private readonly Lazy<IInGameEditorCameraSizeInViewService> _lazyInstance =
             new Lazy<IInGameEditorCameraSizeInViewService>(() => new InGameEditorCameraSizeInViewService());
 
-        public override IInGameEditorCameraSizeInViewService Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override IInGameEditorCameraSizeInViewService Provide() => _lazyInstance.Value;
     }
 }

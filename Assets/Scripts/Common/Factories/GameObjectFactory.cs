@@ -8,14 +8,9 @@ namespace Common.Factories
     {
         [SerializeField] private GameObject gameObject;
 
-        public GameObject Create()
-        {
-            return Instantiate(gameObject);
-        }
+        public GameObject Create() => Instantiate(gameObject);
 
-        public GameObject Create(Transform parentTransform, bool instantiateInWorldSpace = true)
-        {
-            return Instantiate(gameObject, parentTransform, instantiateInWorldSpace);
-        }
+        public GameObject Create(Transform parentTransform, bool instantiateInWorldSpace = true) =>
+            Instantiate(gameObject, parentTransform, instantiateInWorldSpace);
     }
 }

@@ -12,9 +12,6 @@ namespace GameEnvironments.Common.Repositories.BoardItems.Providers
         private readonly Lazy<BoardItemsRepository<Stronghold>> _lazyInstance =
             new Lazy<BoardItemsRepository<Stronghold>>(() => new BoardItemsRepository<Stronghold>());
 
-        public override BoardItemsRepository<Stronghold> Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override BoardItemsRepository<Stronghold> Provide() => _lazyInstance.Value;
     }
 }

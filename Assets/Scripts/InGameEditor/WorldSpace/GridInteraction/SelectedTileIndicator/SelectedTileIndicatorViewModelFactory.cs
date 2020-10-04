@@ -9,9 +9,6 @@ namespace InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
     {
         [SerializeField] private CurrentSelectedTileHolderRepositoryProvider repositoryProvider;
 
-        public SelectedTileIndicatorViewModel Create()
-        {
-            return new SelectedTileIndicatorViewModel(repositoryProvider.Provide());
-        }
+        public SelectedTileIndicatorViewModel Create() => new SelectedTileIndicatorViewModel(repositoryProvider.Provide());
     }
 }

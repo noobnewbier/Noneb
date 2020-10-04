@@ -15,9 +15,7 @@ namespace WorldConfigurations.Repositories
 
         private ICurrentWorldConfigRepository _cache;
 
-        public override ICurrentWorldConfigRepository Provide()
-        {
-            return _cache ?? (_cache = new CurrentWorldConfigRepository(currentGameEnvironmentRepositoryProvider.Provide()));
-        }
+        public override ICurrentWorldConfigRepository Provide() =>
+            _cache ?? (_cache = new CurrentWorldConfigRepository(currentGameEnvironmentRepositoryProvider.Provide()));
     }
 }

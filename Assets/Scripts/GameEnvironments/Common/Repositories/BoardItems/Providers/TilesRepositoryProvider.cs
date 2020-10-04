@@ -12,9 +12,6 @@ namespace GameEnvironments.Common.Repositories.BoardItems.Providers
         private readonly Lazy<BoardItemsRepository<Tile>>
             _lazyInstance = new Lazy<BoardItemsRepository<Tile>>(() => new BoardItemsRepository<Tile>());
 
-        public override BoardItemsRepository<Tile> Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override BoardItemsRepository<Tile> Provide() => _lazyInstance.Value;
     }
 }

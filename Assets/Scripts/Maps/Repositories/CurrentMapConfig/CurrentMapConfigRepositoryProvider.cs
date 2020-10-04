@@ -15,9 +15,7 @@ namespace Maps.Repositories.CurrentMapConfig
 
         private ICurrentMapConfigRepository _cache;
 
-        public override ICurrentMapConfigRepository Provide()
-        {
-            return _cache ?? (_cache = new CurrentMapConfigRepository(gameEnvironmentRepositoryProvider.Provide()));
-        }
+        public override ICurrentMapConfigRepository Provide() =>
+            _cache ?? (_cache = new CurrentMapConfigRepository(gameEnvironmentRepositoryProvider.Provide()));
     }
 }

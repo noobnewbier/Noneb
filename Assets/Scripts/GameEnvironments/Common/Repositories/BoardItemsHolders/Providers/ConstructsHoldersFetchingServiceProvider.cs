@@ -18,11 +18,9 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
 
         private BoardItemHoldersFetchingService<ConstructHolder> _cache;
 
-        public override BoardItemHoldersFetchingService<ConstructHolder> Provide()
-        {
-            return _cache ?? (_cache = new BoardItemHoldersFetchingService<ConstructHolder>(
+        public override BoardItemHoldersFetchingService<ConstructHolder> Provide() =>
+            _cache ?? (_cache = new BoardItemHoldersFetchingService<ConstructHolder>(
                 fetcherRepositoryProvider.Provide()
             ));
-        }
     }
 }

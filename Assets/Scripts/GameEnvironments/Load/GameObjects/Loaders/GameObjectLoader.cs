@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Common.Factories;
 using Common.Holders;
 using Common.Loaders;
-using Common.Providers;
 using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using Maps;

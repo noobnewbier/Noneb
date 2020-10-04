@@ -24,14 +24,12 @@ namespace Strongholds
         /// but a mix of construct and unit(or whatever implementation you favour),
         /// it's just something to make it compile for now
         /// </summary>
-        public static StrongholdData Create(ConstructData constructData, UnitData unitData)
-        {
-            return new StrongholdData(
+        public static StrongholdData Create(ConstructData constructData, UnitData unitData) =>
+            new StrongholdData(
                 unitData.Icon,
                 $"{constructData.Name} captured by : {unitData.Name}",
                 constructData,
                 unitData
             );
-        }
     }
 }

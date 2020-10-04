@@ -14,9 +14,6 @@ namespace Common.Ui.Repository.CurrentSelectedTileHolder
         private readonly Lazy<CurrentSelectedTileHolderRepository> _lazyInstance =
             new Lazy<CurrentSelectedTileHolderRepository>(() => new CurrentSelectedTileHolderRepository());
 
-        public override CurrentSelectedTileHolderRepository Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override CurrentSelectedTileHolderRepository Provide() => _lazyInstance.Value;
     }
 }

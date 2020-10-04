@@ -14,9 +14,6 @@ namespace Maps.Repositories.CurrentMapTransform
         private readonly Lazy<CurrentMapTransformRepository> _lazyInstance =
             new Lazy<CurrentMapTransformRepository>(() => new CurrentMapTransformRepository());
 
-        public override CurrentMapTransformRepository Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override CurrentMapTransformRepository Provide() => _lazyInstance.Value;
     }
 }

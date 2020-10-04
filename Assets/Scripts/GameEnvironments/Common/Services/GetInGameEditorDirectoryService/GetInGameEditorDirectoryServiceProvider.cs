@@ -14,9 +14,6 @@ namespace GameEnvironments.Common.Services.GetInGameEditorDirectoryService
         private readonly Lazy<IGetInGameEditorDirectoryService> _lazyInstance =
             new Lazy<IGetInGameEditorDirectoryService>(() => new GetInGameEditorDirectoryService());
 
-        public override IGetInGameEditorDirectoryService Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override IGetInGameEditorDirectoryService Provide() => _lazyInstance.Value;
     }
 }

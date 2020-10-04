@@ -12,9 +12,6 @@ namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
     {
         [SerializeField] private CurrentHoveredTileHolderRepositoryProvider repositoryProvider;
 
-        public CurrentHoveredTileCoordinateViewModel Create()
-        {
-            return new CurrentHoveredTileCoordinateViewModel(repositoryProvider.Provide());
-        }
+        public CurrentHoveredTileCoordinateViewModel Create() => new CurrentHoveredTileCoordinateViewModel(repositoryProvider.Provide());
     }
 }

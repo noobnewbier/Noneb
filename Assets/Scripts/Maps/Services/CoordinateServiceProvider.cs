@@ -11,9 +11,6 @@ namespace Maps.Services
         //prevent occasion where other classes are instantiated before this -- this should not have any dependencies anyway.
         private readonly Lazy<ICoordinateService> _lazyInstance = new Lazy<ICoordinateService>(() => new CoordinateService());
 
-        public override ICoordinateService Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override ICoordinateService Provide() => _lazyInstance.Value;
     }
 }

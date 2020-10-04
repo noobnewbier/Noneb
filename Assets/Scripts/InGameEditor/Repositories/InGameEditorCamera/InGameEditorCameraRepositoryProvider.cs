@@ -14,9 +14,6 @@ namespace InGameEditor.Repositories.InGameEditorCamera
         private readonly Lazy<InGameEditorCameraRepository> _lazyInstance =
             new Lazy<InGameEditorCameraRepository>(() => new InGameEditorCameraRepository());
 
-        public override InGameEditorCameraRepository Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override InGameEditorCameraRepository Provide() => _lazyInstance.Value;
     }
 }

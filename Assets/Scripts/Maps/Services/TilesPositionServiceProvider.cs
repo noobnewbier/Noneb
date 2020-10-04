@@ -18,12 +18,10 @@ namespace Maps.Services
 
         private ITilesPositionService _cache;
 
-        public override ITilesPositionService Provide()
-        {
-            return _cache ?? (_cache = new TilesPositionService(
+        public override ITilesPositionService Provide() =>
+            _cache ?? (_cache = new TilesPositionService(
                 currentMapConfigRepositoryProvider.Provide(),
                 currentWorldConfigRepositoryProvider.Provide()
             ));
-        }
     }
 }

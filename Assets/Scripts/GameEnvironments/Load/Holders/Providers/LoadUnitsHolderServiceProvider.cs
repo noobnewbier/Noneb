@@ -22,14 +22,12 @@ namespace GameEnvironments.Load.Holders.Providers
 
         private LoadBoardItemsHolderService<UnitHolder, Unit> _cache;
 
-        public override LoadBoardItemsHolderService<UnitHolder, Unit> Provide()
-        {
-            return _cache ?? (_cache = new LoadBoardItemsHolderService<UnitHolder, Unit>(
+        public override LoadBoardItemsHolderService<UnitHolder, Unit> Provide() =>
+            _cache ?? (_cache = new LoadBoardItemsHolderService<UnitHolder, Unit>(
                 tilesPositionServiceProvider.Provide(),
                 unitsRepositoryProvider.Provide(),
                 unitHolderFactory,
                 coordinateServiceProvider.Provide()
             ));
-        }
     }
 }

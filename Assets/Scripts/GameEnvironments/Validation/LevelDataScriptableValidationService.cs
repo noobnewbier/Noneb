@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common.Factories;
-using Common.Providers;
 using Constructs;
 using GameEnvironments.Common.Data.LevelDatas;
 using Maps;
@@ -54,13 +53,11 @@ namespace GameEnvironments.Validation
 
         #region UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa
 
-        private ValidationResult UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa(LevelDataScriptable levelData)
-        {
-            return SummarizeValidationResult(
+        private ValidationResult UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa(LevelDataScriptable levelData) =>
+            SummarizeValidationResult(
                 DataHasCorrespondingGameObjectProvider(levelData.ConstructDatas, levelData.ConstructGameObjectProviders, nameof(Construct)),
                 DataHasCorrespondingGameObjectProvider(levelData.UnitDatas, levelData.UnitGameObjectProviders, nameof(Unit))
             );
-        }
 
         #endregion
 
@@ -119,10 +116,8 @@ namespace GameEnvironments.Validation
 
         #endregion
 
-        private bool StrongholdWrapperHasAStronghold(LevelDataScriptable.StrongholdDataWrapper dataWrapper)
-        {
-            return dataWrapper.UnitDataScriptable != null || dataWrapper.ConstructDataScriptable != null;
-        }
+        private bool StrongholdWrapperHasAStronghold(LevelDataScriptable.StrongholdDataWrapper dataWrapper) =>
+            dataWrapper.UnitDataScriptable != null || dataWrapper.ConstructDataScriptable != null;
 
         #region AllDataOfCorrectSize
 
@@ -220,13 +215,11 @@ namespace GameEnvironments.Validation
         #region AllTileHasData
 
         private ValidationResult AllTileHasData(IReadOnlyList<TileDataScriptable> tileDatas,
-                                                IReadOnlyList<GameObjectFactory> tileGameObjectProviders)
-        {
-            return SummarizeValidationResult(
+                                                IReadOnlyList<GameObjectFactory> tileGameObjectProviders) =>
+            SummarizeValidationResult(
                 CheckAllDataIsNotNull(tileDatas, nameof(tileDatas)),
                 CheckAllDataIsNotNull(tileGameObjectProviders, nameof(tileGameObjectProviders))
             );
-        }
 
         private ValidationResult CheckAllDataIsNotNull<T>(IReadOnlyList<T> datas, string datasName)
         {

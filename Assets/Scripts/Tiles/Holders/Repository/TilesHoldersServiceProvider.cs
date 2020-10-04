@@ -24,12 +24,10 @@ namespace Tiles.Holders.Repository
             _cache = null;
         }
 
-        public override ITilesHolderService Provide()
-        {
-            return _cache ?? (_cache = new TilesHolderService(
+        public override ITilesHolderService Provide() =>
+            _cache ?? (_cache = new TilesHolderService(
                 tileHoldersFetchingServiceProvider.Provide(),
                 currentMapConfigRepositoryProvider.Provide()
             ));
-        }
     }
 }

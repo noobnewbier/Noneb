@@ -16,9 +16,6 @@
 
         private Coordinate Direction { get; }
 
-        public static Coordinate operator +(Coordinate a, HexDirection d)
-        {
-            return a + d.Direction;
-        }
+        public static Coordinate operator +(Coordinate a, HexDirection d) => a + d.Direction;
     }
 }

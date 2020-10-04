@@ -19,9 +19,6 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Provide
                 () => new BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<TileHolder>, TileHolder>()
             );
 
-        public override BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<TileHolder>, TileHolder> Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<TileHolder>, TileHolder> Provide() => _lazyInstance.Value;
     }
 }

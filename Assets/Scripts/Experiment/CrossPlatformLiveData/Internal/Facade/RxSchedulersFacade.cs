@@ -11,18 +11,12 @@ namespace Experiment.CrossPlatformLiveData.Internal.Facade
         /// Schedulers pool with smart creation and re-use
         /// <inheritdoc cref="IRxSchedulersFacade.Io" />
         /// </summary>
-        public IScheduler Io()
-        {
-            return Scheduler.DefaultSchedulers.AsyncConversions;
-        }
+        public IScheduler Io() => Scheduler.DefaultSchedulers.AsyncConversions;
 
         /// <summary>
         /// Used for synchronizing with UI thread
         /// <inheritdoc cref="IRxSchedulersFacade.Ui" />
         /// </summary>
-        public IScheduler Ui()
-        {
-            return Scheduler.MainThread;
-        }
+        public IScheduler Ui() => Scheduler.MainThread;
     }
 }

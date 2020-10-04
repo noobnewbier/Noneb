@@ -80,12 +80,9 @@ namespace Maps
             return false;
         }
 
-        private static float Heuristic(Coordinate tileCoordinate, Coordinate goalCoordinate)
-        {
-            return
-                Mathf.Abs(goalCoordinate.X - tileCoordinate.X) +
-                Mathf.Abs(goalCoordinate.Y - tileCoordinate.Y) +
-                Mathf.Abs(goalCoordinate.Z - tileCoordinate.Z);
-        }
+        private static float Heuristic(Coordinate tileCoordinate, Coordinate goalCoordinate) =>
+            Mathf.Abs(goalCoordinate.X - tileCoordinate.X) +
+            Mathf.Abs(goalCoordinate.Y - tileCoordinate.Y) +
+            Mathf.Abs(goalCoordinate.Z - tileCoordinate.Z);
     }
 }

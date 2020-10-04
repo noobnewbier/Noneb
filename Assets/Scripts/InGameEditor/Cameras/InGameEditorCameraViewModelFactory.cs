@@ -13,15 +13,13 @@ namespace InGameEditor.Cameras
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
 
-        public InGameEditorCameraViewModel Create(Transform mapTransform, InGameEditorCameraConfig config)
-        {
-            return new InGameEditorCameraViewModel(
+        public InGameEditorCameraViewModel Create(Transform mapTransform, InGameEditorCameraConfig config) =>
+            new InGameEditorCameraViewModel(
                 cameraSizeInViewServiceProvider.Provide(),
                 mapTransform,
                 config,
                 tilesPositionServiceProvider.Provide(),
                 cameraRepositoryProvider.Provide()
             );
-        }
     }
 }

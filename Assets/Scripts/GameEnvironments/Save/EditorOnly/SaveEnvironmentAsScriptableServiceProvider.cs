@@ -18,12 +18,10 @@ namespace GameEnvironments.Save.EditorOnly
 
         private SaveEnvironmentAsScriptableService _cache;
 
-        public override SaveEnvironmentAsScriptableService Provide()
-        {
-            return _cache ?? (_cache = new SaveEnvironmentAsScriptableService(
+        public override SaveEnvironmentAsScriptableService Provide() =>
+            _cache ?? (_cache = new SaveEnvironmentAsScriptableService(
                 filenameServiceProvider.Provide(),
                 getInGameEditorDirectoryServiceProvider.Provide()
             ));
-        }
     }
 }

@@ -22,15 +22,13 @@ namespace InGameEditor.WorldSpace.GridOverlay
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
 
 
-        public GridOverlayViewModel Create(Transform centerTransform)
-        {
-            return new GridOverlayViewModel(
+        public GridOverlayViewModel Create(Transform centerTransform) =>
+            new GridOverlayViewModel(
                 coordinateServiceProvider.Provide(),
                 currentWorldConfigRepositoryProvider.Provide(),
                 currentMapConfigRepositoryProvider.Provide(),
                 tilesPositionServiceProvider.Provide(),
                 centerTransform
             );
-        }
     }
 }

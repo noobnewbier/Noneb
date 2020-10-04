@@ -11,9 +11,7 @@ namespace GameEnvironments.Common.Services.GetEnvironmentFilenameServices
     {
         private const string AssetFileExtension = ".asset";
 
-        public string GetEnvironmentAsScriptableFilename(string environmentName, Type fileType)
-        {
-            return environmentName + fileType.Name + AssetFileExtension;
-        }
+        public string GetEnvironmentAsScriptableFilename(string environmentName, Type fileType) =>
+            environmentName + fileType.Name + AssetFileExtension;
     }
 }

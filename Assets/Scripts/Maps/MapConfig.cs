@@ -30,20 +30,11 @@ namespace Maps
 
         #region Methods - Consider moving them to a service or repo...
 
-        public int GetMap2DArrayWidth()
-        {
-            return GetMap2DActualWidth() + GetMap2DActualHeight() / 2;
-        }
+        public int GetMap2DArrayWidth() => GetMap2DActualWidth() + GetMap2DActualHeight() / 2;
 
-        public int GetMap2DArrayHeight()
-        {
-            return GetMap2DActualHeight();
-        }
+        public int GetMap2DArrayHeight() => GetMap2DActualHeight();
 
-        public int GetTotalMapSize()
-        {
-            return GetMap2DActualWidth() * GetMap2DActualHeight();
-        }
+        public int GetTotalMapSize() => GetMap2DActualWidth() * GetMap2DActualHeight();
 
         #endregion
     }

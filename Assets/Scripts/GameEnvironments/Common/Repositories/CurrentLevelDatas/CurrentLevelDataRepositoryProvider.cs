@@ -15,12 +15,10 @@ namespace GameEnvironments.Common.Repositories.CurrentLevelDatas
 
         private ICurrentLevelDataRepository _cache;
 
-        public override ICurrentLevelDataRepository Provide()
-        {
-            return _cache ??
-                   (_cache = new CurrentLevelDataRepository(
-                       currentGameEnvironmentRepositoryProvider.Provide()
-                   ));
-        }
+        public override ICurrentLevelDataRepository Provide() =>
+            _cache ??
+            (_cache = new CurrentLevelDataRepository(
+                currentGameEnvironmentRepositoryProvider.Provide()
+            ));
     }
 }

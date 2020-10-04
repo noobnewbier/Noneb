@@ -14,9 +14,6 @@ namespace GameEnvironments.Validation
         private readonly Lazy<LevelDataScriptableValidationService>
             _lazyInstance = new Lazy<LevelDataScriptableValidationService>(() => new LevelDataScriptableValidationService());
 
-        public override LevelDataScriptableValidationService Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override LevelDataScriptableValidationService Provide() => _lazyInstance.Value;
     }
 }

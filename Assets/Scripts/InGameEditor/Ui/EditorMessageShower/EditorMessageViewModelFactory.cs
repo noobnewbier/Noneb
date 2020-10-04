@@ -9,9 +9,6 @@ namespace InGameEditor.Ui.EditorMessageShower
     {
         [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
 
-        public IEditorMessageViewModel Create()
-        {
-            return new EditorMessageViewModel(messageServiceProvider.Provide());
-        }
+        public IEditorMessageViewModel Create() => new EditorMessageViewModel(messageServiceProvider.Provide());
     }
 }

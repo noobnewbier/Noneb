@@ -86,14 +86,12 @@ namespace GameEnvironments.Load.Manager
                 );
         }
 
-        private IObservable<Unit> ClearGameObjects()
-        {
-            return GetRecycleHoldersObservable(_tileHoldersFetchingService)
+        private IObservable<Unit> ClearGameObjects() =>
+            GetRecycleHoldersObservable(_tileHoldersFetchingService)
                 .Concat(GetRecycleHoldersObservable(_constructHoldersFetchingService))
                 .Concat(GetRecycleHoldersObservable(_unitHoldersFetchingService))
                 .Concat(GetRecycleHoldersObservable(_strongholdHoldersFetchingService))
                 .Last();
-        }
 
         private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemHoldersFetchingService<T> holdersFetchingService)
             where T : IBoardItemHolder

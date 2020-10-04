@@ -2,7 +2,6 @@
 using Common.BoardItems;
 using Common.Factories;
 using Common.Holders;
-using Common.Providers;
 using GameEnvironments.Common.Repositories.BoardItems;
 using Maps;
 using Maps.Services;

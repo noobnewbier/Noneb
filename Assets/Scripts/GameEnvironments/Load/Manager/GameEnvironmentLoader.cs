@@ -45,20 +45,16 @@ namespace GameEnvironments.Load.Manager
                 );
         }
 
-        public IObservable<Unit> GetGameObjectRelatedLoadObservable()
-        {
-            return LoadBoardItemHolders()
+        public IObservable<Unit> GetGameObjectRelatedLoadObservable() =>
+            LoadBoardItemHolders()
                 .Concat(LoadGameObjects())
                 .Concat(CleanUp())
                 .Last();
-        }
 
-        public IObservable<Unit> GetLoadNonGameObjectRelatedObservable()
-        {
-            return LoadPreliminaries()
+        public IObservable<Unit> GetLoadNonGameObjectRelatedObservable() =>
+            LoadPreliminaries()
                 .Concat(LoadBoardItems())
                 .Last();
-        }
 
         private void OnDisable()
         {

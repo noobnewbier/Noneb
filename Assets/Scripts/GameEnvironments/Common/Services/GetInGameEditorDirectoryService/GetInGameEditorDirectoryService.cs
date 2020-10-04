@@ -22,19 +22,14 @@ namespace GameEnvironments.Common.Services.GetInGameEditorDirectoryService
             return Path.Combine(pathPrefix, Environments);
         }
 
-        public string GetRelativeDirectoryToSpecificEnvironmentForAssetDatabase(string environmentName)
-        {
-            return Path.Combine("Assets/", Environments, environmentName);
-        }
+        public string GetRelativeDirectoryToSpecificEnvironmentForAssetDatabase(string environmentName) =>
+            Path.Combine("Assets/", Environments, environmentName);
 
-        public string GetRelativeDirectoryFromParentToSpecificEnvironment(string environmentName)
-        {
-            return environmentName;
-        }
+        public string GetRelativeDirectoryFromParentToSpecificEnvironment(string environmentName) => environmentName;
 
-        public string GetFullDirectoryToSpecificEnvironment(string environmentName)
-        {
-            return Path.Combine(GetParentDirectoryForAllEnvironmentsInEditor(), GetRelativeDirectoryFromParentToSpecificEnvironment(environmentName));
-        }
+        public string GetFullDirectoryToSpecificEnvironment(string environmentName) => Path.Combine(
+            GetParentDirectoryForAllEnvironmentsInEditor(),
+            GetRelativeDirectoryFromParentToSpecificEnvironment(environmentName)
+        );
     }
 }

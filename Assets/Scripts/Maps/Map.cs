@@ -47,10 +47,7 @@ namespace Maps
             return toReturn;
         }
 
-        public Tile Get(Coordinate axialCoordinate)
-        {
-            return _grid[axialCoordinate.X, axialCoordinate.Z];
-        }
+        public Tile Get(Coordinate axialCoordinate) => _grid[axialCoordinate.X, axialCoordinate.Z];
 
         //return null when out of bounds
         private Tile GetTileWithDefault(int x, int z)

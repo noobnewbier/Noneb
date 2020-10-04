@@ -34,15 +34,13 @@ namespace GameEnvironments.Common.Data
 
         public LevelDataScriptable LevelData => levelData;
 
-        public GameEnvironment ToGameEnvironment()
-        {
-            return new GameEnvironment(
+        public GameEnvironment ToGameEnvironment() =>
+            new GameEnvironment(
                 mapConfiguration,
                 worldConfiguration,
                 levelData.ToLevelData(),
                 environmentName
             );
-        }
 
         public static GameEnvironmentScriptable Create(string environmentName,
                                                        MapConfig mapConfiguration,

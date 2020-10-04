@@ -9,9 +9,6 @@ namespace Constructs.Data
     {
         [SerializeField] private string constructName;
 
-        public ConstructData ToData()
-        {
-            return new ConstructData(Icon, constructName, this);
-        }
+        public ConstructData ToData() => new ConstructData(Icon, constructName, this);
     }
 }

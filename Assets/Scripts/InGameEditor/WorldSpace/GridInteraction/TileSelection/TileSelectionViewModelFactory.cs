@@ -20,9 +20,8 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         [SerializeField] private LoadTilesHolderServiceProvider loadTilesHolderServiceProvider;
 
 
-        public TileSelectionViewModel Create(Transform mapTransform)
-        {
-            return new TileSelectionViewModel(
+        public TileSelectionViewModel Create(Transform mapTransform) =>
+            new TileSelectionViewModel(
                 currentWorldConfigRepositoryProvider.Provide(),
                 currentHoveredTileHolderRepositoryProvider.Provide(),
                 currentSelectedTileHolderRepositoryProvider.Provide(),
@@ -31,6 +30,5 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
                 tileHolderRepositoryProvider.Provide(),
                 loadTilesHolderServiceProvider.Provide()
             );
-        }
     }
 }

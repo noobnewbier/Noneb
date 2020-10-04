@@ -122,10 +122,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
                 null;
         }
 
-        private bool IsBehaviourValid(Behaviour tileHolder)
-        {
-            return tileHolder != null && tileHolder.isActiveAndEnabled;
-        }
+        private bool IsBehaviourValid(Behaviour tileHolder) => tileHolder != null && tileHolder.isActiveAndEnabled;
 
         private void UpdateCurrentTileHolders()
         {

@@ -13,13 +13,11 @@ namespace InGameEditor.Ui.Options.Save
 
         [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
 
-        public SaveViewModel Create(ICurrentGameEnvironmentGetRepository getRepository)
-        {
-            return new SaveViewModel(
+        public SaveViewModel Create(ICurrentGameEnvironmentGetRepository getRepository) =>
+            new SaveViewModel(
                 saveEnvironmentAsScriptableServiceProvider.Provide(),
                 getRepository,
                 messageServiceProvider.Provide()
             );
-        }
     }
 }

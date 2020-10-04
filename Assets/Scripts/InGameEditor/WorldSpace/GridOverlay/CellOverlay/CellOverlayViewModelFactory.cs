@@ -7,9 +7,7 @@ namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
     public class CellOverlayViewModelFactory : ScriptableObject
     {
         // ReSharper disable once MemberCanBeMadeStatic.Global
-        public CellOverlayViewModel Create(bool coordinateVisibility, bool cellVisibility)
-        {
-            return new CellOverlayViewModel(coordinateVisibility, cellVisibility);
-        }
+        public CellOverlayViewModel Create(bool coordinateVisibility, bool cellVisibility) =>
+            new CellOverlayViewModel(coordinateVisibility, cellVisibility);
     }
 }

@@ -21,14 +21,12 @@ namespace GameEnvironments.Load.Holders.Providers
 
         private LoadBoardItemsHolderService<ConstructHolder, Construct> _cache;
 
-        public override LoadBoardItemsHolderService<ConstructHolder, Construct> Provide()
-        {
-            return _cache ?? (_cache = new LoadBoardItemsHolderService<ConstructHolder, Construct>(
+        public override LoadBoardItemsHolderService<ConstructHolder, Construct> Provide() =>
+            _cache ?? (_cache = new LoadBoardItemsHolderService<ConstructHolder, Construct>(
                 tilesPositionServiceProvider.Provide(),
                 constructsRepositoryProvider.Provide(),
                 constructHolderFactory,
                 coordinateServiceProvider.Provide()
             ));
-        }
     }
 }

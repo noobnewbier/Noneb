@@ -12,9 +12,6 @@ namespace GameEnvironments.Load.GameObjects
 
         private IGameObjectLoadService _cache;
 
-        public override IGameObjectLoadService Provide()
-        {
-            return _cache ?? (_cache = new GameObjectLoadService(coordinateServiceProvider.Provide()));
-        }
+        public override IGameObjectLoadService Provide() => _cache ?? (_cache = new GameObjectLoadService(coordinateServiceProvider.Provide()));
     }
 }

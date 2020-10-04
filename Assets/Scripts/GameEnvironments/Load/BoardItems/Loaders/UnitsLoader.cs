@@ -14,10 +14,7 @@ namespace GameEnvironments.Load.BoardItems.Loaders
     {
         [SerializeField] private LoadUnitsServiceProvider serviceProvider;
 
-        protected override ILoadBoardItemsService<UnitData> GetService()
-        {
-            return serviceProvider.Provide();
-        }
+        protected override ILoadBoardItemsService<UnitData> GetService() => serviceProvider.Provide();
 
         protected override IObservable<ImmutableArray<UnitData>> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
         {

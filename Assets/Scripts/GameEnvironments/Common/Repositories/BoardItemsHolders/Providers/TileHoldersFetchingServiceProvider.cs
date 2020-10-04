@@ -16,11 +16,9 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
 
         private BoardItemHoldersFetchingService<TileHolder> _cache;
 
-        public override BoardItemHoldersFetchingService<TileHolder> Provide()
-        {
-            return _cache ?? (_cache = new BoardItemHoldersFetchingService<TileHolder>(
+        public override BoardItemHoldersFetchingService<TileHolder> Provide() =>
+            _cache ?? (_cache = new BoardItemHoldersFetchingService<TileHolder>(
                 fetcherRepositoryProvider.Provide()
             ));
-        }
     }
 }

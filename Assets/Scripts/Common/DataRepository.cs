@@ -30,15 +30,9 @@ namespace Common
             _single = Observable.Throw<T>(new InvalidOperationException($"Value is not set yet for {GetType().Name}"));
         }
 
-        public IObservable<T> GetObservableStream()
-        {
-            return _subject;
-        }
+        public IObservable<T> GetObservableStream() => _subject;
 
-        public IObservable<T> GetMostRecent()
-        {
-            return _single;
-        }
+        public IObservable<T> GetMostRecent() => _single;
 
         public void Set(T value)
         {

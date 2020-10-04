@@ -14,9 +14,6 @@ namespace GameEnvironments.Common.Services.GetEnvironmentFilenameServices
         private readonly Lazy<IGetEnvironmentFilenameService> _lazyInstance =
             new Lazy<IGetEnvironmentFilenameService>(() => new GetEnvironmentFilenameService());
 
-        public override IGetEnvironmentFilenameService Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public override IGetEnvironmentFilenameService Provide() => _lazyInstance.Value;
     }
 }

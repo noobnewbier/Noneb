@@ -9,9 +9,6 @@ namespace GameEnvironments.Load.Holders.Loaders
     {
         [SerializeField] private LoadUnitsHolderServiceProvider serviceProvider;
 
-        protected override ILoadBoardItemsHolderService GetService()
-        {
-            return serviceProvider.Provide();
-        }
+        protected override ILoadBoardItemsHolderService GetService() => serviceProvider.Provide();
     }
 }

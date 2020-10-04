@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InGameEditor
 {
-    public class LoadEditorManager : MonoBehaviour
+    public class LoadEditorUiManager : MonoBehaviour
     {
         [SerializeField] private InGameEditorCameraRepositorySetter cameraRepositorySetter;
 

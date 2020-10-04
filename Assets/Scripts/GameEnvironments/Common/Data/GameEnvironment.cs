@@ -7,7 +7,6 @@ namespace GameEnvironments.Common.Data
 {
     /// <summary>
     /// Basically a game level, including all data one required to load a level(both visually and "backend" wise)
-    /// todo: handle overrides with gameobjects
     /// </summary>
     public class GameEnvironment
     {

@@ -2,7 +2,6 @@
 
 namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
-    //todo: handle show info on inspector on select
     public class TileSelectionView : MonoBehaviour
     {
         [SerializeField] private TileSelectionViewModelFactory viewModelFactory;

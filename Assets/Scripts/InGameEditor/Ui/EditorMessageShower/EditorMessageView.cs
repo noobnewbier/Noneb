@@ -17,7 +17,6 @@ namespace InGameEditor.Ui.EditorMessageShower
 
         private static void ShowMessage(string message)
         {
-            //todo: consider a more user friendly way of showing the message
             Debug.Log(message);
         }
 

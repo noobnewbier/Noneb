@@ -1,4 +1,5 @@
-﻿using Common.Providers;
+﻿using Common.Factories;
+using Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 

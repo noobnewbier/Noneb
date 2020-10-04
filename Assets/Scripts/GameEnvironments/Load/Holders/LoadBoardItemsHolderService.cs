@@ -1,5 +1,6 @@
 ﻿using System;
 using Common.BoardItems;
+using Common.Factories;
 using Common.Holders;
 using Common.Providers;
 using GameEnvironments.Common.Repositories.BoardItems;
@@ -17,7 +18,7 @@ namespace GameEnvironments.Load.Holders
         IObservable<Unit> Load(Transform mapTransform,
                                MapConfig mapConfig);
     }
-    
+
     public class LoadBoardItemsHolderService<THolder, TBoardItem> : ILoadBoardItemsHolderService
         where TBoardItem : BoardItem
         where THolder : Component, IBoardItemHolder<TBoardItem>
@@ -56,7 +57,11 @@ namespace GameEnvironments.Load.Holders
                         foreach (var item in items)
                         {
                             var (component, gameObject) = _holderFactory.Create(mapTransform, false);
-                            var flattenedIndex = _coordinateService.GetFlattenArrayIndexFromAxialCoordinate(item.Coordinate.X, item.Coordinate.Z, mapConfig);
+                            var flattenedIndex = _coordinateService.GetFlattenArrayIndexFromAxialCoordinate(
+                                item.Coordinate.X,
+                                item.Coordinate.Z,
+                                mapConfig
+                            );
 
                             gameObject.transform.position = positions[flattenedIndex];
                             gameObject.transform.parent = mapTransform;
@@ -75,5 +80,4 @@ namespace GameEnvironments.Load.Holders
             _finishedLoadingEventStream?.Dispose();
         }
     }
-
 }

@@ -21,7 +21,11 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
     public class StrongholdGameObjectsInternalPositionLoader : ScriptableObject, ILoader
     {
         [SerializeField] private SetupStrongholdGameObjectsInternalPositionServiceProvider serviceProvider;
-        [FormerlySerializedAs("strongholdsFetchingServiceRepositoryProvider")] [FormerlySerializedAs("strongholdsHolderRepositoryProvider")] [SerializeField] private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHoldersFetchingServiceRepositoryProvider;
+
+        [FormerlySerializedAs("strongholdsFetchingServiceRepositoryProvider")]
+        [FormerlySerializedAs("strongholdsHolderRepositoryProvider")]
+        [SerializeField]
+        private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHoldersFetchingServiceRepositoryProvider;
 
         private ISetupStrongholdGameObjectsInternalPositionService _setupStrongholdGameObjectsInternalPositionService;
         private IBoardItemHoldersFetchingService<StrongholdHolder> _strongholdsHolderFetchingService;

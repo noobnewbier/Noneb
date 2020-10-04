@@ -9,7 +9,7 @@
     {
         TOut Create(TArg arg);
     }
-    
+
     public interface IFactory<out TOut>
     {
         TOut Create();

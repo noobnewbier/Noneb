@@ -8,7 +8,9 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Setters
     public class TilesHolderFetcherSetter : MonoBehaviour
     {
         [SerializeField] private TilesHolderFetcherRepositoryProvider repositoryProvider;
-        [FormerlySerializedAs("holdersProvider")] [SerializeField] private TilesHolderFetcher holdersFetcher;
+
+        [FormerlySerializedAs("holdersProvider")] [SerializeField]
+        private TilesHolderFetcher holdersFetcher;
 
         [ContextMenu(nameof(Set))]
         public void Set()

@@ -1,7 +1,6 @@
-﻿using Common.Factories;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Common.Providers
+namespace Common.Factories
 {
     public interface IGameObjectAndComponentFactory<T> : IFactory<(T component, GameObject gameObject)> where T : Component
     {

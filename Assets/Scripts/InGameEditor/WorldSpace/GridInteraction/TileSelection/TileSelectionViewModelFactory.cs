@@ -4,7 +4,6 @@ using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using GameEnvironments.Load.Holders.Providers;
 using InGameEditor.Repositories.InGameEditorCamera;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils.Constants;
 using WorldConfigurations.Repositories;
 
@@ -19,7 +18,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
         [SerializeField] private TileHoldersFetchingServiceProvider tileHolderRepositoryProvider;
         [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
         [SerializeField] private LoadTilesHolderServiceProvider loadTilesHolderServiceProvider;
-        
+
 
         public TileSelectionViewModel Create(Transform mapTransform)
         {

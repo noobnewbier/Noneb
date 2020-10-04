@@ -6,7 +6,6 @@ using Common.Ui.Repository.CurrentSelectedTileHolder;
 using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using GameEnvironments.Load.Holders;
 using InGameEditor.Repositories.InGameEditorCamera;
-using Tiles;
 using Tiles.Holders;
 using UniRx;
 using UnityEngine;
@@ -58,7 +57,6 @@ namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(_ => UpdateCurrentTileHolders())
             };
-            
         }
 
         public void Dispose()

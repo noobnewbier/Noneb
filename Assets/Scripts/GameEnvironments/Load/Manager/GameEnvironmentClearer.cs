@@ -23,7 +23,7 @@ namespace GameEnvironments.Load.Manager
         [SerializeField] private GameEnvironmentLoader gameEnvironmentLoader;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
         [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
-        
+
         [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField]
         private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
 

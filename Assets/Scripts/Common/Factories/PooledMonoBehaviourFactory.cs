@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityUtils.Pooling;
 
-namespace Common.Providers
+namespace Common.Factories
 {
     public class PooledMonoBehaviourFactory<T> : ScriptableObject,
                                                  IGameObjectAndComponentFactory<T> where T : PooledMonoBehaviour
@@ -19,19 +19,19 @@ namespace Common.Providers
             return (component, go);
         }
 
+        public (T component, GameObject gameObject) Create()
+        {
+            var go = prefab.GetPooledInstance();
+            var component = go.GetComponent<T>();
+            return (component, go);
+        }
+
         private void OnValidate()
         {
             if (prefab.GetComponent<T>() == null)
             {
                 throw new ArgumentException($"{prefab.name} does not have the required component");
             }
-        }
-
-        public (T component, GameObject gameObject) Create()
-        {
-            var go = prefab.GetPooledInstance();
-            var component = go.GetComponent<T>();
-            return (component, go);
         }
     }
 }

@@ -11,7 +11,9 @@ namespace Tiles.Holders.Repository
     public class TilesHoldersServiceProvider : ScriptableObjectProvider<ITilesHolderService>
     {
         [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-        [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField] private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
+
+        [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField]
+        private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
 
 
         private ITilesHolderService _cache;

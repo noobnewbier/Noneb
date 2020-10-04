@@ -14,6 +14,8 @@ namespace Common.Holders
             Value = value;
         }
 
+        BoardItem IBoardItemHolder.Value => Value;
+
         protected override void OnReturnToPool()
         {
             base.OnReturnToPool();
@@ -21,7 +23,5 @@ namespace Common.Holders
             foreach (Transform child in transform)
                 Destroy(child.gameObject);
         }
-
-        BoardItem IBoardItemHolder.Value => Value;
     }
 }

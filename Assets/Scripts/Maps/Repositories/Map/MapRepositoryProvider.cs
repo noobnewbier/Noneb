@@ -14,7 +14,7 @@ namespace Maps.Repositories.Map
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
-        
+
         private IMapRepository _cache;
 
         public override IMapRepository Provide()

@@ -14,7 +14,10 @@ namespace GameEnvironments.Load.Holders.Providers
     {
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
-        [FormerlySerializedAs("tileHolderProvider")] [SerializeField] private TileHolderFactory tileHolderFactory;
+
+        [FormerlySerializedAs("tileHolderProvider")] [SerializeField]
+        private TileHolderFactory tileHolderFactory;
+
         [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsHolderService<TileHolder, Tile> _cache;

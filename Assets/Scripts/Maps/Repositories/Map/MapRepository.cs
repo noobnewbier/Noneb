@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
 using Common;
 using GameEnvironments.Common.Repositories.BoardItems;
-using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using Maps.Repositories.CurrentMapConfig;
 using Tiles;
-using Tiles.Holders;
 using UniRx;
 
 namespace Maps.Repositories.Map

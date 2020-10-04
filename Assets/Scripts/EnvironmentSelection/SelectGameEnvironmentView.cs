@@ -14,7 +14,9 @@ namespace EnvironmentSelection
         [SerializeField] private SelectGameEnvironmentViewModelFactory viewModelFactory;
         [SerializeField] private TextMeshProUGUI selectedEnvironmentNameText;
         [SerializeField] private Transform gameEnvironmentsParentTransform;
-        [FormerlySerializedAs("clickableGameEnvironmentViewProvider")] [SerializeField] private ClickableGameEnvironmentViewFactory clickableGameEnvironmentViewFactory;
+
+        [FormerlySerializedAs("clickableGameEnvironmentViewProvider")] [SerializeField]
+        private ClickableGameEnvironmentViewFactory clickableGameEnvironmentViewFactory;
 
         private SelectGameEnvironmentViewModel _viewModel;
         private IDisposable _compositeDisposable;

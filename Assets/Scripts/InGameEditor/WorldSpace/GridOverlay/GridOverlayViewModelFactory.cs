@@ -10,7 +10,8 @@ namespace InGameEditor.WorldSpace.GridOverlay
     [CreateAssetMenu(fileName = nameof(GridOverlayViewModelFactory), menuName = MenuName.Factory + nameof(GridOverlayViewModel))]
     public class GridOverlayViewModelFactory : ScriptableObject
     {
-        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
+        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField]
+        private CoordinateServiceProvider coordinateServiceProvider;
 
         [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
         private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;

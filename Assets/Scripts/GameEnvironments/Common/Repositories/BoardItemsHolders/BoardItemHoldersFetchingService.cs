@@ -26,8 +26,8 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders
         public IObservable<IReadOnlyList<THolder>> Fetch()
         {
             return _holdersFetcherRepository.GetMostRecent()
-                    .Select(fetcher => fetcher.Provide())
-                    .First();
+                .Select(fetcher => fetcher.Provide())
+                .First();
         }
     }
 }

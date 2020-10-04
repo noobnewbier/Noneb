@@ -1,5 +1,4 @@
-﻿using System;
-using Common.Providers;
+﻿using Common.Providers;
 using Maps.Services;
 using UnityEngine;
 using UnityUtils.Constants;
@@ -15,7 +14,7 @@ namespace GameEnvironments.Load.GameObjects
 
         public override IGameObjectLoadService Provide()
         {
-            return _cache?? (_cache = new GameObjectLoadService(coordinateServiceProvider.Provide()));
+            return _cache ?? (_cache = new GameObjectLoadService(coordinateServiceProvider.Provide()));
         }
     }
 }

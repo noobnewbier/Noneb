@@ -13,7 +13,10 @@ namespace GameEnvironments.Load.Holders.Providers
     {
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private StrongholdsRepositoryProvider strongholdsRepositoryProvider;
-        [FormerlySerializedAs("strongholdHolderProvider")] [SerializeField] private StrongholdHolderFactory strongholdHolderFactory;
+
+        [FormerlySerializedAs("strongholdHolderProvider")] [SerializeField]
+        private StrongholdHolderFactory strongholdHolderFactory;
+
         [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsHolderService<StrongholdHolder, Stronghold> _cache;

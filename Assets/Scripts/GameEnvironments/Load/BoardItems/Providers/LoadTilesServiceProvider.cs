@@ -15,7 +15,9 @@ namespace GameEnvironments.Load.BoardItems.Providers
     public class LoadTilesServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Tile, TileData>>
     {
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
-        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
+
+        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField]
+        private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsService<Tile, TileData> _cache;
 

@@ -14,7 +14,9 @@ namespace InGameEditor.WorldSpace.GridOverlay
         [FormerlySerializedAs("viewModelProvider")] [SerializeField]
         private GridOverlayViewModelFactory viewModelFactory;
 
-        [FormerlySerializedAs("cellOverlayViewProvider")] [SerializeField] private CellOverlayViewFactory cellOverlayViewFactory;
+        [FormerlySerializedAs("cellOverlayViewProvider")] [SerializeField]
+        private CellOverlayViewFactory cellOverlayViewFactory;
+
         [SerializeField] private CellOverlayViewModelFactory cellOverlayViewModelFactory;
         [SerializeField] private Transform gridTransform;
 

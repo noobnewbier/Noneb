@@ -15,7 +15,9 @@ namespace GameEnvironments.Load.BoardItems.Providers
     public class LoadConstructsServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Construct, ConstructData>>
     {
         [SerializeField] private ConstructsRepositoryProvider constructsRepositoryProvider;
-        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
+
+        [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField]
+        private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsService<Construct, ConstructData> _cache;
 

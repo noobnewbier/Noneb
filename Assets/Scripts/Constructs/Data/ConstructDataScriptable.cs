@@ -1,9 +1,10 @@
 ﻿using Common.BoardItems;
 using UnityEngine;
+using UnityUtils.Constants;
 
 namespace Constructs.Data
 {
-    [CreateAssetMenu(menuName = "Data/Construct", fileName = "ConstructData")]
+    [CreateAssetMenu(menuName = MenuName.Data + nameof(Construct), fileName = nameof(ConstructDataScriptable))]
     public class ConstructDataScriptable : BoardItemDataScriptable
     {
         //todo: add implementation related to stronghold

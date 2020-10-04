@@ -1,6 +1,5 @@
 ﻿using Common.Providers;
 using GameEnvironments.Common.Repositories.BoardItems.Providers;
-using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using Maps.Repositories.CurrentMapConfig;
 using UnityEngine;
 using UnityEngine.Serialization;

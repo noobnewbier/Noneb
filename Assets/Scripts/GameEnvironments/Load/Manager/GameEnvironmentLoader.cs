@@ -4,6 +4,7 @@ using GameEnvironments.Load.BoardItems.Loaders;
 using GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
 using GameEnvironments.Load.GameObjects.Loaders;
 using GameEnvironments.Load.Holders.Loaders;
+using InGameEditor.Services.InGameEditorMessage;
 using Maps;
 using UniRx;
 using UnityEngine;
@@ -53,11 +54,19 @@ namespace GameEnvironments.Load.Manager
         #region CleanUp
 
         [SerializeField] private StrongholdGameObjectsInternalPositionLoader strongholdGameObjectsInternalPositionLoader;
+        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
+
+        private IInGameEditorMessageService _messageService;
 
         #endregion
 
 
         private IDisposable _disposable;
+
+        private void OnEnable()
+        {
+            _messageService = messageServiceProvider.Provide();
+        }
 
         [ContextMenu(nameof(Load))]
         public void Load()
@@ -70,8 +79,15 @@ namespace GameEnvironments.Load.Manager
                 .Subscribe(
                     _ =>
                     {
-                        //todo: proper error handling
                         Debug.Log("success");
+                    },
+                    e =>
+                    {
+#if UNITY_EDITOR
+                        _messageService.PublishMessage(e.ToString());
+#else
+                        throw e;
+#endif
                     }
                 );
         }

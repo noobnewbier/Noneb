@@ -5,7 +5,7 @@ using GameEnvironments.Common.Data;
 using GameEnvironments.Common.Repositories.BoardItemsHolders;
 using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
-using Maps.Repositories.CurrentMapTransform;
+using InGameEditor.Services.InGameEditorMessage;
 using Strongholds;
 using Tiles.Holders;
 using UniRx;
@@ -22,54 +22,66 @@ namespace GameEnvironments.Load.Manager
     {
         [SerializeField] private GameEnvironmentLoader gameEnvironmentLoader;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
+        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
+        
+        [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField]
+        private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
 
-        [SerializeField] private CurrentMapTransformRepositoryProvider mapTransformRepositoryProvider;
+        [FormerlySerializedAs("unitsHolderRepositoryProvider")] [SerializeField]
+        private UnitHoldersFetchingServiceProvider unitHoldersFetchingServiceProvider;
 
-        [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField] private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
-        [FormerlySerializedAs("unitsHolderRepositoryProvider")] [SerializeField] private UnitHoldersFetchingServiceProvider unitHoldersFetchingServiceProvider;
-        [FormerlySerializedAs("constructsHolderRepositoryProvider")] [SerializeField] private ConstructsHoldersFetchingServiceProvider constructsHoldersFetchingServiceProvider;
-        [FormerlySerializedAs("strongholdFetchingServiceRepositoryProvider")] [FormerlySerializedAs("strongholdHolderRepositoryProvider")] [SerializeField] private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHolderFetchingServiceRepositoryProvider;
+        [FormerlySerializedAs("constructsHolderRepositoryProvider")] [SerializeField]
+        private ConstructsHoldersFetchingServiceProvider constructsHoldersFetchingServiceProvider;
+
+        [FormerlySerializedAs("strongholdFetchingServiceRepositoryProvider")]
+        [FormerlySerializedAs("strongholdHolderRepositoryProvider")]
+        [SerializeField]
+        private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHolderFetchingServiceRepositoryProvider;
 
         private IDisposable _disposable;
         private ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
-        private ICurrentMapTransformGetRepository _mapTransformGetRepository;
         private IBoardItemHoldersFetchingService<TileHolder> _tileHoldersFetchingService;
         private IBoardItemHoldersFetchingService<UnitHolder> _unitHoldersFetchingService;
         private IBoardItemHoldersFetchingService<ConstructHolder> _constructHoldersFetchingService;
         private IBoardItemHoldersFetchingService<StrongholdHolder> _strongholdHoldersFetchingService;
+        private IInGameEditorMessageService _messageService;
 
         private void Initialize()
         {
             _gameEnvironmentSetRepository = currentGameEnvironmentRepositoryProvider.Provide();
-            _mapTransformGetRepository = mapTransformRepositoryProvider.Provide();
             _tileHoldersFetchingService = tileHoldersFetchingServiceProvider.Provide();
             _unitHoldersFetchingService = unitHoldersFetchingServiceProvider.Provide();
             _constructHoldersFetchingService = constructsHoldersFetchingServiceProvider.Provide();
             _strongholdHoldersFetchingService = strongholdHolderFetchingServiceRepositoryProvider.Provide();
+            _messageService = messageServiceProvider.Provide();
         }
 
         [ContextMenu(nameof(Clear))]
         public void Clear()
         {
             _disposable?.Dispose();
-            
+
             Initialize();
-            
+
             _disposable = SelectEmptyEnvironment()
                 .Concat(gameEnvironmentLoader.GetLoadNonGameObjectRelatedObservable())
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
                 .Concat(ClearGameObjects())
                 .Concat(
-                    Observable.NextFrame()//wait till next frame as it is possible that the game objects are not properly destroyed
+                    Observable.NextFrame() //wait till next frame as it is possible that the game objects are not properly destroyed
                         .SelectMany(_ => gameEnvironmentLoader.GetGameObjectRelatedLoadObservable())
                 )
                 .Last()
                 .Subscribe(
-                    _ =>
+                    _ => { Debug.Log("level cleared"); },
+                    e =>
                     {
-                        //todo: proper error handling
-                        Debug.Log("level cleared");
+#if UNITY_EDITOR
+                        _messageService.PublishMessage(e.ToString());
+#else
+                        throw e;
+#endif
                     }
                 );
         }
@@ -83,7 +95,8 @@ namespace GameEnvironments.Load.Manager
                 .Last();
         }
 
-        private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemHoldersFetchingService<T> holdersFetchingService) where T : IBoardItemHolder
+        private IObservable<Unit> GetRecycleHoldersObservable<T>(IBoardItemHoldersFetchingService<T> holdersFetchingService)
+            where T : IBoardItemHolder
         {
             return holdersFetchingService.Fetch()
                 .Select(

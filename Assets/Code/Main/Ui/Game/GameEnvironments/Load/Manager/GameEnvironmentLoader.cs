@@ -32,7 +32,6 @@ namespace GameEnvironments.Load.Manager
                     _ =>
                     {
                         Debug.Log("success");
-                        Debug.Log("success");
                     },
                     e =>
                     {

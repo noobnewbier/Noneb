@@ -12,10 +12,10 @@ namespace InGameEditor.Ui.EditorMessageShower
 
     public class EditorMessageViewModel : IEditorMessageViewModel
     {
-        private readonly IInGameEditorMessageService _messageService;
+        private readonly IInGameMessageService _messageService;
         private readonly IDisposable _disposable;
 
-        public EditorMessageViewModel(IInGameEditorMessageService messageService)
+        public EditorMessageViewModel(IInGameMessageService messageService)
         {
             _messageService = messageService;
             MessageLiveData = new LiveData<string>();

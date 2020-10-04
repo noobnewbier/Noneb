@@ -166,9 +166,9 @@ namespace GameEnvironments.Load.Manager
         #region CleanUp
 
         [SerializeField] private StrongholdGameObjectsInternalPositionLoader strongholdGameObjectsInternalPositionLoader;
-        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
+        [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
 
-        private IInGameEditorMessageService _messageService;
+        private IInGameMessageService _messageService;
 
         #endregion
     }

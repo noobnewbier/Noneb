@@ -1,11 +1,10 @@
 {
-    "name": "Scripts",
+    "name": "Core.InGameEditor",
     "references": [
-        "GUID:48d3b9e0e1c97dc4f8fe02fbc1b583b0",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:acf43146c4364d2419bdbdeac67deb96",
-        "GUID:9704a25e1839b9b43a672d19930c723b"
+        "GUID:4f3da2670aa8eb84c82d96215988e9c0",
+        "GUID:48d3b9e0e1c97dc4f8fe02fbc1b583b0",
+        "GUID:acf43146c4364d2419bdbdeac67deb96"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

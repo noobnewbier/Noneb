@@ -1,8 +1,8 @@
 ﻿namespace InGameEditor.Events
 {
-    public struct InGameEditorUiMessage
+    public struct InGameMessage
     {
-        public InGameEditorUiMessage(string value)
+        public InGameMessage(string value)
         {
             Value = value;
         }

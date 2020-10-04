@@ -15,13 +15,13 @@ namespace InGameEditor.Ui.Options.Save
 
         private readonly ISaveEnvironmentService _saveEnvironmentService;
         private readonly ICurrentGameEnvironmentGetRepository _currentGameEnvironmentGetRepository;
-        private readonly IInGameEditorMessageService _messageService;
+        private readonly IInGameMessageService _messageService;
 
         private IDisposable _disposable;
 
         public SaveViewModel(ISaveEnvironmentService saveEnvironmentService,
                              ICurrentGameEnvironmentGetRepository currentGameEnvironmentGetRepository,
-                             IInGameEditorMessageService messageService)
+                             IInGameMessageService messageService)
         {
             _saveEnvironmentService = saveEnvironmentService;
             _saveEnvironmentService = saveEnvironmentService;

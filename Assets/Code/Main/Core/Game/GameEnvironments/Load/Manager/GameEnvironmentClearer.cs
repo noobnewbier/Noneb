@@ -22,7 +22,7 @@ namespace GameEnvironments.Load.Manager
     {
         [SerializeField] private GameEnvironmentLoader gameEnvironmentLoader;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
-        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
+        [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
 
         [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField]
         private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
@@ -44,7 +44,7 @@ namespace GameEnvironments.Load.Manager
         private IBoardItemHoldersFetchingService<UnitHolder> _unitHoldersFetchingService;
         private IBoardItemHoldersFetchingService<ConstructHolder> _constructHoldersFetchingService;
         private IBoardItemHoldersFetchingService<StrongholdHolder> _strongholdHoldersFetchingService;
-        private IInGameEditorMessageService _messageService;
+        private IInGameMessageService _messageService;
 
         private void Initialize()
         {

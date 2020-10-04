@@ -11,7 +11,7 @@ namespace InGameEditor.Ui.Options.Save
     {
         [SerializeField] private SaveEnvironmentAsScriptableServiceProvider saveEnvironmentAsScriptableServiceProvider;
 
-        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
+        [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
 
         public SaveViewModel Create(ICurrentGameEnvironmentGetRepository getRepository) =>
             new SaveViewModel(

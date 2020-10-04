@@ -24,18 +24,18 @@ namespace GameEnvironments.Load.Holders
     {
         private readonly ITilesPositionService _tilesPositionService;
         private readonly IBoardItemsGetRepository<TBoardItem> _boardItemsRepository;
-        private readonly IGameObjectAndComponentProvider<THolder> _holderProvider;
+        private readonly IGameObjectAndComponentFactory<THolder> _holderFactory;
         private readonly ICoordinateService _coordinateService;
         private readonly ReplaySubject<Unit> _finishedLoadingEventStream;
 
         public LoadBoardItemsHolderService(ITilesPositionService tilesPositionService,
                                            IBoardItemsGetRepository<TBoardItem> boardItemsRepository,
-                                           IGameObjectAndComponentProvider<THolder> holderProvider,
+                                           IGameObjectAndComponentFactory<THolder> holderFactory,
                                            ICoordinateService coordinateService)
         {
             _tilesPositionService = tilesPositionService;
             _boardItemsRepository = boardItemsRepository;
-            _holderProvider = holderProvider;
+            _holderFactory = holderFactory;
             _coordinateService = coordinateService;
             _finishedLoadingEventStream = new ReplaySubject<Unit>(1);
         }
@@ -55,7 +55,7 @@ namespace GameEnvironments.Load.Holders
 
                         foreach (var item in items)
                         {
-                            var (component, gameObject) = _holderProvider.Provide(mapTransform, false);
+                            var (component, gameObject) = _holderFactory.Create(mapTransform, false);
                             var flattenedIndex = _coordinateService.GetFlattenArrayIndexFromAxialCoordinate(item.Coordinate.X, item.Coordinate.Z, mapConfig);
 
                             gameObject.transform.position = positions[flattenedIndex];

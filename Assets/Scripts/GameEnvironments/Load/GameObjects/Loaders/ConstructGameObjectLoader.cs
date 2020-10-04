@@ -16,7 +16,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
     {
         [SerializeField] private ConstructsHoldersFetchingServiceProvider repositoryProvider;
 
-        protected override IObservable<IReadOnlyList<GameObjectProvider>> GetGameObjectProvidersFromRepository(
+        protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository)
         {
             return currentLevelDataRepository.GetMostRecent().Select(d => d.ConstructGameObjectProviders);

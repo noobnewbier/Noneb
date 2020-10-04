@@ -17,8 +17,8 @@ namespace Maps.Create
         [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
         private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
 
-        [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]
-        private TileHolderProvider tileHolderProvider;
+        [FormerlySerializedAs("tileHolderProvider")] [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]
+        private TileHolderFactory tileHolderFactory;
 
         [FormerlySerializedAs("tilesPositionProvider")] [SerializeField]
         private TilesPositionServiceProvider tilesPositionServiceProvider;
@@ -52,7 +52,7 @@ namespace Maps.Create
                         for (var i = 0; i < mapConfig.GetMap2DActualHeight(); i++)
                         for (var j = 0; j < mapConfig.GetMap2DActualWidth(); j++)
                         {
-                            var newTile = tileHolderProvider.Provide().gameObject.transform;
+                            var newTile = tileHolderFactory.Create().gameObject.transform;
 
                             newTile.parent = selfTransform;
                             newTile.rotation *= Quaternion.AngleAxis(30f, worldConfig.UpAxis);

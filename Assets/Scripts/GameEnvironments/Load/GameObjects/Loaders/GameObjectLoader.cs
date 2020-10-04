@@ -49,7 +49,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
                 );
         }
 
-        private IObservable<(IReadOnlyList<GameObjectProvider> gameObjectProviders, MapConfig config, IReadOnlyList<IBoardItemHolder> holders)>
+        private IObservable<(IReadOnlyList<GameObjectFactory> gameObjectProviders, MapConfig config, IReadOnlyList<IBoardItemHolder> holders)>
             GetDataTupleObservable()
         {
             var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
@@ -64,7 +64,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
                 );
         }
 
-        private void InvokeLoadService(IReadOnlyList<GameObjectProvider> gameObjectProviders,
+        private void InvokeLoadService(IReadOnlyList<GameObjectFactory> gameObjectProviders,
                                        MapConfig config,
                                        IReadOnlyList<IBoardItemHolder> holders)
         {
@@ -87,7 +87,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
             DisposeDisposables();
         }
 
-        protected abstract IObservable<IReadOnlyList<GameObjectProvider>> GetGameObjectProvidersFromRepository(
+        protected abstract IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository);
 
         protected abstract IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService();

@@ -8,7 +8,7 @@ namespace InGameEditor.Data.Availables
         fileName = nameof(AvailableGameObjectProviders),
         menuName = MenuName.Data + "InGameEditor/" + nameof(AvailableGameObjectProviders)
     )]
-    public class AvailableGameObjectProviders : AvailableSet<GameObjectProvider>
+    public class AvailableGameObjectProviders : AvailableSet<GameObjectFactory>
     {
     }
 }

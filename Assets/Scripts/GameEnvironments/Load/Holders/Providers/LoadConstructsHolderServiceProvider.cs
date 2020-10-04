@@ -3,6 +3,7 @@ using Constructs;
 using GameEnvironments.Common.Repositories.BoardItems.Providers;
 using Maps.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace GameEnvironments.Load.Holders.Providers
@@ -12,7 +13,7 @@ namespace GameEnvironments.Load.Holders.Providers
     {
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private ConstructsRepositoryProvider constructsRepositoryProvider;
-        [SerializeField] private ConstructHolderProvider constructHolderProvider;
+        [FormerlySerializedAs("constructHolderProvider")] [SerializeField] private ConstructHolderFactory constructHolderFactory;
         [SerializeField] private CoordinateServiceProvider coordinateServiceProvider;
 
         private LoadBoardItemsHolderService<ConstructHolder, Construct> _cache;
@@ -22,7 +23,7 @@ namespace GameEnvironments.Load.Holders.Providers
             return _cache ?? (_cache = new LoadBoardItemsHolderService<ConstructHolder, Construct>(
                 tilesPositionServiceProvider.Provide(),
                 constructsRepositoryProvider.Provide(),
-                constructHolderProvider,
+                constructHolderFactory,
                 coordinateServiceProvider.Provide()
             ));
         }

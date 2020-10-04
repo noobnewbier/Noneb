@@ -4,19 +4,13 @@ using UnityUtils.Pooling;
 
 namespace Common.Providers
 {
-    public class PooledMonoBehaviourProvider<T> : ScriptableObjectProvider<(T component, GameObject gameObject)>,
-                                                  IGameObjectAndComponentProvider<T> where T : PooledMonoBehaviour
+    public class PooledMonoBehaviourFactory<T> : ScriptableObject,
+                                                 IGameObjectAndComponentFactory<T> where T : PooledMonoBehaviour
     {
         [SerializeField] private T prefab;
 
-        public override (T component, GameObject gameObject) Provide()
-        {
-            var go = prefab.GetPooledInstance();
-            var component = go.GetComponent<T>();
-            return (component, go);
-        }
 
-        public (T component, GameObject gameObject) Provide(Transform parentTransform, bool instantiateInWorldSpace = true)
+        public (T component, GameObject gameObject) Create(Transform parentTransform, bool instantiateInWorldSpace = true)
         {
             var go = prefab.GetPooledInstance();
             go.transform.SetParent(parentTransform, instantiateInWorldSpace);
@@ -31,6 +25,13 @@ namespace Common.Providers
             {
                 throw new ArgumentException($"{prefab.name} does not have the required component");
             }
+        }
+
+        public (T component, GameObject gameObject) Create()
+        {
+            var go = prefab.GetPooledInstance();
+            var component = go.GetComponent<T>();
+            return (component, go);
         }
     }
 }

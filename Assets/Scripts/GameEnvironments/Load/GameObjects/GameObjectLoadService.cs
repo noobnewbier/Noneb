@@ -8,7 +8,7 @@ namespace GameEnvironments.Load.GameObjects
 {
     public interface IGameObjectLoadService
     {
-        void Load(IReadOnlyList<GameObjectProvider> gameObjectProviders, IReadOnlyList<IBoardItemHolder> holders, MapConfig mapConfig);
+        void Load(IReadOnlyList<GameObjectFactory> gameObjectProviders, IReadOnlyList<IBoardItemHolder> holders, MapConfig mapConfig);
     }
 
     public class GameObjectLoadService : IGameObjectLoadService
@@ -20,7 +20,7 @@ namespace GameEnvironments.Load.GameObjects
             _coordinateService = coordinateService;
         }
 
-        public void Load(IReadOnlyList<GameObjectProvider> gameObjectProviders, IReadOnlyList<IBoardItemHolder> holders, MapConfig mapConfig)
+        public void Load(IReadOnlyList<GameObjectFactory> gameObjectProviders, IReadOnlyList<IBoardItemHolder> holders, MapConfig mapConfig)
         {
             foreach (var holder in holders)
             {
@@ -32,7 +32,7 @@ namespace GameEnvironments.Load.GameObjects
                     continue;
                 }
 
-                gameObjectProvider.Provide(holder.Transform, false);
+                gameObjectProvider.Create(holder.Transform, false);
             }
         }
     }

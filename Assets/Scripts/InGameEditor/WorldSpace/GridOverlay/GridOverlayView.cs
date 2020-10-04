@@ -14,7 +14,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
         [FormerlySerializedAs("viewModelProvider")] [SerializeField]
         private GridOverlayViewModelFactory viewModelFactory;
 
-        [SerializeField] private CellOverlayViewProvider cellOverlayViewProvider;
+        [FormerlySerializedAs("cellOverlayViewProvider")] [SerializeField] private CellOverlayViewFactory cellOverlayViewFactory;
         [SerializeField] private CellOverlayViewModelFactory cellOverlayViewModelFactory;
         [SerializeField] private Transform gridTransform;
 
@@ -64,7 +64,7 @@ namespace InGameEditor.WorldSpace.GridOverlay
             //create cells if there are not enough
             for (var i = currentCellsCount; i < requiredCellsCount; i++)
             {
-                var cellOverlayView = cellOverlayViewProvider.Provide(gridTransform).component;
+                var cellOverlayView = cellOverlayViewFactory.Create(gridTransform).component;
                 var cellOverlayViewModel = cellOverlayViewModelFactory.Create(
                     _viewModel.CoordinateVisibilityLiveData.Value,
                     _viewModel.GridVisibilityLiveData.Value

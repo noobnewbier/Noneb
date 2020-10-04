@@ -19,7 +19,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
         {
             _viewModel = viewModelFactory.Create();
             _disposable = _viewModel.CurrentlySelectedTileHolderLiveData.Subscribe(ShowIndicator);
-            _selectedTileIndicatorController = config.IndicatorControllerProvider.Provide().component;
+            _selectedTileIndicatorController = config.IndicatorControllerFactory.Create().component;
         }
 
         private void ShowIndicator([CanBeNull] TileHolder tileHolder)

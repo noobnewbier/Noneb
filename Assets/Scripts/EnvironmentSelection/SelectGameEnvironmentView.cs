@@ -5,6 +5,7 @@ using GameEnvironments.Common.Data;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EnvironmentSelection
 {
@@ -13,7 +14,7 @@ namespace EnvironmentSelection
         [SerializeField] private SelectGameEnvironmentViewModelFactory viewModelFactory;
         [SerializeField] private TextMeshProUGUI selectedEnvironmentNameText;
         [SerializeField] private Transform gameEnvironmentsParentTransform;
-        [SerializeField] private ClickableGameEnvironmentViewProvider clickableGameEnvironmentViewProvider;
+        [FormerlySerializedAs("clickableGameEnvironmentViewProvider")] [SerializeField] private ClickableGameEnvironmentViewFactory clickableGameEnvironmentViewFactory;
 
         private SelectGameEnvironmentViewModel _viewModel;
         private IDisposable _compositeDisposable;
@@ -47,7 +48,7 @@ namespace EnvironmentSelection
 
             foreach (var environment in gameEnvironments)
             {
-                var goAndComponent = clickableGameEnvironmentViewProvider.Provide(gameEnvironmentsParentTransform, false);
+                var goAndComponent = clickableGameEnvironmentViewFactory.Create(gameEnvironmentsParentTransform, false);
                 goAndComponent.component.Instantiate(environment, _viewModel.InspectGameEnvironment);
             }
         }

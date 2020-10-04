@@ -64,7 +64,7 @@ namespace GameEnvironments.Validation
         #endregion
 
         private ValidationResult DataHasCorrespondingGameObjectProvider(IList datas,
-                                                                        IReadOnlyList<GameObjectProvider> gameObjectProviders,
+                                                                        IReadOnlyList<GameObjectFactory> gameObjectProviders,
                                                                         string datasName)
         {
             var passedTest = true;
@@ -75,13 +75,13 @@ namespace GameEnvironments.Validation
                 if (datas[i] != null && gameObjectProviders[i] == null)
                 {
                     passedTest = false;
-                    failedReason.Add($"{datasName} has data in index ${i}, but does not have a {nameof(GameObjectProvider)} for it");
+                    failedReason.Add($"{datasName} has data in index ${i}, but does not have a {nameof(GameObjectFactory)} for it");
                 }
 
                 if (datas[i] == null && gameObjectProviders[i] != null)
                 {
                     passedTest = false;
-                    failedReason.Add($"{datasName} has {nameof(GameObjectProvider)} in index ${i}, but does not have a data for it");
+                    failedReason.Add($"{datasName} has {nameof(GameObjectFactory)} in index ${i}, but does not have a data for it");
                 }
             }
 
@@ -219,7 +219,7 @@ namespace GameEnvironments.Validation
         #region AllTileHasData
 
         private ValidationResult AllTileHasData(IReadOnlyList<TileDataScriptable> tileDatas,
-                                                IReadOnlyList<GameObjectProvider> tileGameObjectProviders)
+                                                IReadOnlyList<GameObjectFactory> tileGameObjectProviders)
         {
             return SummarizeValidationResult(
                 CheckAllDataIsNotNull(tileDatas, nameof(tileDatas)),

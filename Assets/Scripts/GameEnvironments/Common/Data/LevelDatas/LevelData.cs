@@ -15,26 +15,26 @@ namespace GameEnvironments.Common.Data.LevelDatas
         private static readonly Lazy<LevelData> LazyEmpty = new Lazy<LevelData>(
             () => new LevelData(
                 new TileData[0],
-                new GameObjectProvider[0],
+                new GameObjectFactory[0],
                 new ConstructData[0],
-                new GameObjectProvider[0],
+                new GameObjectFactory[0],
                 new UnitData[0],
-                new GameObjectProvider[0],
+                new GameObjectFactory[0],
                 new StrongholdData[0],
-                new GameObjectProvider[0],
-                new GameObjectProvider[0]
+                new GameObjectFactory[0],
+                new GameObjectFactory[0]
             )
         );
 
         public LevelData(TileData[] tileDatas,
-                         GameObjectProvider[] tileGameObjectProviders,
+                         GameObjectFactory[] tileGameObjectProviders,
                          ConstructData[] constructDatas,
-                         GameObjectProvider[] constructGameObjectProviders,
+                         GameObjectFactory[] constructGameObjectProviders,
                          UnitData[] unitDatas,
-                         GameObjectProvider[] unitGameObjectProviders,
+                         GameObjectFactory[] unitGameObjectProviders,
                          StrongholdData[] strongholdDatas,
-                         GameObjectProvider[] strongholdUnitGameObjectProviders,
-                         GameObjectProvider[] strongholdConstructGameObjectProviders)
+                         GameObjectFactory[] strongholdUnitGameObjectProviders,
+                         GameObjectFactory[] strongholdConstructGameObjectProviders)
         {
             TileDatas = tileDatas;
             TileGameObjectProviders = tileGameObjectProviders;
@@ -50,13 +50,13 @@ namespace GameEnvironments.Common.Data.LevelDatas
         public static LevelData Empty => LazyEmpty.Value;
 
         public TileData[] TileDatas { get; }
-        public GameObjectProvider[] TileGameObjectProviders { get; }
+        public GameObjectFactory[] TileGameObjectProviders { get; }
         public ConstructData[] ConstructDatas { get; }
-        public GameObjectProvider[] ConstructGameObjectProviders { get; }
+        public GameObjectFactory[] ConstructGameObjectProviders { get; }
         public UnitData[] UnitDatas { get; }
-        public GameObjectProvider[] UnitGameObjectProviders { get; }
+        public GameObjectFactory[] UnitGameObjectProviders { get; }
         public StrongholdData[] StrongholdDatas { get; }
-        public GameObjectProvider[] StrongholdUnitGameObjectProviders { get; }
-        public GameObjectProvider[] StrongholdConstructGameObjectProviders { get; }
+        public GameObjectFactory[] StrongholdUnitGameObjectProviders { get; }
+        public GameObjectFactory[] StrongholdConstructGameObjectProviders { get; }
     }
 }

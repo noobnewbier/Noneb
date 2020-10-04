@@ -16,14 +16,14 @@ namespace GameEnvironments.Common.Data.LevelDatas
     public class LevelDataScriptable : ScriptableObject
     {
         [SerializeField] private TileDataScriptable[] tileDatas;
-        [SerializeField] private GameObjectProvider[] tileGameObjectProviders;
+        [SerializeField] private GameObjectFactory[] tileGameObjectProviders;
         [SerializeField] private ConstructDataScriptable[] constructDatas;
-        [SerializeField] private GameObjectProvider[] constructGameObjectProviders;
+        [SerializeField] private GameObjectFactory[] constructGameObjectProviders;
         [SerializeField] private UnitDataScriptable[] unitDatas;
-        [SerializeField] private GameObjectProvider[] unitGameObjectProviders;
+        [SerializeField] private GameObjectFactory[] unitGameObjectProviders;
         [SerializeField] private StrongholdDataWrapper[] strongholdDatas;
-        [SerializeField] private GameObjectProvider[] strongholdUnitGameObjectProviders;
-        [SerializeField] private GameObjectProvider[] strongholdConstructGameObjectProviders;
+        [SerializeField] private GameObjectFactory[] strongholdUnitGameObjectProviders;
+        [SerializeField] private GameObjectFactory[] strongholdConstructGameObjectProviders;
 
 #if UNITY_EDITOR
         [TextArea] [SerializeField] [UsedImplicitly]
@@ -32,13 +32,13 @@ namespace GameEnvironments.Common.Data.LevelDatas
 
         public StrongholdDataWrapper[] StrongholdDatas => strongholdDatas;
         public TileDataScriptable[] TileDatas => tileDatas;
-        public GameObjectProvider[] TileGameObjectProviders => tileGameObjectProviders;
+        public GameObjectFactory[] TileGameObjectProviders => tileGameObjectProviders;
         public ConstructDataScriptable[] ConstructDatas => constructDatas;
-        public GameObjectProvider[] ConstructGameObjectProviders => constructGameObjectProviders;
+        public GameObjectFactory[] ConstructGameObjectProviders => constructGameObjectProviders;
         public UnitDataScriptable[] UnitDatas => unitDatas;
-        public GameObjectProvider[] UnitGameObjectProviders => unitGameObjectProviders;
-        public GameObjectProvider[] StrongholdUnitGameObjectProviders => strongholdUnitGameObjectProviders;
-        public GameObjectProvider[] StrongholdConstructGameObjectProviders => strongholdConstructGameObjectProviders;
+        public GameObjectFactory[] UnitGameObjectProviders => unitGameObjectProviders;
+        public GameObjectFactory[] StrongholdUnitGameObjectProviders => strongholdUnitGameObjectProviders;
+        public GameObjectFactory[] StrongholdConstructGameObjectProviders => strongholdConstructGameObjectProviders;
 
         public LevelData ToLevelData()
         {

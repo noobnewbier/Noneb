@@ -24,7 +24,7 @@ namespace InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
                 _viewModel.CurrentlyHoveredTileHolderLiveData.Subscribe(OnHoveredTileUpdated),
                 _viewModel.CurrentlySelectedTileHolderLiveData.Subscribe(OnSelectedTileUpdated)
             };
-            _hoveredTileIndicatorController = config.IndicatorControllerProvider.Provide().component;
+            _hoveredTileIndicatorController = config.IndicatorControllerFactory.Create().component;
         }
 
         private void OnHoveredTileUpdated([CanBeNull] TileHolder tileHolder)

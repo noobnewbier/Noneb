@@ -3,11 +3,12 @@ using GameEnvironments.Common.Repositories.BoardItems.Providers;
 using Maps.Repositories.CurrentMapConfig;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityUtils.Constants;
 
 namespace Maps.Repositories.Map
 {
-    //todo: can be a scriptable
-    public class MapRepositoryProvider : MonoObjectProvider<IMapRepository>
+    [CreateAssetMenu(fileName = nameof(MapRepositoryProvider), menuName = MenuName.ScriptableRepository + nameof(MapRepository))]
+    public class MapRepositoryProvider : ScriptableObjectProvider<IMapRepository>
     {
         [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;

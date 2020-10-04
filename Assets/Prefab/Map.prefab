@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3231104543810992783}
   - component: {fileID: 3231104543810992771}
   - component: {fileID: 3231104543810992782}
-  - component: {fileID: 3231104543810992768}
   - component: {fileID: 3231104543810992769}
   - component: {fileID: 3231104543810992770}
   - component: {fileID: 3231104543810992774}
@@ -69,24 +68,9 @@ MonoBehaviour:
     x: 3
     z: 3
   maxCost: 5
-  mapRepositoryProvider: {fileID: 3231104543810992768}
+  mapRepositoryProvider: {fileID: 11400000, guid: 0db88873f9e14bb4aa41bf99d61c1e9a,
+    type: 2}
   tilesHoldersServiceProvider: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
-    type: 2}
---- !u!114 &3231104543810992768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3231104543810992781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5b8a7be604491d901263dc5157604d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
-    type: 2}
-  tilesRepositoryProvider: {fileID: 11400000, guid: e80c3dac866061b43a2c3327325f395d,
     type: 2}
 --- !u!114 &3231104543810992769
 MonoBehaviour:

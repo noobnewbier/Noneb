@@ -1,5 +1,4 @@
-﻿using System;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+﻿using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
 using GameEnvironments.Save.EditorOnly;
 using InGameEditor.Services.InGameEditorMessage;
 using UnityEngine;
@@ -14,21 +13,13 @@ namespace InGameEditor.Ui.Options.Save
 
         [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
 
-        public SaveViewModel Create(ICurrentGameEnvironmentGetRepository getRepository, SaveType saveType)
+        public SaveViewModel Create(ICurrentGameEnvironmentGetRepository getRepository)
         {
-            switch (saveType)
-            {
-                case SaveType.Scriptable:
-                    return new SaveViewModel(
-                        saveEnvironmentAsScriptableServiceProvider.Provide(),
-                        getRepository,
-                        messageServiceProvider.Provide()
-                    );
-                case SaveType.Preservation:
-                    throw new InvalidOperationException($"{nameof(SaveType.Preservation)} is now obsolete");
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            return new SaveViewModel(
+                saveEnvironmentAsScriptableServiceProvider.Provide(),
+                getRepository,
+                messageServiceProvider.Provide()
+            );
         }
     }
 }

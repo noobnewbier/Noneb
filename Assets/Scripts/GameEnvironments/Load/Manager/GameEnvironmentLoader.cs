@@ -13,54 +13,6 @@ namespace GameEnvironments.Load.Manager
 {
     public class GameEnvironmentLoader : MonoBehaviour
     {
-        #region Prelimainaries
-
-        [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
-        [SerializeField] private UnitsHolderFetcherSetter unitsHolderFetcherSetter;
-        [SerializeField] private ConstructsHolderFetcherSetter constructsFetcherSetter;
-        [SerializeField] private StrongholdsHolderFetcherSetter strongholdsFetcherSetter;
-        [SerializeField] private TilesHolderFetcherSetter tilesFetcherSetter;
-
-        #endregion
-
-        #region DataLoaders
-
-        [SerializeField] private UnitsLoader unitsLoader;
-        [SerializeField] private ConstructsLoader constructsLoader;
-        [SerializeField] private StrongholdsLoader strongholdsLoader;
-        [SerializeField] private TilesLoader tilesLoader;
-
-        #endregion
-
-        #region HolderLoaders
-
-        [SerializeField] private UnitHoldersLoader unitHoldersLoader;
-        [SerializeField] private ConstructHoldersLoader constructHoldersLoader;
-        [SerializeField] private StrongholdHoldersLoader strongholdHoldersLoader;
-        [SerializeField] private TileHoldersLoader tileHoldersLoader;
-
-        #endregion
-
-        #region GameObjectLoaders
-
-        [SerializeField] private TileGameObjectLoader tileGameObjectLoader;
-        [SerializeField] private UnitGameObjectLoader unitGameObjectLoader;
-        [SerializeField] private ConstructGameObjectLoader constructGameObjectLoader;
-        [SerializeField] private StrongholdUnitGameObjectLoader strongholdUnitGameObjectLoader;
-        [SerializeField] private StrongholdConstructGameObjectLoader strongholdConstructGameObjectLoader;
-
-        #endregion
-
-        #region CleanUp
-
-        [SerializeField] private StrongholdGameObjectsInternalPositionLoader strongholdGameObjectsInternalPositionLoader;
-        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
-
-        private IInGameEditorMessageService _messageService;
-
-        #endregion
-
-
         private IDisposable _disposable;
 
         private void OnEnable()
@@ -79,6 +31,7 @@ namespace GameEnvironments.Load.Manager
                 .Subscribe(
                     _ =>
                     {
+                        Debug.Log("success");
                         Debug.Log("success");
                     },
                     e =>
@@ -175,5 +128,52 @@ namespace GameEnvironments.Load.Manager
                 )
                 .Single();
         }
+
+        #region Prelimainaries
+
+        [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
+        [SerializeField] private UnitsHolderFetcherSetter unitsHolderFetcherSetter;
+        [SerializeField] private ConstructsHolderFetcherSetter constructsFetcherSetter;
+        [SerializeField] private StrongholdsHolderFetcherSetter strongholdsFetcherSetter;
+        [SerializeField] private TilesHolderFetcherSetter tilesFetcherSetter;
+
+        #endregion
+
+        #region DataLoaders
+
+        [SerializeField] private UnitsLoader unitsLoader;
+        [SerializeField] private ConstructsLoader constructsLoader;
+        [SerializeField] private StrongholdsLoader strongholdsLoader;
+        [SerializeField] private TilesLoader tilesLoader;
+
+        #endregion
+
+        #region HolderLoaders
+
+        [SerializeField] private UnitHoldersLoader unitHoldersLoader;
+        [SerializeField] private ConstructHoldersLoader constructHoldersLoader;
+        [SerializeField] private StrongholdHoldersLoader strongholdHoldersLoader;
+        [SerializeField] private TileHoldersLoader tileHoldersLoader;
+
+        #endregion
+
+        #region GameObjectLoaders
+
+        [SerializeField] private TileGameObjectLoader tileGameObjectLoader;
+        [SerializeField] private UnitGameObjectLoader unitGameObjectLoader;
+        [SerializeField] private ConstructGameObjectLoader constructGameObjectLoader;
+        [SerializeField] private StrongholdUnitGameObjectLoader strongholdUnitGameObjectLoader;
+        [SerializeField] private StrongholdConstructGameObjectLoader strongholdConstructGameObjectLoader;
+
+        #endregion
+
+        #region CleanUp
+
+        [SerializeField] private StrongholdGameObjectsInternalPositionLoader strongholdGameObjectsInternalPositionLoader;
+        [SerializeField] private InGameEditorMessageServiceProvider messageServiceProvider;
+
+        private IInGameEditorMessageService _messageService;
+
+        #endregion
     }
 }

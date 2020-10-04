@@ -9,8 +9,6 @@ namespace InGameEditor.Ui.Options.Save
 {
     public class SaveView : MonoBehaviour
     {
-        [SerializeField] private SaveType saveType;
-
         [SerializeField] private GameObject savingDetailDialog;
         [SerializeField] private SaveViewModelFactory viewModelFactory;
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
@@ -23,8 +21,7 @@ namespace InGameEditor.Ui.Options.Save
         {
             _compositeDisposable = new CompositeDisposable();
             _viewModel = viewModelFactory.Create(
-                currentGameEnvironmentRepositoryProvider.Provide(),
-                saveType
+                currentGameEnvironmentRepositoryProvider.Provide()
             );
 
             _compositeDisposable.Add(

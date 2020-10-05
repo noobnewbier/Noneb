@@ -4,9 +4,9 @@ namespace InGameEditor.Ui.EditorMessageShower
 {
     public class DebugLogMessageView : MonoBehaviour
     {
-        [SerializeField] private EditorMessageViewModelFactory viewModelFactory;
+        [SerializeField] private DebugLogMessageViewModelFactory viewModelFactory;
 
-        private IEditorMessageViewModel _viewModel;
+        private IDebugLogMessageViewModel _viewModel;
 
         private void OnEnable()
         {

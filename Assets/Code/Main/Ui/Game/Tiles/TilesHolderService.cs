@@ -12,6 +12,7 @@ namespace Tiles.Holders.Repository
         IObservable<TileHolder> GetAtCoordinateSingle(Coordinate axialCoordinate);
     }
 
+    //todo: use BoardItemHoldersFetchingService's approach to avoid caching
     public class TilesHolderService : ITilesHolderService
     {
         private IObservable<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSingle;

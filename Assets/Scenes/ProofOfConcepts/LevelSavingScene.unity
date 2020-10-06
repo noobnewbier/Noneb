@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e66a4cd1488ab47968eebe9d477895, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fa789ce3d382d44fb08f1214a625cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &369192912
@@ -145,6 +145,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 3231104543810992782, guid: 0bb9bdc884acf3f4a913f5eacc31324c,
+        type: 3}
+      propertyPath: tilesHoldersServiceProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
+        type: 2}
     - target: {fileID: 3231104543810992783, guid: 0bb9bdc884acf3f4a913f5eacc31324c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,7 +355,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628c988e660149b68138a3b5ba0730d3, type: 3}
+  m_Script: {fileID: 11500000, guid: e4e24b90718cf8b4394e1b56f8e3a7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1008362096 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3231104543810992774, guid: 0bb9bdc884acf3f4a913f5eacc31324c,
+    type: 3}
+  m_PrefabInstance: {fileID: 369192912}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce5f5c92b310634888896e40ba7502d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1178581236
@@ -677,7 +695,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a482891fa74b0fae50b43704584dfe, type: 3}
+  m_Script: {fileID: 11500000, guid: 767ecc6fd71554044ba9596d4b290497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1894037484 stripped
@@ -689,7 +707,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1659861cf49456f8a2067498e070dd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1454b159738316e48ab69a9b065f1a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1894037486 stripped
@@ -701,19 +719,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c424ffdb1a804128b306cbe079d91e89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1894037489 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3231104543810992771, guid: 0bb9bdc884acf3f4a913f5eacc31324c,
-    type: 3}
-  m_PrefabInstance: {fileID: 369192912}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 011f42325789483ba1743953a12fa122, type: 3}
+  m_Script: {fileID: 11500000, guid: 3aeeffaffd858774895cad2e4ad7ba87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1894037490 stripped
@@ -1043,7 +1049,7 @@ PrefabInstance:
         type: 3}
       propertyPath: holdersFetcher
       value: 
-      objectReference: {fileID: 1894037489}
+      objectReference: {fileID: 1008362096}
     - target: {fileID: 3207256121381829245, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: m_IsActive
@@ -1058,7 +1064,7 @@ PrefabInstance:
         type: 3}
       propertyPath: holdersFetcher
       value: 
-      objectReference: {fileID: 1894037484}
+      objectReference: {fileID: 1894037486}
     - target: {fileID: 8000678177018212543, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: mapTransform
@@ -1068,7 +1074,7 @@ PrefabInstance:
         type: 3}
       propertyPath: holdersFetcher
       value: 
-      objectReference: {fileID: 1894037486}
+      objectReference: {fileID: 1894037484}
     - target: {fileID: 8602292051037969736, guid: 8d9703e44d14b8847830ba7aa6ee1bdb,
         type: 3}
       propertyPath: currentTilesTransformSetter

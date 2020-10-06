@@ -340,7 +340,7 @@ MonoBehaviour:
   viewModelFactory: {fileID: 11400000, guid: 99f7ef515ca29d645b3c27b6c39c194f, type: 2}
   selectedEnvironmentNameText: {fileID: 8137952660220443767}
   gameEnvironmentsParentTransform: {fileID: 8137952659235626676}
-  clickableGameEnvironmentViewProvider: {fileID: 11400000, guid: f409d9b184643e24bbfb0833857459c4,
+  clickableGameEnvironmentViewFactory: {fileID: 11400000, guid: f409d9b184643e24bbfb0833857459c4,
     type: 2}
 --- !u!1 &8137952659235626679
 GameObject:

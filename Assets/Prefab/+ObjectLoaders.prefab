@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6113251127291002251}
   - component: {fileID: 8602292051037969736}
   m_Layer: 0
-  m_Name: '@LoadLevelManager'
+  m_Name: '@GameEnvironmentLoader'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3207256121381829245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e66a4cd1488ab47968eebe9d477895, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fa789ce3d382d44fb08f1214a625cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentMapTransformSetter: {fileID: 8000678177018212543}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3570084597380959434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628c988e660149b68138a3b5ba0730d3, type: 3}
+  m_Script: {fileID: 11500000, guid: e4e24b90718cf8b4394e1b56f8e3a7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameEnvironmentLoader: {fileID: 8602292051037969736}
@@ -160,7 +160,7 @@ MonoBehaviour:
     type: 2}
   constructsHoldersFetchingServiceProvider: {fileID: 11400000, guid: ae272fc06dfed6849b67762838363940,
     type: 2}
-  strongholdHolderFetchingServiceRepositoryProvider: {fileID: 11400000, guid: 891f9dd7703cf0340876c87697499df1,
+  strongholdHolderFetchingServiceProvider: {fileID: 11400000, guid: 891f9dd7703cf0340876c87697499df1,
     type: 2}
 --- !u!1 &5583750793361162319
 GameObject:

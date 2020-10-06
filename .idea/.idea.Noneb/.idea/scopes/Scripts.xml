@@ -1,3 +1,0 @@
-﻿<component name="DependencyValidationManager">
-  <scope name="Scripts" pattern="file[riderModule]:Assets/Scripts//*" />
-</component>

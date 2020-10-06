@@ -22,10 +22,11 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
     {
         [SerializeField] private SetupStrongholdGameObjectsInternalPositionServiceProvider serviceProvider;
 
+        [FormerlySerializedAs("strongholdHoldersFetchingServiceRepositoryProvider")]
         [FormerlySerializedAs("strongholdsFetchingServiceRepositoryProvider")]
         [FormerlySerializedAs("strongholdsHolderRepositoryProvider")]
         [SerializeField]
-        private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHoldersFetchingServiceRepositoryProvider;
+        private StrongholdHoldersFetchingServiceProvider strongholdHoldersFetchingServiceProvider;
 
         private ISetupStrongholdGameObjectsInternalPositionService _setupStrongholdGameObjectsInternalPositionService;
         private IBoardItemHoldersFetchingService<StrongholdHolder> _strongholdsHolderFetchingService;
@@ -56,7 +57,7 @@ namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         private void OnEnable()
         {
             _setupStrongholdGameObjectsInternalPositionService = serviceProvider.Provide();
-            _strongholdsHolderFetchingService = strongholdHoldersFetchingServiceRepositoryProvider.Provide();
+            _strongholdsHolderFetchingService = strongholdHoldersFetchingServiceProvider.Provide();
         }
 
         private void SetupTilesWithStronghold(IReadOnlyList<StrongholdHolder> strongholdHolders)

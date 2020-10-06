@@ -8,10 +8,10 @@ using UnityUtils.Constants;
 namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
 {
     [CreateAssetMenu(
-        fileName = nameof(StrongholdHoldersFetchingServiceRepositoryProvider),
+        fileName = nameof(StrongholdHoldersFetchingServiceProvider),
         menuName = MenuName.ScriptableService + "StrongholdsHoldersFetchingService"
     )]
-    public class StrongholdHoldersFetchingServiceRepositoryProvider : ScriptableObjectProvider<BoardItemHoldersFetchingService<StrongholdHolder>>
+    public class StrongholdHoldersFetchingServiceProvider : ScriptableObjectProvider<BoardItemHoldersFetchingService<StrongholdHolder>>
     {
         [FormerlySerializedAs("providerRepositoryProvider")] [SerializeField]
         private StrongholdsHolderFetcherRepositoryProvider fetcherRepositoryProvider;

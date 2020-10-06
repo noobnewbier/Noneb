@@ -8,6 +8,7 @@ using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
 using GameEnvironments.Common.Repositories.CurrentLevelDatas;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameEnvironments.Load.GameObjects.Loaders
 {
@@ -17,7 +18,7 @@ namespace GameEnvironments.Load.GameObjects.Loaders
     )]
     public class StrongholdConstructGameObjectLoader : GameObjectLoader
     {
-        [SerializeField] private StrongholdHoldersFetchingServiceRepositoryProvider repositoryProvider;
+        [FormerlySerializedAs("repositoryProvider")] [SerializeField] private StrongholdHoldersFetchingServiceProvider provider;
 
         protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository)
@@ -25,6 +26,6 @@ namespace GameEnvironments.Load.GameObjects.Loaders
             return currentLevelDataRepository.GetMostRecent().Select(d => d.StrongholdConstructGameObjectProviders);
         }
 
-        protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService() => repositoryProvider.Provide();
+        protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService() => provider.Provide();
     }
 }

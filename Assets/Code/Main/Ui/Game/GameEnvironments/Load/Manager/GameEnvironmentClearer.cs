@@ -33,10 +33,11 @@ namespace GameEnvironments.Load.Manager
         [FormerlySerializedAs("constructsHolderRepositoryProvider")] [SerializeField]
         private ConstructsHoldersFetchingServiceProvider constructsHoldersFetchingServiceProvider;
 
+        [FormerlySerializedAs("strongholdHolderFetchingServiceRepositoryProvider")]
         [FormerlySerializedAs("strongholdFetchingServiceRepositoryProvider")]
         [FormerlySerializedAs("strongholdHolderRepositoryProvider")]
         [SerializeField]
-        private StrongholdHoldersFetchingServiceRepositoryProvider strongholdHolderFetchingServiceRepositoryProvider;
+        private StrongholdHoldersFetchingServiceProvider strongholdHolderFetchingServiceProvider;
 
         private IDisposable _disposable;
         private ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
@@ -52,7 +53,7 @@ namespace GameEnvironments.Load.Manager
             _tileHoldersFetchingService = tileHoldersFetchingServiceProvider.Provide();
             _unitHoldersFetchingService = unitHoldersFetchingServiceProvider.Provide();
             _constructHoldersFetchingService = constructsHoldersFetchingServiceProvider.Provide();
-            _strongholdHoldersFetchingService = strongholdHolderFetchingServiceRepositoryProvider.Provide();
+            _strongholdHoldersFetchingService = strongholdHolderFetchingServiceProvider.Provide();
             _messageService = messageServiceProvider.Provide();
         }
 

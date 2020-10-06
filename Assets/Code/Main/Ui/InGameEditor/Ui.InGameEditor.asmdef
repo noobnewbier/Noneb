@@ -2,11 +2,13 @@
     "name": "Ui.InGameEditor",
     "references": [
         "GUID:4f3da2670aa8eb84c82d96215988e9c0",
+        "GUID:31744fd11c42b9e40b4518d6a513e667",
         "GUID:4b943e5b05e3ad540a3158a2f9fb9d1f",
         "GUID:acf43146c4364d2419bdbdeac67deb96",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:c1efed8da611ae44492b838e0ee05d3b",
-        "GUID:9704a25e1839b9b43a672d19930c723b"
+        "GUID:9704a25e1839b9b43a672d19930c723b",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -9,7 +9,7 @@ namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
 {
     [CreateAssetMenu(
         fileName = nameof(ConstructsHoldersFetchingServiceProvider),
-        menuName = MenuName.ScriptableService + "ConstructsFetchingServiceRepository"
+        menuName = MenuName.ScriptableService + "ConstructsHoldersFetchingService"
     )]
     public class ConstructsHoldersFetchingServiceProvider : ScriptableObjectProvider<BoardItemHoldersFetchingService<ConstructHolder>>
     {

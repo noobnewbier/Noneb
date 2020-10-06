@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
+namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay.CellOverlay
 {
     [CreateAssetMenu(fileName = nameof(CellOverlayViewModelFactory), menuName = MenuName.Factory + nameof(CellOverlayViewModel))]
     public class CellOverlayViewModelFactory : ScriptableObject

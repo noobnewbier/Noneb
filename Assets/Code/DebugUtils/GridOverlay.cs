@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Maps.Repositories.CurrentMapConfig;
-using Maps.Repositories.CurrentMapTransform;
-using Maps.Services;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.WorldConfigurations;
+using Main.Ui.Game.Maps.CurrentMapTransform;
+using Main.Ui.Game.Maps.TilesPosition;
 using UniRx;
 using UnityEngine;
-using WorldConfigurations.Repositories;
 
 namespace DebugUtils
 {

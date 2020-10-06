@@ -1,16 +1,16 @@
 ﻿using System;
 using System.IO;
-using GameEnvironments.Common;
-using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Data.LevelDatas;
-using GameEnvironments.Common.Services.GetEnvironmentFilenameServices;
-using GameEnvironments.Common.Services.GetInGameEditorDirectoryService;
-using Maps;
+using Main.Core.Game.GameEnvironments.Data;
+using Main.Core.Game.GameEnvironments.Data.LevelDatas;
+using Main.Core.Game.GameEnvironments.Save;
+using Main.Core.Game.Maps;
+using Main.Core.Game.WorldConfigurations;
+using Main.Core.InGameEditor.GetEnvironmentFilenameServices;
+using Main.Core.InGameEditor.GetInGameEditorDirectoryService;
 using UnityEditor;
 using UnityEngine;
-using WorldConfigurations;
 
-namespace GameEnvironments.Save.EditorOnly
+namespace Main.Core.InGameEditor.Save.EditorOnly
 {
     public class SaveEnvironmentAsScriptableService : ISaveEnvironmentService
     {

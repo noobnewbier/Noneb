@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common;
-using Common.BoardItems;
-using Common.Holders;
+using Main.Core.Game.Common;
+using Main.Ui.Game.Common.Holders;
 using UniRx;
 
-namespace GameEnvironments.Common.Repositories.BoardItemsHolders
+namespace Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService
 {
     public interface IBoardItemHoldersFetchingService<out THolder> where THolder : IBoardItemHolder
     {

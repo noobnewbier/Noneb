@@ -1,11 +1,11 @@
 ﻿using System;
-using InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
 using JetBrains.Annotations;
-using Tiles.Holders;
+using Main.Ui.Game.Tiles;
+using Main.Ui.InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
 using UniRx;
 using UnityEngine;
 
-namespace InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
 {
     public class HoveredTileIndicatorView : MonoBehaviour
     {

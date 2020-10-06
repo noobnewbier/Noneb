@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
+namespace Main.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition
 {
     [CreateAssetMenu(
         fileName = nameof(SetupStrongholdGameObjectsInternalPositionServiceProvider),

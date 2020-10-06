@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Services.GetInGameEditorDirectoryService
+namespace Main.Core.InGameEditor.GetInGameEditorDirectoryService
 {
     [CreateAssetMenu(
         fileName = nameof(GetInGameEditorDirectoryServiceProvider),

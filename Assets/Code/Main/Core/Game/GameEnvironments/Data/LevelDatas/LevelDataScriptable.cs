@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
-using Common.Factories;
-using Constructs.Data;
 using JetBrains.Annotations;
-using Strongholds;
-using Tiles.Data;
-using Units.Data;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Strongholds;
+using Main.Core.Game.Tiles;
+using Main.Core.Game.Units;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Data.LevelDatas
+namespace Main.Core.Game.GameEnvironments.Data.LevelDatas
 {
     [CreateAssetMenu(menuName = MenuName.Data + nameof(LevelDataScriptable), fileName = nameof(LevelDataScriptable))]
     public class LevelDataScriptable : ScriptableObject

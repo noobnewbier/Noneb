@@ -1,8 +1,7 @@
-﻿using Common.BoardItems;
-using Common.Constants;
-using Units.Holders;
+﻿using Main.Core.Game.Common.Constants;
+using Main.Ui.Game.Common.Holders;
 
-namespace Units
+namespace Main.Ui.Game.Units
 {
     public class UnitsHolderFetcher : BoardItemsHolderFetcher<UnitHolder>
     {

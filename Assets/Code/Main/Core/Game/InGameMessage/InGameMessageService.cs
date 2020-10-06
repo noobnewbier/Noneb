@@ -1,8 +1,7 @@
 ﻿using System;
-using InGameEditor.Events;
 using UniRx;
 
-namespace InGameEditor.Services.InGameEditorMessage
+namespace Main.Core.Game.InGameMessage
 {
     public interface IInGameMessageService : IDisposable
     {

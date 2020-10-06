@@ -1,12 +1,12 @@
 ﻿using System;
-using Common.Loaders;
-using Maps;
-using Maps.Repositories.CurrentMapConfig;
-using Maps.Repositories.CurrentMapTransform;
+using Main.Core.Game.Common.Loaders;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Ui.Game.Maps.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.Holders.Loaders
+namespace Main.Ui.Game.GameEnvironments.Load.Holders.Loaders
 {
     public abstract class BoardItemsHolderLoader : ScriptableObject, ILoader
     {

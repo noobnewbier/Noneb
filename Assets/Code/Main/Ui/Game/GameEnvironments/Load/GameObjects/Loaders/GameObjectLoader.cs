@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.Factories;
-using Common.Holders;
-using Common.Loaders;
-using GameEnvironments.Common.Repositories.BoardItemsHolders;
-using GameEnvironments.Common.Repositories.CurrentLevelDatas;
-using Maps;
-using Maps.Repositories.CurrentMapConfig;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Common.Loaders;
+using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Ui.Game.Common.Holders;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.GameObjects.Loaders
+namespace Main.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
 {
     public abstract class GameObjectLoader : ScriptableObject, ILoader
     {

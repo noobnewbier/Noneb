@@ -1,8 +1,8 @@
-﻿using InGameEditor.Ui.DataSelection.IndividualSelectableData;
+﻿using Main.Ui.InGameEditor.DataSelection.IndividualSelectableData;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace InGameEditor.Ui.DataSelection.DataSelector
+namespace Main.Ui.InGameEditor.DataSelection.DataSelector
 {
     public class DataSelectorView : MonoBehaviour
     {

@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Services.GetEnvironmentFilenameServices
+namespace Main.Core.InGameEditor.GetEnvironmentFilenameServices
 {
     [CreateAssetMenu(
         fileName = nameof(GetEnvironmentFilenameServiceProvider),

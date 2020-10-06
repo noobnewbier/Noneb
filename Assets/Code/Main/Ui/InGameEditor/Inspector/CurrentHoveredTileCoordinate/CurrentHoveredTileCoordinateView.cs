@@ -1,9 +1,9 @@
 ﻿using System;
-using Maps;
+using Main.Core.Game.Maps.Coordinate;
 using TMPro;
 using UnityEngine;
 
-namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
+namespace Main.Ui.InGameEditor.Inspector.CurrentHoveredTileCoordinate
 {
     public class CurrentHoveredTileCoordinateView : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
     public class TileSelectionView : MonoBehaviour
     {

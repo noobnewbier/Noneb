@@ -1,9 +1,9 @@
-﻿using Constructs;
-using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
+﻿using Main.Ui.Game.Constructs;
+using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Setters
+namespace Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Setters
 {
     public class ConstructsHolderFetcherSetter : MonoBehaviour
     {

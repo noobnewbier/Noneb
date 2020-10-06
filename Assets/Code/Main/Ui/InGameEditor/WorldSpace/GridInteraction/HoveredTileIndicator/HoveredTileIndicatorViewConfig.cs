@@ -1,9 +1,9 @@
-﻿using InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
+﻿using Main.Ui.InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
 {
     [CreateAssetMenu(fileName = nameof(HoveredTileIndicatorViewConfig), menuName = MenuName.Data + nameof(HoveredTileIndicatorViewConfig))]
     public class HoveredTileIndicatorViewConfig : ScriptableObject

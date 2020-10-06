@@ -1,11 +1,11 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
-using Maps.Repositories.CurrentMapConfig;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace Tiles.Holders.Repository
+namespace Main.Ui.Game.Tiles
 {
     [CreateAssetMenu(fileName = nameof(TilesHoldersServiceProvider), menuName = MenuName.ScriptableRepository + nameof(TilesHolderService))]
     public class TilesHoldersServiceProvider : ScriptableObjectProvider<ITilesHolderService>

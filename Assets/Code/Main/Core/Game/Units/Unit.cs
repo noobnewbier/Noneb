@@ -1,9 +1,8 @@
-﻿using Common.BoardItems;
-using Common.TagInterface;
-using Maps;
-using Units.Data;
+﻿using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Common.TagInterface;
+using Main.Core.Game.Maps.Coordinate;
 
-namespace Units
+namespace Main.Core.Game.Units
 {
     public class Unit : BoardItem<UnitData>, IOnTile
     {

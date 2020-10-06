@@ -1,6 +1,6 @@
-﻿using Maps;
+﻿using Main.Core.Game.Maps.Coordinate;
 
-namespace Common
+namespace Main.Core.Game.Common
 {
     public interface IRequireCoordinate
     {

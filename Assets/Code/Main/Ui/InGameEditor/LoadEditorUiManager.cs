@@ -1,7 +1,7 @@
-﻿using InGameEditor.Cameras;
+﻿using Main.Ui.InGameEditor.Cameras;
 using UnityEngine;
 
-namespace InGameEditor
+namespace Main.Ui.InGameEditor
 {
     public class LoadEditorUiManager : MonoBehaviour
     {

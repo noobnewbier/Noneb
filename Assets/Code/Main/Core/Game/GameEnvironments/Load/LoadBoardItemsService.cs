@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Common.BoardItems;
-using Common.Factories;
-using GameEnvironments.Common.Repositories.BoardItems;
-using Maps;
-using Maps.Services;
+using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.GameEnvironments.BoardItems;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Maps.Coordinate.Services;
 
-namespace GameEnvironments.Load.BoardItems
+namespace Main.Core.Game.GameEnvironments.Load
 {
     public interface ILoadBoardItemsService<in TBoardItemData> where TBoardItemData : BoardItemData
     {

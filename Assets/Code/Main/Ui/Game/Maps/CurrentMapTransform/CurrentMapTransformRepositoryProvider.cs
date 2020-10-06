@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Maps.Repositories.CurrentMapTransform
+namespace Main.Ui.Game.Maps.CurrentMapTransform
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentMapTransformRepositoryProvider),

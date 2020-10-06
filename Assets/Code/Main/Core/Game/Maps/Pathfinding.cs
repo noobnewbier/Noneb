@@ -3,22 +3,22 @@ using System.Linq;
 using Priority_Queue;
 using UnityEngine;
 
-namespace Maps
+namespace Main.Core.Game.Maps
 {
     //https://en.wikipedia.org/wiki/A*_search_algorithm
     public static class Pathfinding
     {
         //There is no need to aggressively early exit for now, we are in no need for such optimization
-        public static bool TryFindPath(Coordinate start,
-                                       Coordinate goal,
+        public static bool TryFindPath(Coordinate.Coordinate start,
+                                       Coordinate.Coordinate goal,
                                        Map map,
-                                       out IList<Coordinate> path,
+                                       out IList<Coordinate.Coordinate> path,
                                        int maxCost = int.MaxValue,
                                        bool includeStartingTile = false)
         {
-            var tileToDiscover = new SimplePriorityQueue<Coordinate, float>();
-            var cameFrom = new Dictionary<Coordinate, Coordinate>();
-            var distanceToTile = new Dictionary<Coordinate, float> {[start] = 0f};
+            var tileToDiscover = new SimplePriorityQueue<Coordinate.Coordinate, float>();
+            var cameFrom = new Dictionary<Coordinate.Coordinate, Coordinate.Coordinate>();
+            var distanceToTile = new Dictionary<Coordinate.Coordinate, float> {[start] = 0f};
 
             tileToDiscover.Enqueue(start, Heuristic(start, goal));
             path = null;
@@ -28,7 +28,7 @@ namespace Maps
                 var current = tileToDiscover.Dequeue();
                 if (current == goal)
                 {
-                    path = new List<Coordinate>();
+                    path = new List<Coordinate.Coordinate>();
                     while (current != start)
                     {
                         path.Add(current);
@@ -80,7 +80,7 @@ namespace Maps
             return false;
         }
 
-        private static float Heuristic(Coordinate tileCoordinate, Coordinate goalCoordinate) =>
+        private static float Heuristic(Coordinate.Coordinate tileCoordinate, Coordinate.Coordinate goalCoordinate) =>
             Mathf.Abs(goalCoordinate.X - tileCoordinate.X) +
             Mathf.Abs(goalCoordinate.Y - tileCoordinate.Y) +
             Mathf.Abs(goalCoordinate.Z - tileCoordinate.Z);

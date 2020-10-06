@@ -1,6 +1,6 @@
-﻿using Maps;
+﻿using Main.Core.Game.Maps.Coordinate;
 
-namespace Common.BoardItems
+namespace Main.Core.Game.Common.BoardItems
 {
     public abstract class BoardItem
     {

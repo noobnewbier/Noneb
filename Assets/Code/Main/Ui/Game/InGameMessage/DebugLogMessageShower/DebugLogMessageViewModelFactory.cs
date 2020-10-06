@@ -1,8 +1,8 @@
-﻿using InGameEditor.Services.InGameEditorMessage;
+﻿using Main.Core.Game.InGameMessage;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Ui.EditorMessageShower
+namespace Main.Ui.Game.InGameMessage.DebugLogMessageShower
 {
     [CreateAssetMenu(fileName = nameof(DebugLogMessageViewModelFactory), menuName = MenuName.Factory + nameof(DebugLogMessageViewModel))]
     public class DebugLogMessageViewModelFactory : ScriptableObject

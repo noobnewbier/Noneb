@@ -1,13 +1,13 @@
-﻿using Common.Ui.Repository.CurrentHoveredTileHolder;
-using Common.Ui.Repository.CurrentSelectedTileHolder;
-using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
-using GameEnvironments.Load.Holders.Providers;
-using InGameEditor.Repositories.InGameEditorCamera;
+﻿using Main.Core.Game.WorldConfigurations;
+using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
+using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
+using Main.Ui.Game.GameEnvironments.Load.Holders.Providers;
+using Main.Ui.InGameEditor.Cameras;
 using UnityEngine;
 using UnityUtils.Constants;
-using WorldConfigurations.Repositories;
 
-namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
     [CreateAssetMenu(fileName = nameof(TileSelectionViewModelFactory), menuName = MenuName.Factory + nameof(TileSelectionViewModel))]
     public class TileSelectionViewModelFactory : ScriptableObject

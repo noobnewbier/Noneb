@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Common;
-using GameEnvironments.Common.Data;
+using Main.Core.Game.Common;
+using Main.Core.Game.GameEnvironments.Data;
 
-namespace GameEnvironments.Common.Repositories.AvailableGameEnvironment
+namespace Main.Core.Game.GameEnvironments.AvailableGameEnvironment
 {
     public interface IAvailableGameEnvironmentGetRepository : IDataGetRepository<IEnumerable<GameEnvironment>>
     {

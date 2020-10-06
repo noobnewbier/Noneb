@@ -1,8 +1,8 @@
 ﻿using System;
-using Common;
-using Maps;
-using Maps.Repositories.CurrentMapConfig;
-using Tiles;
+using Main.Core.Game.Common;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Ui.Game.Tiles;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;

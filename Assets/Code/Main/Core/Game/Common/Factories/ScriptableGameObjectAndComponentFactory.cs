@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Common.Factories
+namespace Main.Core.Game.Common.Factories
 {
     public abstract class ScriptableGameObjectAndComponentFactory<T> : ScriptableObject,
                                                                        IGameObjectAndComponentFactory<T> where T : Component

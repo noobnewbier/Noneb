@@ -1,7 +1,7 @@
 ﻿using System;
 using UniRx;
 
-namespace Common.Loaders
+namespace Main.Core.Game.Common.Loaders
 {
     public interface ILoader
     {

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Common.Providers;
-using GameEnvironments.Common.Data;
-using GameEnvironments.Validation;
+using Main.Core.Game.Common.Providers;
+using Main.Core.Game.GameEnvironments.Data;
+using Main.Core.Game.GameEnvironments.Validation;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.AvailableGameEnvironment
+namespace Main.Core.Game.GameEnvironments.AvailableGameEnvironment
 {
     [CreateAssetMenu(
         fileName = nameof(AvailableGameEnvironmentRepositoryProvider),

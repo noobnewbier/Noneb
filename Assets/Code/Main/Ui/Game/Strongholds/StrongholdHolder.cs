@@ -1,8 +1,9 @@
-﻿using Common.Holders;
+﻿using Main.Core.Game.Strongholds;
+using Main.Ui.Game.Common.Holders;
 using UnityEditor;
 using UnityEngine;
 
-namespace Strongholds
+namespace Main.Ui.Game.Strongholds
 {
     public class StrongholdHolder : BoardItemHolder<Stronghold>
     {

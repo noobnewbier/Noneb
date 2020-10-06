@@ -1,12 +1,14 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Repositories.BoardItems.Providers;
-using Maps.Services;
-using Strongholds;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.Game.GameEnvironments.BoardItems.Providers;
+using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Core.Game.Strongholds;
+using Main.Ui.Game.Maps.TilesPosition;
+using Main.Ui.Game.Strongholds;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.Holders.Providers
+namespace Main.Ui.Game.GameEnvironments.Load.Holders.Providers
 {
     [CreateAssetMenu(fileName = nameof(LoadStrongholdsHolderServiceProvider), menuName = MenuName.ScriptableService + "LoadStrongholdsHolderService")]
     public class LoadStrongholdsHolderServiceProvider : ScriptableObjectProvider<LoadBoardItemsHolderService<StrongholdHolder, Stronghold>>

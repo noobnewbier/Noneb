@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Immutable;
-using Common;
-using Constructs.Data;
-using GameEnvironments.Common.Repositories.CurrentLevelDatas;
-using GameEnvironments.Load.BoardItems.Providers;
+using Main.Core.Game.Common.Constants;
+using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
+using Main.Core.Game.GameEnvironments.Load;
+using Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.BoardItems.Loaders
+namespace Main.Ui.Game.GameEnvironments.Load.BoardItems.Loaders
 {
     [CreateAssetMenu(fileName = nameof(ConstructsLoader), menuName = ProjectMenuName.Loader + nameof(ConstructsLoader))]
     public class ConstructsLoader : BoardItemsLoader<ConstructData>

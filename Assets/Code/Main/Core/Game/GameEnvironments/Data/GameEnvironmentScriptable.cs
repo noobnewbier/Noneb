@@ -1,15 +1,15 @@
 ﻿using System;
-using Constructs.Data;
-using GameEnvironments.Common.Data.LevelDatas;
 using JetBrains.Annotations;
-using Maps;
-using Strongholds;
-using Units.Data;
+using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.GameEnvironments.Data.LevelDatas;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Strongholds;
+using Main.Core.Game.Units;
+using Main.Core.Game.WorldConfigurations;
 using UnityEngine;
 using UnityEngine.Serialization;
-using WorldConfigurations;
 
-namespace GameEnvironments.Common.Data
+namespace Main.Core.Game.GameEnvironments.Data
 {
     [CreateAssetMenu(menuName = "Data/GameEnvironment", fileName = nameof(GameEnvironmentScriptable))]
     public class GameEnvironmentScriptable : ScriptableObject

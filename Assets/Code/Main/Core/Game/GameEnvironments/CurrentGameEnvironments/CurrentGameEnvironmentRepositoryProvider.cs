@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.CurrentGameEnvironments
+namespace Main.Core.Game.GameEnvironments.CurrentGameEnvironments
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentGameEnvironmentRepositoryProvider),

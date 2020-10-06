@@ -1,7 +1,7 @@
-﻿using Common.BoardItems;
+﻿using Main.Core.Game.Common.BoardItems;
 using UnityEngine;
 
-namespace Units.Data
+namespace Main.Core.Game.Units
 {
     public class UnitData : BoardItemData
     {

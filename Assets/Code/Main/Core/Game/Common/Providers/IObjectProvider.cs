@@ -1,4 +1,4 @@
-﻿namespace Common.Providers
+﻿namespace Main.Core.Game.Common.Providers
 {
     public interface IObjectProvider<out T>
     {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityUtils.Pooling;
 
-namespace Common.Factories
+namespace Main.Core.Game.Common.Factories
 {
     public class PooledMonoBehaviourFactory<T> : ScriptableObject,
                                                  IGameObjectAndComponentFactory<T> where T : PooledMonoBehaviour

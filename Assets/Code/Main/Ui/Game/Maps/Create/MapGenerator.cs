@@ -1,13 +1,13 @@
 ﻿using System;
-using Maps.Repositories.CurrentMapConfig;
-using Maps.Services;
-using Tiles.Holders;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.WorldConfigurations;
+using Main.Ui.Game.Maps.TilesPosition;
+using Main.Ui.Game.Tiles;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
-using WorldConfigurations.Repositories;
 
-namespace Maps.Create
+namespace Main.Ui.Game.Maps.Create
 {
     public class MapGenerator : MonoBehaviour
     {

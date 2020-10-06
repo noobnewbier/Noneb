@@ -1,9 +1,9 @@
-﻿using Common.Ui.Repository.CurrentHoveredTileHolder;
-using Common.Ui.Repository.CurrentSelectedTileHolder;
+﻿using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
+using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
 {
     [CreateAssetMenu(fileName = nameof(HoveredTileIndicatorViewModelFactory), menuName = MenuName.Factory + nameof(HoveredTileIndicatorViewModel))]
     public class HoveredTileIndicatorViewModelFactory : ScriptableObject

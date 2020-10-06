@@ -1,10 +1,10 @@
 ﻿using System;
-using Common.Providers;
-using Units;
+using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Units;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.BoardItems.Providers
+namespace Main.Core.Game.GameEnvironments.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(UnitsRepositoryProvider), menuName = MenuName.ScriptableRepository + "UnitsRepository")]
     public class UnitsRepositoryProvider : ScriptableObjectProvider<BoardItemsRepository<Unit>>

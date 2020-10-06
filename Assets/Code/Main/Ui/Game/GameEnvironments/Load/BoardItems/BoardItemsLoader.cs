@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Immutable;
-using Common.BoardItems;
-using Common.Loaders;
-using GameEnvironments.Common.Repositories.CurrentLevelDatas;
-using Maps;
-using Maps.Repositories.CurrentMapConfig;
+using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Common.Loaders;
+using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
+using Main.Core.Game.GameEnvironments.Load;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.CurrentMapConfig;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.BoardItems
+namespace Main.Ui.Game.GameEnvironments.Load.BoardItems
 {
     public abstract class BoardItemsLoader<TData> : ScriptableObject, ILoader where TData : BoardItemData
     {

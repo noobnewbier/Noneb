@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Immutable;
-using Common;
-using GameEnvironments.Common.Repositories.CurrentLevelDatas;
-using GameEnvironments.Load.BoardItems.Providers;
-using Tiles.Data;
+using Main.Core.Game.Common.Constants;
+using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
+using Main.Core.Game.GameEnvironments.Load;
+using Main.Core.Game.Tiles;
+using Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.BoardItems.Loaders
+namespace Main.Ui.Game.GameEnvironments.Load.BoardItems.Loaders
 {
     [CreateAssetMenu(fileName = nameof(TilesLoader), menuName = ProjectMenuName.Loader + nameof(TilesLoader))]
     public class TilesLoader : BoardItemsLoader<TileData>

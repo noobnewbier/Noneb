@@ -1,8 +1,8 @@
 ﻿using JetBrains.Annotations;
-using Tiles.Holders;
+using Main.Ui.Game.Tiles;
 using UnityEngine;
 
-namespace InGameEditor.WorldSpace.GridInteraction.IndicatorControllers
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.IndicatorControllers
 {
     public class IndicatorController : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameEnvironments.Common.Services.GetEnvironmentFilenameServices
+namespace Main.Core.InGameEditor.GetEnvironmentFilenameServices
 {
     public interface IGetEnvironmentFilenameService
     {

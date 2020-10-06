@@ -1,9 +1,9 @@
 ﻿using System;
-using GameEnvironments.Common.Data.LevelDatas;
-using Maps;
-using WorldConfigurations;
+using Main.Core.Game.GameEnvironments.Data.LevelDatas;
+using Main.Core.Game.Maps;
+using Main.Core.Game.WorldConfigurations;
 
-namespace GameEnvironments.Common.Data
+namespace Main.Core.Game.GameEnvironments.Data
 {
     /// <summary>
     /// Basically a game level, including all data one required to load a level(both visually and "backend" wise)

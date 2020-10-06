@@ -1,19 +1,19 @@
 ﻿using System;
-using Common.Holders;
-using Constructs;
-using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Repositories.BoardItemsHolders;
-using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
-using InGameEditor.Services.InGameEditorMessage;
-using Strongholds;
-using Tiles.Holders;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.Data;
+using Main.Core.Game.InGameMessage;
+using Main.Ui.Game.Common.Holders;
+using Main.Ui.Game.Constructs;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
+using Main.Ui.Game.Strongholds;
+using Main.Ui.Game.Tiles;
+using Main.Ui.Game.Units;
 using UniRx;
-using Units.Holders;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace GameEnvironments.Load.Manager
+namespace Main.Ui.Game.GameEnvironments.Load.Manager
 {
     /// <summary>
     /// We clear the scene by loading empty data

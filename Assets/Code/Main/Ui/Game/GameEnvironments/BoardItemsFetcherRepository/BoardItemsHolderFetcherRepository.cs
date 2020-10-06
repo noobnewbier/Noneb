@@ -1,7 +1,7 @@
-﻿using Common;
-using Common.BoardItems;
+﻿using Main.Core.Game.Common;
+using Main.Ui.Game.Common.Holders;
 
-namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders
+namespace Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository
 {
     public class BoardItemsHolderFetcherRepository<THolderProvider, THolder> : DataRepository<THolderProvider>
         where THolderProvider : BoardItemsHolderFetcher<THolder>

@@ -1,14 +1,15 @@
 ﻿using System;
-using Common.BoardItems;
-using Common.Factories;
-using Common.Holders;
-using GameEnvironments.Common.Repositories.BoardItems;
-using Maps;
-using Maps.Services;
+using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.GameEnvironments.BoardItems;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Ui.Game.Common.Holders;
+using Main.Ui.Game.Maps.TilesPosition;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.Holders
+namespace Main.Ui.Game.GameEnvironments.Load.Holders
 {
     public interface ILoadBoardItemsHolderService : IDisposable
     {

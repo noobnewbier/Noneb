@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 using UnityUtils;
 
-namespace InGameEditor.Cameras
+namespace Main.Ui.InGameEditor.Cameras
 {
     public class InGameEditorCameraView : MonoBehaviour
     {

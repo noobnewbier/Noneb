@@ -1,9 +1,9 @@
-﻿using InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
+﻿using Main.Ui.InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
 {
     [CreateAssetMenu(fileName = nameof(SelectedTileIndicatorViewConfig), menuName = MenuName.Data + nameof(SelectedTileIndicatorViewConfig))]
     public class SelectedTileIndicatorViewConfig : ScriptableObject

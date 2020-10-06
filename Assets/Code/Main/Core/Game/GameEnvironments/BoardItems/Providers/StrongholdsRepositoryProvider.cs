@@ -1,10 +1,10 @@
 ﻿using System;
-using Common.Providers;
-using Strongholds;
+using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Strongholds;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.BoardItems.Providers
+namespace Main.Core.Game.GameEnvironments.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(StrongholdsRepositoryProvider), menuName = MenuName.ScriptableRepository + "StrongholdsRepository")]
     public class StrongholdsRepositoryProvider : ScriptableObjectProvider<BoardItemsRepository<Stronghold>>

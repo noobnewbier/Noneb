@@ -1,8 +1,8 @@
-﻿using Common.Providers;
-using InGameEditor.Data;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.InGameEditor.Data;
 using UnityEngine;
 
-namespace InGameEditor.Repositories.SelectedEditorPalettes
+namespace Main.Ui.InGameEditor.SelectedEditorPalettes
 {
     [CreateAssetMenu(fileName = nameof(SelectedEditorPaletteRepositoryProvider), menuName = "ScriptableRepository/SelectedEditorPaletteRepository")]
     public class SelectedEditorPaletteRepositoryProvider : ScriptableObjectProvider<ISelectedEditorPaletteRepository>

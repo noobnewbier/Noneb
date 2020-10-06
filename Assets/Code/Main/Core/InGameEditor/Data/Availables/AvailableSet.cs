@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace InGameEditor.Data.Availables
+namespace Main.Core.InGameEditor.Data.Availables
 {
     public abstract class AvailableSet<T> : ScriptableObject
     {

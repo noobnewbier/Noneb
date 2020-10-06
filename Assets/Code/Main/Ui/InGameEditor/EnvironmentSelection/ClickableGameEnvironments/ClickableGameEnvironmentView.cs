@@ -1,10 +1,10 @@
 ﻿using System;
-using GameEnvironments.Common.Data;
+using Main.Core.Game.GameEnvironments.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace EnvironmentSelection.ClickableGameEnvironments
+namespace Main.Ui.InGameEditor.EnvironmentSelection.ClickableGameEnvironments
 {
     public class ClickableGameEnvironmentView : MonoBehaviour, IPointerClickHandler
     {

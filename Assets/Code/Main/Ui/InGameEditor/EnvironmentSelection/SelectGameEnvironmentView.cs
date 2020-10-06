@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using EnvironmentSelection.ClickableGameEnvironments;
-using GameEnvironments.Common.Data;
+using Main.Core.Game.GameEnvironments.Data;
+using Main.Ui.InGameEditor.EnvironmentSelection.ClickableGameEnvironments;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace EnvironmentSelection
+namespace Main.Ui.InGameEditor.EnvironmentSelection
 {
     public class SelectGameEnvironmentView : MonoBehaviour
     {

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common;
-using Common.Constants;
-using Common.Holders;
-using Common.Loaders;
-using GameEnvironments.Common.Repositories.BoardItemsHolders;
-using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
-using Strongholds;
+using Main.Core.Game.Common.Constants;
+using Main.Core.Game.Common.Loaders;
+using Main.Ui.Game.Common.Holders;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
+using Main.Ui.Game.Strongholds;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils;
 
-namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
+namespace Main.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition
 {
     [CreateAssetMenu(
         fileName = nameof(StrongholdGameObjectsInternalPositionLoader),

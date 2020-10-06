@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Common.Factories;
-using Common.Holders;
-using Maps;
-using Maps.Services;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Ui.Game.Common.Holders;
 
-namespace GameEnvironments.Load.GameObjects
+namespace Main.Ui.Game.GameEnvironments.Load.GameObjects
 {
     public interface IGameObjectLoadService
     {

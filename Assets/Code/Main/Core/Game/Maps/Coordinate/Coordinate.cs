@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Maps
+namespace Main.Core.Game.Maps.Coordinate
 {
     //Using Cube Coordinate(which is just axial coordinate) : https://www.redblobgames.com/grids/hexagons/#map-storage
     //    1. AxialCoordinate refers to cube coordinate(in game logic)

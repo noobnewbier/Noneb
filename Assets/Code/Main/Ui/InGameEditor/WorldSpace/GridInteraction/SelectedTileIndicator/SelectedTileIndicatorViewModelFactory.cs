@@ -1,8 +1,8 @@
-﻿using Common.Ui.Repository.CurrentSelectedTileHolder;
+﻿using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
 {
     [CreateAssetMenu(fileName = nameof(SelectedTileIndicatorViewModelFactory), menuName = MenuName.Factory + nameof(SelectedTileIndicatorViewModel))]
     public class SelectedTileIndicatorViewModelFactory : ScriptableObject

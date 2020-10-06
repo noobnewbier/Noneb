@@ -1,8 +1,9 @@
-﻿using Common.Holders;
+﻿using Main.Core.Game.Constructs;
+using Main.Ui.Game.Common.Holders;
 using UnityEditor;
 using UnityEngine;
 
-namespace Constructs
+namespace Main.Ui.Game.Constructs
 {
     public class ConstructHolder : BoardItemHolder<Construct>
     {

@@ -1,8 +1,8 @@
-﻿using Common.Factories;
+﻿using Main.Core.Game.Common.Factories;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
+namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay.CellOverlay
 {
     [CreateAssetMenu(fileName = nameof(CellOverlayViewFactory), menuName = MenuName.Providers + nameof(CellOverlayView))]
     public class CellOverlayViewFactory : PooledMonoBehaviourFactory<CellOverlayView>

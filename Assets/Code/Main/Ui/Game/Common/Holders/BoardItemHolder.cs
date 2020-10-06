@@ -1,8 +1,8 @@
-﻿using Common.BoardItems;
+﻿using Main.Core.Game.Common.BoardItems;
 using UnityEngine;
 using UnityUtils.Pooling;
 
-namespace Common.Holders
+namespace Main.Ui.Game.Common.Holders
 {
     public abstract class BoardItemHolder<T> : PooledMonoBehaviour, IBoardItemHolder<T> where T : BoardItem
     {

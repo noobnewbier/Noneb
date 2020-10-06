@@ -1,11 +1,12 @@
-﻿using Maps.Repositories.CurrentMapConfig;
-using Maps.Services;
+﻿using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.WorldConfigurations;
+using Main.Ui.Game.Maps.TilesPosition;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
-using WorldConfigurations.Repositories;
 
-namespace InGameEditor.WorldSpace.GridOverlay
+namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay
 {
     [CreateAssetMenu(fileName = nameof(GridOverlayViewModelFactory), menuName = MenuName.Factory + nameof(GridOverlayViewModel))]
     public class GridOverlayViewModelFactory : ScriptableObject

@@ -1,11 +1,11 @@
 ﻿using System;
-using Common.Ui.Repository.CurrentHoveredTileHolder;
-using Common.Ui.Repository.CurrentSelectedTileHolder;
 using Experiment.CrossPlatformLiveData;
-using Tiles.Holders;
+using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
+using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
+using Main.Ui.Game.Tiles;
 using UniRx;
 
-namespace InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
 {
     public class HoveredTileIndicatorViewModel : IDisposable
     {

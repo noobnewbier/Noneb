@@ -1,11 +1,11 @@
 ﻿using System;
-using Common.BoardItems;
-using Common.Providers;
-using Tiles.Holders;
+using Main.Core.Game.Common.Providers;
+using Main.Ui.Game.Common.Holders;
+using Main.Ui.Game.Tiles;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers
+namespace Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers
 {
     [CreateAssetMenu(
         fileName = nameof(TilesHolderFetcherRepositoryProvider),

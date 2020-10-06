@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Common.Ui.Repository.CurrentSelectedTileHolder
+namespace Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentSelectedTileHolderRepositoryProvider),

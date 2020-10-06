@@ -1,8 +1,8 @@
 ﻿using System;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
 using UniRx;
 
-namespace WorldConfigurations.Repositories
+namespace Main.Core.Game.WorldConfigurations
 {
     public interface ICurrentWorldConfigRepository
     {

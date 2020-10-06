@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 
-namespace Common.BoardItems
+namespace Main.Ui.Game.Common.Holders
 {
     public abstract class BoardItemsHolderFetcher<THolder> : MonoObjectProvider<IReadOnlyList<THolder>>
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.WorldSpace.GridInteraction.IndicatorControllers
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.IndicatorControllers
 {
     [CreateAssetMenu(fileName = nameof(IndicatorControllerConfig), menuName = MenuName.Data + nameof(IndicatorControllerConfig))]
     public class IndicatorControllerConfig : ScriptableObject

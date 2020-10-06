@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Maps.Repositories.CurrentMapConfig;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.WorldConfigurations;
 using UniRx;
 using UnityEngine;
-using WorldConfigurations;
-using WorldConfigurations.Repositories;
 
-namespace Maps.Services
+namespace Main.Ui.Game.Maps.TilesPosition
 {
     public interface ITilesPositionService
     {

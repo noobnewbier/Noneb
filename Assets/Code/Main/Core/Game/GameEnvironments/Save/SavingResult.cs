@@ -1,4 +1,4 @@
-﻿namespace GameEnvironments.Common
+﻿namespace Main.Core.Game.GameEnvironments.Save
 {
     public enum SavingResult
     {

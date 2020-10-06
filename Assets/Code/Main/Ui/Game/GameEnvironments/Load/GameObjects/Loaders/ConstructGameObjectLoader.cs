@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common;
-using Common.Factories;
-using Common.Holders;
-using GameEnvironments.Common.Repositories.BoardItemsHolders;
-using GameEnvironments.Common.Repositories.BoardItemsHolders.Providers;
-using GameEnvironments.Common.Repositories.CurrentLevelDatas;
+using Main.Core.Game.Common.Constants;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
+using Main.Ui.Game.Common.Holders;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.GameObjects.Loaders
+namespace Main.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
 {
     [CreateAssetMenu(fileName = nameof(ConstructGameObjectLoader), menuName = ProjectMenuName.Loader + nameof(ConstructGameObjectLoader))]
     public class ConstructGameObjectLoader : GameObjectLoader

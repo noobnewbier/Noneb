@@ -1,10 +1,10 @@
 ﻿using System;
-using Common.Ui.Repository.CurrentSelectedTileHolder;
 using Experiment.CrossPlatformLiveData;
-using Tiles.Holders;
+using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
+using Main.Ui.Game.Tiles;
 using UniRx;
 
-namespace InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
 {
     public class SelectedTileIndicatorViewModel : IDisposable
     {

@@ -1,8 +1,7 @@
-﻿using Common.BoardItems;
-using Maps;
-using Tiles.Data;
+﻿using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Maps.Coordinate;
 
-namespace Tiles
+namespace Main.Core.Game.Tiles
 {
     public class Tile : BoardItem<TileData>
     {

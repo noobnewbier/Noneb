@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Experiment.CrossPlatformLiveData;
-using InGameEditor.Repositories.InGameEditorCamera;
-using InGameEditor.Services.InGameEditorCameraSizeInView;
-using Maps.Services;
+using Main.Ui.Game.Maps.TilesPosition;
+using Main.Ui.InGameEditor.Cameras.SizeInView;
 using UniRx;
 using UnityEngine;
 
-namespace InGameEditor.Cameras
+namespace Main.Ui.InGameEditor.Cameras
 {
     public class InGameEditorCameraViewModel : IDisposable
     {

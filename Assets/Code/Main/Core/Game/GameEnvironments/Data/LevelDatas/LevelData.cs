@@ -1,11 +1,11 @@
 ﻿using System;
-using Common.Factories;
-using Constructs.Data;
-using Strongholds;
-using Tiles.Data;
-using Units.Data;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Strongholds;
+using Main.Core.Game.Tiles;
+using Main.Core.Game.Units;
 
-namespace GameEnvironments.Common.Data.LevelDatas
+namespace Main.Core.Game.GameEnvironments.Data.LevelDatas
 {
     /// <summary>
     /// Basically a game level, including all data one required to load a level(both visually and "backend" wise)

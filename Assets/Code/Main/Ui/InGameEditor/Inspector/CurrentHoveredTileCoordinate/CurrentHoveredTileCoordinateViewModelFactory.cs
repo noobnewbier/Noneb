@@ -1,8 +1,8 @@
-﻿using Common.Ui.Repository.CurrentHoveredTileHolder;
+﻿using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
+namespace Main.Ui.InGameEditor.Inspector.CurrentHoveredTileCoordinate
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentHoveredTileCoordinateViewModelFactory),

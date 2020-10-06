@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Services.InGameEditorCameraSizeInView
+namespace Main.Ui.InGameEditor.Cameras.SizeInView
 {
     [CreateAssetMenu(
         fileName = nameof(InGameEditorCameraSizeInViewServiceProvider),

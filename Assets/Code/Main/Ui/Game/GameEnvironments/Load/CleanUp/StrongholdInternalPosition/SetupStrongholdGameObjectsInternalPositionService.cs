@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityUtils.PositionProviders;
 
-namespace GameEnvironments.Load.CleanUp.StrongholdInternalPosition
+namespace Main.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition
 {
     /// <summary>
     /// Setting up unit gameObject's position within a stronghold

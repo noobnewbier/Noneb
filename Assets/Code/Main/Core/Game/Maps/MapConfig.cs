@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Maps
+namespace Main.Core.Game.Maps
 {
     [CreateAssetMenu(fileName = nameof(MapConfig), menuName = MenuName.Data + nameof(MapConfig))]
     public class MapConfig : ScriptableObject

@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Ui.Repository.CurrentHoveredTileHolder;
-using Common.Ui.Repository.CurrentSelectedTileHolder;
-using GameEnvironments.Common.Repositories.BoardItemsHolders;
-using GameEnvironments.Load.Holders;
-using InGameEditor.Repositories.InGameEditorCamera;
-using Tiles.Holders;
+using Main.Core.Game.WorldConfigurations;
+using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
+using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
+using Main.Ui.Game.GameEnvironments.Load.Holders;
+using Main.Ui.Game.Tiles;
+using Main.Ui.InGameEditor.Cameras;
 using UniRx;
 using UnityEngine;
 using UnityUtils;
-using WorldConfigurations;
-using WorldConfigurations.Repositories;
 
-namespace InGameEditor.WorldSpace.GridInteraction.TileSelection
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
     public class TileSelectionViewModel : IDisposable
     {

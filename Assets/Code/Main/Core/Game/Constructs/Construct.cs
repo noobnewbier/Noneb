@@ -1,9 +1,9 @@
-﻿using Common.BoardItems;
-using Common.TagInterface;
-using Constructs.Data;
-using Maps;
+﻿using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Common.TagInterface;
+using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Maps.Coordinate;
 
-namespace Constructs
+namespace Main.Core.Game.Constructs
 {
     public class Construct : BoardItem<ConstructData>, IOnTile
     {

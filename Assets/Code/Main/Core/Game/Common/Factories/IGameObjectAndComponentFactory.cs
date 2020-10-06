@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Common.Factories
+namespace Main.Core.Game.Common.Factories
 {
     public interface IGameObjectAndComponentFactory<T> : IFactory<(T component, GameObject gameObject)> where T : Component
     {

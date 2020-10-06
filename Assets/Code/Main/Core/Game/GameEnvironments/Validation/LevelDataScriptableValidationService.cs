@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Factories;
-using Constructs;
-using GameEnvironments.Common.Data.LevelDatas;
-using Maps;
-using Tiles.Data;
-using Units;
+using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Constructs;
+using Main.Core.Game.GameEnvironments.Data.LevelDatas;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Tiles;
+using Main.Core.Game.Units;
 
-namespace GameEnvironments.Validation
+namespace Main.Core.Game.GameEnvironments.Validation
 {
     public interface ILevelDataScriptableValidationService
     {

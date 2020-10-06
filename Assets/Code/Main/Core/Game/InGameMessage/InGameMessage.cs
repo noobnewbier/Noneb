@@ -1,4 +1,4 @@
-﻿namespace InGameEditor.Events
+﻿namespace Main.Core.Game.InGameMessage
 {
     public struct InGameMessage
     {

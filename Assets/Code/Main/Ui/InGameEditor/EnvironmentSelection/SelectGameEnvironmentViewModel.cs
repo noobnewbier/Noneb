@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
-using GameEnvironments.Common.Data;
-using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.AvailableGameEnvironment;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.Data;
 using UniRx;
 
-namespace EnvironmentSelection
+namespace Main.Ui.InGameEditor.EnvironmentSelection
 {
     public class SelectGameEnvironmentViewModel : IDisposable
     {

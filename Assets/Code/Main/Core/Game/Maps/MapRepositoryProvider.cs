@@ -1,11 +1,11 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Repositories.BoardItems.Providers;
-using Maps.Repositories.CurrentMapConfig;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.Game.GameEnvironments.BoardItems.Providers;
+using Main.Core.Game.Maps.CurrentMapConfig;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace Maps.Repositories.Map
+namespace Main.Core.Game.Maps
 {
     [CreateAssetMenu(fileName = nameof(MapRepositoryProvider), menuName = MenuName.ScriptableRepository + nameof(MapRepository))]
     public class MapRepositoryProvider : ScriptableObjectProvider<IMapRepository>

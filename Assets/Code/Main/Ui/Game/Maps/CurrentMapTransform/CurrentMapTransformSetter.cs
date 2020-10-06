@@ -1,7 +1,6 @@
-﻿using Maps.Repositories.CurrentMapTransform;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Maps
+namespace Main.Ui.Game.Maps.CurrentMapTransform
 {
     public class CurrentMapTransformSetter : MonoBehaviour
     {

@@ -1,7 +1,7 @@
-﻿using Common.BoardItems;
+﻿using Main.Core.Game.Common.BoardItems;
 using UnityEngine;
 
-namespace Tiles.Data
+namespace Main.Core.Game.Tiles
 {
     public class TileData : BoardItemData
     {

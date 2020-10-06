@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace GameEnvironments.Common.Services.GetInGameEditorDirectoryService
+namespace Main.Core.InGameEditor.GetInGameEditorDirectoryService
 {
     public interface IGetInGameEditorDirectoryService
     {

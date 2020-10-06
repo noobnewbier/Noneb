@@ -1,11 +1,11 @@
-﻿using Maps;
+﻿using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.WorldConfigurations;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityUtils.Pooling;
-using WorldConfigurations;
 
-namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
+namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay.CellOverlay
 {
     public class CellOverlayView : PooledMonoBehaviour
     {

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using InGameEditor.WorldSpace.GridOverlay.CellOverlay;
-using Maps;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.WorldConfigurations;
+using Main.Ui.InGameEditor.WorldSpace.GridOverlay.CellOverlay;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
-using WorldConfigurations;
 
-namespace InGameEditor.WorldSpace.GridOverlay
+namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay
 {
     public class GridOverlayView : MonoBehaviour
     {

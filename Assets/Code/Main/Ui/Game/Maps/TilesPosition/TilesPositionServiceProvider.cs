@@ -1,11 +1,11 @@
-﻿using Common.Providers;
-using Maps.Repositories.CurrentMapConfig;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.WorldConfigurations;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
-using WorldConfigurations.Repositories;
 
-namespace Maps.Services
+namespace Main.Ui.Game.Maps.TilesPosition
 {
     [CreateAssetMenu(fileName = nameof(TilesPositionServiceProvider), menuName = MenuName.ScriptableService + nameof(TilesPositionService))]
     public class TilesPositionServiceProvider : ScriptableObjectProvider<ITilesPositionService>

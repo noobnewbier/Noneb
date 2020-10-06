@@ -1,15 +1,15 @@
 ﻿using System;
-using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Setters;
-using GameEnvironments.Load.BoardItems.Loaders;
-using GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
-using GameEnvironments.Load.GameObjects.Loaders;
-using GameEnvironments.Load.Holders.Loaders;
-using InGameEditor.Services.InGameEditorMessage;
-using Maps;
+using Main.Core.Game.InGameMessage;
+using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Setters;
+using Main.Ui.Game.GameEnvironments.Load.BoardItems.Loaders;
+using Main.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
+using Main.Ui.Game.GameEnvironments.Load.GameObjects.Loaders;
+using Main.Ui.Game.GameEnvironments.Load.Holders.Loaders;
+using Main.Ui.Game.Maps.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.Manager
+namespace Main.Ui.Game.GameEnvironments.Load.Manager
 {
     public class GameEnvironmentLoader : MonoBehaviour
     {

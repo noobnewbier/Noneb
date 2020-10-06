@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Common;
-using Common.BoardItems;
+using Main.Core.Game.Common;
+using Main.Core.Game.Common.BoardItems;
 
-namespace GameEnvironments.Common.Repositories.BoardItems
+namespace Main.Core.Game.GameEnvironments.BoardItems
 {
     public interface IBoardItemsGetRepository<out T> : IDataGetRepository<IReadOnlyList<T>> where T : BoardItem
     {

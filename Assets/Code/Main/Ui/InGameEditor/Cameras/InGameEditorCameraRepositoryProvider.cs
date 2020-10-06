@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Repositories.InGameEditorCamera
+namespace Main.Ui.InGameEditor.Cameras
 {
     [CreateAssetMenu(
         fileName = nameof(InGameEditorCameraRepositoryProvider),

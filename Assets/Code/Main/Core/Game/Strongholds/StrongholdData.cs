@@ -1,9 +1,9 @@
-﻿using Common.BoardItems;
-using Constructs.Data;
-using Units.Data;
+﻿using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Units;
 using UnityEngine;
 
-namespace Strongholds
+namespace Main.Core.Game.Strongholds
 {
     public class StrongholdData : BoardItemData
     {

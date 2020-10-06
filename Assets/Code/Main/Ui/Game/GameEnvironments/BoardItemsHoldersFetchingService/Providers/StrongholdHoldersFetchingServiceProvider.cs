@@ -1,11 +1,11 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
-using Strongholds;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers;
+using Main.Ui.Game.Strongholds;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
+namespace Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers
 {
     [CreateAssetMenu(
         fileName = nameof(StrongholdHoldersFetchingServiceProvider),

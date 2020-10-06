@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Cameras
+namespace Main.Ui.InGameEditor.Cameras
 {
     [CreateAssetMenu(fileName = nameof(InGameEditorCameraConfig), menuName = MenuName.Data + nameof(InGameEditorCameraConfig))]
     public class InGameEditorCameraConfig : ScriptableObject

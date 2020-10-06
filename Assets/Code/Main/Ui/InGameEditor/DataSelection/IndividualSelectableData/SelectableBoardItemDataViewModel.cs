@@ -1,7 +1,7 @@
 ﻿using Experiment.CrossPlatformLiveData;
 using UnityEngine;
 
-namespace InGameEditor.Ui.DataSelection.IndividualSelectableData
+namespace Main.Ui.InGameEditor.DataSelection.IndividualSelectableData
 {
     public class SelectableBoardItemDataViewModel
     {

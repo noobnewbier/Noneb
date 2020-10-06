@@ -1,4 +1,4 @@
-﻿namespace Common.Factories
+﻿namespace Main.Core.Game.Common.Factories
 {
     public interface IFactory<in TArg1, in TArg2, out TOut>
     {

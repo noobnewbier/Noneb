@@ -1,10 +1,10 @@
 ﻿using System;
-using Common.Providers;
-using Tiles;
+using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Tiles;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.BoardItems.Providers
+namespace Main.Core.Game.GameEnvironments.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(TilesRepositoryProvider), menuName = MenuName.ScriptableRepository + "TilesRepository")]
     public class TilesRepositoryProvider : ScriptableObjectProvider<BoardItemsRepository<Tile>>

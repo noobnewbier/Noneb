@@ -1,9 +1,9 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Maps.Repositories.CurrentMapConfig
+namespace Main.Core.Game.Maps.CurrentMapConfig
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentMapConfigRepositoryProvider),

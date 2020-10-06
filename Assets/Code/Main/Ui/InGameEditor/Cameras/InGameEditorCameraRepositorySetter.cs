@@ -1,7 +1,6 @@
-﻿using InGameEditor.Repositories.InGameEditorCamera;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace InGameEditor.Cameras
+namespace Main.Ui.InGameEditor.Cameras
 {
     public class InGameEditorCameraRepositorySetter : MonoBehaviour
     {

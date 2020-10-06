@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Common.Factories
+namespace Main.Core.Game.Common.Factories
 {
     [CreateAssetMenu(fileName = nameof(GameObjectFactory), menuName = MenuName.Providers + "GameObject")]
     public class GameObjectFactory : ScriptableObject, IFactory<GameObject>

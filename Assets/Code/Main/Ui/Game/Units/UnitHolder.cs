@@ -1,8 +1,9 @@
-﻿using Common.Holders;
+﻿using Main.Core.Game.Units;
+using Main.Ui.Game.Common.Holders;
 using UnityEditor;
 using UnityEngine;
 
-namespace Units.Holders
+namespace Main.Ui.Game.Units
 {
     public class UnitHolder : BoardItemHolder<Unit>
     {

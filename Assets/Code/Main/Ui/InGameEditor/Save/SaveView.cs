@@ -1,11 +1,11 @@
 ﻿using System;
-using GameEnvironments.Common;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.Save;
 using TMPro;
 using UniRx;
 using UnityEngine;
 
-namespace InGameEditor.Ui.Options.Save
+namespace Main.Ui.InGameEditor.Save
 {
     public class SaveView : MonoBehaviour
     {

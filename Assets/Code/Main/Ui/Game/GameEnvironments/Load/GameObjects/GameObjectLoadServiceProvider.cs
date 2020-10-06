@@ -1,9 +1,9 @@
-﻿using Common.Providers;
-using Maps.Services;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Maps.Coordinate.Services;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.GameObjects
+namespace Main.Ui.Game.GameEnvironments.Load.GameObjects
 {
     [CreateAssetMenu(fileName = nameof(GameObjectLoadServiceProvider), menuName = MenuName.ScriptableService + nameof(GameObjectLoadService))]
     public class GameObjectLoadServiceProvider : ScriptableObjectProvider<IGameObjectLoadService>

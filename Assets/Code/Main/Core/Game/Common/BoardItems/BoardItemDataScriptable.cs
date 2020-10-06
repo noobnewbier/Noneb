@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Common.BoardItems
+namespace Main.Core.Game.Common.BoardItems
 {
     public abstract class BoardItemDataScriptable : ScriptableObject
     {

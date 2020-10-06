@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Factories
+namespace Main.Core.Game.Common.Factories
 {
     public static class Factory
     {

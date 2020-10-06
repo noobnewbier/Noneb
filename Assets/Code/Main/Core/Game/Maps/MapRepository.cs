@@ -1,11 +1,11 @@
 ﻿using System;
-using Common;
-using GameEnvironments.Common.Repositories.BoardItems;
-using Maps.Repositories.CurrentMapConfig;
-using Tiles;
+using Main.Core.Game.Common;
+using Main.Core.Game.GameEnvironments.BoardItems;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.Tiles;
 using UniRx;
 
-namespace Maps.Repositories.Map
+namespace Main.Core.Game.Maps
 {
     public interface IMapRepository : IDataGetRepository<Maps.Map>
     {

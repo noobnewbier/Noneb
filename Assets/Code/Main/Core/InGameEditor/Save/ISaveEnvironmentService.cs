@@ -1,7 +1,7 @@
-﻿using GameEnvironments.Common;
-using GameEnvironments.Common.Data;
+﻿using Main.Core.Game.GameEnvironments.Data;
+using Main.Core.Game.GameEnvironments.Save;
 
-namespace GameEnvironments.Save
+namespace Main.Core.InGameEditor.Save
 {
     public interface ISaveEnvironmentService
     {

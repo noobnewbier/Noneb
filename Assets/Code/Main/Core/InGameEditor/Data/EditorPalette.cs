@@ -1,8 +1,8 @@
-﻿using InGameEditor.Data.Availables;
+﻿using Main.Core.InGameEditor.Data.Availables;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Data
+namespace Main.Core.InGameEditor.Data
 {
     [CreateAssetMenu(fileName = nameof(EditorPalette), menuName = MenuName.Data + "/InGameEditor/EditorPalette")]
     public class EditorPalette : ScriptableObject

@@ -1,4 +1,4 @@
-﻿namespace InGameEditor.Ui.DataSelection.DataSelector
+﻿namespace Main.Ui.InGameEditor.DataSelection.DataSelector
 {
     public class DataSelectorViewModel
     {

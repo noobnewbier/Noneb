@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Immutable;
-using Common;
-using GameEnvironments.Common.Repositories.CurrentLevelDatas;
-using GameEnvironments.Load.BoardItems.Providers;
-using Strongholds;
+using Main.Core.Game.Common.Constants;
+using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
+using Main.Core.Game.GameEnvironments.Load;
+using Main.Core.Game.Strongholds;
+using Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers;
 using UniRx;
 using UnityEngine;
 
-namespace GameEnvironments.Load.BoardItems.Loaders
+namespace Main.Ui.Game.GameEnvironments.Load.BoardItems.Loaders
 {
     [CreateAssetMenu(fileName = nameof(StrongholdsLoader), menuName = ProjectMenuName.Loader + nameof(StrongholdsLoader))]
     public class StrongholdsLoader : BoardItemsLoader<StrongholdData>

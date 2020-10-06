@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace InGameEditor.Ui.EditorMessageShower
+namespace Main.Ui.Game.InGameMessage.DebugLogMessageShower
 {
     public class DebugLogMessageView : MonoBehaviour
     {

@@ -1,6 +1,6 @@
-﻿using InGameEditor.Data;
+﻿using Main.Core.InGameEditor.Data;
 
-namespace InGameEditor.Repositories.SelectedEditorPalettes
+namespace Main.Ui.InGameEditor.SelectedEditorPalettes
 {
     public interface ISelectedEditorPaletteRepository
     {

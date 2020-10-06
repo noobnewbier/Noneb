@@ -1,10 +1,10 @@
 ﻿using System;
-using Common.Ui.Repository.CurrentHoveredTileHolder;
 using Experiment.CrossPlatformLiveData;
-using Maps;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
 using UniRx;
 
-namespace InGameEditor.Ui.Inspector.CurrentHoveredTileCoordinate
+namespace Main.Ui.InGameEditor.Inspector.CurrentHoveredTileCoordinate
 {
     public class CurrentHoveredTileCoordinateViewModel : IDisposable
     {

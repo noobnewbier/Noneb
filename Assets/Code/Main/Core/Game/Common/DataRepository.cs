@@ -1,7 +1,7 @@
 ﻿using System;
 using UniRx;
 
-namespace Common
+namespace Main.Core.Game.Common
 {
     public interface IDataRepository<T> : IDataGetRepository<T>, IDataSetRepository<T> where T : class
     {

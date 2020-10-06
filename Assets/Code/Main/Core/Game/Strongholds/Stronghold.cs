@@ -1,8 +1,8 @@
-﻿using Common.BoardItems;
-using Common.TagInterface;
-using Maps;
+﻿using Main.Core.Game.Common.BoardItems;
+using Main.Core.Game.Common.TagInterface;
+using Main.Core.Game.Maps.Coordinate;
 
-namespace Strongholds
+namespace Main.Core.Game.Strongholds
 {
     public class Stronghold : BoardItem<StrongholdData>, IOnTile
     {

@@ -1,4 +1,4 @@
-﻿namespace Common
+﻿namespace Main.Core.Game.Common.Constants
 {
     public static class ProjectMenuName
     {

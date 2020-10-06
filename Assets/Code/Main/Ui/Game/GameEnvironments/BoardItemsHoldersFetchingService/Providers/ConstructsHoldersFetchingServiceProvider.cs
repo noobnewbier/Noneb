@@ -1,11 +1,11 @@
-﻿using Common.Providers;
-using Constructs;
-using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Ui.Game.Constructs;
+using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Common.Repositories.BoardItemsHolders.Providers
+namespace Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers
 {
     [CreateAssetMenu(
         fileName = nameof(ConstructsHoldersFetchingServiceProvider),

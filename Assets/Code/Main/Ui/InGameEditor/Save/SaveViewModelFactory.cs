@@ -1,10 +1,10 @@
-﻿using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
-using GameEnvironments.Save.EditorOnly;
-using InGameEditor.Services.InGameEditorMessage;
+﻿using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
+using Main.Core.Game.InGameMessage;
+using Main.Core.InGameEditor.Save.EditorOnly;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Ui.Options.Save
+namespace Main.Ui.InGameEditor.Save
 {
     [CreateAssetMenu(menuName = MenuName.Factory + nameof(SaveViewModel), fileName = nameof(SaveViewModelFactory))]
     public class SaveViewModelFactory : ScriptableObject

@@ -1,10 +1,10 @@
 ﻿using System;
-using InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
 using JetBrains.Annotations;
-using Tiles.Holders;
+using Main.Ui.Game.Tiles;
+using Main.Ui.InGameEditor.WorldSpace.GridInteraction.IndicatorControllers;
 using UnityEngine;
 
-namespace InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
+namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator
 {
     public class SelectedTileIndicatorView : MonoBehaviour
     {

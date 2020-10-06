@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityUtils.Pooling;
 
-namespace InGameEditor.Ui.DataSelection.IndividualSelectableData
+namespace Main.Ui.InGameEditor.DataSelection.IndividualSelectableData
 {
     public class SelectableBoardItemDataView : PooledMonoBehaviour
     {

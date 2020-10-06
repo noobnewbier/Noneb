@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
-using Maps;
-using Maps.Repositories.CurrentMapConfig;
-using Maps.Services;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.WorldConfigurations;
+using Main.Ui.Game.Maps.TilesPosition;
 using UniRx;
 using UnityEngine;
-using WorldConfigurations;
-using WorldConfigurations.Repositories;
 
-namespace InGameEditor.WorldSpace.GridOverlay
+namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay
 {
     public class GridOverlayViewModel : IDisposable
     {

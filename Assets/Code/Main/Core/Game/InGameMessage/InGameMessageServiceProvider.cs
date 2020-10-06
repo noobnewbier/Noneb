@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Providers;
+using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Services.InGameEditorMessage
+namespace Main.Core.Game.InGameMessage
 {
     [CreateAssetMenu(
         fileName = nameof(InGameMessageServiceProvider),

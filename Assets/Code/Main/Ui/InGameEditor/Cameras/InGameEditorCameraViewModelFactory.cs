@@ -1,10 +1,9 @@
-﻿using InGameEditor.Repositories.InGameEditorCamera;
-using InGameEditor.Services.InGameEditorCameraSizeInView;
-using Maps.Services;
+﻿using Main.Ui.Game.Maps.TilesPosition;
+using Main.Ui.InGameEditor.Cameras.SizeInView;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Cameras
+namespace Main.Ui.InGameEditor.Cameras
 {
     [CreateAssetMenu(fileName = nameof(InGameEditorCameraViewModelFactory), menuName = MenuName.Factory + nameof(InGameEditorCameraViewModel))]
     public class InGameEditorCameraViewModelFactory : ScriptableObject

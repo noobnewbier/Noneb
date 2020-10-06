@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameEnvironments.Common.Repositories.BoardItemsHolders;
-using Maps;
-using Maps.Repositories.CurrentMapConfig;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using UniRx;
 
-namespace Tiles.Holders.Repository
+namespace Main.Ui.Game.Tiles
 {
     public interface ITilesHolderService
     {

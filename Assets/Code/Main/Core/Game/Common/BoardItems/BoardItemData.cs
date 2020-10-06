@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Common.BoardItems
+namespace Main.Core.Game.Common.BoardItems
 {
     /// <summary>
     /// it's slightly hacky to prevent the need to create a bunch of scriptable of each new levels,

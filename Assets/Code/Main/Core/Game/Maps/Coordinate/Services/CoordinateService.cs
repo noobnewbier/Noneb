@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Maps.Services
+namespace Main.Core.Game.Maps.Coordinate.Services
 {
     public interface ICoordinateService
     {

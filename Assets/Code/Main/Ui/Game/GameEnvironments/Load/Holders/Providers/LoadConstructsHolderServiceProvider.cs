@@ -1,12 +1,14 @@
-﻿using Common.Providers;
-using Constructs;
-using GameEnvironments.Common.Repositories.BoardItems.Providers;
-using Maps.Services;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Constructs;
+using Main.Core.Game.GameEnvironments.BoardItems.Providers;
+using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Ui.Game.Constructs;
+using Main.Ui.Game.Maps.TilesPosition;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.Holders.Providers
+namespace Main.Ui.Game.GameEnvironments.Load.Holders.Providers
 {
     [CreateAssetMenu(fileName = nameof(LoadConstructsHolderServiceProvider), menuName = MenuName.ScriptableService + "LoadConstructsHolderService")]
     public class LoadConstructsHolderServiceProvider : ScriptableObjectProvider<LoadBoardItemsHolderService<ConstructHolder, Construct>>

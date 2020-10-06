@@ -1,6 +1,7 @@
-﻿using Tiles.Holders;
+﻿using Main.Core.Game.Common;
+using Main.Ui.Game.Tiles;
 
-namespace Common.Ui.Repository.CurrentSelectedTileHolder
+namespace Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder
 {
     public interface ICurrentSelectedTileHolderGetRepository : IDataGetRepository<TileHolder>
     {

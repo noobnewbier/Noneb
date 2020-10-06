@@ -1,8 +1,8 @@
-﻿using Common.BoardItems;
+﻿using Main.Core.Game.Common.BoardItems;
 using UnityEngine;
 using UnityUtils.Pooling;
 
-namespace Common.Holders
+namespace Main.Ui.Game.Common.Holders
 {
     //Do we ACTUALLY need this, in theory we can probably get away without it considering all the holders are doing is showing gizmos atm
     public interface IBoardItemHolder : IPoolable<GameObject>

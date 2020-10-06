@@ -1,9 +1,9 @@
 ﻿using System;
-using GameEnvironments.Common.Data.LevelDatas;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.Data.LevelDatas;
 using UniRx;
 
-namespace GameEnvironments.Common.Repositories.CurrentLevelDatas
+namespace Main.Core.Game.GameEnvironments.CurrentLevelDatas
 {
     public interface ICurrentLevelDataRepository
     {

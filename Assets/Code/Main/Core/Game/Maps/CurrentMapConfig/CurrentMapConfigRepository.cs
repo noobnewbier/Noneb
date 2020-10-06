@@ -1,9 +1,9 @@
 ﻿using System;
-using Common;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+using Main.Core.Game.Common;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
 using UniRx;
 
-namespace Maps.Repositories.CurrentMapConfig
+namespace Main.Core.Game.Maps.CurrentMapConfig
 {
     public interface ICurrentMapConfigRepository : IDataGetRepository<MapConfig>
     {

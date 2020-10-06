@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Maps;
-using Maps.Repositories.Map;
-using Tiles.Holders.Repository;
+using Main.Core.Game.Maps;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Ui.Game.Tiles;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;

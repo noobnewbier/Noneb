@@ -1,9 +1,9 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
-using InGameEditor.Services.InGameEditorMessage;
+using Main.Core.Game.InGameMessage;
 using UniRx;
 
-namespace InGameEditor.Ui.EditorMessageShower
+namespace Main.Ui.Game.InGameMessage.DebugLogMessageShower
 {
     public interface IDebugLogMessageViewModel : IDisposable
     {

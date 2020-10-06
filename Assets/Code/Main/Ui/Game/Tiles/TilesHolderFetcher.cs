@@ -1,8 +1,7 @@
-﻿using Common.BoardItems;
-using Common.Constants;
-using Tiles.Holders;
+﻿using Main.Core.Game.Common.Constants;
+using Main.Ui.Game.Common.Holders;
 
-namespace Tiles
+namespace Main.Ui.Game.Tiles
 {
     public class TilesHolderFetcher : BoardItemsHolderFetcher<TileHolder>
     {

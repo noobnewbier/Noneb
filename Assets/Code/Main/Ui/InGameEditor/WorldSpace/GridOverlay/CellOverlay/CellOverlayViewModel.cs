@@ -1,10 +1,10 @@
 ﻿using Experiment.CrossPlatformLiveData;
-using Maps;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.WorldConfigurations;
 using UniRx;
 using UnityEngine;
-using WorldConfigurations;
 
-namespace InGameEditor.WorldSpace.GridOverlay.CellOverlay
+namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay.CellOverlay
 {
     public class CellOverlayViewModel
     {

@@ -1,15 +1,16 @@
-﻿using Common.Factories;
-using Common.Providers;
-using Constructs;
-using Constructs.Data;
-using GameEnvironments.Common.Repositories.BoardItems.Providers;
-using Maps;
-using Maps.Services;
+﻿using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Constructs;
+using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.GameEnvironments.BoardItems.Providers;
+using Main.Core.Game.GameEnvironments.Load;
+using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Maps.Coordinate.Services;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Load.BoardItems.Providers
+namespace Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(LoadConstructsServiceProvider), menuName = MenuName.ScriptableService + "LoadConstructsService")]
     public class LoadConstructsServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Construct, ConstructData>>

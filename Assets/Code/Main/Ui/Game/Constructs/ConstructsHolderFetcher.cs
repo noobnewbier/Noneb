@@ -1,7 +1,7 @@
-﻿using Common.BoardItems;
-using Common.Constants;
+﻿using Main.Core.Game.Common.Constants;
+using Main.Ui.Game.Common.Holders;
 
-namespace Constructs
+namespace Main.Ui.Game.Constructs
 {
     public class ConstructsHolderFetcher : BoardItemsHolderFetcher<ConstructHolder>
     {

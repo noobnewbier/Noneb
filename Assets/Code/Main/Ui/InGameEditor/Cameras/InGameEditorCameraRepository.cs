@@ -1,7 +1,7 @@
-﻿using Common;
+﻿using Main.Core.Game.Common;
 using UnityEngine;
 
-namespace InGameEditor.Repositories.InGameEditorCamera
+namespace Main.Ui.InGameEditor.Cameras
 {
     public interface IInGameEditorCameraGetRepository : IDataGetRepository<Camera>
     {

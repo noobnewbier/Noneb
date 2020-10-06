@@ -1,10 +1,10 @@
-﻿using Common.Providers;
-using GameEnvironments.Common.Services.GetEnvironmentFilenameServices;
-using GameEnvironments.Common.Services.GetInGameEditorDirectoryService;
+﻿using Main.Core.Game.Common.Providers;
+using Main.Core.InGameEditor.GetEnvironmentFilenameServices;
+using Main.Core.InGameEditor.GetInGameEditorDirectoryService;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace GameEnvironments.Save.EditorOnly
+namespace Main.Core.InGameEditor.Save.EditorOnly
 {
     [CreateAssetMenu(
         fileName = nameof(SaveEnvironmentAsScriptableServiceProvider),

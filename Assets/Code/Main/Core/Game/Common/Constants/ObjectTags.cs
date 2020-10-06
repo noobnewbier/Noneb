@@ -1,4 +1,4 @@
-﻿namespace Common.Constants
+﻿namespace Main.Core.Game.Common.Constants
 {
     public static class ObjectTags
     {

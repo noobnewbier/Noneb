@@ -1,9 +1,9 @@
-﻿using GameEnvironments.Common.Repositories.AvailableGameEnvironment;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
+﻿using Main.Core.Game.GameEnvironments.AvailableGameEnvironment;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace EnvironmentSelection
+namespace Main.Ui.InGameEditor.EnvironmentSelection
 {
     [CreateAssetMenu(
         fileName = nameof(SelectGameEnvironmentViewModelFactory),

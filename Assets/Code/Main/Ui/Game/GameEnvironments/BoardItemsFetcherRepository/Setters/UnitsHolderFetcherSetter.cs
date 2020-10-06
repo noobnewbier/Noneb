@@ -1,9 +1,9 @@
-﻿using GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Providers;
-using Units;
+﻿using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers;
+using Main.Ui.Game.Units;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace GameEnvironments.Common.Repositories.BoardItemsHolderProviders.Setters
+namespace Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Setters
 {
     public class UnitsHolderFetcherSetter : MonoBehaviour
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
-using GameEnvironments.Common;
-using GameEnvironments.Common.Repositories.CurrentGameEnvironments;
-using GameEnvironments.Save;
-using InGameEditor.Services.InGameEditorMessage;
+using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
+using Main.Core.Game.GameEnvironments.Save;
+using Main.Core.Game.InGameMessage;
+using Main.Core.InGameEditor.Save;
 using UniRx;
 
-namespace InGameEditor.Ui.Options.Save
+namespace Main.Ui.InGameEditor.Save
 {
     public class SaveViewModel : IDisposable
     {

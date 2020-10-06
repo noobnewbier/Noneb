@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tiles;
+using Main.Core.Game.Tiles;
 
-namespace Maps
+namespace Main.Core.Game.Maps
 {
     /*
      * A map holds tile according to axial coordinate, it has nothing to do with any other stuffs
@@ -25,7 +25,7 @@ namespace Maps
                 _grid[j + i % 2 + i / 2, i] = tiles[i * map2DActualWidth + j];
         }
 
-        public IReadOnlyDictionary<HexDirection, Tile> GetNeighbours(Coordinate axialCoordinate)
+        public IReadOnlyDictionary<HexDirection, Tile> GetNeighbours(Coordinate.Coordinate axialCoordinate)
         {
             var minusX = axialCoordinate + HexDirection.MinusX;
             var plusX = axialCoordinate + HexDirection.PlusX;
@@ -47,7 +47,7 @@ namespace Maps
             return toReturn;
         }
 
-        public Tile Get(Coordinate axialCoordinate) => _grid[axialCoordinate.X, axialCoordinate.Z];
+        public Tile Get(Coordinate.Coordinate axialCoordinate) => _grid[axialCoordinate.X, axialCoordinate.Z];
 
         //return null when out of bounds
         private Tile GetTileWithDefault(int x, int z)

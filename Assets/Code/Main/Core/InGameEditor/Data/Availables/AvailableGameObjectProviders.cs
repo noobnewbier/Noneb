@@ -1,8 +1,8 @@
-﻿using Common.Factories;
+﻿using Main.Core.Game.Common.Factories;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace InGameEditor.Data.Availables
+namespace Main.Core.InGameEditor.Data.Availables
 {
     [CreateAssetMenu(
         fileName = nameof(AvailableGameObjectProviders),

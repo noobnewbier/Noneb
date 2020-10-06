@@ -1,8 +1,8 @@
-﻿using Common.Factories;
+﻿using Main.Core.Game.Common.Factories;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Units.Holders
+namespace Main.Ui.Game.Units
 {
     [CreateAssetMenu(menuName = MenuName.Providers + "UnitHolder", fileName = nameof(UnitHolderFactory))]
     public class UnitHolderFactory : PooledMonoBehaviourFactory<UnitHolder>

@@ -1,7 +1,8 @@
-﻿using Common.Holders;
+﻿using Main.Core.Game.Tiles;
+using Main.Ui.Game.Common.Holders;
 using UnityEditor;
 
-namespace Tiles.Holders
+namespace Main.Ui.Game.Tiles
 {
     public class TileHolder : BoardItemHolder<Tile>
     {

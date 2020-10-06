@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 namespace Maps
 {
-    public class CurrentTilesTransformSetter : MonoBehaviour
+    public class CurrentTilesHolderFetcherSetter : MonoBehaviour
     {
         [FormerlySerializedAs("currentTilesTransformRepositoryProvider")] [SerializeField]
         private TilesHolderFetcherRepositoryProvider repositoryProvider;

@@ -18,12 +18,6 @@ namespace Tiles.Holders.Repository
 
         private ITilesHolderService _cache;
 
-        private void OnDisable()
-        {
-            _cache?.Dispose();
-            _cache = null;
-        }
-
         public override ITilesHolderService Provide() =>
             _cache ?? (_cache = new TilesHolderService(
                 tileHoldersFetchingServiceProvider.Provide(),

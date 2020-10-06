@@ -7,44 +7,36 @@ using UniRx;
 
 namespace Tiles.Holders.Repository
 {
-    public interface ITilesHolderService : IDisposable
+    public interface ITilesHolderService
     {
         IObservable<TileHolder> GetAtCoordinateSingle(Coordinate axialCoordinate);
     }
 
-    //todo: use BoardItemHoldersFetchingService's approach to avoid caching
     public class TilesHolderService : ITilesHolderService
     {
-        private IObservable<(TileHolder[,] tileHolders, MapConfig config)> _tileHoldersAndConfigSingle;
-        private readonly IDisposable _disposable;
+        private readonly IBoardItemHoldersFetchingService<TileHolder> _tileHoldersFetchingService;
+        private readonly ICurrentMapConfigRepository _currentMapConfigRepository;
 
         public TilesHolderService(IBoardItemHoldersFetchingService<TileHolder> tileHoldersFetchingService,
                                   ICurrentMapConfigRepository currentMapConfigRepository)
         {
-            _tileHoldersAndConfigSingle = Observable.Throw<(TileHolder[,], MapConfig)>(new InvalidOperationException("Value is not set yet"));
-
-            _disposable = currentMapConfigRepository.GetObservableStream()
-                .ZipLatest(tileHoldersFetchingService.Fetch(), (config, tileTransforms) => (config, tileTransforms))
-                .Subscribe(
-                    tuple =>
-                    {
-                        var (config, tileTransforms) = tuple;
-                        var holdersAndConfig = (Create2DTileHolders(tileTransforms, config), config);
-                        _tileHoldersAndConfigSingle = Observable.Return(holdersAndConfig);
-                    }
-                );
+            _tileHoldersFetchingService = tileHoldersFetchingService;
+            _currentMapConfigRepository = currentMapConfigRepository;
         }
 
         public IObservable<TileHolder> GetAtCoordinateSingle(Coordinate axialCoordinate)
         {
-            return _tileHoldersAndConfigSingle
-                .Select(tuple => tuple.tileHolders[axialCoordinate.X, axialCoordinate.Z])
-                .Single();
-        }
+            return _currentMapConfigRepository.GetMostRecent()
+                .ZipLatest(_tileHoldersFetchingService.Fetch(), (config, tileTransforms) => (config, tileTransforms))
+                .Select(
+                    tuple =>
+                    {
+                        var (config, tileTransforms) = tuple;
+                        var holders = Create2DTileHolders(tileTransforms, config);
 
-        public void Dispose()
-        {
-            _disposable?.Dispose();
+                        return holders[axialCoordinate.X, axialCoordinate.Z];
+                    })
+                .Single();
         }
 
 

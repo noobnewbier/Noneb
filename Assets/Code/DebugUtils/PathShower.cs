@@ -35,7 +35,7 @@ namespace DebugUtils
 
             _disposable?.Dispose();
             _disposable = mapRepository.GetMostRecent()
-                .SelectMany(
+                .Select(
                     map =>
                     {
                         if (!Pathfinding.TryFindPath(start, goal, map, out var path, maxCost, true))
@@ -44,12 +44,18 @@ namespace DebugUtils
                             throw new InvalidOperationException("No valid path found");
                         }
 
-                        var tileHoldersRepository = tilesHoldersServiceProvider.Provide();
-                        return path.Select(c => tileHoldersRepository.GetAtCoordinateSingle(c)).Zip();
+                        return path;
                     }
                 )
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
+                .SelectMany(
+                    path =>
+                    {
+                        var tileHoldersRepository = tilesHoldersServiceProvider.Provide();
+                        return path.Select(c => tileHoldersRepository.GetAtCoordinateSingle(c)).Zip();
+                    }
+                )
                 .Subscribe(
                     holders => { _points = holders.Select(r => r.transform.position).ToList(); },
                     e =>

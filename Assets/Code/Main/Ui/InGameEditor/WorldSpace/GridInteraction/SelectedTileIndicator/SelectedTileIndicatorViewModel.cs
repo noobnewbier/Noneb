@@ -1,7 +1,7 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
-using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
 using Main.Ui.Game.Tiles;
+using Main.Ui.Game.UiState.CurrentSelectedTileHolder;
 using UniRx;
 
 namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.SelectedTileIndicator

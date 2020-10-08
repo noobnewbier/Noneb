@@ -1,5 +1,5 @@
 ﻿using Main.Core.Game.Common.Providers;
-using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers;
+using Main.Ui.Game.UiState.BoardItemsFetcherRepository.Providers;
 using Main.Ui.Game.Units;
 using UnityEngine;
 using UnityEngine.Serialization;

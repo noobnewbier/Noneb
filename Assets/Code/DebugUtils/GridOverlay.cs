@@ -1,8 +1,9 @@
 ﻿using System.Linq;
-using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.GameState.CurrentMapConfig;
+using Main.Core.Game.GameState.CurrentWorldConfig;
 using Main.Core.Game.WorldConfigurations;
-using Main.Ui.Game.Maps.CurrentMapTransform;
 using Main.Ui.Game.Maps.TilesPosition;
+using Main.Ui.Game.UiState.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
 

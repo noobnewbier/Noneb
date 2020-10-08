@@ -1,6 +1,6 @@
 ﻿using Main.Core.Game.Common.Providers;
 using Main.Ui.Game.Constructs;
-using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers;
+using Main.Ui.Game.UiState.BoardItemsFetcherRepository.Providers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;

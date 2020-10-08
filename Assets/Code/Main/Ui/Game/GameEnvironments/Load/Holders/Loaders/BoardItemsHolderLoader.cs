@@ -1,8 +1,8 @@
 ﻿using System;
 using Main.Core.Game.Common.Loaders;
+using Main.Core.Game.GameState.CurrentMapConfig;
 using Main.Core.Game.Maps;
-using Main.Core.Game.Maps.CurrentMapConfig;
-using Main.Ui.Game.Maps.CurrentMapTransform;
+using Main.Ui.Game.UiState.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
 

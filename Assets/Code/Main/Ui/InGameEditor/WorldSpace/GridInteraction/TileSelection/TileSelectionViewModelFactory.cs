@@ -1,8 +1,9 @@
-﻿using Main.Core.Game.WorldConfigurations;
-using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
-using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
+﻿using Main.Core.Game.GameState.CurrentWorldConfig;
+using Main.Core.Game.WorldConfigurations;
 using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
 using Main.Ui.Game.GameEnvironments.Load.Holders.Providers;
+using Main.Ui.Game.UiState.CurrentHoveredTileHolder;
+using Main.Ui.Game.UiState.CurrentSelectedTileHolder;
 using Main.Ui.InGameEditor.Cameras;
 using UnityEngine;
 using UnityUtils.Constants;

@@ -2,10 +2,10 @@
 using System.Collections.Immutable;
 using Main.Core.Game.Common.BoardItems;
 using Main.Core.Game.Common.Loaders;
-using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
 using Main.Core.Game.GameEnvironments.Load;
+using Main.Core.Game.GameState.CurrentLevelDatas;
+using Main.Core.Game.GameState.CurrentMapConfig;
 using Main.Core.Game.Maps;
-using Main.Core.Game.Maps.CurrentMapConfig;
 using UniRx;
 using UnityEngine;
 

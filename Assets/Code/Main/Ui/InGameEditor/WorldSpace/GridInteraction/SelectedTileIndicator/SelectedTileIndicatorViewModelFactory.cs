@@ -1,4 +1,4 @@
-﻿using Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder;
+﻿using Main.Ui.Game.UiState.CurrentSelectedTileHolder;
 using UnityEngine;
 using UnityUtils.Constants;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
 using Main.Core.Game.Coordinate;
-using Main.Ui.Game.Common.UiState.CurrentHoveredTileHolder;
+using Main.Ui.Game.UiState.CurrentHoveredTileHolder;
 using UniRx;
 
 namespace Main.Ui.InGameEditor.Inspector.CurrentHoveredTileCoordinate

@@ -1,5 +1,5 @@
 ﻿using Main.Core.Game.Common.Providers;
-using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.GameState.CurrentMapConfig;
 using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
 using UnityEngine;
 using UnityEngine.Serialization;

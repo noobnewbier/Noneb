@@ -1,11 +1,11 @@
 ﻿using System;
 using Main.Core.Game.InGameMessage;
-using Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Setters;
 using Main.Ui.Game.GameEnvironments.Load.BoardItems.Loaders;
 using Main.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
 using Main.Ui.Game.GameEnvironments.Load.GameObjects.Loaders;
 using Main.Ui.Game.GameEnvironments.Load.Holders.Loaders;
-using Main.Ui.Game.Maps.CurrentMapTransform;
+using Main.Ui.Game.UiState.BoardItemsFetcherRepository.Setters;
+using Main.Ui.Game.UiState.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
 

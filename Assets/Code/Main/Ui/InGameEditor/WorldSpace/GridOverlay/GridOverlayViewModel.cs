@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
 using Main.Core.Game.Coordinate;
-using Main.Core.Game.Maps.CurrentMapConfig;
+using Main.Core.Game.GameState.CurrentMapConfig;
+using Main.Core.Game.GameState.CurrentWorldConfig;
 using Main.Core.Game.WorldConfigurations;
 using Main.Ui.Game.Maps.TilesPosition;
 using UniRx;

@@ -1,5 +1,5 @@
 ﻿using Main.Core.Game.GameEnvironments.AvailableGameEnvironment;
-using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
+using Main.Core.Game.GameState.CurrentGameEnvironments;
 using UnityEngine;
 using UnityUtils.Constants;
 

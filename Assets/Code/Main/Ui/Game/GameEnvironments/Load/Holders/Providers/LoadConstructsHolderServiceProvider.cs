@@ -1,7 +1,7 @@
 ﻿using Main.Core.Game.Common.Providers;
 using Main.Core.Game.Constructs;
 using Main.Core.Game.Coordinate;
-using Main.Core.Game.GameEnvironments.BoardItems.Providers;
+using Main.Core.Game.GameState.BoardItems.Providers;
 using Main.Ui.Game.Constructs;
 using Main.Ui.Game.Maps.TilesPosition;
 using UnityEngine;

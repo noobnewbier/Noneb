@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
 using Main.Core.Game.GameEnvironments.AvailableGameEnvironment;
-using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
 using Main.Core.Game.GameEnvironments.Data;
+using Main.Core.Game.GameState.CurrentGameEnvironments;
 using UniRx;
 
 namespace Main.Ui.InGameEditor.EnvironmentSelection

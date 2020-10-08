@@ -2,8 +2,8 @@
 using Main.Core.Game.Common.Providers;
 using Main.Core.Game.Constructs;
 using Main.Core.Game.Coordinate;
-using Main.Core.Game.GameEnvironments.BoardItems.Providers;
 using Main.Core.Game.GameEnvironments.Load;
+using Main.Core.Game.GameState.BoardItems.Providers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;

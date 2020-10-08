@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Main.Core.Game.Common.Factories;
 using Main.Core.Game.Common.Loaders;
-using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
+using Main.Core.Game.GameState.CurrentLevelDatas;
+using Main.Core.Game.GameState.CurrentMapConfig;
 using Main.Core.Game.Maps;
-using Main.Core.Game.Maps.CurrentMapConfig;
 using Main.Ui.Game.Common.Holders;
 using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using UniRx;

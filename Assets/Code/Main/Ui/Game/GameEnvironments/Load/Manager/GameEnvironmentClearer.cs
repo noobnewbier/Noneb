@@ -1,6 +1,6 @@
 ﻿using System;
-using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
 using Main.Core.Game.GameEnvironments.Data;
+using Main.Core.Game.GameState.CurrentGameEnvironments;
 using Main.Core.Game.InGameMessage;
 using Main.Ui.Game.Common.Holders;
 using Main.Ui.Game.Constructs;

@@ -1,6 +1,6 @@
 ﻿using Main.Core.Game.Common.Providers;
 using Main.Core.Game.GameEnvironments.BoardItems.Providers;
-using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Core.Game.Maps.Coordinate;
 using Main.Core.Game.Tiles;
 using Main.Ui.Game.Maps.TilesPosition;
 using Main.Ui.Game.Tiles;

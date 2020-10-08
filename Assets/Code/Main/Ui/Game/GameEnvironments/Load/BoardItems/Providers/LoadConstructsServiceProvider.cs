@@ -5,7 +5,6 @@ using Main.Core.Game.Constructs.Data;
 using Main.Core.Game.GameEnvironments.BoardItems.Providers;
 using Main.Core.Game.GameEnvironments.Load;
 using Main.Core.Game.Maps.Coordinate;
-using Main.Core.Game.Maps.Coordinate.Services;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;

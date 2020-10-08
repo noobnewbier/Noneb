@@ -10,11 +10,6 @@ using Main.Core.Game.Units;
 
 namespace Main.Core.Game.GameEnvironments.Validation
 {
-    public interface ILevelDataScriptableValidationService
-    {
-        ValidationResult Validate(LevelDataScriptable levelData, MapConfig mapConfiguration);
-    }
-
     public struct ValidationResult
     {
         public ValidationResult(IEnumerable<string> failedReason, bool isValid)
@@ -27,7 +22,7 @@ namespace Main.Core.Game.GameEnvironments.Validation
         public bool IsValid { get; }
     }
 
-    public class LevelDataScriptableValidationService : ILevelDataScriptableValidationService
+    public class LevelDataScriptableValidationService
     {
         public ValidationResult Validate(LevelDataScriptable levelData, MapConfig mapConfiguration)
         {

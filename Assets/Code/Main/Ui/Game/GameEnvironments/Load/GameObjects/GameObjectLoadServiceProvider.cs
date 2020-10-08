@@ -1,5 +1,5 @@
 ﻿using Main.Core.Game.Common.Providers;
-using Main.Core.Game.Maps.Coordinate.Services;
+using Main.Core.Game.Maps.Coordinate;
 using UnityEngine;
 using UnityUtils.Constants;
 

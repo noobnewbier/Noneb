@@ -3,7 +3,6 @@ using Main.Core.Game.Common.BoardItems;
 using Main.Core.Game.Common.Factories;
 using Main.Core.Game.GameEnvironments.BoardItems;
 using Main.Core.Game.Maps.Coordinate;
-using Main.Core.Game.Maps.Coordinate.Services;
 
 namespace Main.Core.Game.GameEnvironments.Load
 {

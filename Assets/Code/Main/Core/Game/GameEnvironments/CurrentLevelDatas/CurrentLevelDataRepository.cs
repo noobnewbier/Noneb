@@ -1,14 +1,13 @@
 ﻿using System;
+using Main.Core.Game.Common;
 using Main.Core.Game.GameEnvironments.CurrentGameEnvironments;
 using Main.Core.Game.GameEnvironments.Data.LevelDatas;
 using UniRx;
 
 namespace Main.Core.Game.GameEnvironments.CurrentLevelDatas
 {
-    public interface ICurrentLevelDataRepository
+    public interface ICurrentLevelDataRepository : IDataGetRepository<LevelData>
     {
-        IObservable<LevelData> GetObservableStream();
-        IObservable<LevelData> GetMostRecent();
     }
 
     public class CurrentLevelDataRepository : ICurrentLevelDataRepository

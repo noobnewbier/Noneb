@@ -3,7 +3,7 @@ using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Main.Core.Game.Maps.Coordinate.Services
+namespace Main.Core.Game.Maps.Coordinate
 {
     [CreateAssetMenu(fileName = nameof(CoordinateServiceProvider), menuName = MenuName.ScriptableService + "GetCoordinateService")]
     public class CoordinateServiceProvider : ScriptableObjectProvider<ICoordinateService>

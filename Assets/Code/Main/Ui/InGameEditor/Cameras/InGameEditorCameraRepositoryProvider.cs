@@ -9,11 +9,11 @@ namespace Main.Ui.InGameEditor.Cameras
         fileName = nameof(InGameEditorCameraRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(InGameEditorCameraRepository)
     )]
-    public class InGameEditorCameraRepositoryProvider : ScriptableObjectProvider<InGameEditorCameraRepository>
+    public class InGameEditorCameraRepositoryProvider : ScriptableObject, IObjectProvider<InGameEditorCameraRepository>
     {
         private readonly Lazy<InGameEditorCameraRepository> _lazyInstance =
             new Lazy<InGameEditorCameraRepository>(() => new InGameEditorCameraRepository());
 
-        public override InGameEditorCameraRepository Provide() => _lazyInstance.Value;
+        public InGameEditorCameraRepository Provide() => _lazyInstance.Value;
     }
 }

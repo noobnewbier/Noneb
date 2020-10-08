@@ -9,11 +9,11 @@ namespace Main.Ui.InGameEditor.Cameras.SizeInView
         fileName = nameof(InGameEditorCameraSizeInViewServiceProvider),
         menuName = MenuName.ScriptableService + nameof(InGameEditorCameraSizeInViewService)
     )]
-    public class InGameEditorCameraSizeInViewServiceProvider : ScriptableObjectProvider<IInGameEditorCameraSizeInViewService>
+    public class InGameEditorCameraSizeInViewServiceProvider : ScriptableObject, IObjectProvider<IInGameEditorCameraSizeInViewService>
     {
         private readonly Lazy<IInGameEditorCameraSizeInViewService> _lazyInstance =
             new Lazy<IInGameEditorCameraSizeInViewService>(() => new InGameEditorCameraSizeInViewService());
 
-        public override IInGameEditorCameraSizeInViewService Provide() => _lazyInstance.Value;
+        public IInGameEditorCameraSizeInViewService Provide() => _lazyInstance.Value;
     }
 }

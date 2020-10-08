@@ -11,16 +11,16 @@ using UnityUtils.Constants;
 namespace Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(LoadTilesServiceProvider), menuName = MenuName.ScriptableService + "LoadTilesService")]
-    public class LoadTilesServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Tile, TileData>>
+    public class LoadTilesServiceProvider : ScriptableObject, IObjectProvider<ILoadBoardItemsService<TileData>>
     {
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
 
         [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField]
         private CoordinateServiceProvider coordinateServiceProvider;
 
-        private LoadBoardItemsService<Tile, TileData> _cache;
+        private ILoadBoardItemsService<TileData> _cache;
 
-        public override LoadBoardItemsService<Tile, TileData> Provide()
+        public ILoadBoardItemsService<TileData> Provide()
         {
             return _cache ?? (_cache = new LoadBoardItemsService<Tile, TileData>(
                 coordinateServiceProvider.Provide(),

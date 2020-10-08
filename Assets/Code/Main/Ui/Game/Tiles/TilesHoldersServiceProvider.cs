@@ -8,7 +8,7 @@ using UnityUtils.Constants;
 namespace Main.Ui.Game.Tiles
 {
     [CreateAssetMenu(fileName = nameof(TilesHoldersServiceProvider), menuName = MenuName.ScriptableRepository + nameof(TilesHolderService))]
-    public class TilesHoldersServiceProvider : ScriptableObjectProvider<ITilesHolderService>
+    public class TilesHoldersServiceProvider : ScriptableObject, IObjectProvider<ITilesHolderService>
     {
         [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
@@ -18,7 +18,7 @@ namespace Main.Ui.Game.Tiles
 
         private ITilesHolderService _cache;
 
-        public override ITilesHolderService Provide() =>
+        public ITilesHolderService Provide() =>
             _cache ?? (_cache = new TilesHolderService(
                 tileHoldersFetchingServiceProvider.Provide(),
                 currentMapConfigRepositoryProvider.Provide()

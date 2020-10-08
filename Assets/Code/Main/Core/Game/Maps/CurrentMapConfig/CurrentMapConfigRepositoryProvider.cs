@@ -9,13 +9,13 @@ namespace Main.Core.Game.Maps.CurrentMapConfig
         fileName = nameof(CurrentMapConfigRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(CurrentMapConfigRepository)
     )]
-    public class CurrentMapConfigRepositoryProvider : ScriptableObjectProvider<ICurrentMapConfigRepository>
+    public class CurrentMapConfigRepositoryProvider : ScriptableObject, IObjectProvider<ICurrentMapConfigRepository>
     {
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider gameEnvironmentRepositoryProvider;
 
         private ICurrentMapConfigRepository _cache;
 
-        public override ICurrentMapConfigRepository Provide() =>
+        public ICurrentMapConfigRepository Provide() =>
             _cache ?? (_cache = new CurrentMapConfigRepository(gameEnvironmentRepositoryProvider.Provide()));
     }
 }

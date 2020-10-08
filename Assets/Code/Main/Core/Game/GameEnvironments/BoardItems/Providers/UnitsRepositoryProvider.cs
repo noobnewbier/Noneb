@@ -7,11 +7,11 @@ using UnityUtils.Constants;
 namespace Main.Core.Game.GameEnvironments.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(UnitsRepositoryProvider), menuName = MenuName.ScriptableRepository + "UnitsRepository")]
-    public class UnitsRepositoryProvider : ScriptableObjectProvider<BoardItemsRepository<Unit>>
+    public class UnitsRepositoryProvider : ScriptableObject, IObjectProvider<IBoardItemsRepository<Unit>>
     {
-        private readonly Lazy<BoardItemsRepository<Unit>>
-            _lazyInstance = new Lazy<BoardItemsRepository<Unit>>(() => new BoardItemsRepository<Unit>());
+        private readonly Lazy<IBoardItemsRepository<Unit>>
+            _lazyInstance = new Lazy<IBoardItemsRepository<Unit>>(() => new BoardItemsRepository<Unit>());
 
-        public override BoardItemsRepository<Unit> Provide() => _lazyInstance.Value;
+        public IBoardItemsRepository<Unit> Provide() => _lazyInstance.Value;
     }
 }

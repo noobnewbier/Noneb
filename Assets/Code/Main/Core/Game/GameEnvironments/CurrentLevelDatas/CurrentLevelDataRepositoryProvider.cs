@@ -9,13 +9,13 @@ namespace Main.Core.Game.GameEnvironments.CurrentLevelDatas
         fileName = nameof(CurrentLevelDataRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(CurrentLevelDataRepository)
     )]
-    public class CurrentLevelDataRepositoryProvider : ScriptableObjectProvider<ICurrentLevelDataRepository>
+    public class CurrentLevelDataRepositoryProvider : ScriptableObject, IObjectProvider<ICurrentLevelDataRepository>
     {
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
 
         private ICurrentLevelDataRepository _cache;
 
-        public override ICurrentLevelDataRepository Provide() =>
+        public ICurrentLevelDataRepository Provide() =>
             _cache ??
             (_cache = new CurrentLevelDataRepository(
                 currentGameEnvironmentRepositoryProvider.Provide()

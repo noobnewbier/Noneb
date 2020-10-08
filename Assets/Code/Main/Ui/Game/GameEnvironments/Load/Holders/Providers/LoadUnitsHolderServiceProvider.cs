@@ -1,4 +1,5 @@
-﻿using Main.Core.Game.Common.Providers;
+﻿using System;
+using Main.Core.Game.Common.Providers;
 using Main.Core.Game.GameEnvironments.BoardItems.Providers;
 using Main.Core.Game.Maps.Coordinate;
 using Main.Core.Game.Units;
@@ -11,7 +12,7 @@ using UnityUtils.Constants;
 namespace Main.Ui.Game.GameEnvironments.Load.Holders.Providers
 {
     [CreateAssetMenu(fileName = nameof(LoadUnitsHolderServiceProvider), menuName = MenuName.ScriptableService + "LoadUnitsHolderService")]
-    public class LoadUnitsHolderServiceProvider : ScriptableObjectProvider<LoadBoardItemsHolderService<UnitHolder, Unit>>
+    public class LoadUnitsHolderServiceProvider : ScriptableObject, IObjectProvider<LoadBoardItemsHolderService<UnitHolder, Unit>>
     {
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private UnitsRepositoryProvider unitsRepositoryProvider;
@@ -23,7 +24,7 @@ namespace Main.Ui.Game.GameEnvironments.Load.Holders.Providers
 
         private LoadBoardItemsHolderService<UnitHolder, Unit> _cache;
 
-        public override LoadBoardItemsHolderService<UnitHolder, Unit> Provide() =>
+        public LoadBoardItemsHolderService<UnitHolder, Unit> Provide() =>
             _cache ?? (_cache = new LoadBoardItemsHolderService<UnitHolder, Unit>(
                 tilesPositionServiceProvider.Provide(),
                 unitsRepositoryProvider.Provide(),

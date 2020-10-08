@@ -9,11 +9,11 @@ namespace Main.Core.InGameEditor.GetInGameEditorDirectoryService
         fileName = nameof(GetInGameEditorDirectoryServiceProvider),
         menuName = MenuName.ScriptableService + nameof(GetInGameEditorDirectoryService)
     )]
-    public class GetInGameEditorDirectoryServiceProvider : ScriptableObjectProvider<IGetInGameEditorDirectoryService>
+    public class GetInGameEditorDirectoryServiceProvider : ScriptableObject, IObjectProvider<IGetInGameEditorDirectoryService>
     {
         private readonly Lazy<IGetInGameEditorDirectoryService> _lazyInstance =
             new Lazy<IGetInGameEditorDirectoryService>(() => new GetInGameEditorDirectoryService());
 
-        public override IGetInGameEditorDirectoryService Provide() => _lazyInstance.Value;
+        public IGetInGameEditorDirectoryService Provide() => _lazyInstance.Value;
     }
 }

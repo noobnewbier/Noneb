@@ -9,11 +9,11 @@ namespace Main.Core.Game.GameEnvironments.Validation
         fileName = nameof(LevelDataScriptableValidationServiceProvider),
         menuName = MenuName.ScriptableService + nameof(LevelDataScriptableValidationService)
     )]
-    public class LevelDataScriptableValidationServiceProvider : ScriptableObjectProvider<LevelDataScriptableValidationService>
+    public class LevelDataScriptableValidationServiceProvider : ScriptableObject, IObjectProvider<LevelDataScriptableValidationService>
     {
         private readonly Lazy<LevelDataScriptableValidationService>
             _lazyInstance = new Lazy<LevelDataScriptableValidationService>(() => new LevelDataScriptableValidationService());
 
-        public override LevelDataScriptableValidationService Provide() => _lazyInstance.Value;
+        public LevelDataScriptableValidationService Provide() => _lazyInstance.Value;
     }
 }

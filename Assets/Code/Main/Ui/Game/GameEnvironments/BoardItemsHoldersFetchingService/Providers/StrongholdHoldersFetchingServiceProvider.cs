@@ -11,7 +11,7 @@ namespace Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Provide
         fileName = nameof(StrongholdHoldersFetchingServiceProvider),
         menuName = MenuName.ScriptableService + "StrongholdsHoldersFetchingService"
     )]
-    public class StrongholdHoldersFetchingServiceProvider : ScriptableObjectProvider<BoardItemHoldersFetchingService<StrongholdHolder>>
+    public class StrongholdHoldersFetchingServiceProvider : ScriptableObject, IObjectProvider<IBoardItemHoldersFetchingService<StrongholdHolder>>
     {
         [FormerlySerializedAs("providerRepositoryProvider")] [SerializeField]
         private StrongholdsHolderFetcherRepositoryProvider fetcherRepositoryProvider;
@@ -19,7 +19,7 @@ namespace Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Provide
 
         private BoardItemHoldersFetchingService<StrongholdHolder> _cache;
 
-        public override BoardItemHoldersFetchingService<StrongholdHolder> Provide() =>
+        public IBoardItemHoldersFetchingService<StrongholdHolder> Provide() =>
             _cache ?? (_cache = new BoardItemHoldersFetchingService<StrongholdHolder>(
                 fetcherRepositoryProvider.Provide()
             ));

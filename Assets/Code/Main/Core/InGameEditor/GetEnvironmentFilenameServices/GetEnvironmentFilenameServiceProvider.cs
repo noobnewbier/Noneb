@@ -9,11 +9,11 @@ namespace Main.Core.InGameEditor.GetEnvironmentFilenameServices
         fileName = nameof(GetEnvironmentFilenameServiceProvider),
         menuName = MenuName.ScriptableService + nameof(GetEnvironmentFilenameService)
     )]
-    public class GetEnvironmentFilenameServiceProvider : ScriptableObjectProvider<IGetEnvironmentFilenameService>
+    public class GetEnvironmentFilenameServiceProvider : ScriptableObject, IObjectProvider<IGetEnvironmentFilenameService>
     {
         private readonly Lazy<IGetEnvironmentFilenameService> _lazyInstance =
             new Lazy<IGetEnvironmentFilenameService>(() => new GetEnvironmentFilenameService());
 
-        public override IGetEnvironmentFilenameService Provide() => _lazyInstance.Value;
+        public IGetEnvironmentFilenameService Provide() => _lazyInstance.Value;
     }
 }

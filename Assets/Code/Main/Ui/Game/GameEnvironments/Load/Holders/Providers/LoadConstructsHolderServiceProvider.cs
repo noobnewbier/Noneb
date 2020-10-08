@@ -11,7 +11,7 @@ using UnityUtils.Constants;
 namespace Main.Ui.Game.GameEnvironments.Load.Holders.Providers
 {
     [CreateAssetMenu(fileName = nameof(LoadConstructsHolderServiceProvider), menuName = MenuName.ScriptableService + "LoadConstructsHolderService")]
-    public class LoadConstructsHolderServiceProvider : ScriptableObjectProvider<LoadBoardItemsHolderService<ConstructHolder, Construct>>
+    public class LoadConstructsHolderServiceProvider : ScriptableObject, IObjectProvider<LoadBoardItemsHolderService<ConstructHolder, Construct>>
     {
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private ConstructsRepositoryProvider constructsRepositoryProvider;
@@ -23,7 +23,7 @@ namespace Main.Ui.Game.GameEnvironments.Load.Holders.Providers
 
         private LoadBoardItemsHolderService<ConstructHolder, Construct> _cache;
 
-        public override LoadBoardItemsHolderService<ConstructHolder, Construct> Provide() =>
+        public LoadBoardItemsHolderService<ConstructHolder, Construct> Provide() =>
             _cache ?? (_cache = new LoadBoardItemsHolderService<ConstructHolder, Construct>(
                 tilesPositionServiceProvider.Provide(),
                 constructsRepositoryProvider.Provide(),

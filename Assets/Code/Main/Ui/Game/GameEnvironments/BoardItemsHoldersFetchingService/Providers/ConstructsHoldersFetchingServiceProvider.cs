@@ -11,14 +11,14 @@ namespace Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Provide
         fileName = nameof(ConstructsHoldersFetchingServiceProvider),
         menuName = MenuName.ScriptableService + "ConstructsHoldersFetchingService"
     )]
-    public class ConstructsHoldersFetchingServiceProvider : ScriptableObjectProvider<BoardItemHoldersFetchingService<ConstructHolder>>
+    public class ConstructsHoldersFetchingServiceProvider : ScriptableObject, IObjectProvider<IBoardItemHoldersFetchingService<ConstructHolder>>
     {
         [FormerlySerializedAs("providerRepositoryProvider")] [SerializeField]
         private ConstructsHolderFetcherRepositoryProvider fetcherRepositoryProvider;
 
         private BoardItemHoldersFetchingService<ConstructHolder> _cache;
 
-        public override BoardItemHoldersFetchingService<ConstructHolder> Provide() =>
+        public IBoardItemHoldersFetchingService<ConstructHolder> Provide() =>
             _cache ?? (_cache = new BoardItemHoldersFetchingService<ConstructHolder>(
                 fetcherRepositoryProvider.Provide()
             ));

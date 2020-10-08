@@ -9,11 +9,11 @@ namespace Main.Core.Game.GameEnvironments.CurrentGameEnvironments
         fileName = nameof(CurrentGameEnvironmentRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(CurrentGameEnvironmentRepository)
     )]
-    public class CurrentGameEnvironmentRepositoryProvider : ScriptableObjectProvider<CurrentGameEnvironmentRepository>
+    public class CurrentGameEnvironmentRepositoryProvider : ScriptableObject, IObjectProvider<ICurrentGameEnvironmentRepository>
     {
-        private readonly Lazy<CurrentGameEnvironmentRepository> _lazyInstance =
-            new Lazy<CurrentGameEnvironmentRepository>(() => new CurrentGameEnvironmentRepository());
+        private readonly Lazy<ICurrentGameEnvironmentRepository> _lazyInstance =
+            new Lazy<ICurrentGameEnvironmentRepository>(() => new CurrentGameEnvironmentRepository());
 
-        public override CurrentGameEnvironmentRepository Provide() => _lazyInstance.Value;
+        public ICurrentGameEnvironmentRepository Provide() => _lazyInstance.Value;
     }
 }

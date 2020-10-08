@@ -9,11 +9,11 @@ namespace Main.Core.Game.InGameMessage
         fileName = nameof(InGameMessageServiceProvider),
         menuName = MenuName.ScriptableService + nameof(InGameMessageService)
     )]
-    public class InGameMessageServiceProvider : ScriptableObjectProvider<IInGameMessageService>
+    public class InGameMessageServiceProvider : ScriptableObject, IObjectProvider<IInGameMessageService>
     {
         private readonly Lazy<IInGameMessageService> _lazyInstance =
             new Lazy<IInGameMessageService>(() => new InGameMessageService());
 
-        public override IInGameMessageService Provide() => _lazyInstance.Value;
+        public IInGameMessageService Provide() => _lazyInstance.Value;
     }
 }

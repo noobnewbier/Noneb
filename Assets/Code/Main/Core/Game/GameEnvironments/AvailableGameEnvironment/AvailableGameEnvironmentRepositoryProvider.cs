@@ -14,7 +14,7 @@ namespace Main.Core.Game.GameEnvironments.AvailableGameEnvironment
         fileName = nameof(AvailableGameEnvironmentRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(AvailableGameEnvironmentRepository)
     )]
-    public class AvailableGameEnvironmentRepositoryProvider : ScriptableObjectProvider<IAvailableGameEnvironmentRepository>
+    public class AvailableGameEnvironmentRepositoryProvider : ScriptableObject, IObjectProvider<IAvailableGameEnvironmentRepository>
     {
         [SerializeField] private List<GameEnvironmentScriptable> gameEnvironmentScriptables;
 
@@ -23,7 +23,7 @@ namespace Main.Core.Game.GameEnvironments.AvailableGameEnvironment
 
         private IAvailableGameEnvironmentRepository _cache;
 
-        public override IAvailableGameEnvironmentRepository Provide()
+        public IAvailableGameEnvironmentRepository Provide()
         {
             if (_cache == null)
             {

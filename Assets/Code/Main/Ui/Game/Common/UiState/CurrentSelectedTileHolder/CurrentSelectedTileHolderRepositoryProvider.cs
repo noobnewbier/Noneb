@@ -9,11 +9,11 @@ namespace Main.Ui.Game.Common.UiState.CurrentSelectedTileHolder
         fileName = nameof(CurrentSelectedTileHolderRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(CurrentSelectedTileHolderRepository)
     )]
-    public class CurrentSelectedTileHolderRepositoryProvider : ScriptableObjectProvider<CurrentSelectedTileHolderRepository>
+    public class CurrentSelectedTileHolderRepositoryProvider : ScriptableObject, IObjectProvider<CurrentSelectedTileHolderRepository>
     {
         private readonly Lazy<CurrentSelectedTileHolderRepository> _lazyInstance =
             new Lazy<CurrentSelectedTileHolderRepository>(() => new CurrentSelectedTileHolderRepository());
 
-        public override CurrentSelectedTileHolderRepository Provide() => _lazyInstance.Value;
+        public CurrentSelectedTileHolderRepository Provide() => _lazyInstance.Value;
     }
 }

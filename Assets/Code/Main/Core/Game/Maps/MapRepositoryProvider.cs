@@ -8,7 +8,7 @@ using UnityUtils.Constants;
 namespace Main.Core.Game.Maps
 {
     [CreateAssetMenu(fileName = nameof(MapRepositoryProvider), menuName = MenuName.ScriptableRepository + nameof(MapRepository))]
-    public class MapRepositoryProvider : ScriptableObjectProvider<IMapRepository>
+    public class MapRepositoryProvider : ScriptableObject, IObjectProvider<IMapRepository>
     {
         [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
@@ -17,9 +17,9 @@ namespace Main.Core.Game.Maps
 
         private IMapRepository _cache;
 
-        public override IMapRepository Provide() => _cache ?? (_cache = new MapRepository(
-            currentMapConfigRepositoryProvider.Provide(),
-            tilesRepositoryProvider.Provide()
-        ));
+        public IMapRepository Provide() => _cache ?? (_cache = new MapRepository(
+                                                       currentMapConfigRepositoryProvider.Provide(),
+                                                       tilesRepositoryProvider.Provide()
+                                                   ));
     }
 }

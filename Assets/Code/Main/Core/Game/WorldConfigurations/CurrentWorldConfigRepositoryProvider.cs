@@ -9,13 +9,13 @@ namespace Main.Core.Game.WorldConfigurations
         fileName = nameof(CurrentWorldConfigRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(CurrentWorldConfigRepository)
     )]
-    public class CurrentWorldConfigRepositoryProvider : ScriptableObjectProvider<ICurrentWorldConfigRepository>
+    public class CurrentWorldConfigRepositoryProvider : ScriptableObject, IObjectProvider<ICurrentWorldConfigRepository>
     {
         [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
 
         private ICurrentWorldConfigRepository _cache;
 
-        public override ICurrentWorldConfigRepository Provide() =>
+        public ICurrentWorldConfigRepository Provide() =>
             _cache ?? (_cache = new CurrentWorldConfigRepository(currentGameEnvironmentRepositoryProvider.Provide()));
     }
 }

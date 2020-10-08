@@ -11,14 +11,14 @@ namespace Main.Ui.Game.GameEnvironments.BoardItemsFetcherRepository.Providers
         fileName = nameof(UnitsHolderFetcherRepositoryProvider),
         menuName = MenuName.ScriptableRepository + "UnitsHolderFetcherRepository"
     )]
-    public class UnitsHolderFetcherRepositoryProvider : ScriptableObjectProvider<
-        BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>>
+    public class UnitsHolderFetcherRepositoryProvider : ScriptableObject,
+                                                        IObjectProvider<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>>
     {
         private readonly Lazy<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>> _lazyInstance =
             new Lazy<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>>(
                 () => new BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>()
             );
 
-        public override BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder> Provide() => _lazyInstance.Value;
+        public BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder> Provide() => _lazyInstance.Value;
     }
 }

@@ -9,11 +9,11 @@ namespace Main.Ui.Game.Maps.CurrentMapTransform
         fileName = nameof(CurrentMapTransformRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(CurrentMapTransformRepository)
     )]
-    public class CurrentMapTransformRepositoryProvider : ScriptableObjectProvider<CurrentMapTransformRepository>
+    public class CurrentMapTransformRepositoryProvider : ScriptableObject, IObjectProvider<CurrentMapTransformRepository>
     {
         private readonly Lazy<CurrentMapTransformRepository> _lazyInstance =
             new Lazy<CurrentMapTransformRepository>(() => new CurrentMapTransformRepository());
 
-        public override CurrentMapTransformRepository Provide() => _lazyInstance.Value;
+        public CurrentMapTransformRepository Provide() => _lazyInstance.Value;
     }
 }

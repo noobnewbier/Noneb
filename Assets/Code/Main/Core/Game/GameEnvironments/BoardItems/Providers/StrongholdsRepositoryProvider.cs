@@ -7,11 +7,11 @@ using UnityUtils.Constants;
 namespace Main.Core.Game.GameEnvironments.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(StrongholdsRepositoryProvider), menuName = MenuName.ScriptableRepository + "StrongholdsRepository")]
-    public class StrongholdsRepositoryProvider : ScriptableObjectProvider<BoardItemsRepository<Stronghold>>
+    public class StrongholdsRepositoryProvider : ScriptableObject, IObjectProvider<IBoardItemsRepository<Stronghold>>
     {
-        private readonly Lazy<BoardItemsRepository<Stronghold>> _lazyInstance =
-            new Lazy<BoardItemsRepository<Stronghold>>(() => new BoardItemsRepository<Stronghold>());
+        private readonly Lazy<IBoardItemsRepository<Stronghold>> _lazyInstance =
+            new Lazy<IBoardItemsRepository<Stronghold>>(() => new BoardItemsRepository<Stronghold>());
 
-        public override BoardItemsRepository<Stronghold> Provide() => _lazyInstance.Value;
+        public IBoardItemsRepository<Stronghold> Provide() => _lazyInstance.Value;
     }
 }

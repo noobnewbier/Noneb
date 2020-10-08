@@ -8,7 +8,7 @@ using UnityUtils.Constants;
 namespace Main.Ui.Game.Maps.TilesPosition
 {
     [CreateAssetMenu(fileName = nameof(TilesPositionServiceProvider), menuName = MenuName.ScriptableService + nameof(TilesPositionService))]
-    public class TilesPositionServiceProvider : ScriptableObjectProvider<ITilesPositionService>
+    public class TilesPositionServiceProvider : ScriptableObject, IObjectProvider<ITilesPositionService>
     {
         [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
@@ -18,7 +18,7 @@ namespace Main.Ui.Game.Maps.TilesPosition
 
         private ITilesPositionService _cache;
 
-        public override ITilesPositionService Provide() =>
+        public ITilesPositionService Provide() =>
             _cache ?? (_cache = new TilesPositionService(
                 currentMapConfigRepositoryProvider.Provide(),
                 currentWorldConfigRepositoryProvider.Provide()

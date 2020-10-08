@@ -6,11 +6,11 @@ using UnityUtils.Constants;
 namespace Main.Core.Game.Maps.Coordinate
 {
     [CreateAssetMenu(fileName = nameof(CoordinateServiceProvider), menuName = MenuName.ScriptableService + "GetCoordinateService")]
-    public class CoordinateServiceProvider : ScriptableObjectProvider<ICoordinateService>
+    public class CoordinateServiceProvider : ScriptableObject, IObjectProvider<ICoordinateService>
     {
         //prevent occasion where other classes are instantiated before this -- this should not have any dependencies anyway.
         private readonly Lazy<ICoordinateService> _lazyInstance = new Lazy<ICoordinateService>(() => new CoordinateService());
 
-        public override ICoordinateService Provide() => _lazyInstance.Value;
+        public ICoordinateService Provide() => _lazyInstance.Value;
     }
 }

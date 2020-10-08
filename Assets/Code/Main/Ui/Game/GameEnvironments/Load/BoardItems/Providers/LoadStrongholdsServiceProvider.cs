@@ -11,16 +11,16 @@ using UnityUtils.Constants;
 namespace Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers
 {
     [CreateAssetMenu(fileName = nameof(LoadStrongholdsServiceProvider), menuName = MenuName.ScriptableService + "LoadStrongholdsService")]
-    public class LoadStrongholdsServiceProvider : ScriptableObjectProvider<LoadBoardItemsService<Stronghold, StrongholdData>>
+    public class LoadStrongholdsServiceProvider : ScriptableObject, IObjectProvider<ILoadBoardItemsService<StrongholdData>>
     {
         [SerializeField] private StrongholdsRepositoryProvider strongholdsRepositoryProvider;
 
         [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField]
         private CoordinateServiceProvider coordinateServiceProvider;
 
-        private LoadBoardItemsService<Stronghold, StrongholdData> _cache;
+        private ILoadBoardItemsService<StrongholdData> _cache;
 
-        public override LoadBoardItemsService<Stronghold, StrongholdData> Provide()
+        public ILoadBoardItemsService<StrongholdData> Provide()
         {
             return _cache ?? (_cache = new LoadBoardItemsService<Stronghold, StrongholdData>(
                 coordinateServiceProvider.Provide(),

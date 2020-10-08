@@ -12,12 +12,10 @@ namespace Main.Ui.InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
         [SerializeField] private CurrentSelectedTileHolderRepositoryProvider selectedTileHolderRepositoryProvider;
 
 
-        public HoveredTileIndicatorViewModel Create()
-        {
-            return new HoveredTileIndicatorViewModel(
+        public HoveredTileIndicatorViewModel Create() =>
+            new HoveredTileIndicatorViewModel(
                 hoveredTileHolderRepositoryProvider.Provide(),
                 selectedTileHolderRepositoryProvider.Provide()
             );
-        }
     }
 }

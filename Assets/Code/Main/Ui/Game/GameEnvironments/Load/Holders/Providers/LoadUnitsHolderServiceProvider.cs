@@ -1,5 +1,4 @@
-﻿using System;
-using Main.Core.Game.Common.Providers;
+﻿using Main.Core.Game.Common.Providers;
 using Main.Core.Game.Coordinate;
 using Main.Core.Game.GameState.BoardItems.Providers;
 using Main.Core.Game.Units;

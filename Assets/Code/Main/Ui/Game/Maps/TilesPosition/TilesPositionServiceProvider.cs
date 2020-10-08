@@ -1,7 +1,6 @@
 ﻿using Main.Core.Game.Common.Providers;
 using Main.Core.Game.GameState.CurrentMapConfig;
 using Main.Core.Game.GameState.CurrentWorldConfig;
-using Main.Core.Game.WorldConfigurations;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;

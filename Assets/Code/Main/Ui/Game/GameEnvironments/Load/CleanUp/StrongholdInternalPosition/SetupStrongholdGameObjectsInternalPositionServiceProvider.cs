@@ -15,9 +15,6 @@ namespace Main.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         private readonly Lazy<ISetupStrongholdGameObjectsInternalPositionService> _lazyInstance =
             new Lazy<ISetupStrongholdGameObjectsInternalPositionService>(() => new SetupStrongholdGameObjectsInternalPositionService());
 
-        public ISetupStrongholdGameObjectsInternalPositionService Provide()
-        {
-            return _lazyInstance.Value;
-        }
+        public ISetupStrongholdGameObjectsInternalPositionService Provide() => _lazyInstance.Value;
     }
 }

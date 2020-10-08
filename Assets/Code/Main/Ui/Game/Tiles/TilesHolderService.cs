@@ -36,7 +36,8 @@ namespace Main.Ui.Game.Tiles
                         var holders = Create2DTileHolders(tileTransforms, config);
 
                         return holders[axialCoordinate.X, axialCoordinate.Z];
-                    })
+                    }
+                )
                 .Single();
         }
 

@@ -12,7 +12,8 @@ namespace Main.Ui.Game.UiState.BoardItemsFetcherRepository.Providers
         menuName = MenuName.ScriptableRepository + "StrongholdsHolderFetcherRepository"
     )]
     public class StrongholdsHolderFetcherRepositoryProvider : ScriptableObject,
-                                                              IObjectProvider<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<StrongholdHolder>, StrongholdHolder>> 
+                                                              IObjectProvider<BoardItemsHolderFetcherRepository<
+                                                                  BoardItemsHolderFetcher<StrongholdHolder>, StrongholdHolder>>
     {
         private readonly Lazy<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<StrongholdHolder>, StrongholdHolder>> _lazyInstance =
             new Lazy<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<StrongholdHolder>, StrongholdHolder>>(

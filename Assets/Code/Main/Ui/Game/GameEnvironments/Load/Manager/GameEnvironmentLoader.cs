@@ -29,10 +29,7 @@ namespace Main.Ui.Game.GameEnvironments.Load.Manager
                 .Concat(GetGameObjectRelatedLoadObservable())
                 .Last()
                 .Subscribe(
-                    _ =>
-                    {
-                        Debug.Log("success");
-                    },
+                    _ => { Debug.Log("success"); },
                     e =>
                     {
 #if UNITY_EDITOR

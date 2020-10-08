@@ -15,7 +15,8 @@ namespace Main.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
     [CreateAssetMenu(fileName = nameof(StrongholdUnitGameObjectLoader), menuName = ProjectMenuName.Loader + nameof(StrongholdUnitGameObjectLoader))]
     public class StrongholdUnitGameObjectLoader : GameObjectLoader
     {
-        [FormerlySerializedAs("repositoryProvider")] [SerializeField] private StrongholdHoldersFetchingServiceProvider provider;
+        [FormerlySerializedAs("repositoryProvider")] [SerializeField]
+        private StrongholdHoldersFetchingServiceProvider provider;
 
         protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository)

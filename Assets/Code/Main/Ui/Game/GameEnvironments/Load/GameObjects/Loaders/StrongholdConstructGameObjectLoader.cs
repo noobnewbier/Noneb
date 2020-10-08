@@ -18,7 +18,8 @@ namespace Main.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
     )]
     public class StrongholdConstructGameObjectLoader : GameObjectLoader
     {
-        [FormerlySerializedAs("repositoryProvider")] [SerializeField] private StrongholdHoldersFetchingServiceProvider provider;
+        [FormerlySerializedAs("repositoryProvider")] [SerializeField]
+        private StrongholdHoldersFetchingServiceProvider provider;
 
         protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
             ICurrentLevelDataRepository currentLevelDataRepository)

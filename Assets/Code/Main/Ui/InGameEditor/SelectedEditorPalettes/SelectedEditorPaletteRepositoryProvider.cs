@@ -5,7 +5,10 @@ using UnityUtils.Constants;
 
 namespace Main.Ui.InGameEditor.SelectedEditorPalettes
 {
-    [CreateAssetMenu(fileName = nameof(SelectedEditorPaletteRepositoryProvider), menuName = MenuName.ScriptableRepository + nameof(SelectedEditorPaletteRepository))]
+    [CreateAssetMenu(
+        fileName = nameof(SelectedEditorPaletteRepositoryProvider),
+        menuName = MenuName.ScriptableRepository + nameof(SelectedEditorPaletteRepository)
+    )]
     public class SelectedEditorPaletteRepositoryProvider : ScriptableObject, IObjectProvider<ISelectedEditorPaletteRepository>
     {
         [SerializeField] private EditorPalette editorPalette;

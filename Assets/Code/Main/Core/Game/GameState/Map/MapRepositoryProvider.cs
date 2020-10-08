@@ -18,8 +18,8 @@ namespace Main.Core.Game.GameState.Map
         private IMapRepository _cache;
 
         public IMapRepository Provide() => _cache ?? (_cache = new MapRepository(
-                                                       currentMapConfigRepositoryProvider.Provide(),
-                                                       tilesRepositoryProvider.Provide()
-                                                   ));
+            currentMapConfigRepositoryProvider.Provide(),
+            tilesRepositoryProvider.Provide()
+        ));
     }
 }

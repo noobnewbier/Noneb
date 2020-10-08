@@ -20,7 +20,7 @@ namespace Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers
 
         private ILoadBoardItemsService<UnitData> _cache;
 
-        public  ILoadBoardItemsService<UnitData> Provide()
+        public ILoadBoardItemsService<UnitData> Provide()
         {
             return _cache ?? (_cache = new LoadBoardItemsService<Unit, UnitData>(
                 coordinateServiceProvider.Provide(),

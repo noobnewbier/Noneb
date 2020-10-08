@@ -1,6 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Constructs;
 using Main.Core.Game.GameEnvironments.Data.LevelDatas;
 using Main.Core.Game.Maps;
 using Main.Core.Game.Strongholds;

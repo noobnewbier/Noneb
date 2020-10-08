@@ -2,7 +2,7 @@
 using System.Linq;
 using JetBrains.Annotations;
 using Main.Core.Game.Common.Factories;
-using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Constructs;
 using Main.Core.Game.Strongholds;
 using Main.Core.Game.Tiles;
 using Main.Core.Game.Units;

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Main.Core.Game.Constructs.Data
+namespace Main.Core.Game.Constructs
 {
     [CreateAssetMenu(menuName = MenuName.Data + nameof(Construct), fileName = nameof(ConstructDataScriptable))]
     public class ConstructDataScriptable : BoardItemDataScriptable

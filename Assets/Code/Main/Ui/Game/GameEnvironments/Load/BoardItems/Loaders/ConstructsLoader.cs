@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 using Main.Core.Game.Common.Constants;
-using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Constructs;
 using Main.Core.Game.GameEnvironments.CurrentLevelDatas;
 using Main.Core.Game.GameEnvironments.Load;
 using Main.Ui.Game.GameEnvironments.Load.BoardItems.Providers;

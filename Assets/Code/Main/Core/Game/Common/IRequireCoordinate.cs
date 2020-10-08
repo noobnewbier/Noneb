@@ -1,9 +1,7 @@
-﻿using Main.Core.Game.Maps.Coordinate;
-
-namespace Main.Core.Game.Common
+﻿namespace Main.Core.Game.Common
 {
     public interface IRequireCoordinate
     {
-        Coordinate Coordinate { set; }
+        Coordinate.Coordinate Coordinate { set; }
     }
 }

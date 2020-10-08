@@ -1,6 +1,6 @@
 ﻿using System;
 using Main.Core.Game.Common;
-using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Coordinate;
 using Main.Core.Game.Maps.CurrentMapConfig;
 using Main.Ui.Game.Tiles;
 using UniRx;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Coordinate;
 using Main.Core.Game.Maps;
-using Main.Core.Game.Maps.Coordinate;
 using Main.Ui.Game.Common.Holders;
 
 namespace Main.Ui.Game.GameEnvironments.Load.GameObjects

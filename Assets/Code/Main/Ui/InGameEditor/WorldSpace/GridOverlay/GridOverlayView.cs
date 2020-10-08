@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Coordinate;
 using Main.Core.Game.WorldConfigurations;
 using Main.Ui.InGameEditor.WorldSpace.GridOverlay.CellOverlay;
 using UniRx;

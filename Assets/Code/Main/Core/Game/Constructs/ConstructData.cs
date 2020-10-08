@@ -1,7 +1,7 @@
 ﻿using Main.Core.Game.Common.BoardItems;
 using UnityEngine;
 
-namespace Main.Core.Game.Constructs.Data
+namespace Main.Core.Game.Constructs
 {
     public class ConstructData : BoardItemData
     {

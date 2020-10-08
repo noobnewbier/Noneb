@@ -1,5 +1,5 @@
 ﻿using Main.Core.Game.Common.BoardItems;
-using Main.Core.Game.Constructs.Data;
+using Main.Core.Game.Constructs;
 using Main.Core.Game.Units;
 using UnityEngine;
 

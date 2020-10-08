@@ -1,4 +1,4 @@
-﻿using Main.Core.Game.Constructs.Data;
+﻿using Main.Core.Game.Constructs;
 using UnityEngine;
 using UnityUtils.Constants;
 

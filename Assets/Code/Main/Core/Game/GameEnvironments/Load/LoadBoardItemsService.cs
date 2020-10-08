@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Main.Core.Game.Common.BoardItems;
 using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Coordinate;
 using Main.Core.Game.GameEnvironments.BoardItems;
-using Main.Core.Game.Maps.Coordinate;
 
 namespace Main.Core.Game.GameEnvironments.Load
 {
@@ -18,11 +18,11 @@ namespace Main.Core.Game.GameEnvironments.Load
         where TBoardItemData : BoardItemData
     {
         private readonly ICoordinateService _coordinateService;
-        private readonly IFactory<TBoardItemData, Coordinate, TBoardItem> _factory;
+        private readonly IFactory<TBoardItemData, Coordinate.Coordinate, TBoardItem> _factory;
         private readonly IBoardItemsSetRepository<TBoardItem> _boardItemsSetRepository;
 
         public LoadBoardItemsService(ICoordinateService coordinateService,
-                                     IFactory<TBoardItemData, Coordinate, TBoardItem> factory,
+                                     IFactory<TBoardItemData, Coordinate.Coordinate, TBoardItem> factory,
                                      IBoardItemsSetRepository<TBoardItem> boardItemsSetRepository)
         {
             _coordinateService = coordinateService;

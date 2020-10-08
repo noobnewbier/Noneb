@@ -1,4 +1,4 @@
-﻿using Main.Core.Game.Maps.Coordinate;
+﻿using Main.Core.Game.Coordinate;
 using Main.Core.Game.WorldConfigurations;
 using TMPro;
 using UniRx;

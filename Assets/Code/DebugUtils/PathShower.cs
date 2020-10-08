@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Main.Core.Game.Coordinate;
 using Main.Core.Game.Maps;
-using Main.Core.Game.Maps.Coordinate;
 using Main.Ui.Game.Tiles;
 using UniRx;
 using UnityEngine;

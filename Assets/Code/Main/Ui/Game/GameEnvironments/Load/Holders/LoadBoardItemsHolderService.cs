@@ -1,9 +1,9 @@
 ﻿using System;
 using Main.Core.Game.Common.BoardItems;
 using Main.Core.Game.Common.Factories;
+using Main.Core.Game.Coordinate;
 using Main.Core.Game.GameEnvironments.BoardItems;
 using Main.Core.Game.Maps;
-using Main.Core.Game.Maps.Coordinate;
 using Main.Ui.Game.Common.Holders;
 using Main.Ui.Game.Maps.TilesPosition;
 using UniRx;

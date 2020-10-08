@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
-using Main.Core.Game.Maps.Coordinate;
+using Main.Core.Game.Coordinate;
 using Main.Core.Game.Maps.CurrentMapConfig;
 using Main.Core.Game.WorldConfigurations;
 using Main.Ui.Game.Maps.TilesPosition;

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
-using Main.Core.Game.Common.Providers;
+using Main.Core.Game.Common;
+using UnityEngine;
 
 namespace Main.Ui.Game.Common.Holders
 {
-    public abstract class BoardItemsHolderFetcher<THolder> : MonoObjectProvider<IReadOnlyList<THolder>>
+    public abstract class BoardItemsHolderFetcher<THolder> : MonoBehaviour, IFetcher<IReadOnlyList<THolder>>
     {
         protected abstract string HolderTag { get; }
 
-        public override IReadOnlyList<THolder> Provide()
+        public IReadOnlyList<THolder> Fetch()
         {
             var toReturn = new List<THolder>();
             for (var i = 0; i < transform.childCount; i++)

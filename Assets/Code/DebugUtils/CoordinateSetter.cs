@@ -29,7 +29,7 @@ namespace DebugUtils
         [ContextMenu("SetCoordinates")]
         private void SetCoordinates()
         {
-            var tilesTransform = tilesHolderFetcher.Provide();
+            var tilesTransform = tilesHolderFetcher.Fetch();
             _disposable = currentMapConfigRepositoryProvider.Provide()
                 .GetMostRecent()
                 .SubscribeOn(Scheduler.ThreadPool)

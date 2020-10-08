@@ -1,4 +1,4 @@
-﻿using Main.Core.Game.Coordinate;
+﻿using Main.Core.Game.Coordinates;
 using Main.Core.Game.GameState.CurrentMapConfig;
 using Main.Core.Game.GameState.CurrentWorldConfig;
 using Main.Ui.Game.Maps.TilesPosition;

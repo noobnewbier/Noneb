@@ -1,5 +1,5 @@
 ﻿using Experiment.CrossPlatformLiveData;
-using Main.Core.Game.Coordinate;
+using Main.Core.Game.Coordinates;
 using Main.Core.Game.WorldConfigurations;
 using UniRx;
 using UnityEngine;

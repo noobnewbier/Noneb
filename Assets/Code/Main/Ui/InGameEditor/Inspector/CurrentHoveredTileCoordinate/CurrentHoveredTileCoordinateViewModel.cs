@@ -1,6 +1,6 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
-using Main.Core.Game.Coordinate;
+using Main.Core.Game.Coordinates;
 using Main.Ui.Game.UiState.CurrentHoveredTileHolder;
 using UniRx;
 

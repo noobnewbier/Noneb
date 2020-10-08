@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Main.Core.Game.Maps;
 
-namespace Main.Core.Game.Coordinate
+namespace Main.Core.Game.Coordinates
 {
     public interface ICoordinateService
     {

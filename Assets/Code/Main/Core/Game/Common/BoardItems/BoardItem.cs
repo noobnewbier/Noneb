@@ -1,18 +1,20 @@
-﻿namespace Main.Core.Game.Common.BoardItems
+﻿using Main.Core.Game.Coordinates;
+
+namespace Main.Core.Game.Common.BoardItems
 {
     public abstract class BoardItem
     {
-        protected BoardItem(Coordinate.Coordinate coordinate)
+        protected BoardItem(Coordinate coordinate)
         {
             Coordinate = coordinate;
         }
 
-        public Coordinate.Coordinate Coordinate { get; }
+        public Coordinate Coordinate { get; }
     }
 
     public abstract class BoardItem<TData> : BoardItem where TData : BoardItemData
     {
-        protected BoardItem(TData data, Coordinate.Coordinate coordinate) : base(coordinate)
+        protected BoardItem(TData data, Coordinate coordinate) : base(coordinate)
         {
             Data = data;
         }

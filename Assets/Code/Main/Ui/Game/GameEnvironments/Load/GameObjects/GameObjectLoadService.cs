@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Main.Core.Game.Common.Factories;
-using Main.Core.Game.Coordinate;
+using Main.Core.Game.Coordinates;
 using Main.Core.Game.Maps;
 using Main.Ui.Game.Common.Holders;
 

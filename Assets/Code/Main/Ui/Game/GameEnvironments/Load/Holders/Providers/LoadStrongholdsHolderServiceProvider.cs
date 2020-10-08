@@ -1,5 +1,5 @@
 ﻿using Main.Core.Game.Common.Providers;
-using Main.Core.Game.Coordinate;
+using Main.Core.Game.Coordinates;
 using Main.Core.Game.GameState.BoardItems.Providers;
 using Main.Core.Game.Strongholds;
 using Main.Ui.Game.Maps.TilesPosition;

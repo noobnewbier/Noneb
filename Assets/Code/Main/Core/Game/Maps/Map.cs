@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Main.Core.Game.Coordinates;
 using Main.Core.Game.Tiles;
 
 namespace Main.Core.Game.Maps
@@ -25,7 +26,7 @@ namespace Main.Core.Game.Maps
                 _grid[j + i % 2 + i / 2, i] = tiles[i * map2DActualWidth + j];
         }
 
-        public IReadOnlyDictionary<HexDirection, Tile> GetNeighbours(Coordinate.Coordinate axialCoordinate)
+        public IReadOnlyDictionary<HexDirection, Tile> GetNeighbours(Coordinate axialCoordinate)
         {
             var minusX = axialCoordinate + HexDirection.MinusX;
             var plusX = axialCoordinate + HexDirection.PlusX;
@@ -47,7 +48,7 @@ namespace Main.Core.Game.Maps
             return toReturn;
         }
 
-        public Tile Get(Coordinate.Coordinate axialCoordinate) => _grid[axialCoordinate.X, axialCoordinate.Z];
+        public Tile Get(Coordinate axialCoordinate) => _grid[axialCoordinate.X, axialCoordinate.Z];
 
         //return null when out of bounds
         private Tile GetTileWithDefault(int x, int z)

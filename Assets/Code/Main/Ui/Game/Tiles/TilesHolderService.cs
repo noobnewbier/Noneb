@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Main.Core.Game.Coordinate;
+using Main.Core.Game.Coordinates;
 using Main.Core.Game.GameState.CurrentMapConfig;
 using Main.Core.Game.Maps;
 using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;

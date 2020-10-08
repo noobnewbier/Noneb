@@ -1,5 +1,5 @@
 ﻿using System;
-using Main.Core.Game.Coordinate;
+using Main.Core.Game.Coordinates;
 using TMPro;
 using UnityEngine;
 

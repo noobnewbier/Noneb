@@ -1,11 +1,12 @@
 ﻿using Main.Core.Game.Common.BoardItems;
 using Main.Core.Game.Common.TagInterface;
+using Main.Core.Game.Coordinates;
 
 namespace Main.Core.Game.Units
 {
     public class Unit : BoardItem<UnitData>, IOnTile
     {
-        public Unit(UnitData data, Coordinate.Coordinate coordinate) : base(data, coordinate)
+        public Unit(UnitData data, Coordinate coordinate) : base(data, coordinate)
         {
         }
     }

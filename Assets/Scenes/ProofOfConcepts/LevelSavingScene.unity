@@ -145,12 +145,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
-    - target: {fileID: 3231104543810992782, guid: 0bb9bdc884acf3f4a913f5eacc31324c,
-        type: 3}
-      propertyPath: tilesHoldersServiceProvider
-      value: 
-      objectReference: {fileID: 11400000, guid: a8d73a493b442254a971ed038b311c04,
-        type: 2}
     - target: {fileID: 3231104543810992783, guid: 0bb9bdc884acf3f4a913f5eacc31324c,
         type: 3}
       propertyPath: m_LocalPosition.x

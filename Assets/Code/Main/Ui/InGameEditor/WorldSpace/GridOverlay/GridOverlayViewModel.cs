@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Experiment.CrossPlatformLiveData;
 using Main.Core.Game.Coordinates;
 using Main.Core.Game.GameState.CurrentMapConfig;
@@ -82,23 +83,8 @@ namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay
         private void UpdateCoordinatesWhenNeeded(IReadOnlyList<Coordinate> newValue)
         {
             var currentValue = CoordinatesLiveData.Value;
-            var isLengthEqual = newValue.Count == currentValue?.Count;
-            var needUpdate = false;
-
-            if (isLengthEqual)
-            {
-                for (var i = 0; i < currentValue?.Count; i++)
-                    if (currentValue[i] != newValue[i])
-                    {
-                        needUpdate = true;
-                    }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-
-
+            var needUpdate = newValue.SequenceEqual(currentValue);
+            
             if (needUpdate)
             {
                 CoordinatesLiveData.PostValue(newValue);

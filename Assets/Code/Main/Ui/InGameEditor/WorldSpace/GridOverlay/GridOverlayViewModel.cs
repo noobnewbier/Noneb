@@ -83,8 +83,8 @@ namespace Main.Ui.InGameEditor.WorldSpace.GridOverlay
         private void UpdateCoordinatesWhenNeeded(IReadOnlyList<Coordinate> newValue)
         {
             var currentValue = CoordinatesLiveData.Value;
-            var needUpdate = newValue.SequenceEqual(currentValue);
-            
+            var needUpdate = currentValue?.SequenceEqual(newValue) ?? false;
+
             if (needUpdate)
             {
                 CoordinatesLiveData.PostValue(newValue);

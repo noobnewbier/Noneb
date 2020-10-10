@@ -194,6 +194,16 @@ namespace Core.Tests.Game.Coordinates
 
                 Assert.That(returnedValue, Is.EquivalentTo(expectedAnswer));
             }
+
+            [Test]
+            public void Given0x0Config_ReturnEmptyList()
+            {
+                var expectedAnswer = new Coordinate[0];
+
+                var returnedValue = _coordinateService.GetFlattenCoordinates(MapConfig.Empty);
+                
+                Assert.That(returnedValue, Is.EquivalentTo(expectedAnswer));
+            }
         }
     }
 }

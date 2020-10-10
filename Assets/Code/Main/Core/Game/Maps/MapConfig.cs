@@ -16,8 +16,6 @@ namespace Main.Core.Game.Maps
         public int GetMap2DActualWidth() => xSize;
         public int GetMap2DActualHeight() => zSize;
 
-        // may have to consider making MapConfiguration a plain class and the scriptable a wrapper,
-        // don't really like how we have to sort of manually create this
         public static MapConfig Create(int xSize, int zSize)
         {
             var instance = CreateInstance<MapConfig>();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Main.Core.Game.Maps;
 
 namespace Main.Core.Game.Coordinates
@@ -23,6 +24,11 @@ namespace Main.Core.Game.Coordinates
 
         public Coordinate GetCoordinateFromFlattenArrayIndex(int index, MapConfig config)
         {
+            if (index > config.GetTotalMapSize())
+            {
+                throw new ArgumentOutOfRangeException($"{index} is out of range of the given config: ${config}");
+            }
+            
             var nestedArrayZ = index / config.GetMap2DActualHeight();
             var nestedArrayX = index - nestedArrayZ * config.GetMap2DActualWidth();
 

@@ -1,10 +1,11 @@
 {
-    "name": "EditMode",
+    "name": "Core.Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Main",
-        "UniRx"
+        "UniRx",
+        "Core.Game",
+        "Core.InGameEditor"
     ],
     "includePlatforms": [
         "Editor"

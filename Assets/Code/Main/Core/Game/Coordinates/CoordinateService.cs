@@ -28,7 +28,7 @@ namespace Main.Core.Game.Coordinates
             {
                 throw new ArgumentOutOfRangeException($"{index} is out of range of the given config: ${config}");
             }
-            
+
             var nestedArrayZ = index / config.GetMap2DActualHeight();
             var nestedArrayX = index - nestedArrayZ * config.GetMap2DActualWidth();
 
@@ -41,7 +41,7 @@ namespace Main.Core.Game.Coordinates
             {
                 throw new ArgumentOutOfRangeException($"{x} or {z} is out of range of the given config: ${config}");
             }
-            
+
             return z * config.GetMap2DActualWidth() + x - z % 2 - z / 2;
         }
 
@@ -49,9 +49,7 @@ namespace Main.Core.Game.Coordinates
         {
             var toReturn = new List<Coordinate>();
 
-            for (var i = 0; i < mapConfig.GetMap2DActualHeight(); i++)
-            for (var j = 0; j < mapConfig.GetMap2DActualWidth(); j++)
-                toReturn.Add(GetAxialCoordinateFromNestedArrayIndex(j, i));
+            for (var i = 0; i < mapConfig.GetTotalMapSize(); i++) toReturn.Add(GetCoordinateFromFlattenArrayIndex(i, mapConfig));
 
             return toReturn;
         }

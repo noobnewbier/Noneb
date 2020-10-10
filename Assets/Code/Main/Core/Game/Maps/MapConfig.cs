@@ -28,7 +28,11 @@ namespace Main.Core.Game.Maps
 
         #region Methods - Consider moving them to a service or repo...
 
-        public int GetMap2DArrayWidth() => GetMap2DActualWidth() + GetMap2DActualHeight() / 2;
+        public int GetMap2DArrayWidth()
+        {
+            var zeroBasedHeight = GetMap2DActualHeight() - 1;
+            return GetMap2DActualWidth() + zeroBasedHeight / 2 + zeroBasedHeight % 2;
+        }
 
         public int GetMap2DArrayHeight() => GetMap2DActualHeight();
 

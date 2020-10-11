@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Main.Core.Game.Common.BoardItems;
 using Main.Core.Game.Common.Factories;
 using Main.Core.Game.Coordinates;
@@ -34,6 +35,11 @@ namespace Main.Core.Game.GameEnvironments.Load
                          int mapWidth,
                          int mapHeight)
         {
+            if (boardItemDatas.Count > mapWidth * mapHeight)
+            {
+                throw new ArgumentException($"Supplied amount of datas({boardItemDatas.Count}) is larger than map's size ({mapWidth * mapHeight})");
+            }
+            
             var items = new List<TBoardItem>();
 
             for (var i = 0; i < mapHeight; i++)

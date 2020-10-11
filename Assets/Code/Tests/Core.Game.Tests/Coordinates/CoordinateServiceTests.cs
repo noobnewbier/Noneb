@@ -4,7 +4,7 @@ using Main.Core.Game.Coordinates;
 using Main.Core.Game.Maps;
 using NUnit.Framework;
 
-namespace Core.Tests.Game.Coordinates
+namespace Core.Game.Tests.Coordinates
 {
     [TestFixture]
     public class CoordinateServiceTests

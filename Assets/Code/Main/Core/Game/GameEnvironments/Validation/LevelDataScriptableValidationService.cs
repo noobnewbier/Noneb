@@ -22,7 +22,12 @@ namespace Main.Core.Game.GameEnvironments.Validation
         public bool IsValid { get; }
     }
 
-    public class LevelDataScriptableValidationService
+    public interface ILevelDataScriptableValidationService
+    {
+        ValidationResult Validate(LevelDataScriptable levelData, MapConfig mapConfiguration);
+    }
+
+    public class LevelDataScriptableValidationService : ILevelDataScriptableValidationService
     {
         public ValidationResult Validate(LevelDataScriptable levelData, MapConfig mapConfiguration)
         {

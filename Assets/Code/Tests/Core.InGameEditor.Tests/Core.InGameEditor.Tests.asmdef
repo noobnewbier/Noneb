@@ -1,10 +1,11 @@
 {
-    "name": "Core.Game.Tests",
+    "name": "Core.InGameEditor.Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "UniRx",
         "Core.Game",
+        "Core.InGameEditor",
         "UnityUtils"
     ],
     "includePlatforms": [

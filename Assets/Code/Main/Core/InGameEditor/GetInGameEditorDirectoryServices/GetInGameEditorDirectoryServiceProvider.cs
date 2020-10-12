@@ -3,7 +3,7 @@ using Main.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Main.Core.InGameEditor.GetInGameEditorDirectoryService
+namespace Main.Core.InGameEditor.GetInGameEditorDirectoryServices
 {
     [CreateAssetMenu(
         fileName = nameof(GetInGameEditorDirectoryServiceProvider),

@@ -1,6 +1,6 @@
 ﻿using Main.Core.Game.Common.Providers;
 using Main.Core.InGameEditor.GetEnvironmentFilenameServices;
-using Main.Core.InGameEditor.GetInGameEditorDirectoryService;
+using Main.Core.InGameEditor.GetInGameEditorDirectoryServices;
 using UnityEngine;
 using UnityUtils.Constants;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
-using Main.Core.Game.InGameMessage;
+using Main.Core.Game.InGameMessages;
 using UniRx;
 
 namespace Main.Ui.Game.InGameMessage.DebugLogMessageShower

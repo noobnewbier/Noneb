@@ -1,7 +1,7 @@
 ﻿using System;
 using Main.Core.Game.GameEnvironments.Data;
 using Main.Core.Game.GameState.CurrentGameEnvironments;
-using Main.Core.Game.InGameMessage;
+using Main.Core.Game.InGameMessages;
 using Main.Ui.Game.Common.Holders;
 using Main.Ui.Game.Constructs;
 using Main.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;

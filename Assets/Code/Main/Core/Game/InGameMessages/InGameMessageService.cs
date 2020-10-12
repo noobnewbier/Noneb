@@ -1,7 +1,8 @@
 ﻿using System;
+using Castle.Core.Internal;
 using UniRx;
 
-namespace Main.Core.Game.InGameMessage
+namespace Main.Core.Game.InGameMessages
 {
     public interface IInGameMessageService : IDisposable
     {
@@ -22,6 +23,11 @@ namespace Main.Core.Game.InGameMessage
 
         public void PublishMessage(string message)
         {
+            if (message.IsNullOrEmpty())
+            {
+                throw new ArgumentException("message cannot be null or empty");
+            }
+            
             _inGameEditorUiMessageStream.OnNext(new InGameMessage(message));
         }
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Main.Core.Game.InGameMessage;
+using Main.Core.Game.InGameMessages;
 using Main.Ui.Game.GameEnvironments.Load.BoardItems.Loaders;
 using Main.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
 using Main.Ui.Game.GameEnvironments.Load.GameObjects.Loaders;

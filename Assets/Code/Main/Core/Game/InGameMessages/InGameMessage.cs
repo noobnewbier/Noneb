@@ -1,4 +1,4 @@
-﻿namespace Main.Core.Game.InGameMessage
+﻿namespace Main.Core.Game.InGameMessages
 {
     public struct InGameMessage
     {

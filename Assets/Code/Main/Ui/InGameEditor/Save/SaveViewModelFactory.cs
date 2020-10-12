@@ -1,5 +1,5 @@
 ﻿using Main.Core.Game.GameState.CurrentGameEnvironments;
-using Main.Core.Game.InGameMessage;
+using Main.Core.Game.InGameMessages;
 using Main.Core.InGameEditor.Save.EditorOnly;
 using UnityEngine;
 using UnityUtils.Constants;

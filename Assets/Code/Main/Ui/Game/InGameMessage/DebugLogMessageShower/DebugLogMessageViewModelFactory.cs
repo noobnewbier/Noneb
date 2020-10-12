@@ -1,4 +1,4 @@
-﻿using Main.Core.Game.InGameMessage;
+﻿using Main.Core.Game.InGameMessages;
 using UnityEngine;
 using UnityUtils.Constants;
 

@@ -2,7 +2,7 @@
 using Experiment.CrossPlatformLiveData;
 using Main.Core.Game.GameEnvironments.Save;
 using Main.Core.Game.GameState.CurrentGameEnvironments;
-using Main.Core.Game.InGameMessage;
+using Main.Core.Game.InGameMessages;
 using Main.Core.InGameEditor.Save;
 using UniRx;
 

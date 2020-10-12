@@ -35,7 +35,7 @@ namespace Core.Game.Tests.GameState.Maps
             var tiles = new[] {tile};
             var expectedValue = new Map(tiles, mapConfig);
             Map returnedValue = null;
-            
+
             _mockConfigRepository
                 .Setup(r => r.GetObservableStream())
                 .Returns(Observable.Return(mapConfig));
@@ -48,7 +48,7 @@ namespace Core.Game.Tests.GameState.Maps
                 .SubscribeOn(Scheduler.Immediate)
                 .ObserveOn(Scheduler.Immediate)
                 .Subscribe(v => returnedValue = v);
-         
+
             //We know they are the same if the only thing in the map is the same. slightly hacky, but works for now
             Assert.That(returnedValue.Get(coordinate), Is.EqualTo(expectedValue.Get(coordinate)));
         }
@@ -58,7 +58,7 @@ namespace Core.Game.Tests.GameState.Maps
         {
             var mapConfig = MapConfig.Create(1, 1);
             Map returnedValue = null;
-            
+
             _mockConfigRepository
                 .Setup(r => r.GetObservableStream())
                 .Returns(Observable.Return(mapConfig));
@@ -71,8 +71,80 @@ namespace Core.Game.Tests.GameState.Maps
                 .SubscribeOn(Scheduler.Immediate)
                 .ObserveOn(Scheduler.Immediate)
                 .Subscribe(actualValue => returnedValue = actualValue);
-            
+
             Assert.That(returnedValue, Is.Null);
+        }
+
+        [Test]
+        public void WhenOnlyConfigIsUpdated_MapDoesNotUpdate()
+        {
+            const int expectedUpdateCount = 1;
+            var actualUpdateCount = 0;
+            var mapConfig = MapConfig.Create(1, 1);
+            var tiles = new Tile[] {null};
+
+            _mockConfigRepository
+                .Setup(r => r.GetObservableStream())
+                .Returns(Observable.Repeat(mapConfig, 2));
+
+            _mockTilesRepository
+                .Setup(r => r.GetObservableStream())
+                .Returns(Observable.Repeat(tiles, 1));
+
+            _mapRepository.GetObservableStream()
+                .SubscribeOn(Scheduler.Immediate)
+                .ObserveOn(Scheduler.Immediate)
+                .Subscribe(_ => actualUpdateCount++);
+
+            Assert.That(actualUpdateCount, Is.EqualTo(expectedUpdateCount));
+        }
+        
+        [Test]
+        public void WhenOnlyTilesIsUpdated_MapDoesNotUpdate()
+        {
+            const int expectedUpdateCount = 1;
+            var actualUpdateCount = 0;
+            var mapConfig = MapConfig.Create(1, 1);
+            var tiles = new Tile[] {null};
+
+            _mockConfigRepository
+                .Setup(r => r.GetObservableStream())
+                .Returns(Observable.Repeat(mapConfig, 1));
+
+            _mockTilesRepository
+                .Setup(r => r.GetObservableStream())
+                .Returns(Observable.Repeat(tiles, 2));
+
+            _mapRepository.GetObservableStream()
+                .SubscribeOn(Scheduler.Immediate)
+                .ObserveOn(Scheduler.Immediate)
+                .Subscribe(_ => actualUpdateCount++);
+
+            Assert.That(actualUpdateCount, Is.EqualTo(expectedUpdateCount));
+        }
+        
+        [Test]
+        public void WhenBothConfigAndTilesIsUpdated_MapUpdates()
+        {
+            const int expectedUpdateCount = 2;
+            var actualUpdateCount = 0;
+            var mapConfig = MapConfig.Create(1, 1);
+            var tiles = new Tile[] {null};
+
+            _mockConfigRepository
+                .Setup(r => r.GetObservableStream())
+                .Returns(Observable.Repeat(mapConfig, 2));
+
+            _mockTilesRepository
+                .Setup(r => r.GetObservableStream())
+                .Returns(Observable.Repeat(tiles, 2));
+
+            _mapRepository.GetObservableStream()
+                .SubscribeOn(Scheduler.Immediate)
+                .ObserveOn(Scheduler.Immediate)
+                .Subscribe(_ => actualUpdateCount++);
+
+            Assert.That(actualUpdateCount, Is.EqualTo(expectedUpdateCount));
         }
     }
 }

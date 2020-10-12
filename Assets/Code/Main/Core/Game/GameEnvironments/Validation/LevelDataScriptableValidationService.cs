@@ -34,7 +34,7 @@ namespace Main.Core.Game.GameEnvironments.Validation
             var result = SummarizeValidationResult(
                 AllDataOfCorrectSize(levelData, mapConfiguration),
                 AllTileHasData(levelData.TileDatas, levelData.TileGameObjectProviders),
-                UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa(levelData),
+                UnitAndConstructHasDataWhenHasGameObjectFactoryAndViceVersa(levelData),
                 IsStrongHoldSetUpCorrectly(levelData),
                 NoOtherOnTileBoardItemWhenThereIsStronghold(levelData)
             );
@@ -53,7 +53,7 @@ namespace Main.Core.Game.GameEnvironments.Validation
 
         #region UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa
 
-        private ValidationResult UnitAndConstructHasDataWhenHasGameObjectProviderAndViceVersa(LevelDataScriptable levelData) =>
+        private ValidationResult UnitAndConstructHasDataWhenHasGameObjectFactoryAndViceVersa(LevelDataScriptable levelData) =>
             SummarizeValidationResult(
                 DataHasCorrespondingGameObjectProvider(levelData.ConstructDatas, levelData.ConstructGameObjectProviders, nameof(Construct)),
                 DataHasCorrespondingGameObjectProvider(levelData.UnitDatas, levelData.UnitGameObjectProviders, nameof(Unit))
@@ -252,8 +252,8 @@ namespace Main.Core.Game.GameEnvironments.Validation
             );
             var onlyHasConstructGoWhenHasConstruct = DataHasCorrespondingGameObjectProvider(
                 dataWrappers.Select(d => d.ConstructDataScriptable).ToList(),
-                levelData.StrongholdUnitGameObjectProviders,
-                nameof(levelData.StrongholdUnitGameObjectProviders)
+                levelData.StrongholdConstructGameObjectProviders,
+                nameof(levelData.StrongholdConstructGameObjectProviders)
             );
 
             return SummarizeValidationResult(

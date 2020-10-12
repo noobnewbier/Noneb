@@ -65,7 +65,7 @@ namespace Main.Core.Game.GameEnvironments.Data.LevelDatas
             newInstance.unitDatas = levelData.UnitDatas.Select(d => d?.Original).ToArray();
             newInstance.unitGameObjectProviders = levelData.UnitGameObjectProviders;
             newInstance.strongholdDatas = levelData.StrongholdDatas
-                .Select(data => data != null ? new StrongholdDataWrapper(data.UnitData.Original, data.ConstructData.Original) : null)
+                .Select(data => data != null ? new StrongholdDataWrapper(data.UnitData.Original, data.ConstructData.Original) : new StrongholdDataWrapper(null, null))
                 .ToArray();
             newInstance.strongholdUnitGameObjectProviders = levelData.StrongholdUnitGameObjectProviders;
             newInstance.strongholdConstructGameObjectProviders = levelData.StrongholdConstructGameObjectProviders;

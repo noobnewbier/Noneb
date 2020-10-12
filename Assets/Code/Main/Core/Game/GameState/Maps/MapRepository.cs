@@ -2,12 +2,13 @@
 using Main.Core.Game.Common;
 using Main.Core.Game.GameState.BoardItems;
 using Main.Core.Game.GameState.CurrentMapConfig;
+using Main.Core.Game.Maps;
 using Main.Core.Game.Tiles;
 using UniRx;
 
-namespace Main.Core.Game.GameState.Map
+namespace Main.Core.Game.GameState.Maps
 {
-    public interface IMapRepository : IDataGetRepository<Maps.Map>
+    public interface IMapRepository : IDataGetRepository<Map>
     {
     }
 
@@ -23,21 +24,21 @@ namespace Main.Core.Game.GameState.Map
             _tilesRepository = tilesRepository;
         }
 
-        public IObservable<Maps.Map> GetObservableStream()
+        public IObservable<Map> GetObservableStream()
         {
             return _currentMapConfigRepository.GetObservableStream()
                 .ZipLatest(_tilesRepository.GetObservableStream(), (config, tiles) => (config, tiles))
                 .Where(tuple => tuple.config != null)
-                .Select(tuple => new Maps.Map(tuple.tiles, tuple.config));
+                .Select(tuple => new Map(tuple.tiles, tuple.config));
         }
 
-        public IObservable<Maps.Map> GetMostRecent()
+        public IObservable<Map> GetMostRecent()
         {
             return _currentMapConfigRepository.GetMostRecent()
                 .Where(m => m != null)
                 .ZipLatest(_tilesRepository.GetObservableStream(), (config, tiles) => (config, tiles))
                 .Where(tuple => tuple.config != null)
-                .Select(tuple => new Maps.Map(tuple.tiles, tuple.config));
+                .Select(tuple => new Map(tuple.tiles, tuple.config));
         }
     }
 }

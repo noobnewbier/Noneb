@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Main.Core.Game.Coordinates;
-using Main.Core.Game.GameState.Map;
+using Main.Core.Game.GameState.Maps;
 using Main.Core.Game.Maps;
 using Main.Ui.Game.Tiles;
 using UniRx;

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace Main.Core.Game.GameState.Map
+namespace Main.Core.Game.GameState.Maps
 {
     [CreateAssetMenu(fileName = nameof(MapRepositoryProvider), menuName = MenuName.ScriptableRepository + nameof(MapRepository))]
     public class MapRepositoryProvider : ScriptableObject, IObjectProvider<IMapRepository>

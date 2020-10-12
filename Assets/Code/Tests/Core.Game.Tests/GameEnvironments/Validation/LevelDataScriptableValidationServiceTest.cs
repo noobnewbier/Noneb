@@ -4,9 +4,9 @@ using Main.Core.Game.Maps;
 using Main.Core.Game.Units;
 using NUnit.Framework;
 using UnityEngine;
-using static Core.Game.Tests.GameEnvironments.Save.LevelDataTestExtensions;
+using static Core.Game.Tests.GameEnvironments.Validation.LevelDataTestExtensions;
 
-namespace Core.Game.Tests.GameEnvironments.Save
+namespace Core.Game.Tests.GameEnvironments.Validation
 {
     [TestFixture]
     public class LevelDataScriptableValidationServiceTest

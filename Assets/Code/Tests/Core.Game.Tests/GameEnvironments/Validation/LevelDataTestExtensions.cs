@@ -9,7 +9,7 @@ using Main.Core.Game.Units;
 using UnityEngine;
 using UnityUtils;
 
-namespace Core.Game.Tests.GameEnvironments.Save
+namespace Core.Game.Tests.GameEnvironments.Validation
 {
     public static class LevelDataTestExtensions
     {

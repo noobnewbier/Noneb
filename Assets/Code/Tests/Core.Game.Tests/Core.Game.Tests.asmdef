@@ -5,7 +5,8 @@
         "UnityEditor.TestRunner",
         "UniRx",
         "Core.Game",
-        "Core.InGameEditor"
+        "Core.InGameEditor",
+        "UnityUtils"
     ],
     "includePlatforms": [
         "Editor"

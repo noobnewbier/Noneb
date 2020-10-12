@@ -3,22 +3,22 @@ using UniRx;
 
 namespace Main.Core.Game.Common
 {
-    public interface IDataRepository<T> : IDataGetRepository<T>, IDataSetRepository<T> where T : class
+    public interface IDataRepository<T> : IDataGetRepository<T>, IDataSetRepository<T>
     {
     }
 
-    public interface IDataGetRepository<out T> where T : class
+    public interface IDataGetRepository<out T>
     {
         IObservable<T> GetObservableStream();
         IObservable<T> GetMostRecent();
     }
 
-    public interface IDataSetRepository<in T> where T : class
+    public interface IDataSetRepository<in T>
     {
         void Set(T value);
     }
 
-    public abstract class DataRepository<T> : IDataRepository<T> where T : class
+    public abstract class DataRepository<T> : IDataRepository<T>
     {
         private readonly ReplaySubject<T> _subject;
         private IObservable<T> _single;

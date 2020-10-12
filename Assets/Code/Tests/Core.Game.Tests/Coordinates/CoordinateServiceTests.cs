@@ -26,7 +26,7 @@ namespace Core.Game.Tests.Coordinates
 
                 var returnedValue = _coordinateService.GetAxialCoordinateFromNestedArrayIndex(2, 2);
 
-                Assert.That(expectedAnswer, Is.EqualTo(returnedValue));
+                Assert.That(returnedValue, Is.EqualTo(expectedAnswer));
             }
 
             [Test]
@@ -36,7 +36,7 @@ namespace Core.Game.Tests.Coordinates
 
                 var returnedValue = _coordinateService.GetAxialCoordinateFromNestedArrayIndex(0, 0);
 
-                Assert.That(expectedAnswer, Is.EqualTo(returnedValue));
+                Assert.That(returnedValue, Is.EqualTo(expectedAnswer));
             }
         }
 
@@ -59,7 +59,7 @@ namespace Core.Game.Tests.Coordinates
 
                 var returnedValue = _coordinateService.GetCoordinateFromFlattenArrayIndex(8, _3X3Config);
 
-                Assert.That(expectedAnswer, Is.EqualTo(returnedValue));
+                Assert.That(returnedValue, Is.EqualTo(expectedAnswer));
             }
 
             [Test]
@@ -69,7 +69,7 @@ namespace Core.Game.Tests.Coordinates
 
                 var returnedValue = _coordinateService.GetCoordinateFromFlattenArrayIndex(0, _3X3Config);
 
-                Assert.That(expectedAnswer, Is.EqualTo(returnedValue));
+                Assert.That(returnedValue, Is.EqualTo(expectedAnswer));
             }
 
             [Test]

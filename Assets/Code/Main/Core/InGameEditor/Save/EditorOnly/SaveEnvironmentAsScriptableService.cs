@@ -26,7 +26,7 @@ namespace Main.Core.InGameEditor.Save.EditorOnly
 
         public SavingResult TrySaveEnvironment(GameEnvironment gameEnvironment, string environmentName)
         {
-            var path = _getInGameEditorDirectoryService.GetRelativeDirectoryToSpecificEnvironmentForAssetDatabase(environmentName);
+            var path = _getInGameEditorDirectoryService.GetRelativeDirectoryToSpecificEnvironment(environmentName);
 
             var levelDataFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(LevelData));
             var gameEnvironmentFilename = _environmentFilenameService.GetEnvironmentAsScriptableFilename(environmentName, typeof(GameEnvironment));

@@ -5,7 +5,7 @@ using Main.Ui.Game.Units;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Main.Ui.Game.UiState.BoardItemsFetcherRepository.Providers
+namespace Main.Ui.Game.UiState.BoardItemsFetcher.Providers
 {
     [CreateAssetMenu(
         fileName = nameof(UnitsHolderFetcherRepositoryProvider),

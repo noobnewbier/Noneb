@@ -18,7 +18,7 @@ namespace Main.Ui.InGameEditor.EnvironmentSelection.ClickableGameEnvironments
             _onClickEvent.Invoke(_gameEnvironment);
         }
 
-        public void Instantiate(GameEnvironment gameEnvironment, Action<GameEnvironment> onClickEvent)
+        public void Init(GameEnvironment gameEnvironment, Action<GameEnvironment> onClickEvent)
         {
             _gameEnvironment = gameEnvironment;
             _onClickEvent = onClickEvent;

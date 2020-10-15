@@ -51,7 +51,7 @@ namespace Main.Ui.InGameEditor.EnvironmentSelection
             foreach (var environment in gameEnvironments)
             {
                 var goAndComponent = clickableGameEnvironmentViewFactory.Create(gameEnvironmentsParentTransform, false);
-                goAndComponent.component.Instantiate(environment, _viewModel.InspectGameEnvironment);
+                goAndComponent.component.Init(environment, _viewModel.InspectGameEnvironment);
             }
         }
 

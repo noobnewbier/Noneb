@@ -13,8 +13,8 @@ namespace Main.Ui.InGameEditor.DataSelection.DataSelector
         [SerializeField] private EditorPalette palette;
         [SerializeField] private TabButtonViewModelFactory tabButtonViewModelFactory;
         [SerializeField] private SelectableDatasPanelViewModelFactory panelViewModelFactory;
-        
-        
+
+
         public DataSelectorViewModel Create() => new DataSelectorViewModel(palette, tabButtonViewModelFactory, panelViewModelFactory);
     }
 }

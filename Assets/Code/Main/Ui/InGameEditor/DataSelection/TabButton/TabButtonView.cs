@@ -7,9 +7,10 @@ namespace Main.Ui.InGameEditor.DataSelection.TabButton
     public class TabButtonView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI buttonText;
-        
+
         private TabButtonViewModel _viewModel;
         private IDisposable _disposable;
+
         public void Init(TabButtonViewModel viewModel)
         {
             _viewModel = viewModel;

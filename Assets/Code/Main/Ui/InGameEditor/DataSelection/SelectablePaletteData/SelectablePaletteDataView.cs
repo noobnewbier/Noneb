@@ -11,7 +11,7 @@ namespace Main.Ui.InGameEditor.DataSelection.SelectablePaletteData
     {
         [SerializeField] private Image icon;
         [SerializeField] private TextMeshProUGUI nameText;
-        
+
         private SelectablePaletteDataViewModel _viewModel;
         private IDisposable _disposable;
 

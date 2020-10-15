@@ -11,11 +11,11 @@ namespace Main.Ui.InGameEditor.DataSelection.SelectableDatasPanel
         private readonly IReadOnlyList<SelectablePaletteDataViewModel> _unitPresetsViewModels;
         private readonly IReadOnlyList<SelectablePaletteDataViewModel> _constructPresetsViewModels;
         private readonly IReadOnlyList<SelectablePaletteDataViewModel> _tilePresetsViewModels;
-        
+
         public SelectableDatasPanelViewModel(EditorPalette palette)
         {
             SelectablePaletteDataViewModels = new LiveData<IReadOnlyList<SelectablePaletteDataViewModel>>();
-            
+
             _unitPresetsViewModels = palette.AvailableUnitPresets.Datas
                 .Select(d => new SelectablePaletteDataViewModel(d.Icon, d.Name))
                 .ToList();

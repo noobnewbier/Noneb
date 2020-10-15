@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d8685675e142dba04920273ceb35f5, type: 3}
   m_Name: AvailableTileData
   m_EditorClassIdentifier: 
-  set:
-  - {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2, type: 2}
-  - {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558, type: 2}
+  datas:
+  - tileDataScriptable: {fileID: 11400000, guid: dcb07a3f9bf3a0d4b8d35913c36948f2,
+      type: 2}
+    gameObjectFactory: {fileID: 11400000, guid: 5f9ea6b25ad805e4aa0fd13af3befabb,
+      type: 2}
+  - tileDataScriptable: {fileID: 11400000, guid: 959930b86cdeb1348a151c5985a76558,
+      type: 2}
+    gameObjectFactory: {fileID: 11400000, guid: b7ba825f1e9b12f46867f531e90f4628,
+      type: 2}

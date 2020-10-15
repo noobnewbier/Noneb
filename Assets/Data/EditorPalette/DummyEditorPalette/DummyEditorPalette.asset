@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ab899eabb4448982dd5c04b6cfb3ef, type: 3}
   m_Name: DummyEditorPalette
   m_EditorClassIdentifier: 
-  availableTileData: {fileID: 11400000, guid: f85add6893ce8e44394c4d06784e74ba, type: 2}
-  availableTileGameObjectProviders: {fileID: 11400000, guid: aa30278204357194a8b6e719fdf6dae3,
+  availableTilePresets: {fileID: 11400000, guid: f85add6893ce8e44394c4d06784e74ba,
     type: 2}
-  availableConstructData: {fileID: 11400000, guid: 162161d833ada2841bc8a1a2ba00e87c,
+  availableConstructPresets: {fileID: 11400000, guid: 162161d833ada2841bc8a1a2ba00e87c,
     type: 2}
-  availableConstructGameObjectProviders: {fileID: 11400000, guid: 325ac8d4b80b53941b633ce90868c200,
-    type: 2}
-  availableUnitData: {fileID: 11400000, guid: 201f3f2b9f948c6449303d135271822b, type: 2}
-  availableUnitGameObjectProviders: {fileID: 11400000, guid: 02ccf68f9f515d048bf6c19d08d4c008,
+  availableUnitPresets: {fileID: 11400000, guid: 201f3f2b9f948c6449303d135271822b,
     type: 2}

@@ -1,24 +1,20 @@
-﻿using Main.Core.InGameEditor.Data.Availables;
+﻿using Main.Core.Game.Common.Constants;
+using Main.Core.InGameEditor.Data.Availables;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Main.Core.InGameEditor.Data
 {
-    [CreateAssetMenu(fileName = nameof(EditorPalette), menuName = MenuName.Data + "/InGameEditor/EditorPalette")]
+    [CreateAssetMenu(fileName = nameof(EditorPalette), menuName = MenuName.Data + ProjectMenuName.InGameEditor + nameof(EditorPalette))]
     public class EditorPalette : ScriptableObject
     {
-        [SerializeField] private AvailableTileDatas availableTileDatas;
-        [SerializeField] private AvailableGameObjectProviders availableTileGameObjectProviders;
-        [SerializeField] private AvailableConstructDatas availableConstructDatas;
-        [SerializeField] private AvailableGameObjectProviders availableConstructGameObjectProviders;
-        [SerializeField] private AvailableUnitDatas availableUnitDatas;
-        [SerializeField] private AvailableGameObjectProviders availableUnitGameObjectProviders;
+        [FormerlySerializedAs("availableTileDatas")] [SerializeField] private AvailableTilePresets availableTilePresets;
+        [FormerlySerializedAs("availableConstructDatas")] [SerializeField] private AvailableConstructPresets availableConstructPresets;
+        [FormerlySerializedAs("availableUnitDatas")] [SerializeField] private AvailableUnitPresets availableUnitPresets;
 
-        public AvailableTileDatas AvailableTileDatas => availableTileDatas;
-        public AvailableGameObjectProviders AvailableTileGameObjectProviders => availableTileGameObjectProviders;
-        public AvailableConstructDatas AvailableConstructDatas => availableConstructDatas;
-        public AvailableGameObjectProviders AvailableConstructGameObjectProviders => availableConstructGameObjectProviders;
-        public AvailableUnitDatas AvailableUnitDatas => availableUnitDatas;
-        public AvailableGameObjectProviders AvailableUnitGameObjectProviders => availableUnitGameObjectProviders;
+        public AvailableTilePresets AvailableTilePresets => availableTilePresets;
+        public AvailableConstructPresets AvailableConstructPresets => availableConstructPresets;
+        public AvailableUnitPresets AvailableUnitPresets => availableUnitPresets;
     }
 }

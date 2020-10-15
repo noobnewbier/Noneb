@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99d9e06baec46a092b1c09c0e79237d, type: 3}
   m_Name: AvailableConstructData
   m_EditorClassIdentifier: 
-  set:
-  - {fileID: 11400000, guid: c1246cdd20052e844b7a42a8b2a89d03, type: 2}
+  datas:
+  - constructDataScriptable: {fileID: 11400000, guid: c1246cdd20052e844b7a42a8b2a89d03,
+      type: 2}
+    gameObjectFactory: {fileID: 11400000, guid: 85b84275b5ab76745bbfe77edd990657,
+      type: 2}

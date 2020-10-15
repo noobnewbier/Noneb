@@ -1,0 +1,26 @@
+﻿using Noneb.Core.Game.Common.Providers;
+using Noneb.Core.InGameEditor.GetEnvironmentFilenameServices;
+using Noneb.Core.InGameEditor.GetInGameEditorDirectoryServices;
+using UnityEngine;
+using UnityUtils.Constants;
+
+namespace Noneb.Core.InGameEditor.Save.EditorOnly
+{
+    [CreateAssetMenu(
+        fileName = nameof(SaveEnvironmentAsScriptableServiceProvider),
+        menuName = MenuName.ScriptableService + nameof(SaveEnvironmentAsScriptableService)
+    )]
+    public class SaveEnvironmentAsScriptableServiceProvider : ScriptableObject, IObjectProvider<SaveEnvironmentAsScriptableService>
+    {
+        [SerializeField] private GetEnvironmentFilenameServiceProvider filenameServiceProvider;
+        [SerializeField] private GetInGameEditorDirectoryServiceProvider getInGameEditorDirectoryServiceProvider;
+
+        private SaveEnvironmentAsScriptableService _cache;
+
+        public SaveEnvironmentAsScriptableService Provide() =>
+            _cache ?? (_cache = new SaveEnvironmentAsScriptableService(
+                filenameServiceProvider.Provide(),
+                getInGameEditorDirectoryServiceProvider.Provide()
+            ));
+    }
+}

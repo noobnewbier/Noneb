@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Main.Core.Game.Coordinates;
-using Main.Core.Game.GameState.Maps;
-using Main.Core.Game.Maps;
-using Main.Ui.Game.Tiles;
+using Noneb.Core.Game.Coordinates;
+using Noneb.Core.Game.GameState.Maps;
+using Noneb.Core.Game.Maps;
+using Noneb.Ui.Game.Tiles;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;

@@ -1,5 +1,5 @@
-﻿using Main.Core.Game.GameEnvironments.Data;
-using Main.Core.InGameEditor.GetEnvironmentFilenameServices;
+﻿using Noneb.Core.Game.GameEnvironments.Data;
+using Noneb.Core.InGameEditor.GetEnvironmentFilenameServices;
 using NUnit.Framework;
 
 namespace Core.InGameEditor.Tests.GetEnvironmentFilenameServices

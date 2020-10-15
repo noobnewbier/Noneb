@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Main.Core.Game.Common.BoardItems;
-using Main.Core.Game.Common.Factories;
-using Main.Core.Game.Coordinates;
-using Main.Core.Game.GameEnvironments.Load;
-using Main.Core.Game.GameState.BoardItems;
 using Moq;
+using Noneb.Core.Game.Common.BoardItems;
+using Noneb.Core.Game.Common.Factories;
+using Noneb.Core.Game.Coordinates;
+using Noneb.Core.Game.GameEnvironments.Load;
+using Noneb.Core.Game.GameState.BoardItems;
 using NUnit.Framework;
 using UnityEngine;
 

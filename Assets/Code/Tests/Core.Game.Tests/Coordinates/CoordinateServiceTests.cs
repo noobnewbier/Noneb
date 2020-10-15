@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Main.Core.Game.Coordinates;
-using Main.Core.Game.Maps;
+using Noneb.Core.Game.Coordinates;
+using Noneb.Core.Game.Maps;
 using NUnit.Framework;
 
 namespace Core.Game.Tests.Coordinates

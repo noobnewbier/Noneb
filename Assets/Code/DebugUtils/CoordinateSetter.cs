@@ -1,8 +1,8 @@
 ﻿using System;
-using Main.Core.Game.Common;
-using Main.Core.Game.Coordinates;
-using Main.Core.Game.GameState.CurrentMapConfig;
-using Main.Ui.Game.Tiles;
+using Noneb.Core.Game.Common;
+using Noneb.Core.Game.Coordinates;
+using Noneb.Core.Game.GameState.CurrentMapConfig;
+using Noneb.Ui.Game.Tiles;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;

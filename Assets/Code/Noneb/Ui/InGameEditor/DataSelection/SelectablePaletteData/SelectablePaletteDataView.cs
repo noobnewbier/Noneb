@@ -1,21 +1,23 @@
 ﻿using System;
+using Noneb.Core.InGameEditor.Data;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityUtils.Pooling;
 
 namespace Noneb.Ui.InGameEditor.DataSelection.SelectablePaletteData
 {
-    public class SelectablePaletteDataView : PooledMonoBehaviour
+    public class SelectablePaletteDataView : PooledMonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private Image icon;
         [SerializeField] private TextMeshProUGUI nameText;
 
-        private SelectablePaletteDataViewModel _viewModel;
+        private SelectablePaletteDataViewModel<PaletteData> _viewModel;
         private IDisposable _disposable;
 
-        public void Init(SelectablePaletteDataViewModel viewModel)
+        public void Init(SelectablePaletteDataViewModel<PaletteData> viewModel)
         {
             _viewModel = viewModel;
             _disposable = new CompositeDisposable
@@ -33,6 +35,11 @@ namespace Noneb.Ui.InGameEditor.DataSelection.SelectablePaletteData
         private void OnDisable()
         {
             _disposable?.Dispose();
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _viewModel.Inspect();
         }
     }
 }

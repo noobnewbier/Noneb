@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Noneb.Core.InGameEditor.Data;
 using Noneb.Ui.InGameEditor.DataSelection.SelectablePaletteData;
 using UnityEngine;
 
@@ -18,21 +19,21 @@ namespace Noneb.Ui.InGameEditor.DataSelection.SelectableDatasPanel
             _viewModel.SelectablePaletteDataViewModels.Subscribe(OnSelectablePaletteDataViewModelsChange);
         }
 
-        private void OnSelectablePaletteDataViewModelsChange(IReadOnlyList<SelectablePaletteDataViewModel> dataViewModels)
+        private void OnSelectablePaletteDataViewModelsChange(IReadOnlyList<SelectablePaletteDataViewModel<PaletteData>> dataViewModels)
         {
             UpdateExistingPaletteDataViews(dataViewModels);
             CreateNewSelectableDataViewsIfNeeded(dataViewModels);
             CleanUpExcessiveSelectableDataViews(dataViewModels);
         }
 
-        private void UpdateExistingPaletteDataViews(IReadOnlyList<SelectablePaletteDataViewModel> dataViewModels)
+        private void UpdateExistingPaletteDataViews(IReadOnlyList<SelectablePaletteDataViewModel<PaletteData>> dataViewModels)
         {
             var maximumAmountOfUpdate = Mathf.Min(dataViewModels.Count, _selectablePaletteDataViews.Count);
             for (var i = 0; i < maximumAmountOfUpdate; i++)
                 _selectablePaletteDataViews[i].Init(dataViewModels[i]);
         }
 
-        private void CreateNewSelectableDataViewsIfNeeded(IReadOnlyList<SelectablePaletteDataViewModel> dataViewModels)
+        private void CreateNewSelectableDataViewsIfNeeded(IReadOnlyList<SelectablePaletteDataViewModel<PaletteData>> dataViewModels)
         {
             for (var i = _selectablePaletteDataViews.Count; i < dataViewModels.Count; i++)
             {
@@ -50,7 +51,7 @@ namespace Noneb.Ui.InGameEditor.DataSelection.SelectableDatasPanel
             }
         }
 
-        private void CleanUpExcessiveSelectableDataViews(IReadOnlyCollection<SelectablePaletteDataViewModel> dataViewModels)
+        private void CleanUpExcessiveSelectableDataViews(IReadOnlyCollection<SelectablePaletteDataViewModel<PaletteData>> dataViewModels)
         {
             if (dataViewModels.Count < _selectablePaletteDataViews.Count)
             {

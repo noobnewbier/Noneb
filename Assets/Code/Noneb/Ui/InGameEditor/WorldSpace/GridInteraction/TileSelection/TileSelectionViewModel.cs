@@ -26,8 +26,9 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
         private IReadOnlyList<TileHolder> _currentTileHolders;
         private Camera _currentCamera;
         private WorldConfig _currentWorldConfig;
-        private bool _haveTilesOnScreen;
         private IDisposable _fetchingServiceDisposable;
+        private TileHolder _previousHoveredTileHolder;
+        private bool _haveTilesOnScreen;
 
         public TileSelectionViewModel(ICurrentWorldConfigRepository worldConfigRepository,
                                       ICurrentHoveredTileHolderSetRepository hoveredTileHolderSetRepository,
@@ -71,11 +72,17 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                 return;
             }
 
-            _currentSelectedTileHolderSetRepository.Set(
-                GetClosestTileHolderFromPosition(
-                    GetMousePositionWorldSpace(mousePositionScreenSpace)
-                )
+            var currentHoveredTileHolder = GetClosestTileHolderFromPosition(
+                GetMousePositionWorldSpace(mousePositionScreenSpace)
             );
+
+            if (_previousHoveredTileHolder != currentHoveredTileHolder)
+            {
+                _currentSelectedTileHolderSetRepository.Set(
+                    currentHoveredTileHolder
+                );
+                _previousHoveredTileHolder = currentHoveredTileHolder;
+            }
         }
 
         public void OnHover(Vector3 mousePositionScreenSpace)
@@ -122,7 +129,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                 null;
         }
 
-        private bool IsBehaviourValid(Behaviour tileHolder) => tileHolder != null && tileHolder.isActiveAndEnabled;
+        private static bool IsBehaviourValid(Behaviour tileHolder) => tileHolder != null && tileHolder.isActiveAndEnabled;
 
         private void UpdateCurrentTileHolders()
         {

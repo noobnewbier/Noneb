@@ -83,7 +83,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
         private void UpdateCoordinatesWhenNeeded(IReadOnlyList<Coordinate> newValue)
         {
             var currentValue = CoordinatesLiveData.Value;
-            var needUpdate = currentValue?.SequenceEqual(newValue) ?? false;
+            var needUpdate = !currentValue?.SequenceEqual(newValue) ?? true;
 
             if (needUpdate)
             {

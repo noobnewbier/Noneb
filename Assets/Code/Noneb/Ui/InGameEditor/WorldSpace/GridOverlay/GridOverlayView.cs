@@ -52,10 +52,8 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
 
         private void OnUpdateCellsCount(int requiredCellsCount)
         {
-            var currentCellsCount = _cells.Count;
-
             //delete cells if there too many of them
-            for (var i = requiredCellsCount; i < currentCellsCount; i++)
+            while (_cells.Count > requiredCellsCount)
             {
                 var toRemove = _cells.Last();
                 _cells.Remove(toRemove);
@@ -64,7 +62,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
             }
 
             //create cells if there are not enough
-            for (var i = currentCellsCount; i < requiredCellsCount; i++)
+            for (var i = _cells.Count; i < requiredCellsCount; i++)
             {
                 var cellOverlayView = cellOverlayViewFactory.Create(gridTransform).component;
                 var cellOverlayViewModel = cellOverlayViewModelFactory.Create(

@@ -6,18 +6,18 @@ using Noneb.Core.InGameEditor.Common;
 using Noneb.Core.InGameEditor.Data;
 using UniRx;
 
-namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
+namespace Noneb.Ui.InGameEditor.Inspector
 {
-    public class TileInspectorViewModel : IDisposable
+    public class InspectorViewModel<T>: IDisposable where T: IInspectable
     {
-        public ILiveData<PaletteData<Preset<TileData>>> TilePresetPaletteData { get; }
+        public ILiveData<T> TilePresetPaletteData { get; }
         public ILiveData<bool> VisibilityLiveData { get; }
 
         private readonly IDisposable _disposable;
 
-        public TileInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository)
+        public InspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository)
         {
-            TilePresetPaletteData = new LiveData<PaletteData<Preset<TileData>>>();
+            TilePresetPaletteData = new LiveData<T>();
             VisibilityLiveData = new LiveData<bool>();
 
             _disposable = currentInspectableGetRepository.GetObservableStream()
@@ -28,10 +28,10 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
 
         private void OnInspectableUpdate(IInspectable inspectable)
         {
-            if (inspectable is PaletteData<Preset<TileData>> paletteData)
+            if (inspectable is T paletteData)
             {
                 UpdateVisibility(true);
-                UpdatePreset(paletteData);
+                UpdateInspectable(paletteData);
             }
             else
             {
@@ -39,7 +39,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
             }
         }
 
-        private void UpdatePreset(PaletteData<Preset<TileData>> paletteData)
+        private void UpdateInspectable(T paletteData)
         {
             TilePresetPaletteData.PostValue(paletteData);
         }

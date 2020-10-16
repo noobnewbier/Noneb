@@ -17,9 +17,9 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
         [SerializeField] private TextMeshProUGUI weightText;
         [SerializeField] private Image iconImage;
 
-        [SerializeField] private TileInspectorViewModelFactory viewModelFactory;
+        [SerializeField] private InspectorViewModelFactory viewModelFactory;
 
-        private TileInspectorViewModel _viewModel;
+        private InspectorViewModel<PaletteData<Preset<TileData>>> _viewModel;
         private IDisposable _disposable;
 
         private void OnEnable()

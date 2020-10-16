@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using Noneb.Core.InGameEditor.Common;
+using UnityEngine;
 
 namespace Noneb.Core.InGameEditor.Data
 {
-    public class PaletteData<T>
+    public abstract class PaletteData : IInspectable
+    {
+    }
+
+    public class PaletteData<T> : PaletteData
     {
         public PaletteData(Sprite icon, string name, T data)
         {

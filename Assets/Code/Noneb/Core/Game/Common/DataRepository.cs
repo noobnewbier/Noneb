@@ -18,12 +18,12 @@ namespace Noneb.Core.Game.Common
         void Set(T value);
     }
 
-    public abstract class DataRepository<T> : IDataRepository<T>
+    public class DataRepository<T> : IDataRepository<T>
     {
         private readonly ReplaySubject<T> _subject;
         private IObservable<T> _single;
 
-        protected DataRepository()
+        public DataRepository()
         {
             //give the current value if there's any(including null)
             _subject = new ReplaySubject<T>(1);

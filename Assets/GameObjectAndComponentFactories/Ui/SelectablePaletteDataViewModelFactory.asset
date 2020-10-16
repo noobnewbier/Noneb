@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 595f229759b64870a3f90529f55a7985, type: 3}
-  m_Name: SelectableDatasPanelViewModelFactory
+  m_Script: {fileID: 11500000, guid: 233f7a9da87840f891c85219dbbae03e, type: 3}
+  m_Name: SelectablePaletteDataViewModelFactory
   m_EditorClassIdentifier: 
-  selectablePaletteDataViewModelFactory: {fileID: 11400000, guid: efc86562fa5c8ed4dbe24713634cc2ca,
+  currentInspectableRepositoryProvider: {fileID: 11400000, guid: 30eee96493918a445a6763f05663556b,
     type: 2}

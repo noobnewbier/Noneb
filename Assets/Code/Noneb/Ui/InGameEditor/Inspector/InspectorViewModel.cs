@@ -10,14 +10,14 @@ namespace Noneb.Ui.InGameEditor.Inspector
 {
     public class InspectorViewModel<T>: IDisposable where T: IInspectable
     {
-        public ILiveData<T> TilePresetPaletteData { get; }
+        public ILiveData<T> InspectableLiveData { get; }
         public ILiveData<bool> VisibilityLiveData { get; }
 
         private readonly IDisposable _disposable;
 
         public InspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository)
         {
-            TilePresetPaletteData = new LiveData<T>();
+            InspectableLiveData = new LiveData<T>();
             VisibilityLiveData = new LiveData<bool>();
 
             _disposable = currentInspectableGetRepository.GetObservableStream()
@@ -41,7 +41,7 @@ namespace Noneb.Ui.InGameEditor.Inspector
 
         private void UpdateInspectable(T paletteData)
         {
-            TilePresetPaletteData.PostValue(paletteData);
+            InspectableLiveData.PostValue(paletteData);
         }
 
         private void UpdateVisibility(bool isVisible)

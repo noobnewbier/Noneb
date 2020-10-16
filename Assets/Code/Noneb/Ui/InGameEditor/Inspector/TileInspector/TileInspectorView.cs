@@ -17,7 +17,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
         [SerializeField] private TextMeshProUGUI weightText;
         [SerializeField] private Image iconImage;
 
-        [SerializeField] private InspectorViewModelFactory viewModelFactory;
+        [SerializeField] private TileInspectorViewModelFactory viewModelFactory;
 
         private InspectorViewModel<PaletteData<Preset<TileData>>> _viewModel;
         private IDisposable _disposable;
@@ -27,7 +27,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
             _viewModel = viewModelFactory.Create();
             _disposable = new CompositeDisposable
             {
-                _viewModel.TilePresetPaletteData.Subscribe(OnUpdatePreset),
+                _viewModel.InspectableLiveData.Subscribe(OnUpdatePreset),
                 _viewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }

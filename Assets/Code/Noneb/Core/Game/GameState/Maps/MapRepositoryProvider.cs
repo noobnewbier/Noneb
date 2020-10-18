@@ -14,12 +14,18 @@ namespace Noneb.Core.Game.GameState.Maps
         private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
 
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
+        [SerializeField] private UnitsRepositoryProvider unitsRepositoryProvider;
+        [SerializeField] private ConstructsRepositoryProvider constructsRepositoryProvider;
+        [SerializeField] private StrongholdsRepositoryProvider strongholdsRepositoryProvider;
 
         private IMapRepository _cache;
 
         public IMapRepository Provide() => _cache ?? (_cache = new MapRepository(
             currentMapConfigRepositoryProvider.Provide(),
-            tilesRepositoryProvider.Provide()
+            tilesRepositoryProvider.Provide(),
+            unitsRepositoryProvider.Provide(),
+            constructsRepositoryProvider.Provide(),
+            strongholdsRepositoryProvider.Provide()
         ));
     }
 }

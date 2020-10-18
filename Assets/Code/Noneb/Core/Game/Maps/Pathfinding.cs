@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Noneb.Core.Game.Coordinates;
+using Noneb.Core.Game.Tiles;
 using Priority_Queue;
 using UnityEngine;
 
@@ -37,7 +38,7 @@ namespace Noneb.Core.Game.Maps
                     }
 
                     //we ignore the starting tile when calculating the cost
-                    var pathCost = path.Select(map.Get).Sum(t => t.Data.Weight);
+                    var pathCost = path.Select(map.Get<Tile>).Sum(t => t.Data.Weight);
                     if (includeStartingTile)
                     {
                         path.Add(start);
@@ -48,7 +49,7 @@ namespace Noneb.Core.Game.Maps
                     return pathCost <= maxCost;
                 }
 
-                foreach (var neighbour in map.GetNeighbours(current).Values)
+                foreach (var neighbour in map.GetNeighbours<Tile>(current).Values)
                 {
                     if (neighbour == null)
                     {

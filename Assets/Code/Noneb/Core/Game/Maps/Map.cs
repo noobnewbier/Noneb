@@ -1,32 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using Noneb.Core.Game.Common.BoardItems;
+using Noneb.Core.Game.Constructs;
 using Noneb.Core.Game.Coordinates;
+using Noneb.Core.Game.Strongholds;
 using Noneb.Core.Game.Tiles;
+using Noneb.Core.Game.Units;
 
 namespace Noneb.Core.Game.Maps
 {
     /*
-     * A map holds tile according to axial coordinate, it has nothing to do with any other stuffs
      * the storage is in axial coordinate with grid(jagged array) for easy access.
      */
     public class Map
     {
-        private readonly Tile[,] _grid;
+        private readonly Tile[,] _tileGrid;
+        private readonly Unit[,] _unitGrid;
+        private readonly Construct[,] _constructGrid;
+        private readonly Stronghold[,] _strongholdGrid;
 
-        public Map(IReadOnlyList<Tile> tiles, MapConfig mapConfig)
+        public Map(IEnumerable<Tile> tiles,
+                   IEnumerable<Unit> units,
+                   IEnumerable<Construct> constructs,
+                   IEnumerable<Stronghold> strongholds,
+                   MapConfig mapConfig)
         {
             var map2DArrayWidth = mapConfig.GetMap2DArrayWidth();
             var map2dArrayHeight = mapConfig.GetMap2DArrayHeight();
-            var map2DActualWidth = mapConfig.GetMap2DActualWidth();
-            var map2dActualHeight = mapConfig.GetMap2DActualHeight();
-
-            _grid = new Tile[map2DArrayWidth, map2dArrayHeight];
-            for (var i = 0; i < map2dActualHeight; i++)
-            for (var j = 0; j < map2DActualWidth; j++)
-                _grid[j + i % 2 + i / 2, i] = tiles[i * map2DActualWidth + j];
+            _tileGrid = CreateGrid(tiles, map2DArrayWidth, map2dArrayHeight);
+            _unitGrid = CreateGrid(units, map2DArrayWidth, map2dArrayHeight);
+            _constructGrid = CreateGrid(constructs, map2DArrayWidth, map2dArrayHeight);
+            _strongholdGrid = CreateGrid(strongholds, map2DArrayWidth, map2dArrayHeight);
         }
 
-        public IReadOnlyDictionary<HexDirection, Tile> GetNeighbours(Coordinate axialCoordinate)
+        private static T[,] CreateGrid<T>(IEnumerable<T> boardItems,
+                                          int map2DArrayWidth,
+                                          int map2dArrayHeight) where T : BoardItem
+        {
+            var grid = new T[map2DArrayWidth, map2dArrayHeight];
+
+            foreach (var boardItem in boardItems)
+            {
+                var coordinate = boardItem.Coordinate;
+                grid[coordinate.X, coordinate.Z] = boardItem;
+            }
+
+            return grid;
+        }
+
+        public IReadOnlyDictionary<HexDirection, T> GetNeighbours<T>(Coordinate axialCoordinate) where T : BoardItem
         {
             var minusX = axialCoordinate + HexDirection.MinusX;
             var plusX = axialCoordinate + HexDirection.PlusX;
@@ -35,32 +58,53 @@ namespace Noneb.Core.Game.Maps
             var plusZ = axialCoordinate + HexDirection.PlusZ;
             var plusXPlusZ = axialCoordinate + HexDirection.PlusXPlusZ;
 
-            var toReturn = new Dictionary<HexDirection, Tile>
+            var toReturn = new Dictionary<HexDirection, T>
             {
-                [HexDirection.MinusX] = GetTileWithDefault(minusX.X, minusX.Z),
-                [HexDirection.PlusX] = GetTileWithDefault(plusX.X, plusX.Z),
-                [HexDirection.MinusXMinusZ] = GetTileWithDefault(minusXMinusZ.X, minusXMinusZ.Z),
-                [HexDirection.MinusZ] = GetTileWithDefault(minusZ.X, minusZ.Z),
-                [HexDirection.PlusZ] = GetTileWithDefault(plusZ.X, plusZ.Z),
-                [HexDirection.PlusXPlusZ] = GetTileWithDefault(plusXPlusZ.X, plusXPlusZ.Z)
+                [HexDirection.MinusX] = GetBoardItemWithDefault<T>(minusX.X, minusX.Z),
+                [HexDirection.PlusX] = GetBoardItemWithDefault<T>(plusX.X, plusX.Z),
+                [HexDirection.MinusXMinusZ] = GetBoardItemWithDefault<T>(minusXMinusZ.X, minusXMinusZ.Z),
+                [HexDirection.MinusZ] = GetBoardItemWithDefault<T>(minusZ.X, minusZ.Z),
+                [HexDirection.PlusZ] = GetBoardItemWithDefault<T>(plusZ.X, plusZ.Z),
+                [HexDirection.PlusXPlusZ] = GetBoardItemWithDefault<T>(plusXPlusZ.X, plusXPlusZ.Z)
             };
 
             return toReturn;
         }
 
-        public Tile Get(Coordinate axialCoordinate) => _grid[axialCoordinate.X, axialCoordinate.Z];
+        public T Get<T>(Coordinate axialCoordinate) where T : BoardItem => GetGridForType<T>()[axialCoordinate.X, axialCoordinate.Z];
+        public bool TryGet<T>(Coordinate axialCoordinate, out T t) where T : BoardItem
+        {
+            t = GetBoardItemWithDefault<T>(axialCoordinate.X, axialCoordinate.Z);
+
+            return t != null;
+        }
 
         //return null when out of bounds
-        private Tile GetTileWithDefault(int x, int z)
+        [CanBeNull]
+        private T GetBoardItemWithDefault<T>(int x, int z) where T : BoardItem
         {
             try
             {
-                return _grid[x, z];
+                return GetGridForType<T>()[x, z];
             }
             catch (IndexOutOfRangeException)
             {
                 return null;
             }
+        }
+
+        private T[,] GetGridForType<T>() where T : BoardItem
+        {
+            if (_tileGrid is T[,] tileGrid)
+                return tileGrid;
+            if (_unitGrid is T[,] unitGrid)
+                return unitGrid;
+            if (_constructGrid is T[,] constructGrid)
+                return constructGrid;
+            if (_strongholdGrid is T[,] strongholdGrid)
+                return strongholdGrid;
+
+            throw new ArgumentOutOfRangeException($"{typeof(T).Name} is not implemented");
         }
     }
 }

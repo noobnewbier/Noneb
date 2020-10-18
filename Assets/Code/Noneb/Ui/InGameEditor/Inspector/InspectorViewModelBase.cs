@@ -1,23 +1,22 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
 using Noneb.Core.Game.Common;
-using Noneb.Core.Game.Tiles;
+using Noneb.Core.Game.Common.BoardItems;
 using Noneb.Core.InGameEditor.Common;
-using Noneb.Core.InGameEditor.Data;
 using UniRx;
 
 namespace Noneb.Ui.InGameEditor.Inspector
 {
-    public class InspectorViewModel<T>: IDisposable where T: IInspectable
+    public abstract class InspectorViewModelBase<T> : IDisposable where T : BoardItemData
     {
-        public ILiveData<T> InspectableLiveData { get; }
+        public ILiveData<T> TypeTLiveData { get; }
         public ILiveData<bool> VisibilityLiveData { get; }
 
         private readonly IDisposable _disposable;
 
-        public InspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository)
+        public InspectorViewModelBase(IDataGetRepository<IInspectable> currentInspectableGetRepository)
         {
-            InspectableLiveData = new LiveData<T>();
+            TypeTLiveData = new LiveData<T>();
             VisibilityLiveData = new LiveData<bool>();
 
             _disposable = currentInspectableGetRepository.GetObservableStream()
@@ -28,10 +27,10 @@ namespace Noneb.Ui.InGameEditor.Inspector
 
         private void OnInspectableUpdate(IInspectable inspectable)
         {
-            if (inspectable is T paletteData)
+            if (TryGetTFromInspectable(inspectable, out var t))
             {
                 UpdateVisibility(true);
-                UpdateInspectable(paletteData);
+                UpdateInspectable(t);
             }
             else
             {
@@ -39,9 +38,11 @@ namespace Noneb.Ui.InGameEditor.Inspector
             }
         }
 
-        private void UpdateInspectable(T paletteData)
+        protected abstract bool TryGetTFromInspectable(IInspectable inspectable, out T t);
+
+        private void UpdateInspectable(T tData)
         {
-            InspectableLiveData.PostValue(paletteData);
+            TypeTLiveData.PostValue(tData);
         }
 
         private void UpdateVisibility(bool isVisible)
@@ -49,7 +50,7 @@ namespace Noneb.Ui.InGameEditor.Inspector
             VisibilityLiveData.PostValue(isVisible);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _disposable.Dispose();
         }

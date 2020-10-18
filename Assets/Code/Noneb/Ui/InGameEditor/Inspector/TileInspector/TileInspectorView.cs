@@ -5,6 +5,7 @@ using Noneb.Core.InGameEditor.Data;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
@@ -17,32 +18,38 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
         [SerializeField] private TextMeshProUGUI weightText;
         [SerializeField] private Image iconImage;
 
-        [SerializeField] private TileInspectorViewModelFactory viewModelFactory;
+        [FormerlySerializedAs("viewModelFactory")] [SerializeField] private TilePresetInspectorViewModelFactory presetViewModelFactory;
+        [SerializeField] private CoordinateTileInspectorViewModelFactory coordinateTileInspectorViewModelFactory;
+        
 
-        private InspectorViewModel<PaletteData<Preset<TileData>>> _viewModel;
+        private PresetPaletteInspectorViewModel<PaletteData<Preset<TileData>>, TileData> _presetViewModel;
+        private CoordinateInspectorViewModel<Tile, TileData> _coordinateInspectorViewModel;
         private IDisposable _disposable;
 
         private void OnEnable()
         {
-            _viewModel = viewModelFactory.Create();
+            _presetViewModel = presetViewModelFactory.Create();
+            _coordinateInspectorViewModel = coordinateTileInspectorViewModelFactory.Create();
             _disposable = new CompositeDisposable
             {
-                _viewModel.InspectableLiveData.Subscribe(OnUpdatePreset),
-                _viewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
+                _presetViewModel.TypeTLiveData.Subscribe(OnUpdateData),
+                _presetViewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility),
+                _coordinateInspectorViewModel.TypeTLiveData.Subscribe(OnUpdateData),
+                _coordinateInspectorViewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }
 
         private void OnDisable()
         {
             _disposable.Dispose();
-            _viewModel.Dispose();
+            _presetViewModel.Dispose();
         }
 
-        private void OnUpdatePreset(PaletteData<Preset<TileData>> preset)
+        private void OnUpdateData(TileData data)
         {
-            nameText.text = $"Name: {preset.Name}";
-            weightText.text = $"Weight: {preset.Data.Data.Weight.ToString(CultureInfo.InvariantCulture)}";
-            iconImage.sprite = preset.Icon;
+            nameText.text = $"Name: {data.Name}";
+            weightText.text = $"Weight: {data.Weight.ToString(CultureInfo.InvariantCulture)}";
+            iconImage.sprite = data.Icon;
         }
 
         private void OnUpdateVisibility(bool isVisible)

@@ -17,7 +17,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
 
         [SerializeField] private ConstructInspectorViewModelFactory viewModelFactory;
 
-        private InspectorViewModel<PaletteData<Preset<ConstructData>>> _viewModel;
+        private PresetPaletteInspectorViewModel<PaletteData<Preset<ConstructData>>, ConstructData> _viewModel;
         private IDisposable _disposable;
 
         private void OnEnable()
@@ -25,7 +25,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
             _viewModel = viewModelFactory.Create();
             _disposable = new CompositeDisposable
             {
-                _viewModel.InspectableLiveData.Subscribe(OnUpdatePreset),
+                _viewModel.TypeTLiveData.Subscribe(OnUpdatePreset),
                 _viewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }
@@ -36,10 +36,10 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
             _viewModel.Dispose();
         }
 
-        private void OnUpdatePreset(PaletteData<Preset<ConstructData>> preset)
+        private void OnUpdatePreset(ConstructData data)
         {
-            nameText.text = $"Name: {preset.Name}";
-            iconImage.sprite = preset.Icon;
+            nameText.text = $"Name: {data.Name}";
+            iconImage.sprite = data.Icon;
         }
 
         private void OnUpdateVisibility(bool isVisible)

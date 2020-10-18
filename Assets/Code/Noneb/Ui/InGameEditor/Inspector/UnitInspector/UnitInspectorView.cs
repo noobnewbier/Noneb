@@ -19,7 +19,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
         [SerializeField] private Image iconImage;
 
 
-        private InspectorViewModel<PaletteData<Preset<UnitData>>> _viewModel;
+        private PresetPaletteInspectorViewModel<PaletteData<Preset<UnitData>>, UnitData> _viewModel;
         private IDisposable _disposable;
 
         private void OnEnable()
@@ -27,16 +27,16 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
             _viewModel = viewModelFactory.Create();
             _disposable = new CompositeDisposable
             {
-                _viewModel.InspectableLiveData.Subscribe(OnUpdatePreset),
+                _viewModel.TypeTLiveData.Subscribe(OnUpdatePreset),
                 _viewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }
 
-        private void OnUpdatePreset(PaletteData<Preset<UnitData>> preset)
+        private void OnUpdatePreset(UnitData unitData)
         {
-            nameText.text = $"Name: {preset.Name}";
-            healthText.text = $"MaxHealth: {preset.Data.Data.MaxHealth.ToString(CultureInfo.InvariantCulture)}";
-            iconImage.sprite = preset.Icon;
+            nameText.text = $"Name: {unitData.Name}";
+            healthText.text = $"MaxHealth: {unitData.MaxHealth.ToString(CultureInfo.InvariantCulture)}";
+            iconImage.sprite = unitData.Icon;
         }
 
         private void OnUpdateVisibility(bool isVisible)

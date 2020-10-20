@@ -11,13 +11,13 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
     public class ConstructInspectorView : MonoBehaviour
     {
         [SerializeField] private GameObject windowGameObject;
-        
+
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private Image iconImage;
 
         [SerializeField] private ConstructInspectorViewModelFactory viewModelFactory;
 
-        private PresetPaletteInspectorViewModel<PaletteData<Preset<ConstructData>>, ConstructData> _viewModel;
+        private InspectorViewModel<Construct, ConstructData> _viewModel;
         private IDisposable _disposable;
 
         private void OnEnable()
@@ -45,6 +45,6 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
         private void OnUpdateVisibility(bool isVisible)
         {
             windowGameObject.SetActive(isVisible);
-        }        
+        }
     }
 }

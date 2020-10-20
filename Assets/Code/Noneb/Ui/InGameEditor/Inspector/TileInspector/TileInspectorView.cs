@@ -13,29 +13,22 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
     public class TileInspectorView : MonoBehaviour
     {
         [SerializeField] private GameObject windowGameObject;
-        
+        [SerializeField] private TileInspectorViewModelFactory viewModelFactory;
+
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI weightText;
         [SerializeField] private Image iconImage;
 
-        [FormerlySerializedAs("viewModelFactory")] [SerializeField] private TilePresetInspectorViewModelFactory presetViewModelFactory;
-        [SerializeField] private CoordinateTileInspectorViewModelFactory coordinateTileInspectorViewModelFactory;
-        
-
-        private PresetPaletteInspectorViewModel<PaletteData<Preset<TileData>>, TileData> _presetViewModel;
-        private CoordinateInspectorViewModel<Tile, TileData> _coordinateInspectorViewModel;
+        private InspectorViewModel<Tile, TileData> _presetViewModel;
         private IDisposable _disposable;
 
         private void OnEnable()
         {
-            _presetViewModel = presetViewModelFactory.Create();
-            _coordinateInspectorViewModel = coordinateTileInspectorViewModelFactory.Create();
+            _presetViewModel = viewModelFactory.Create();
             _disposable = new CompositeDisposable
             {
                 _presetViewModel.TypeTLiveData.Subscribe(OnUpdateData),
                 _presetViewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility),
-                _coordinateInspectorViewModel.TypeTLiveData.Subscribe(OnUpdateData),
-                _coordinateInspectorViewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }
 

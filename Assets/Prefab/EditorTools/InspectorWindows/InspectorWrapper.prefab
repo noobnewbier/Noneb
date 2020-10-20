@@ -483,7 +483,10 @@ MonoBehaviour:
   nameText: {fileID: 4532517320426744351}
   weightText: {fileID: 8754238666538047631}
   iconImage: {fileID: 72902924356770875}
-  viewModelFactory: {fileID: 11400000, guid: bb9b7d7098c729c46a985401e32c63ba, type: 2}
+  presetViewModelFactory: {fileID: 11400000, guid: bb9b7d7098c729c46a985401e32c63ba,
+    type: 2}
+  coordinateTileInspectorViewModelFactory: {fileID: 11400000, guid: b261b94d6a8dcba49a907678abbcdf68,
+    type: 2}
 --- !u!1 &3513942601676112708
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,7 +2147,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 51.6
+  m_fontSize: 47.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2323,7 +2326,7 @@ PrefabInstance:
     - target: {fileID: 1960395720425638976, guid: 00adb53ac4e50bc4ea8dc4a61b5dfbc3,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2080280371380640751, guid: 00adb53ac4e50bc4ea8dc4a61b5dfbc3,
         type: 3}
@@ -2563,7 +2566,7 @@ PrefabInstance:
     - target: {fileID: 1960395720425638976, guid: 00adb53ac4e50bc4ea8dc4a61b5dfbc3,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1960395720425638976, guid: 00adb53ac4e50bc4ea8dc4a61b5dfbc3,
         type: 3}
@@ -2844,7 +2847,7 @@ PrefabInstance:
     - target: {fileID: 1960395720425638976, guid: 00adb53ac4e50bc4ea8dc4a61b5dfbc3,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1960395720425638976, guid: 00adb53ac4e50bc4ea8dc4a61b5dfbc3,
         type: 3}

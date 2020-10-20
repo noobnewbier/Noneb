@@ -1,26 +1,26 @@
 ﻿using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Factories;
-using Noneb.Core.Game.Constructs;
 using Noneb.Core.Game.GameState.Maps;
-using Noneb.Core.InGameEditor.Data;
+using Noneb.Core.Game.Tiles;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
+namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
 {
     [CreateAssetMenu(
-        fileName = nameof(ConstructInspectorViewModelFactory),
-        menuName = MenuName.Factory + ProjectMenuName.InGameEditor + "ConstructInspectorViewModel"
+        fileName = nameof(TileInspectorViewModelFactory),
+        menuName = MenuName.Factory + ProjectMenuName.InGameEditor + "TileInspectorViewModel"
     )]
-    public class ConstructInspectorViewModelFactory : ScriptableObject, IFactory<InspectorViewModel<Construct, ConstructData>>
+    public class TileInspectorViewModelFactory : ScriptableObject,
+                                                       IFactory<InspectorViewModel<Tile, TileData>>
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
 
-        public InspectorViewModel<Construct, ConstructData> Create() =>
-            new InspectorViewModel<Construct, ConstructData>(
+        public InspectorViewModel<Tile, TileData> Create() =>
+            new InspectorViewModel<Tile, TileData>(
                 currentInspectableRepositoryProvider.Provide(),
                 mapRepositoryProvider.Provide()
             );

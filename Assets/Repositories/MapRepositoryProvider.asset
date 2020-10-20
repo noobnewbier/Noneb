@@ -16,3 +16,9 @@ MonoBehaviour:
     type: 2}
   tilesRepositoryProvider: {fileID: 11400000, guid: e80c3dac866061b43a2c3327325f395d,
     type: 2}
+  unitsRepositoryProvider: {fileID: 11400000, guid: c38befb35b3790041934e05718e3b2ca,
+    type: 2}
+  constructsRepositoryProvider: {fileID: 11400000, guid: 53abd9d167f5e4a44b81cc150b1440f4,
+    type: 2}
+  strongholdsRepositoryProvider: {fileID: 11400000, guid: a83558125c85b6e43a987173602dc74b,
+    type: 2}

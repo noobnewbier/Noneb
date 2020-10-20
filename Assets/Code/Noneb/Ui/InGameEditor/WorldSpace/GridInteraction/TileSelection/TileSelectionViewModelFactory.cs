@@ -4,6 +4,7 @@ using Noneb.Ui.Game.GameEnvironments.Load.Holders.Providers;
 using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;
 using Noneb.Ui.Game.UiState.CurrentSelectedTileHolder;
 using Noneb.Ui.InGameEditor.Cameras;
+using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
 using UnityUtils.Constants;
 
@@ -18,8 +19,8 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
         [SerializeField] private TileHoldersFetchingServiceProvider tileHolderRepositoryProvider;
         [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
         [SerializeField] private LoadTilesHolderServiceProvider loadTilesHolderServiceProvider;
-
-
+        [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
+        
         public TileSelectionViewModel Create(Transform mapTransform) =>
             new TileSelectionViewModel(
                 currentWorldConfigRepositoryProvider.Provide(),
@@ -28,7 +29,8 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                 cameraRepositoryProvider.Provide(),
                 mapTransform,
                 tileHolderRepositoryProvider.Provide(),
-                loadTilesHolderServiceProvider.Provide()
+                loadTilesHolderServiceProvider.Provide(),
+                currentInspectableRepositoryProvider.Provide()
             );
     }
 }

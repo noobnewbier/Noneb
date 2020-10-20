@@ -6,6 +6,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Unit = Noneb.Core.Game.Units.Unit;
 
 namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
 {
@@ -19,7 +20,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
         [SerializeField] private Image iconImage;
 
 
-        private PresetPaletteInspectorViewModel<PaletteData<Preset<UnitData>>, UnitData> _viewModel;
+        private InspectorViewModel<Unit, UnitData> _viewModel;
         private IDisposable _disposable;
 
         private void OnEnable()

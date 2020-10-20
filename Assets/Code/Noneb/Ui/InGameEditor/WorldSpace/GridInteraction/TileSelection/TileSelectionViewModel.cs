@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Noneb.Core.Game.Common;
 using Noneb.Core.Game.GameState.CurrentWorldConfig;
 using Noneb.Core.Game.WorldConfigurations;
+using Noneb.Core.InGameEditor.Common;
+using Noneb.Core.InGameEditor.Data;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using Noneb.Ui.Game.GameEnvironments.Load.Holders;
 using Noneb.Ui.Game.Tiles;
@@ -12,6 +16,7 @@ using Noneb.Ui.InGameEditor.Cameras;
 using UniRx;
 using UnityEngine;
 using UnityUtils;
+using Object = UnityEngine.Object;
 
 namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
@@ -20,6 +25,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
         private readonly IDisposable _compositeDisposable;
         private readonly ICurrentHoveredTileHolderSetRepository _hoveredTileHolderSetRepository;
         private readonly ICurrentSelectedTileHolderSetRepository _currentSelectedTileHolderSetRepository;
+        private readonly IDataSetRepository<IInspectable> _currentInspectableSetRepository;
         private readonly Transform _mapTransform;
         private readonly IBoardItemHoldersFetchingService<TileHolder> _holderFetchingService;
 
@@ -27,7 +33,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
         private Camera _currentCamera;
         private WorldConfig _currentWorldConfig;
         private IDisposable _fetchingServiceDisposable;
-        private TileHolder _previousHoveredTileHolder;
+        private TileHolder _previousClickedTileHolder;
         private bool _haveTilesOnScreen;
 
         public TileSelectionViewModel(ICurrentWorldConfigRepository worldConfigRepository,
@@ -36,11 +42,13 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                                       IInGameEditorCameraGetRepository cameraGetRepository,
                                       Transform mapTransform,
                                       IBoardItemHoldersFetchingService<TileHolder> holderFetchingService,
-                                      ILoadBoardItemsHolderService tileHolderLoadService)
+                                      ILoadBoardItemsHolderService tileHolderLoadService,
+                                      IDataSetRepository<IInspectable> currentInspectableSetRepository)
         {
             _hoveredTileHolderSetRepository = hoveredTileHolderSetRepository;
             _mapTransform = mapTransform;
             _holderFetchingService = holderFetchingService;
+            _currentInspectableSetRepository = currentInspectableSetRepository;
             _currentSelectedTileHolderSetRepository = currentSelectedTileHolderSetRepository;
 
             _compositeDisposable = new CompositeDisposable
@@ -72,17 +80,35 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                 return;
             }
 
-            var currentHoveredTileHolder = GetClosestTileHolderFromPosition(
+            var currentClickedTileHolder = GetClosestTileHolderFromMousePosition(mousePositionScreenSpace);
+
+            if (NotClickedOnSameTile(currentClickedTileHolder))
+            {
+                UpdateInspectable(currentClickedTileHolder);
+                UpdateSelectedTileHolder(currentClickedTileHolder);
+            }
+        }
+
+        private bool NotClickedOnSameTile(Object currentClickedTileHolder) => _previousClickedTileHolder != currentClickedTileHolder;
+
+        private TileHolder GetClosestTileHolderFromMousePosition(Vector3 mousePositionScreenSpace) =>
+            GetClosestTileHolderFromPosition(
                 GetMousePositionWorldSpace(mousePositionScreenSpace)
             );
 
-            if (_previousHoveredTileHolder != currentHoveredTileHolder)
-            {
-                _currentSelectedTileHolderSetRepository.Set(
-                    currentHoveredTileHolder
-                );
-                _previousHoveredTileHolder = currentHoveredTileHolder;
-            }
+        private void UpdateSelectedTileHolder(TileHolder currentClickedTileHolder)
+        {
+            _currentSelectedTileHolderSetRepository.Set(
+                currentClickedTileHolder
+            );
+            _previousClickedTileHolder = currentClickedTileHolder;
+        }
+
+        private void UpdateInspectable([CanBeNull] TileHolder currentClickedTileHolder)
+        {
+            _currentInspectableSetRepository.Set(
+                currentClickedTileHolder != null ? new InspectableCoordinate(currentClickedTileHolder.Value.Coordinate) : null
+            );
         }
 
         public void OnHover(Vector3 mousePositionScreenSpace)
@@ -93,9 +119,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
             }
 
             _hoveredTileHolderSetRepository.Set(
-                GetClosestTileHolderFromPosition(
-                    GetMousePositionWorldSpace(mousePositionScreenSpace)
-                )
+                GetClosestTileHolderFromMousePosition(mousePositionScreenSpace)
             );
         }
 
@@ -113,6 +137,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
             return new Vector3(x, mapY, z);
         }
 
+        [CanBeNull]
         private TileHolder GetClosestTileHolderFromPosition(Vector3 position)
         {
             // we don't want to highlight tiles that is literally not even touched by our cursor

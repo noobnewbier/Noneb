@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e8b08b23f24f71955c7edc067856b2, type: 3}
   m_Name: ClosestTileHolderFromPositionServiceProvider
   m_EditorClassIdentifier: 
-  currentWorldConfigRepositoryProvider: {fileID: 11400000, guid: 413cf4135dfea4940acd0ff86715d43a,
+  loadedWorldConfigRepositoryProvider: {fileID: 11400000, guid: 9a042db02f343aa4181aaa4d71c7a847,
     type: 2}
   tileHoldersFetchingServiceProvider: {fileID: 11400000, guid: 6c4291b493e86df429ea886542c100e3,
     type: 2}

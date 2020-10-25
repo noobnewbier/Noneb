@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveEnvironmentAsScriptableServiceProvider: {fileID: 11400000, guid: 3ea72b234d979ac4dab146b76500fd16,
     type: 2}
+  loadedGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 407608a501ef57043beb51e4c95dea55,
+    type: 2}
   messageServiceProvider: {fileID: 11400000, guid: e50a2fd960ba9da40bd0c71229d4a797,
     type: 2}

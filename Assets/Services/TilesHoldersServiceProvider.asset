@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab23ce4c975bb3f4abbc0f28f8a52414, type: 3}
-  m_Name: TileHoldersServiceProvider
+  m_Name: TilesHoldersServiceProvider
   m_EditorClassIdentifier: 
-  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+  loadedMapConfigRepositoryProvider: {fileID: 11400000, guid: d715e73387a0a8149a439747b1f60abd,
     type: 2}
   tileHoldersFetchingServiceProvider: {fileID: 11400000, guid: 6c4291b493e86df429ea886542c100e3,
     type: 2}

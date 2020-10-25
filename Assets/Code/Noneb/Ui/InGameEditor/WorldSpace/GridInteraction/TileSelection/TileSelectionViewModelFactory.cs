@@ -4,10 +4,8 @@ using Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition;
 using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;
 using Noneb.Ui.Game.UiState.CurrentSelectedTileHolder;
 using Noneb.Ui.Game.UiState.MousePosition;
-using Noneb.Ui.InGameEditor.UiState;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
@@ -20,7 +18,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
         [SerializeField] private ClosestTileHolderFromPositionServiceProvider closestTileHolderFromPositionServiceProvider;
         [SerializeField] private MousePositionServiceProvider mousePositionServiceProvider;
-        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        [SerializeField] private MapConfigRepositoryProvider loadedMapConfigRepositoryProvider;
 
         public TileSelectionViewModel Create() =>
             new TileSelectionViewModel(
@@ -29,7 +27,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                 currentInspectableRepositoryProvider.Provide(),
                 closestTileHolderFromPositionServiceProvider.Provide(),
                 mousePositionServiceProvider.Provide(),
-                selectedMapConfigRepositoryProvider.Provide()
+                loadedMapConfigRepositoryProvider.Provide()
             );
     }
 }

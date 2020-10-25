@@ -30,7 +30,7 @@ namespace Noneb.Core.Game.Maps
 
         public int GetMap2DArrayWidth()
         {
-            var zeroBasedHeight = GetMap2DActualHeight() - 1;
+            var zeroBasedHeight = Mathf.Max(GetMap2DActualHeight() - 1, 0);
             return GetMap2DActualWidth() + zeroBasedHeight / 2 + zeroBasedHeight % 2;
         }
 

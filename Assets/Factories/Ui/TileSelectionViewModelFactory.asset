@@ -22,5 +22,5 @@ MonoBehaviour:
     type: 2}
   mousePositionServiceProvider: {fileID: 11400000, guid: f0e175a43a14d854e89d39e73105ea24,
     type: 2}
-  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+  loadedMapConfigRepositoryProvider: {fileID: 11400000, guid: d715e73387a0a8149a439747b1f60abd,
     type: 2}

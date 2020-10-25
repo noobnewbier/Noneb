@@ -77,11 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa789ce3d382d44fb08f1214a625cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMapTransformSetter: {fileID: 8000678177018212543}
-  unitsHolderFetcherSetter: {fileID: 8497448313061749894}
-  constructsFetcherSetter: {fileID: 3773546009733323431}
-  strongholdsFetcherSetter: {fileID: 8683965961919145549}
-  tilesFetcherSetter: {fileID: 2845800987218894017}
   unitsLoader: {fileID: 11400000, guid: a5e408acbc79fe143988077acdabcc80, type: 2}
   constructsLoader: {fileID: 11400000, guid: 706debf849f583a4681f56324b166348, type: 2}
   strongholdsLoader: {fileID: 11400000, guid: 0548e6fd63a25ce44b75d5baa92e1165, type: 2}
@@ -105,6 +100,10 @@ MonoBehaviour:
   strongholdGameObjectsInternalPositionLoader: {fileID: 11400000, guid: e4b376163fac53d4e9f92e7d1c2e1d22,
     type: 2}
   messageServiceProvider: {fileID: 11400000, guid: e50a2fd960ba9da40bd0c71229d4a797,
+    type: 2}
+  loadedGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 407608a501ef57043beb51e4c95dea55,
+    type: 2}
+  selectedGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
     type: 2}
 --- !u!1 &3570084597380959434
 GameObject:
@@ -150,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEnvironmentLoader: {fileID: 8602292051037969736}
-  currentGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
+  selectedGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
     type: 2}
   messageServiceProvider: {fileID: 11400000, guid: e50a2fd960ba9da40bd0c71229d4a797,
     type: 2}

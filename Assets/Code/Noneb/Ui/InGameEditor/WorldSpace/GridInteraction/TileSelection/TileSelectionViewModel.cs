@@ -37,7 +37,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                                       IDataSetRepository<IInspectable> currentInspectableSetRepository,
                                       IClosestTileHolderFromPositionService closestTileHolderFromPositionService,
                                       IMousePositionService mousePositionService,
-                                      IMapConfigRepository mapConfigRepository)
+                                      IMapConfigRepository loadedMapConfigRepository)
         {
             _hoveredTileHolderSetRepository = hoveredTileHolderSetRepository;
             _currentInspectableSetRepository = currentInspectableSetRepository;
@@ -45,7 +45,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
             _mousePositionService = mousePositionService;
             _currentSelectedTileHolderSetRepository = currentSelectedTileHolderSetRepository;
 
-            _disposable = mapConfigRepository.GetObservableStream()
+            _disposable = loadedMapConfigRepository.GetObservableStream()
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
                 .Subscribe(UpdateHaveTilesOnScreen);

@@ -15,7 +15,7 @@ namespace Noneb.Core.Game.Common
 
     public interface IDataSetRepository<in T>
     {
-        void Set(T value);
+        IObservable<Unit> Set(T value);
     }
 
     public class DataRepository<T> : IDataRepository<T>
@@ -34,10 +34,12 @@ namespace Noneb.Core.Game.Common
 
         public IObservable<T> GetMostRecent() => _single;
 
-        public void Set(T value)
+        public IObservable<Unit> Set(T value)
         {
             _subject.OnNext(value);
             _single = Observable.Return(value);
+
+            return Observable.ReturnUnit();
         }
     }
 }

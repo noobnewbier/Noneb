@@ -1,11 +1,10 @@
 ﻿using System;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using Noneb.Core.Game.InGameMessages;
 using Noneb.Ui.Game.GameEnvironments.Load.BoardItems.Loaders;
 using Noneb.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition;
 using Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders;
 using Noneb.Ui.Game.GameEnvironments.Load.Holders.Loaders;
-using Noneb.Ui.Game.UiState.BoardItemsFetcher.Setters;
-using Noneb.Ui.Game.UiState.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
 
@@ -18,6 +17,8 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
         private void OnEnable()
         {
             _messageService = messageServiceProvider.Provide();
+            _selectedGameEnvironmentGetRepository = selectedGameEnvironmentRepositoryProvider.Provide();
+            _loadedGameEnvironmentSetRepository = loadedGameEnvironmentRepositoryProvider.Provide();
         }
 
         [ContextMenu(nameof(Load))]
@@ -103,9 +104,18 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
             return Observable.Defer(
                     () =>
                         strongholdGameObjectsInternalPositionLoader.LoadObservable()
+                            .Zip(
+                                SetLoadedGameEnvironment(),
+                                delegate { return Unit.Default; }
+                            )
                 )
                 .Single();
         }
+
+        private IObservable<Unit> SetLoadedGameEnvironment() =>
+            _selectedGameEnvironmentGetRepository
+                .GetMostRecent()
+                .SelectMany(_loadedGameEnvironmentSetRepository.Set);
 
         #region DataLoaders
 
@@ -139,8 +149,12 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
 
         [SerializeField] private StrongholdGameObjectsInternalPositionLoader strongholdGameObjectsInternalPositionLoader;
         [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
+        [SerializeField] private GameEnvironmentRepositoryProvider loadedGameEnvironmentRepositoryProvider;
+        [SerializeField] private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
 
         private IInGameMessageService _messageService;
+        private IGameEnvironmentSetRepository _loadedGameEnvironmentSetRepository;
+        private IGameEnvironmentGetRepository _selectedGameEnvironmentGetRepository;
 
         #endregion
     }

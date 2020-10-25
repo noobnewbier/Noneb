@@ -7,12 +7,12 @@ using UnityUtils.Constants;
 namespace Noneb.Core.Game.GameState.WorldConfig
 {
     [CreateAssetMenu(
-        fileName = nameof(SelectedWorldConfigRepositoryProvider),
+        fileName = nameof(WorldConfigRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(WorldConfigRepository)
     )]
-    public class SelectedWorldConfigRepositoryProvider : ScriptableObject, IObjectProvider<IWorldConfigRepository>
+    public class WorldConfigRepositoryProvider : ScriptableObject, IObjectProvider<IWorldConfigRepository>
     {
-        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
 
         private IWorldConfigRepository _cache;
 

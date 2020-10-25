@@ -1,6 +1,6 @@
 ﻿using Experiment.CrossPlatformLiveData;
 using Noneb.Core.Game.Common;
-using Noneb.Core.InGameEditor.Common;
+using Noneb.Core.Game.Common.TagInterface;
 using Noneb.Core.InGameEditor.Data;
 using UnityEngine;
 

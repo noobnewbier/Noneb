@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Experiment.CrossPlatformLiveData;
+using Noneb.Ui.Game.Cameras;
+using Noneb.Ui.Game.Cameras.SizeInView;
 using Noneb.Ui.Game.Maps.TilesPosition;
-using Noneb.Ui.InGameEditor.Cameras.SizeInView;
 using UniRx;
 using UnityEngine;
 

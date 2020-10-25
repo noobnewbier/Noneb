@@ -2,7 +2,7 @@
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Providers;
-using Noneb.Core.InGameEditor.Common;
+using Noneb.Core.Game.Common.TagInterface;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.UiState.Inspectable

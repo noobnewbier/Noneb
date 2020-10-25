@@ -2,9 +2,9 @@
 using Experiment.CrossPlatformLiveData;
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Common.BoardItems;
+using Noneb.Core.Game.Common.TagInterface;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps;
-using Noneb.Core.InGameEditor.Common;
 using Noneb.Core.InGameEditor.Data;
 using UniRx;
 

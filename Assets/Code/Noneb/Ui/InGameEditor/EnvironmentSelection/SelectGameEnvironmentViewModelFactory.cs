@@ -13,7 +13,7 @@ namespace Noneb.Ui.InGameEditor.EnvironmentSelection
     public class SelectGameEnvironmentViewModelFactory : ScriptableObject
     {
         [SerializeField] private AvailableGameEnvironmentRepositoryProvider availableGameEnvironmentRepositoryProvider;
-        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
 
         public SelectGameEnvironmentViewModel Create() =>
             new SelectGameEnvironmentViewModel(

@@ -14,8 +14,8 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.BoardItems
 {
     public abstract class BoardItemsLoader<TData> : ScriptableObject, ILoader where TData : BoardItemData
     {
-        [FormerlySerializedAs("currentLevelDataRepositoryProvider")] [SerializeField] private SelectedLevelDataRepositoryProvider selectedLevelDataRepositoryProvider;
-        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentLevelDataRepositoryProvider")] [SerializeField] private LevelDataRepositoryProvider selectedLevelDataRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         private IDisposable _disposable;
 

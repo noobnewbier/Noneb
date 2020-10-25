@@ -1,5 +1,5 @@
-﻿using Noneb.Core.Game.Coordinates;
-using Noneb.Core.InGameEditor.Common;
+﻿using Noneb.Core.Game.Common.TagInterface;
+using Noneb.Core.Game.Coordinates;
 
 namespace Noneb.Core.InGameEditor.Data
 {

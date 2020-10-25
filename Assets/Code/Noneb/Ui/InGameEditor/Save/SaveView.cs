@@ -12,7 +12,6 @@ namespace Noneb.Ui.InGameEditor.Save
     {
         [SerializeField] private GameObject savingDetailDialog;
         [SerializeField] private SaveViewModelFactory viewModelFactory;
-        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
         [SerializeField] private TMP_InputField filenameInputField;
 
         private SaveViewModel _viewModel;
@@ -21,9 +20,7 @@ namespace Noneb.Ui.InGameEditor.Save
         private void OnEnable()
         {
             _compositeDisposable = new CompositeDisposable();
-            _viewModel = viewModelFactory.Create(
-                selectedGameEnvironmentRepositoryProvider.Provide()
-            );
+            _viewModel = viewModelFactory.Create();
 
             _compositeDisposable.Add(
                 _viewModel.savingResultEvent.Subscribe(

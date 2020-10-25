@@ -11,10 +11,10 @@ namespace Noneb.Ui.Game.Maps.TilesPosition
     public class TilesPositionServiceProvider : ScriptableObject, IObjectProvider<ITilesPositionService>
     {
         [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
+        private WorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
 
         private ITilesPositionService _cache;
 

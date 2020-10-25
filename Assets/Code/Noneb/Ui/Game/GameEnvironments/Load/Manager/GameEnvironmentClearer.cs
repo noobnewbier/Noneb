@@ -21,7 +21,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
     public class GameEnvironmentClearer : MonoBehaviour
     {
         [SerializeField] private GameEnvironmentLoader gameEnvironmentLoader;
-        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
         [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
 
         [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField]

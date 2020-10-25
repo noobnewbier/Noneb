@@ -1,7 +1,7 @@
 ﻿using System;
 using Noneb.Core.Game.Common.BoardItems;
 using Noneb.Core.Game.Common.Factories;
-using Noneb.Core.InGameEditor.Common;
+using Noneb.Core.Game.Common.TagInterface;
 
 namespace Noneb.Core.InGameEditor.Data
 {

@@ -6,10 +6,10 @@ using UnityUtils.Constants;
 namespace Noneb.Core.Game.GameState.GameEnvironments
 {
     [CreateAssetMenu(
-        fileName = nameof(SelectedGameEnvironmentRepositoryProvider),
+        fileName = nameof(GameEnvironmentRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(GameEnvironmentRepository)
     )]
-    public class SelectedGameEnvironmentRepositoryProvider : ScriptableObject, IObjectProvider<IGameEnvironmentRepository>
+    public class GameEnvironmentRepositoryProvider : ScriptableObject, IObjectProvider<IGameEnvironmentRepository>
     {
         private readonly Lazy<IGameEnvironmentRepository> _lazyInstance =
             new Lazy<IGameEnvironmentRepository>(() => new GameEnvironmentRepository());

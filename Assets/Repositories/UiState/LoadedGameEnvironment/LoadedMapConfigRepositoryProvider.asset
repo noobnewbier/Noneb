@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c29f015d28434aa8188ec4c43f099c, type: 3}
-  m_Name: LevelDataRepositoryProvider
+  m_Script: {fileID: 11500000, guid: f6674e41e08d4374bc7d8148a3d96b26, type: 3}
+  m_Name: LoadedMapConfigRepositoryProvider
   m_EditorClassIdentifier: 
-  currentGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
+  gameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 407608a501ef57043beb51e4c95dea55,
     type: 2}

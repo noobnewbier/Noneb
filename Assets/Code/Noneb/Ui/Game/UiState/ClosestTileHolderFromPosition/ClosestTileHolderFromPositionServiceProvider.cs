@@ -3,15 +3,14 @@ using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
 using Noneb.Ui.Game.GameEnvironments.Load.Holders.Providers;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace Noneb.Ui.InGameEditor.UiState
+namespace Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition
 {
     [CreateAssetMenu(fileName = nameof(ClosestTileHolderFromPositionServiceProvider), menuName = MenuName.ScriptableService + nameof(ClosestTileHolderFromPositionService))]
     public class ClosestTileHolderFromPositionServiceProvider : ScriptableObject, IObjectProvider<IClosestTileHolderFromPositionService>
     {
-        [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [SerializeField] private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
+        [SerializeField] private WorldConfigRepositoryProvider loadedWorldConfigRepositoryProvider;
         [SerializeField] private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
         [SerializeField] private LoadTilesHolderServiceProvider loadTilesHolderServiceProvider;
 
@@ -20,7 +19,7 @@ namespace Noneb.Ui.InGameEditor.UiState
         public IClosestTileHolderFromPositionService Provide()
         {
             return _cache ?? (_cache = new ClosestTileHolderFromPositionService(
-                selectedWorldConfigRepositoryProvider.Provide(),
+                loadedWorldConfigRepositoryProvider.Provide(),
                 tileHoldersFetchingServiceProvider.Provide(),
                 loadTilesHolderServiceProvider.Provide()
             ));

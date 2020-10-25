@@ -8,7 +8,7 @@ using UnityUtils;
  * (if we put both map transform and editor camera into its own repository like how we do it in GameEnv)
  */
 
-namespace Noneb.Ui.InGameEditor.Cameras.SizeInView
+namespace Noneb.Ui.Game.Cameras.SizeInView
 {
     public interface IInGameEditorCameraSizeInViewService
     {

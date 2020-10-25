@@ -1,4 +1,4 @@
-﻿using Noneb.Core.InGameEditor.Common;
+﻿using Noneb.Core.Game.Common.TagInterface;
 using UnityEngine;
 
 namespace Noneb.Core.InGameEditor.Data

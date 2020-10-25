@@ -15,10 +15,10 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
         private CoordinateServiceProvider coordinateServiceProvider;
 
         [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
+        private WorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
 
         [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
 

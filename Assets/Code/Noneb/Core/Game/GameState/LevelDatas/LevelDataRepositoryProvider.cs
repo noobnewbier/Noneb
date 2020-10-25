@@ -7,12 +7,12 @@ using UnityUtils.Constants;
 namespace Noneb.Core.Game.GameState.LevelDatas
 {
     [CreateAssetMenu(
-        fileName = nameof(SelectedLevelDataRepositoryProvider),
+        fileName = nameof(LevelDataRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(LevelDataRepository)
     )]
-    public class SelectedLevelDataRepositoryProvider : ScriptableObject, IObjectProvider<ILevelDataRepository>
+    public class LevelDataRepositoryProvider : ScriptableObject, IObjectProvider<ILevelDataRepository>
     {
-        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
 
         private ILevelDataRepository _cache;
 

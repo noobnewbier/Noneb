@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Noneb.Core.Game.Common;
-using Noneb.Core.InGameEditor.Common;
+using Noneb.Ui.Game.Cameras;
 using Noneb.Ui.Game.Tiles;
-using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;
 using Noneb.Ui.Game.UiState.CurrentMapTransform;
-using Noneb.Ui.Game.UiState.CurrentSelectedTileHolder;
-using Noneb.Ui.InGameEditor.Cameras;
-using Noneb.Ui.InGameEditor.UiState;
 using UniRx;
 using UnityEngine;
 using UnityUtils;
 
-namespace Noneb.Ui.Game.UiState.ClickHandlingService
+namespace Noneb.Ui.Game.UiState.MousePosition
 {
     public interface IMousePositionService : IDisposable
     {

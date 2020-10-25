@@ -1,7 +1,7 @@
 ﻿using Noneb.Core.Game.Common;
 using UnityEngine;
 
-namespace Noneb.Ui.InGameEditor.Cameras
+namespace Noneb.Ui.Game.Cameras
 {
     public interface ICameraGetRepository : IDataGetRepository<Camera>
     {

@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5246763319b4d34b169a32e9343b1a8, type: 3}
-  m_Name: CurrentGameEnvironmentRepositoryProvider
+  m_Name: LoadedGameEnvironmentRepositoryProvider
   m_EditorClassIdentifier: 

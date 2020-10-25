@@ -1,5 +1,6 @@
-﻿using Noneb.Ui.Game.Maps.TilesPosition;
-using Noneb.Ui.InGameEditor.Cameras.SizeInView;
+﻿using Noneb.Ui.Game.Cameras;
+using Noneb.Ui.Game.Cameras.SizeInView;
+using Noneb.Ui.Game.Maps.TilesPosition;
 using UnityEngine;
 using UnityUtils.Constants;
 

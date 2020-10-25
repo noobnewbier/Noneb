@@ -6,12 +6,12 @@ using UnityUtils.Constants;
 namespace Noneb.Core.Game.GameState.MapConfig
 {
     [CreateAssetMenu(
-        fileName = nameof(SelectedMapConfigRepositoryProvider),
+        fileName = nameof(MapConfigRepositoryProvider),
         menuName = MenuName.ScriptableRepository + nameof(MapConfigRepository)
     )]
-    public class SelectedMapConfigRepositoryProvider : ScriptableObject, IObjectProvider<IMapConfigRepository>
+    public class MapConfigRepositoryProvider : ScriptableObject, IObjectProvider<IMapConfigRepository>
     {
-        [SerializeField] private SelectedGameEnvironmentRepositoryProvider gameEnvironmentRepositoryProvider;
+        [SerializeField] private GameEnvironmentRepositoryProvider gameEnvironmentRepositoryProvider;
 
         private IMapConfigRepository _cache;
 

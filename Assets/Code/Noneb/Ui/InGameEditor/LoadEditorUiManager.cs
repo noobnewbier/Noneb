@@ -1,4 +1,5 @@
-﻿using Noneb.Ui.InGameEditor.Cameras;
+﻿using Noneb.Ui.Game.Cameras;
+using Noneb.Ui.InGameEditor.Cameras;
 using UnityEngine;
 
 namespace Noneb.Ui.InGameEditor

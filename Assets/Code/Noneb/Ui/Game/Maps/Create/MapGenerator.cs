@@ -12,10 +12,10 @@ namespace Noneb.Ui.Game.Maps.Create
     public class MapGenerator : MonoBehaviour
     {
         [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
+        private WorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
 
         [FormerlySerializedAs("tileHolderProvider")] [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]
         private TileHolderFactory tileHolderFactory;

@@ -3,7 +3,7 @@ using Noneb.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Ui.InGameEditor.Cameras
+namespace Noneb.Ui.Game.Cameras
 {
     [CreateAssetMenu(
         fileName = nameof(CameraRepositoryProvider),

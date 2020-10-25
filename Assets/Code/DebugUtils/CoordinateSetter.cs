@@ -16,7 +16,7 @@ namespace DebugUtils
     public class CoordinateSetter : MonoBehaviour
     {
         [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [FormerlySerializedAs("tilesHolderProvider")] [FormerlySerializedAs("tilesTransformProvider")] [SerializeField]
         private TilesHolderFetcher tilesHolderFetcher;

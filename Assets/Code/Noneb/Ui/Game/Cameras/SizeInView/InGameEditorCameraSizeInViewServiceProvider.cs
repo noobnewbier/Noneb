@@ -3,7 +3,7 @@ using Noneb.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Ui.InGameEditor.Cameras.SizeInView
+namespace Noneb.Ui.Game.Cameras.SizeInView
 {
     [CreateAssetMenu(
         fileName = nameof(InGameEditorCameraSizeInViewServiceProvider),

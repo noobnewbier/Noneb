@@ -11,7 +11,7 @@ namespace Noneb.Core.Game.GameState.Maps
     public class MapRepositoryProvider : ScriptableObject, IObjectProvider<IMapRepository>
     {
         [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
         [SerializeField] private UnitsRepositoryProvider unitsRepositoryProvider;

@@ -1,4 +1,4 @@
-﻿namespace Noneb.Core.InGameEditor.Common
+﻿namespace Noneb.Core.Game.Common.TagInterface
 {
     public interface IInspectable
     {

@@ -11,7 +11,7 @@ using UniRx;
 using UnityEngine;
 using UnityUtils;
 
-namespace Noneb.Ui.InGameEditor.UiState
+namespace Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition
 {
     public interface IClosestTileHolderFromPositionService : IDisposable
     {

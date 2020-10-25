@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6192c22e2b184320981f59d0c2ed32fe, type: 3}
-  m_Name: WorldConfigurationRepositoryProvider
+  m_Name: SelectedWorldConfigurationRepositoryProvider
   m_EditorClassIdentifier: 
-  currentGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
+  selectedGameEnvironmentRepositoryProvider: {fileID: 11400000, guid: 53a043d0fc6d99743bd0c091067fdc9f,
     type: 2}

@@ -1,5 +1,5 @@
 ﻿using Noneb.Core.Game.Common.Providers;
-using Noneb.Core.Game.GameState.CurrentWorldConfig;
+using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
 using Noneb.Ui.Game.GameEnvironments.Load.Holders.Providers;
 using UnityEngine;

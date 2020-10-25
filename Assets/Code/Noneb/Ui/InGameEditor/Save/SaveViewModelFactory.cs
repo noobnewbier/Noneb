@@ -1,4 +1,4 @@
-﻿using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+﻿using Noneb.Core.Game.GameState.GameEnvironments;
 using Noneb.Core.Game.InGameMessages;
 using Noneb.Core.InGameEditor.Save.EditorOnly;
 using UnityEngine;

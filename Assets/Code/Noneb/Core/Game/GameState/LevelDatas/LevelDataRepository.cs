@@ -1,10 +1,10 @@
 ﻿using System;
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.GameEnvironments.Data.LevelDatas;
-using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using UniRx;
 
-namespace Noneb.Core.Game.GameState.CurrentLevelDatas
+namespace Noneb.Core.Game.GameState.LevelDatas
 {
     public interface ILevelDataRepository : IDataGetRepository<LevelData>
     {

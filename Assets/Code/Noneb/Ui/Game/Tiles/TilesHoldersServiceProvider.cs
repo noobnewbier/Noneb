@@ -1,5 +1,5 @@
 ﻿using Noneb.Core.Game.Common.Providers;
-using Noneb.Core.Game.GameState.CurrentMapConfig;
+using Noneb.Core.Game.GameState.MapConfig;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
 using UnityEngine;
 using UnityEngine.Serialization;

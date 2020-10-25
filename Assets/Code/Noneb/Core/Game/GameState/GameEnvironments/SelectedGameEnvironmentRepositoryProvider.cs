@@ -3,7 +3,7 @@ using Noneb.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Core.Game.GameState.CurrentGameEnvironments
+namespace Noneb.Core.Game.GameState.GameEnvironments
 {
     [CreateAssetMenu(
         fileName = nameof(SelectedGameEnvironmentRepositoryProvider),

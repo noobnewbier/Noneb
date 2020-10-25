@@ -1,6 +1,6 @@
 ﻿using System;
-using Noneb.Core.Game.GameState.CurrentMapConfig;
-using Noneb.Core.Game.GameState.CurrentWorldConfig;
+using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Ui.Game.Maps.TilesPosition;
 using Noneb.Ui.Game.Tiles;
 using UniRx;

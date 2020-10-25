@@ -1,6 +1,6 @@
 ﻿using System;
 using Noneb.Core.Game.GameEnvironments.Data;
-using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using Noneb.Core.Game.InGameMessages;
 using Noneb.Ui.Game.Common.Holders;
 using Noneb.Ui.Game.Constructs;

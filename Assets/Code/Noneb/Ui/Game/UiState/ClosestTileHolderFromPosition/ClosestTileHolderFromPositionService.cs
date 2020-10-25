@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Noneb.Core.Game.GameState.CurrentWorldConfig;
+using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Core.Game.WorldConfigurations;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using Noneb.Ui.Game.GameEnvironments.Load.Holders;

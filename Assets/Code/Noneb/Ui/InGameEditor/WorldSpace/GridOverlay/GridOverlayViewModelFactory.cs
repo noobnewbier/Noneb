@@ -1,6 +1,6 @@
 ﻿using Noneb.Core.Game.Coordinates;
-using Noneb.Core.Game.GameState.CurrentMapConfig;
-using Noneb.Core.Game.GameState.CurrentWorldConfig;
+using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Ui.Game.Maps.TilesPosition;
 using UnityEngine;
 using UnityEngine.Serialization;

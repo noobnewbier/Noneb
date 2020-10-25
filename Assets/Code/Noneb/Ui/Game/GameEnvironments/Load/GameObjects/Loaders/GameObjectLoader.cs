@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.Common.Loaders;
-using Noneb.Core.Game.GameState.CurrentLevelDatas;
-using Noneb.Core.Game.GameState.CurrentMapConfig;
+using Noneb.Core.Game.GameState.LevelDatas;
+using Noneb.Core.Game.GameState.MapConfig;
 using Noneb.Core.Game.Maps;
 using Noneb.Ui.Game.Common.Holders;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;

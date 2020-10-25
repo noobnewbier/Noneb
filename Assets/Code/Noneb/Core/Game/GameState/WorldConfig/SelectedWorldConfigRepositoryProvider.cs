@@ -1,10 +1,10 @@
 ﻿using Noneb.Core.Game.Common.Providers;
-using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace Noneb.Core.Game.GameState.CurrentWorldConfig
+namespace Noneb.Core.Game.GameState.WorldConfig
 {
     [CreateAssetMenu(
         fileName = nameof(SelectedWorldConfigRepositoryProvider),

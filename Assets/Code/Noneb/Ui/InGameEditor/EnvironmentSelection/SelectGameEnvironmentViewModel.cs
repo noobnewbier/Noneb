@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Experiment.CrossPlatformLiveData;
 using Noneb.Core.Game.GameEnvironments.AvailableGameEnvironment;
 using Noneb.Core.Game.GameEnvironments.Data;
-using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using UniRx;
 
 namespace Noneb.Ui.InGameEditor.EnvironmentSelection

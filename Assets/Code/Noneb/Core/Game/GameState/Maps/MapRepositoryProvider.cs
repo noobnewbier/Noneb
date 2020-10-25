@@ -1,6 +1,6 @@
 ﻿using Noneb.Core.Game.Common.Providers;
 using Noneb.Core.Game.GameState.BoardItems.Providers;
-using Noneb.Core.Game.GameState.CurrentMapConfig;
+using Noneb.Core.Game.GameState.MapConfig;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;

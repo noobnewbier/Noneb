@@ -1,9 +1,9 @@
 ﻿using Noneb.Core.Game.Common.Providers;
-using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Core.Game.GameState.CurrentMapConfig
+namespace Noneb.Core.Game.GameState.MapConfig
 {
     [CreateAssetMenu(
         fileName = nameof(SelectedMapConfigRepositoryProvider),

@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Constructs;
 using Noneb.Core.Game.GameEnvironments.Load;
-using Noneb.Core.Game.GameState.CurrentLevelDatas;
+using Noneb.Core.Game.GameState.LevelDatas;
 using Noneb.Ui.Game.GameEnvironments.Load.BoardItems.Providers;
 using UniRx;
 using UnityEngine;

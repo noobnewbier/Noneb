@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Factories;
-using Noneb.Core.Game.GameState.CurrentLevelDatas;
+using Noneb.Core.Game.GameState.LevelDatas;
 using Noneb.Ui.Game.Common.Holders;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;

@@ -1,6 +1,6 @@
 ﻿using System;
 using Noneb.Core.Game.GameEnvironments.Save;
-using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using TMPro;
 using UniRx;
 using UnityEngine;

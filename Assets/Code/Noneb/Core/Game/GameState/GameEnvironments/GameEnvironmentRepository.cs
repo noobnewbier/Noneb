@@ -1,7 +1,7 @@
 ﻿using Noneb.Core.Game.Common;
 using Noneb.Core.Game.GameEnvironments.Data;
 
-namespace Noneb.Core.Game.GameState.CurrentGameEnvironments
+namespace Noneb.Core.Game.GameState.GameEnvironments
 {
     public interface IGameEnvironmentRepository : IGameEnvironmentGetRepository, IGameEnvironmentSetRepository
     {

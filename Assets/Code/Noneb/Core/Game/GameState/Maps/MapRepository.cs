@@ -2,7 +2,7 @@
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Constructs;
 using Noneb.Core.Game.GameState.BoardItems;
-using Noneb.Core.Game.GameState.CurrentMapConfig;
+using Noneb.Core.Game.GameState.MapConfig;
 using Noneb.Core.Game.Maps;
 using Noneb.Core.Game.Strongholds;
 using Noneb.Core.Game.Tiles;

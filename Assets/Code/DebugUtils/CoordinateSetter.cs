@@ -1,7 +1,7 @@
 ﻿using System;
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Coordinates;
-using Noneb.Core.Game.GameState.CurrentMapConfig;
+using Noneb.Core.Game.GameState.MapConfig;
 using Noneb.Ui.Game.Tiles;
 using UniRx;
 using UnityEngine;

@@ -1,5 +1,5 @@
 ﻿using Noneb.Core.Game.GameEnvironments.AvailableGameEnvironment;
-using Noneb.Core.Game.GameState.CurrentGameEnvironments;
+using Noneb.Core.Game.GameState.GameEnvironments;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;

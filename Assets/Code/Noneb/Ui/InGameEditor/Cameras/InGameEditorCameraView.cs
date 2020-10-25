@@ -8,7 +8,7 @@ namespace Noneb.Ui.InGameEditor.Cameras
     public class InGameEditorCameraView : MonoBehaviour
     {
         [SerializeField] private Transform mapTransform;
-        [SerializeField] private InGameEditorCameraConfig config;
+        [SerializeField] private CameraConfig config;
         [SerializeField] private InGameEditorCameraViewModelFactory viewModelFactory;
 
         private InGameEditorCameraViewModel _viewModel;

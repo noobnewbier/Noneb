@@ -19,9 +19,9 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
         private StrongholdHoldersFetchingServiceProvider provider;
 
         protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
-            ICurrentLevelDataRepository currentLevelDataRepository)
+            ILevelDataRepository levelDataRepository)
         {
-            return currentLevelDataRepository.GetMostRecent().Select(d => d.StrongholdUnitGameObjectProviders);
+            return levelDataRepository.GetMostRecent().Select(d => d.StrongholdUnitGameObjectProviders);
         }
 
         protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService() => provider.Provide();

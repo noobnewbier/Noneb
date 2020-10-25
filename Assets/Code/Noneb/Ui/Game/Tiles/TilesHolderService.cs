@@ -16,18 +16,18 @@ namespace Noneb.Ui.Game.Tiles
     public class TilesHolderService : ITilesHolderService
     {
         private readonly IBoardItemHoldersFetchingService<TileHolder> _tileHoldersFetchingService;
-        private readonly ICurrentMapConfigRepository _currentMapConfigRepository;
+        private readonly IMapConfigRepository _loadedMapConfigRepository;
 
         public TilesHolderService(IBoardItemHoldersFetchingService<TileHolder> tileHoldersFetchingService,
-                                  ICurrentMapConfigRepository currentMapConfigRepository)
+                                  IMapConfigRepository loadedMapConfigRepository)
         {
             _tileHoldersFetchingService = tileHoldersFetchingService;
-            _currentMapConfigRepository = currentMapConfigRepository;
+            _loadedMapConfigRepository = loadedMapConfigRepository;
         }
 
         public IObservable<TileHolder> GetAtCoordinateSingle(Coordinate axialCoordinate)
         {
-            return _currentMapConfigRepository.GetMostRecent()
+            return _loadedMapConfigRepository.GetMostRecent()
                 .ZipLatest(_tileHoldersFetchingService.Fetch(), (config, tileTransforms) => (config, tileTransforms))
                 .Select(
                     tuple =>

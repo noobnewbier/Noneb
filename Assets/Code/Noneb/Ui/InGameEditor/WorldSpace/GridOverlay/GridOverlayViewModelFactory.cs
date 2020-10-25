@@ -14,11 +14,11 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
         [FormerlySerializedAs("getCoordinateServiceProvider")] [SerializeField]
         private CoordinateServiceProvider coordinateServiceProvider;
 
-        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+        [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
 
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
 
@@ -26,8 +26,8 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
         public GridOverlayViewModel Create(Transform centerTransform) =>
             new GridOverlayViewModel(
                 coordinateServiceProvider.Provide(),
-                currentWorldConfigRepositoryProvider.Provide(),
-                currentMapConfigRepositoryProvider.Provide(),
+                selectedWorldConfigRepositoryProvider.Provide(),
+                selectedMapConfigRepositoryProvider.Provide(),
                 tilesPositionServiceProvider.Provide(),
                 centerTransform
             );

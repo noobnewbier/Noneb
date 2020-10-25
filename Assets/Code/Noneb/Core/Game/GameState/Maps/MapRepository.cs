@@ -17,19 +17,19 @@ namespace Noneb.Core.Game.GameState.Maps
 
     public class MapRepository : IMapRepository
     {
-        private readonly ICurrentMapConfigRepository _currentMapConfigRepository;
+        private readonly IMapConfigRepository _mapConfigRepository;
         private readonly IBoardItemsGetRepository<Tile> _tilesRepository;
         private readonly IBoardItemsGetRepository<Unit> _unitsRepository;
         private readonly IBoardItemsRepository<Construct> _constructsRepository;
         private readonly IBoardItemsGetRepository<Stronghold> _strongholdsRepository;
 
-        public MapRepository(ICurrentMapConfigRepository currentMapConfigRepository,
+        public MapRepository(IMapConfigRepository mapConfigRepository,
                              IBoardItemsGetRepository<Tile> tilesRepository,
                              IBoardItemsGetRepository<Unit> unitsRepository,
                              IBoardItemsRepository<Construct> constructsRepository,
                              IBoardItemsGetRepository<Stronghold> strongholdsRepository)
         {
-            _currentMapConfigRepository = currentMapConfigRepository;
+            _mapConfigRepository = mapConfigRepository;
             _tilesRepository = tilesRepository;
             _unitsRepository = unitsRepository;
             _constructsRepository = constructsRepository;
@@ -38,7 +38,7 @@ namespace Noneb.Core.Game.GameState.Maps
 
         public IObservable<Map> GetObservableStream()
         {
-            return _currentMapConfigRepository.GetObservableStream()
+            return _mapConfigRepository.GetObservableStream()
                 .ZipLatest(
                     _tilesRepository.GetObservableStream(),
                     _unitsRepository.GetObservableStream(),
@@ -52,7 +52,7 @@ namespace Noneb.Core.Game.GameState.Maps
 
         public IObservable<Map> GetMostRecent()
         {
-            return _currentMapConfigRepository.GetMostRecent()
+            return _mapConfigRepository.GetMostRecent()
                 .ZipLatest(
                     _tilesRepository.GetMostRecent(),
                     _unitsRepository.GetMostRecent(),

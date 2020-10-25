@@ -13,7 +13,7 @@ namespace Noneb.Ui.InGameEditor.Cameras
     {
         private readonly IInGameEditorCameraSizeInViewService _cameraSizeInViewService;
         private readonly Transform _mapTransform;
-        private readonly InGameEditorCameraConfig _config;
+        private readonly CameraConfig _config;
         private readonly IDisposable _disposable;
         private readonly float _minCameraY;
 
@@ -27,9 +27,9 @@ namespace Noneb.Ui.InGameEditor.Cameras
 
         public InGameEditorCameraViewModel(IInGameEditorCameraSizeInViewService cameraSizeInViewService,
                                            Transform mapTransform,
-                                           InGameEditorCameraConfig config,
+                                           CameraConfig config,
                                            ITilesPositionService tilesPositionService,
-                                           IInGameEditorCameraGetRepository getCameraRepository)
+                                           ICameraGetRepository getCameraRepository)
         {
             _cameraSizeInViewService = cameraSizeInViewService;
             _mapTransform = mapTransform;

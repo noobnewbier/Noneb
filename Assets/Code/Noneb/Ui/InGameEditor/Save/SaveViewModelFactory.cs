@@ -13,7 +13,7 @@ namespace Noneb.Ui.InGameEditor.Save
 
         [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
 
-        public SaveViewModel Create(ICurrentGameEnvironmentGetRepository getRepository) =>
+        public SaveViewModel Create(IGameEnvironmentGetRepository getRepository) =>
             new SaveViewModel(
                 saveEnvironmentAsScriptableServiceProvider.Provide(),
                 getRepository,

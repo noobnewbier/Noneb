@@ -5,7 +5,7 @@ namespace Noneb.Ui.InGameEditor
 {
     public class LoadEditorUiManager : MonoBehaviour
     {
-        [SerializeField] private InGameEditorCameraRepositorySetter cameraRepositorySetter;
+        [SerializeField] private CameraRepositorySetter cameraRepositorySetter;
 
         private void OnEnable()
         {

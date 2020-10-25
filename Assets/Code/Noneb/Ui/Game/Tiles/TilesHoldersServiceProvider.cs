@@ -10,7 +10,7 @@ namespace Noneb.Ui.Game.Tiles
     [CreateAssetMenu(fileName = nameof(TilesHoldersServiceProvider), menuName = MenuName.ScriptableRepository + nameof(TilesHolderService))]
     public class TilesHoldersServiceProvider : ScriptableObject, IObjectProvider<ITilesHolderService>
     {
-        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField]
         private TileHoldersFetchingServiceProvider tileHoldersFetchingServiceProvider;
@@ -21,7 +21,7 @@ namespace Noneb.Ui.Game.Tiles
         public ITilesHolderService Provide() =>
             _cache ?? (_cache = new TilesHolderService(
                 tileHoldersFetchingServiceProvider.Provide(),
-                currentMapConfigRepositoryProvider.Provide()
+                selectedMapConfigRepositoryProvider.Provide()
             ));
     }
 }

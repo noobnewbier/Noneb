@@ -5,17 +5,17 @@ using UniRx;
 
 namespace Noneb.Core.Game.GameState.CurrentWorldConfig
 {
-    public interface ICurrentWorldConfigRepository
+    public interface IWorldConfigRepository
     {
         IObservable<WorldConfig> GetObservableStream();
         IObservable<WorldConfig> GetMostRecent();
     }
 
-    public class CurrentWorldConfigRepository : ICurrentWorldConfigRepository
+    public class WorldConfigRepository : IWorldConfigRepository
     {
-        private readonly ICurrentGameEnvironmentGetRepository _getRepository;
+        private readonly IGameEnvironmentGetRepository _getRepository;
 
-        public CurrentWorldConfigRepository(ICurrentGameEnvironmentGetRepository getRepository)
+        public WorldConfigRepository(IGameEnvironmentGetRepository getRepository)
         {
             _getRepository = getRepository;
         }

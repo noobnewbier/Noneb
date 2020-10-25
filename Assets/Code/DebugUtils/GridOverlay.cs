@@ -5,13 +5,14 @@ using Noneb.Ui.Game.Maps.TilesPosition;
 using Noneb.Ui.Game.UiState.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DebugUtils
 {
     public class GridOverlay : MonoBehaviour
     {
-        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
-        [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [SerializeField] private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
         [SerializeField] private CurrentMapTransformRepositoryProvider mapTransformRepositoryProvider;
 
@@ -20,8 +21,8 @@ namespace DebugUtils
         [ContextMenu("GenerateVertices")]
         private void GenerateVertices()
         {
-            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetObservableStream();
-            var worldConfigObservable = currentWorldConfigRepositoryProvider.Provide().GetObservableStream();
+            var mapConfigObservable = selectedMapConfigRepositoryProvider.Provide().GetObservableStream();
+            var worldConfigObservable = selectedWorldConfigRepositoryProvider.Provide().GetObservableStream();
             var mapTransformObservable = mapTransformRepositoryProvider.Provide().GetObservableStream();
             var positionsObservable =
                 mapTransformObservable.SelectMany(t => tilesPositionServiceProvider.Provide().GetObservableStream(t.position.y));

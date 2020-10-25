@@ -22,9 +22,9 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
         private StrongholdHoldersFetchingServiceProvider provider;
 
         protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
-            ICurrentLevelDataRepository currentLevelDataRepository)
+            ILevelDataRepository levelDataRepository)
         {
-            return currentLevelDataRepository.GetMostRecent().Select(d => d.StrongholdConstructGameObjectProviders);
+            return levelDataRepository.GetMostRecent().Select(d => d.StrongholdConstructGameObjectProviders);
         }
 
         protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService() => provider.Provide();

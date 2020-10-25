@@ -9,14 +9,15 @@ using Noneb.Ui.Game.Common.Holders;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
 {
     public abstract class GameObjectLoader : ScriptableObject, ILoader
     {
         [SerializeField] private GameObjectLoadServiceProvider serviceProvider;
-        [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
-        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentLevelDataRepositoryProvider")] [SerializeField] private SelectedLevelDataRepositoryProvider selectedLevelDataRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         private IDisposable _disposable;
 
@@ -52,8 +53,8 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
         private IObservable<(IReadOnlyList<GameObjectFactory> gameObjectProviders, MapConfig config, IReadOnlyList<IBoardItemHolder> holders)>
             GetDataTupleObservable()
         {
-            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
-            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
+            var levelDataRepository = selectedLevelDataRepositoryProvider.Provide();
+            var mapConfigObservable = selectedMapConfigRepositoryProvider.Provide().GetMostRecent();
             var holdersObservable = GetBoardItemsHolderFetchingService().Fetch();
 
             return GetGameObjectProvidersFromRepository(levelDataRepository)
@@ -88,7 +89,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
         }
 
         protected abstract IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
-            ICurrentLevelDataRepository currentLevelDataRepository);
+            ILevelDataRepository levelDataRepository);
 
         protected abstract IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService();
     }

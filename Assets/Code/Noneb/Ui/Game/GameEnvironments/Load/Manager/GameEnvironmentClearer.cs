@@ -21,7 +21,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
     public class GameEnvironmentClearer : MonoBehaviour
     {
         [SerializeField] private GameEnvironmentLoader gameEnvironmentLoader;
-        [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
         [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
 
         [FormerlySerializedAs("tileHolderssFetchingServiceProvider")] [FormerlySerializedAs("tilesHolderRepositoryProvider")] [SerializeField]
@@ -40,7 +40,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
         private StrongholdHoldersFetchingServiceProvider strongholdHolderFetchingServiceProvider;
 
         private IDisposable _disposable;
-        private ICurrentGameEnvironmentSetRepository _gameEnvironmentSetRepository;
+        private IGameEnvironmentSetRepository _gameEnvironmentSetRepository;
         private IBoardItemHoldersFetchingService<TileHolder> _tileHoldersFetchingService;
         private IBoardItemHoldersFetchingService<UnitHolder> _unitHoldersFetchingService;
         private IBoardItemHoldersFetchingService<ConstructHolder> _constructHoldersFetchingService;
@@ -49,7 +49,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
 
         private void Initialize()
         {
-            _gameEnvironmentSetRepository = currentGameEnvironmentRepositoryProvider.Provide();
+            _gameEnvironmentSetRepository = selectedGameEnvironmentRepositoryProvider.Provide();
             _tileHoldersFetchingService = tileHoldersFetchingServiceProvider.Provide();
             _unitHoldersFetchingService = unitHoldersFetchingServiceProvider.Provide();
             _constructHoldersFetchingService = constructsHoldersFetchingServiceProvider.Provide();

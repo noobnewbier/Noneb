@@ -10,8 +10,8 @@ namespace Noneb.Core.Game.GameState.Maps
     [CreateAssetMenu(fileName = nameof(MapRepositoryProvider), menuName = MenuName.ScriptableRepository + nameof(MapRepository))]
     public class MapRepositoryProvider : ScriptableObject, IObjectProvider<IMapRepository>
     {
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [SerializeField] private TilesRepositoryProvider tilesRepositoryProvider;
         [SerializeField] private UnitsRepositoryProvider unitsRepositoryProvider;
@@ -21,7 +21,7 @@ namespace Noneb.Core.Game.GameState.Maps
         private IMapRepository _cache;
 
         public IMapRepository Provide() => _cache ?? (_cache = new MapRepository(
-            currentMapConfigRepositoryProvider.Provide(),
+            selectedMapConfigRepositoryProvider.Provide(),
             tilesRepositoryProvider.Provide(),
             unitsRepositoryProvider.Provide(),
             constructsRepositoryProvider.Provide(),

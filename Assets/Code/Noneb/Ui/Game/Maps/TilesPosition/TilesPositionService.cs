@@ -19,20 +19,20 @@ namespace Noneb.Ui.Game.Maps.TilesPosition
 
     public class TilesPositionService : ITilesPositionService
     {
-        private readonly ICurrentMapConfigRepository _currentMapConfigRepository;
-        private readonly ICurrentWorldConfigRepository _currentWorldConfigRepository;
+        private readonly IMapConfigRepository _mapConfigRepository;
+        private readonly IWorldConfigRepository _worldConfigRepository;
 
-        public TilesPositionService(ICurrentMapConfigRepository currentMapConfigRepository,
-                                    ICurrentWorldConfigRepository currentWorldConfigRepository)
+        public TilesPositionService(IMapConfigRepository mapConfigRepository,
+                                    IWorldConfigRepository worldConfigRepository)
         {
-            _currentMapConfigRepository = currentMapConfigRepository;
-            _currentWorldConfigRepository = currentWorldConfigRepository;
+            _mapConfigRepository = mapConfigRepository;
+            _worldConfigRepository = worldConfigRepository;
         }
 
         public IObservable<IReadOnlyList<Vector3>> GetObservableStream(float yPosition)
         {
-            return _currentMapConfigRepository.GetObservableStream()
-                .CombineLatest(_currentWorldConfigRepository.GetObservableStream(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
+            return _mapConfigRepository.GetObservableStream()
+                .CombineLatest(_worldConfigRepository.GetObservableStream(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
                 .Select(
                     tuple =>
                     {
@@ -44,8 +44,8 @@ namespace Noneb.Ui.Game.Maps.TilesPosition
 
         public IObservable<IReadOnlyList<Vector3>> GetMostRecent(float yPosition)
         {
-            return _currentMapConfigRepository.GetMostRecent()
-                .CombineLatest(_currentWorldConfigRepository.GetMostRecent(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
+            return _mapConfigRepository.GetMostRecent()
+                .CombineLatest(_worldConfigRepository.GetMostRecent(), (mapConfig, worldConfig) => (mapConfig, worldConfig))
                 .Select(
                     tuple =>
                     {

@@ -17,9 +17,9 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.BoardItems.Loaders
 
         protected override ILoadBoardItemsService<StrongholdData> GetService() => serviceProvider.Provide();
 
-        protected override IObservable<ImmutableArray<StrongholdData>> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository)
+        protected override IObservable<ImmutableArray<StrongholdData>> GetDatasFromRepository(ILevelDataRepository levelDataRepository)
         {
-            return currentLevelDataRepository.GetMostRecent().Select(d => d.StrongholdDatas.ToImmutableArray());
+            return levelDataRepository.GetMostRecent().Select(d => d.StrongholdDatas.ToImmutableArray());
         }
     }
 }

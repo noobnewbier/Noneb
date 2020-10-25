@@ -10,13 +10,13 @@ namespace Noneb.Ui.InGameEditor.EnvironmentSelection
 {
     public class SelectGameEnvironmentViewModel : IDisposable
     {
-        private readonly ICurrentGameEnvironmentRepository _currentGameEnvironmentRepository;
+        private readonly IGameEnvironmentRepository _selectedGameEnvironmentRepository;
         private readonly IDisposable _disposable;
 
         public SelectGameEnvironmentViewModel(IAvailableGameEnvironmentGetRepository availableGameEnvironmentRepository,
-                                              ICurrentGameEnvironmentRepository currentGameEnvironmentRepository)
+                                              IGameEnvironmentRepository selectedGameEnvironmentRepository)
         {
-            _currentGameEnvironmentRepository = currentGameEnvironmentRepository;
+            _selectedGameEnvironmentRepository = selectedGameEnvironmentRepository;
             CurrentlyInspectingGameEnvironmentLiveData = new LiveData<GameEnvironment>();
             AvailableGameEnvironmentLiveData = new LiveData<IEnumerable<GameEnvironment>>();
 
@@ -28,7 +28,7 @@ namespace Noneb.Ui.InGameEditor.EnvironmentSelection
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(AvailableGameEnvironmentLiveData.PostValue),
 
-                _currentGameEnvironmentRepository
+                _selectedGameEnvironmentRepository
                     .GetObservableStream()
                     .SubscribeOn(Scheduler.ThreadPool)
                     .ObserveOn(Scheduler.MainThread)
@@ -51,7 +51,7 @@ namespace Noneb.Ui.InGameEditor.EnvironmentSelection
 
         public void SelectCurrentlyInspectedGameEnvironment()
         {
-            _currentGameEnvironmentRepository.Set(CurrentlyInspectingGameEnvironmentLiveData.Value);
+            _selectedGameEnvironmentRepository.Set(CurrentlyInspectingGameEnvironmentLiveData.Value);
         }
     }
 }

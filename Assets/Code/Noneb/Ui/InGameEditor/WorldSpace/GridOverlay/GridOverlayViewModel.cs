@@ -17,8 +17,8 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
         private readonly CompositeDisposable _compositeDisposable;
 
         public GridOverlayViewModel(ICoordinateService coordinateService,
-                                    ICurrentWorldConfigRepository currentWorldConfigRepository,
-                                    ICurrentMapConfigRepository currentMapConfigRepository,
+                                    IWorldConfigRepository loadedWorldConfigRepository,
+                                    IMapConfigRepository mapConfigRepository,
                                     ITilesPositionService tilesPositionService,
                                     Transform centerTransform)
         {
@@ -31,9 +31,9 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
 
             _compositeDisposable = new CompositeDisposable
             {
-                currentMapConfigRepository.GetObservableStream()
+                mapConfigRepository.GetObservableStream()
                     .CombineLatest(
-                        currentWorldConfigRepository.GetObservableStream(),
+                        loadedWorldConfigRepository.GetObservableStream(),
                         tilesPositionService.GetObservableStream(centerTransform.position.y),
                         (mapConfig, worldConfig, positions) => (mapConfig, worldConfig, positions)
                     )

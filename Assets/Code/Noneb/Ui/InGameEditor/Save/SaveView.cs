@@ -4,6 +4,7 @@ using Noneb.Core.Game.GameState.CurrentGameEnvironments;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Noneb.Ui.InGameEditor.Save
 {
@@ -11,7 +12,7 @@ namespace Noneb.Ui.InGameEditor.Save
     {
         [SerializeField] private GameObject savingDetailDialog;
         [SerializeField] private SaveViewModelFactory viewModelFactory;
-        [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
         [SerializeField] private TMP_InputField filenameInputField;
 
         private SaveViewModel _viewModel;
@@ -21,7 +22,7 @@ namespace Noneb.Ui.InGameEditor.Save
         {
             _compositeDisposable = new CompositeDisposable();
             _viewModel = viewModelFactory.Create(
-                currentGameEnvironmentRepositoryProvider.Provide()
+                selectedGameEnvironmentRepositoryProvider.Provide()
             );
 
             _compositeDisposable.Add(

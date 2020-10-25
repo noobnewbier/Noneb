@@ -5,12 +5,13 @@ using Noneb.Core.Game.Maps;
 using Noneb.Ui.Game.UiState.CurrentMapTransform;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Noneb.Ui.Game.GameEnvironments.Load.Holders.Loaders
 {
     public abstract class BoardItemsHolderLoader : ScriptableObject, ILoader
     {
-        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
         [SerializeField] private CurrentMapTransformRepositoryProvider currentMapTransformRepositoryProvider;
 
         private IDisposable _disposable;
@@ -36,7 +37,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Holders.Loaders
 
         private IObservable<(MapConfig config, Transform mapTransform)> GetDataTupleObservable()
         {
-            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
+            var mapConfigObservable = selectedMapConfigRepositoryProvider.Provide().GetMostRecent();
             var mapTransformObservable = currentMapTransformRepositoryProvider.Provide().GetMostRecent();
 
             return mapConfigObservable

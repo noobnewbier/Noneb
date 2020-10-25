@@ -29,13 +29,13 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
                 .Concat(GetGameObjectRelatedLoadObservable())
                 .Last()
                 .Subscribe(
-                    _ => { Debug.Log("success"); },
+                    _ => { _messageService.PublishMessage("success"); },
                     e =>
                     {
 #if UNITY_EDITOR
-                        _messageService.PublishMessage(e.ToString());
-#else
                         throw e;
+#else
+                        _messageService.PublishMessage(e.ToString());
 #endif
                     }
                 );
@@ -48,25 +48,11 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
                 .Last();
 
         public IObservable<Unit> GetLoadNonGameObjectRelatedObservable() =>
-            LoadPreliminaries()
-                .Concat(LoadBoardItems())
-                .Last();
+            LoadBoardItems();
 
         private void OnDisable()
         {
             _disposable?.Dispose();
-        }
-
-        private IObservable<Unit> LoadPreliminaries()
-        {
-            currentMapTransformSetter.Set();
-
-            unitsHolderFetcherSetter.Set();
-            tilesFetcherSetter.Set();
-            constructsFetcherSetter.Set();
-            strongholdsFetcherSetter.Set();
-
-            return Observable.ReturnUnit().Single();
         }
 
         private IObservable<Unit> LoadBoardItems()
@@ -120,16 +106,6 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
                 )
                 .Single();
         }
-
-        #region Prelimainaries
-
-        [SerializeField] private CurrentMapTransformSetter currentMapTransformSetter;
-        [SerializeField] private UnitsHolderFetcherSetter unitsHolderFetcherSetter;
-        [SerializeField] private ConstructsHolderFetcherSetter constructsFetcherSetter;
-        [SerializeField] private StrongholdsHolderFetcherSetter strongholdsFetcherSetter;
-        [SerializeField] private TilesHolderFetcherSetter tilesFetcherSetter;
-
-        #endregion
 
         #region DataLoaders
 

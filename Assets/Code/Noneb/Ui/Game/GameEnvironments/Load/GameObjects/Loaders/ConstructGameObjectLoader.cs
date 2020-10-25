@@ -17,9 +17,9 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
         [SerializeField] private ConstructsHoldersFetchingServiceProvider repositoryProvider;
 
         protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
-            ICurrentLevelDataRepository currentLevelDataRepository)
+            ILevelDataRepository levelDataRepository)
         {
-            return currentLevelDataRepository.GetMostRecent().Select(d => d.ConstructGameObjectProviders);
+            return levelDataRepository.GetMostRecent().Select(d => d.ConstructGameObjectProviders);
         }
 
         protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService() => repositoryProvider.Provide();

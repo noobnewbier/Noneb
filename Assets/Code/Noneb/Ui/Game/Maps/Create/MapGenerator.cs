@@ -11,11 +11,11 @@ namespace Noneb.Ui.Game.Maps.Create
 {
     public class MapGenerator : MonoBehaviour
     {
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
-        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+        [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
 
         [FormerlySerializedAs("tileHolderProvider")] [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]
         private TileHolderFactory tileHolderFactory;
@@ -31,8 +31,8 @@ namespace Noneb.Ui.Game.Maps.Create
         [ContextMenu("GenerateMap")]
         private void GenerateMap()
         {
-            var worldConfigObservable = currentWorldConfigRepositoryProvider.Provide().GetMostRecent();
-            var mapConfigObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
+            var worldConfigObservable = selectedWorldConfigRepositoryProvider.Provide().GetMostRecent();
+            var mapConfigObservable = selectedMapConfigRepositoryProvider.Provide().GetMostRecent();
             var positionsObservable = tilesPositionServiceProvider.Provide().GetMostRecent(mapTransform.position.y);
 
             _disposable = mapConfigObservable

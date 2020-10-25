@@ -1,6 +1,7 @@
 ﻿using Noneb.Core.Game.GameEnvironments.AvailableGameEnvironment;
 using Noneb.Core.Game.GameState.CurrentGameEnvironments;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.EnvironmentSelection
@@ -12,12 +13,12 @@ namespace Noneb.Ui.InGameEditor.EnvironmentSelection
     public class SelectGameEnvironmentViewModelFactory : ScriptableObject
     {
         [SerializeField] private AvailableGameEnvironmentRepositoryProvider availableGameEnvironmentRepositoryProvider;
-        [SerializeField] private CurrentGameEnvironmentRepositoryProvider currentGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private SelectedGameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
 
         public SelectGameEnvironmentViewModel Create() =>
             new SelectGameEnvironmentViewModel(
                 availableGameEnvironmentRepositoryProvider.Provide(),
-                currentGameEnvironmentRepositoryProvider.Provide()
+                selectedGameEnvironmentRepositoryProvider.Provide()
             );
     }
 }

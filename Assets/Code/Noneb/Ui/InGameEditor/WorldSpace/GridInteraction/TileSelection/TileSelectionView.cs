@@ -11,7 +11,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 
         private void OnEnable()
         {
-            _viewModel = viewModelFactory.Create(mapTransform);
+            _viewModel = viewModelFactory.Create();
         }
 
         private void Update()

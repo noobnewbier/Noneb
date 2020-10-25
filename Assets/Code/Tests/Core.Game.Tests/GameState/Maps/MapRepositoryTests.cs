@@ -20,7 +20,7 @@ namespace Core.Game.Tests.GameState.Maps
         [SetUp]
         public void SetUp()
         {
-            _mockConfigRepository = new Mock<ICurrentMapConfigRepository>();
+            _mockConfigRepository = new Mock<IMapConfigRepository>();
             _mockTilesRepository = new Mock<IBoardItemsRepository<Tile>>();
             _mockUnitsRepository = new Mock<IBoardItemsGetRepository<Unit>>();
             _mockConstructsRepository = new Mock<IBoardItemsRepository<Construct>>();
@@ -37,7 +37,7 @@ namespace Core.Game.Tests.GameState.Maps
 
         private MapRepository _mapRepository;
         private Map _expectedMapWithSetUpMock;
-        private Mock<ICurrentMapConfigRepository> _mockConfigRepository;
+        private Mock<IMapConfigRepository> _mockConfigRepository;
         private Mock<IBoardItemsRepository<Tile>> _mockTilesRepository;
         private Mock<IBoardItemsGetRepository<Unit>> _mockUnitsRepository;
         private Mock<IBoardItemsRepository<Construct>> _mockConstructsRepository;

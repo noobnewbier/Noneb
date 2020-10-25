@@ -6,17 +6,17 @@ using UniRx;
 
 namespace Noneb.Core.Game.GameState.CurrentLevelDatas
 {
-    public interface ICurrentLevelDataRepository : IDataGetRepository<LevelData>
+    public interface ILevelDataRepository : IDataGetRepository<LevelData>
     {
     }
 
-    public class CurrentLevelDataRepository : ICurrentLevelDataRepository
+    public class LevelDataRepository : ILevelDataRepository
     {
-        private readonly ICurrentGameEnvironmentGetRepository _gameEnvironmentGetRepository;
+        private readonly IGameEnvironmentGetRepository _gameEnvironmentGetRepository;
 
-        public CurrentLevelDataRepository(ICurrentGameEnvironmentGetRepository currentGameEnvironmentGetRepository)
+        public LevelDataRepository(IGameEnvironmentGetRepository gameEnvironmentGetRepository)
         {
-            _gameEnvironmentGetRepository = currentGameEnvironmentGetRepository;
+            _gameEnvironmentGetRepository = gameEnvironmentGetRepository;
         }
 
         public IObservable<LevelData> GetObservableStream()

@@ -15,8 +15,8 @@ namespace DebugUtils
     /// </summary>
     public class CoordinateSetter : MonoBehaviour
     {
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         [FormerlySerializedAs("tilesHolderProvider")] [FormerlySerializedAs("tilesTransformProvider")] [SerializeField]
         private TilesHolderFetcher tilesHolderFetcher;
@@ -30,7 +30,7 @@ namespace DebugUtils
         private void SetCoordinates()
         {
             var tilesTransform = tilesHolderFetcher.Fetch();
-            _disposable = currentMapConfigRepositoryProvider.Provide()
+            _disposable = selectedMapConfigRepositoryProvider.Provide()
                 .GetMostRecent()
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)

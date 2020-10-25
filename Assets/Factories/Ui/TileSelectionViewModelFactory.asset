@@ -12,17 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed89f6e71995441b97318d9ff3b714b3, type: 3}
   m_Name: TileSelectionViewModelFactory
   m_EditorClassIdentifier: 
-  currentWorldConfigRepositoryProvider: {fileID: 11400000, guid: 413cf4135dfea4940acd0ff86715d43a,
-    type: 2}
   currentSelectedTileHolderRepositoryProvider: {fileID: 11400000, guid: aba9a643e8797454a80ab84eb6939469,
     type: 2}
   currentHoveredTileHolderRepositoryProvider: {fileID: 11400000, guid: 3a7dd43fd839be640ae9ae9e86197da6,
     type: 2}
-  tileHolderRepositoryProvider: {fileID: 11400000, guid: 6c4291b493e86df429ea886542c100e3,
-    type: 2}
-  cameraRepositoryProvider: {fileID: 11400000, guid: dadd88eea9591fb49a539cf4bdd33d9b,
-    type: 2}
-  loadTilesHolderServiceProvider: {fileID: 11400000, guid: c7229ec88f6a0b841902064e1791083e,
-    type: 2}
   currentInspectableRepositoryProvider: {fileID: 11400000, guid: 30eee96493918a445a6763f05663556b,
+    type: 2}
+  closestTileHolderFromPositionServiceProvider: {fileID: 11400000, guid: b683706414e099c4cad9091bc8e7f726,
+    type: 2}
+  mousePositionServiceProvider: {fileID: 11400000, guid: f0e175a43a14d854e89d39e73105ea24,
+    type: 2}
+  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}

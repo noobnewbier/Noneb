@@ -10,9 +10,9 @@ namespace Noneb.Ui.InGameEditor.Cameras
     {
         [SerializeField] private InGameEditorCameraSizeInViewServiceProvider cameraSizeInViewServiceProvider;
         [SerializeField] private TilesPositionServiceProvider tilesPositionServiceProvider;
-        [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
+        [SerializeField] private CameraRepositoryProvider cameraRepositoryProvider;
 
-        public InGameEditorCameraViewModel Create(Transform mapTransform, InGameEditorCameraConfig config) =>
+        public InGameEditorCameraViewModel Create(Transform mapTransform, CameraConfig config) =>
             new InGameEditorCameraViewModel(
                 cameraSizeInViewServiceProvider.Provide(),
                 mapTransform,

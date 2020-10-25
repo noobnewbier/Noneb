@@ -6,15 +6,15 @@ using UniRx;
 
 namespace Noneb.Core.Game.GameState.CurrentMapConfig
 {
-    public interface ICurrentMapConfigRepository : IDataGetRepository<MapConfig>
+    public interface IMapConfigRepository : IDataGetRepository<MapConfig>
     {
     }
 
-    public class CurrentMapConfigRepository : ICurrentMapConfigRepository
+    public class MapConfigRepository : IMapConfigRepository
     {
-        private readonly ICurrentGameEnvironmentGetRepository _gameEnvironmentGetRepository;
+        private readonly IGameEnvironmentGetRepository _gameEnvironmentGetRepository;
 
-        public CurrentMapConfigRepository(ICurrentGameEnvironmentGetRepository gameEnvironmentGetRepository)
+        public MapConfigRepository(IGameEnvironmentGetRepository gameEnvironmentGetRepository)
         {
             _gameEnvironmentGetRepository = gameEnvironmentGetRepository;
         }

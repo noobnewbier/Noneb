@@ -14,18 +14,18 @@ namespace Noneb.Ui.InGameEditor.Save
         public readonly ILiveData<bool> savingDetailDialogVisibilityEvent;
 
         private readonly ISaveEnvironmentService _saveEnvironmentService;
-        private readonly ICurrentGameEnvironmentGetRepository _currentGameEnvironmentGetRepository;
+        private readonly IGameEnvironmentGetRepository _loadedGameEnvironmentGetRepository;
         private readonly IInGameMessageService _messageService;
 
         private IDisposable _disposable;
 
         public SaveViewModel(ISaveEnvironmentService saveEnvironmentService,
-                             ICurrentGameEnvironmentGetRepository currentGameEnvironmentGetRepository,
+                             IGameEnvironmentGetRepository loadedGameEnvironmentGetRepository,
                              IInGameMessageService messageService)
         {
             _saveEnvironmentService = saveEnvironmentService;
             _saveEnvironmentService = saveEnvironmentService;
-            _currentGameEnvironmentGetRepository = currentGameEnvironmentGetRepository;
+            _loadedGameEnvironmentGetRepository = loadedGameEnvironmentGetRepository;
             _messageService = messageService;
 
             savingResultEvent = new LiveData<SavingResult>();
@@ -39,7 +39,7 @@ namespace Noneb.Ui.InGameEditor.Save
 
         public void Save(string filename)
         {
-            _disposable = _currentGameEnvironmentGetRepository
+            _disposable = _loadedGameEnvironmentGetRepository
                 .GetMostRecent()
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)

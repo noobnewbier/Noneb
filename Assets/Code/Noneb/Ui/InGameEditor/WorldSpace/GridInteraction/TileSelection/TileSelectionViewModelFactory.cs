@@ -1,36 +1,34 @@
-﻿using Noneb.Core.Game.GameState.CurrentWorldConfig;
-using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService.Providers;
-using Noneb.Ui.Game.GameEnvironments.Load.Holders.Providers;
+﻿using Noneb.Core.Game.Common.Factories;
+using Noneb.Core.Game.GameState.CurrentMapConfig;
+using Noneb.Ui.Game.UiState.ClickHandlingService;
 using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;
 using Noneb.Ui.Game.UiState.CurrentSelectedTileHolder;
-using Noneb.Ui.InGameEditor.Cameras;
+using Noneb.Ui.InGameEditor.UiState;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 {
     [CreateAssetMenu(fileName = nameof(TileSelectionViewModelFactory), menuName = MenuName.Factory + nameof(TileSelectionViewModel))]
-    public class TileSelectionViewModelFactory : ScriptableObject
+    public class TileSelectionViewModelFactory : ScriptableObject, IFactory<TileSelectionViewModel>
     {
-        [SerializeField] private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
         [SerializeField] private CurrentSelectedTileHolderRepositoryProvider currentSelectedTileHolderRepositoryProvider;
         [SerializeField] private CurrentHoveredTileHolderRepositoryProvider currentHoveredTileHolderRepositoryProvider;
-        [SerializeField] private TileHoldersFetchingServiceProvider tileHolderRepositoryProvider;
-        [SerializeField] private InGameEditorCameraRepositoryProvider cameraRepositoryProvider;
-        [SerializeField] private LoadTilesHolderServiceProvider loadTilesHolderServiceProvider;
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
-        
-        public TileSelectionViewModel Create(Transform mapTransform) =>
+        [SerializeField] private ClosestTileHolderFromPositionServiceProvider closestTileHolderFromPositionServiceProvider;
+        [SerializeField] private MousePositionServiceProvider mousePositionServiceProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+
+        public TileSelectionViewModel Create() =>
             new TileSelectionViewModel(
-                currentWorldConfigRepositoryProvider.Provide(),
                 currentHoveredTileHolderRepositoryProvider.Provide(),
                 currentSelectedTileHolderRepositoryProvider.Provide(),
-                cameraRepositoryProvider.Provide(),
-                mapTransform,
-                tileHolderRepositoryProvider.Provide(),
-                loadTilesHolderServiceProvider.Provide(),
-                currentInspectableRepositoryProvider.Provide()
+                currentInspectableRepositoryProvider.Provide(),
+                closestTileHolderFromPositionServiceProvider.Provide(),
+                mousePositionServiceProvider.Provide(),
+                selectedMapConfigRepositoryProvider.Provide()
             );
     }
 }

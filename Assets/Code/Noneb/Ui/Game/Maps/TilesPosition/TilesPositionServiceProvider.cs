@@ -10,18 +10,18 @@ namespace Noneb.Ui.Game.Maps.TilesPosition
     [CreateAssetMenu(fileName = nameof(TilesPositionServiceProvider), menuName = MenuName.ScriptableService + nameof(TilesPositionService))]
     public class TilesPositionServiceProvider : ScriptableObject, IObjectProvider<ITilesPositionService>
     {
-        [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
-        [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
-        private CurrentWorldConfigRepositoryProvider currentWorldConfigRepositoryProvider;
+        [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
+        private SelectedWorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
 
         private ITilesPositionService _cache;
 
         public ITilesPositionService Provide() =>
             _cache ?? (_cache = new TilesPositionService(
-                currentMapConfigRepositoryProvider.Provide(),
-                currentWorldConfigRepositoryProvider.Provide()
+                selectedMapConfigRepositoryProvider.Provide(),
+                selectedWorldConfigRepositoryProvider.Provide()
             ));
     }
 }

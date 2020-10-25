@@ -8,13 +8,14 @@ using Noneb.Core.Game.GameState.CurrentMapConfig;
 using Noneb.Core.Game.Maps;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Noneb.Ui.Game.GameEnvironments.Load.BoardItems
 {
     public abstract class BoardItemsLoader<TData> : ScriptableObject, ILoader where TData : BoardItemData
     {
-        [SerializeField] private CurrentLevelDataRepositoryProvider currentLevelDataRepositoryProvider;
-        [SerializeField] private CurrentMapConfigRepositoryProvider currentMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentLevelDataRepositoryProvider")] [SerializeField] private SelectedLevelDataRepositoryProvider selectedLevelDataRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private SelectedMapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         private IDisposable _disposable;
 
@@ -47,8 +48,8 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.BoardItems
 
         private IObservable<(ImmutableArray<TData> datas, MapConfig config)> GetDataTupleObservable()
         {
-            var mapConfigurationObservable = currentMapConfigRepositoryProvider.Provide().GetMostRecent();
-            var levelDataRepository = currentLevelDataRepositoryProvider.Provide();
+            var mapConfigurationObservable = selectedMapConfigRepositoryProvider.Provide().GetMostRecent();
+            var levelDataRepository = selectedLevelDataRepositoryProvider.Provide();
 
             return GetDatasFromRepository(levelDataRepository)
                 .Zip(mapConfigurationObservable, (datas, config) => (datas, config));
@@ -76,6 +77,6 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.BoardItems
         }
 
         protected abstract ILoadBoardItemsService<TData> GetService();
-        protected abstract IObservable<ImmutableArray<TData>> GetDatasFromRepository(ICurrentLevelDataRepository currentLevelDataRepository);
+        protected abstract IObservable<ImmutableArray<TData>> GetDatasFromRepository(ILevelDataRepository levelDataRepository);
     }
 }

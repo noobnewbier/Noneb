@@ -3,8 +3,8 @@ using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.Cameras
 {
-    [CreateAssetMenu(fileName = nameof(InGameEditorCameraConfig), menuName = MenuName.Data + nameof(InGameEditorCameraConfig))]
-    public class InGameEditorCameraConfig : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(CameraConfig), menuName = MenuName.Data + nameof(CameraConfig))]
+    public class CameraConfig : ScriptableObject
     {
         [Range(1, 1000f)] [SerializeField] private float maxPanningSpeed;
         [Range(0, 10f)] [SerializeField] private float bufferToClampingEdge;

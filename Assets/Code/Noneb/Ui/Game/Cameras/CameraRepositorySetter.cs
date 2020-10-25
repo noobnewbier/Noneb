@@ -2,9 +2,9 @@
 
 namespace Noneb.Ui.InGameEditor.Cameras
 {
-    public class InGameEditorCameraRepositorySetter : MonoBehaviour
+    public class CameraRepositorySetter : MonoBehaviour
     {
-        [SerializeField] private InGameEditorCameraRepositoryProvider provider;
+        [SerializeField] private CameraRepositoryProvider provider;
         [SerializeField] private Camera editorCamera;
 
         [ContextMenu(nameof(Set))]

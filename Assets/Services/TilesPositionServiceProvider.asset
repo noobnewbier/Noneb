@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa99a57677840c69931c071c9f8718f, type: 3}
   m_Name: TilesPositionServiceProvider
   m_EditorClassIdentifier: 
-  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+  selectedMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
-  currentWorldConfigRepositoryProvider: {fileID: 11400000, guid: 413cf4135dfea4940acd0ff86715d43a,
+  selectedWorldConfigRepositoryProvider: {fileID: 11400000, guid: 413cf4135dfea4940acd0ff86715d43a,
     type: 2}

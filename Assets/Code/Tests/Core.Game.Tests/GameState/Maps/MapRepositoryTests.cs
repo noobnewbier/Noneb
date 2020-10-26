@@ -43,7 +43,7 @@ namespace Core.Game.Tests.GameState.Maps
         private Mock<IBoardItemsRepository<Construct>> _mockConstructsRepository;
         private Mock<IBoardItemsGetRepository<Stronghold>> _mockStrongholdsRepository;
         
-        private void SetUpUpdateBoardItems(int itemsUpdateCount, int configUpdateCount, int mapXSize = 1, int mapYSize = 1)
+        private void SetUpUpdate(int itemsUpdateCount, int configUpdateCount, int mapXSize = 1, int mapYSize = 1)
         {
             var mapConfig = MapConfig.Create(mapXSize, mapYSize);
             var coordinate = new Coordinate(0, 0);
@@ -79,12 +79,12 @@ namespace Core.Game.Tests.GameState.Maps
         }
 
         [Test]
-        public void WhenHasConfigAndTiles_RepositoryReturnConfigWithThoseValues()
+        public void WhenHasConfigAndItems_RepositoryReturnConfigWithThoseValues()
         {
             var coordinate = new Coordinate(0, 0);
             Map returnedValue = null;
 
-            SetUpUpdateBoardItems(1, 1);
+            SetUpUpdate(1, 1);
 
             _mapRepository.GetObservableStream()
                 .SubscribeOn(Scheduler.Immediate)
@@ -103,7 +103,7 @@ namespace Core.Game.Tests.GameState.Maps
             const int expectedUpdateCount = 0;
             var actualUpdateCount = 0;
             
-            SetUpUpdateBoardItems(0,1);
+            SetUpUpdate(0,1);
 
             _mapRepository.GetObservableStream()
                 .SubscribeOn(Scheduler.Immediate)
@@ -114,12 +114,12 @@ namespace Core.Game.Tests.GameState.Maps
         }
 
         [Test]
-        public void WhenOnlyTilesIsUpdated_MapDoesNotUpdate()
+        public void WhenOnlyItemsIsUpdated_MapDoesNotUpdate()
         {
             const int expectedUpdateCount = 0;
             var actualUpdateCount = 0;
             
-            SetUpUpdateBoardItems(1, 0);
+            SetUpUpdate(1, 0);
 
             _mapRepository.GetObservableStream()
                 .SubscribeOn(Scheduler.Immediate)

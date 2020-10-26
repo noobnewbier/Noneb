@@ -42,6 +42,10 @@ namespace Noneb.Core.Game.Maps
 
             foreach (var boardItem in boardItems)
             {
+                if (boardItem == null)
+                {
+                    continue;
+                }
                 var coordinate = boardItem.Coordinate;
                 grid[coordinate.X, coordinate.Z] = boardItem;
             }
@@ -72,6 +76,7 @@ namespace Noneb.Core.Game.Maps
         }
 
         public T Get<T>(Coordinate axialCoordinate) where T : BoardItem => GetGridForType<T>()[axialCoordinate.X, axialCoordinate.Z];
+
         public bool TryGet<T>(Coordinate axialCoordinate, out T t) where T : BoardItem
         {
             t = GetBoardItemWithDefault<T>(axialCoordinate.X, axialCoordinate.Z);

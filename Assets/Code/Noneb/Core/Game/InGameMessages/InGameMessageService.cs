@@ -23,11 +23,8 @@ namespace Noneb.Core.Game.InGameMessages
 
         public void PublishMessage(string message)
         {
-            if (message.IsNullOrEmpty())
-            {
-                throw new ArgumentException("message cannot be null or empty");
-            }
-            
+            if (message.IsNullOrEmpty()) throw new ArgumentException("message cannot be null or empty");
+
             _inGameEditorUiMessageStream.OnNext(new InGameMessage(message));
         }
 

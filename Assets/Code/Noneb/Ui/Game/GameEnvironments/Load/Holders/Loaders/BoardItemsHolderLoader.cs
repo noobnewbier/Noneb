@@ -11,7 +11,9 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Holders.Loaders
 {
     public abstract class BoardItemsHolderLoader : ScriptableObject, ILoader
     {
-        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField]
+        private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+
         [SerializeField] private CurrentMapTransformRepositoryProvider currentMapTransformRepositoryProvider;
 
         private IDisposable _disposable;

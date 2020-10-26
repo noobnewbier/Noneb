@@ -36,10 +36,8 @@ namespace Noneb.Core.Game.GameEnvironments.Load
                          int mapHeight)
         {
             if (boardItemDatas.Count > mapWidth * mapHeight)
-            {
                 throw new ArgumentException($"Supplied amount of datas({boardItemDatas.Count}) is larger than map's size ({mapWidth * mapHeight})");
-            }
-            
+
             var items = new List<TBoardItem>();
 
             for (var i = 0; i < mapHeight; i++)
@@ -47,10 +45,7 @@ namespace Noneb.Core.Game.GameEnvironments.Load
             {
                 var index = i * mapWidth + j;
                 var boardItemData = boardItemDatas[index];
-                if (boardItemData == null)
-                {
-                    continue;
-                }
+                if (boardItemData == null) continue;
 
                 items.Add(_factory.Create(boardItemData, _coordinateService.GetAxialCoordinateFromNestedArrayIndex(j, i)));
             }

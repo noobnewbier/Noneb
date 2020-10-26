@@ -28,10 +28,7 @@ namespace Noneb.Core.Game.Common.Factories
 
         private void OnValidate()
         {
-            if (prefab.GetComponent<T>() == null)
-            {
-                throw new ArgumentException($"{prefab.name} does not have the required component");
-            }
+            if (prefab.GetComponent<T>() == null) throw new ArgumentException($"{prefab.name} does not have the required component");
         }
     }
 }

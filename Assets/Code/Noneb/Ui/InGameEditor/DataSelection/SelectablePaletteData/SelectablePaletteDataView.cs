@@ -17,6 +17,11 @@ namespace Noneb.Ui.InGameEditor.DataSelection.SelectablePaletteData
         private SelectablePaletteDataViewModel<PaletteData> _viewModel;
         private IDisposable _disposable;
 
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _viewModel.Inspect();
+        }
+
         public void Init(SelectablePaletteDataViewModel<PaletteData> viewModel)
         {
             _viewModel = viewModel;
@@ -35,11 +40,6 @@ namespace Noneb.Ui.InGameEditor.DataSelection.SelectablePaletteData
         private void OnDisable()
         {
             _disposable?.Dispose();
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            _viewModel.Inspect();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Noneb.Core.Game.Common.Factories
 
             public TOut Create() => _factoryMethod.Invoke();
         }
-        
+
         private class AnonymousFactory<TArg, TOut> : IFactory<TArg, TOut>
         {
             private readonly Func<TArg, TOut> _factoryMethod;

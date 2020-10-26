@@ -37,7 +37,7 @@ namespace Noneb.Ui.Game.UiState.MousePosition
                 cameraGetRepository.GetObservableStream()
                     .SubscribeOn(Scheduler.ThreadPool)
                     .ObserveOn(Scheduler.MainThread)
-                    .Subscribe(camera => _currentCamera = camera),
+                    .Subscribe(camera => _currentCamera = camera)
             };
         }
 

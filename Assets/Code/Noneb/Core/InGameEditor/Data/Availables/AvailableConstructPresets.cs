@@ -8,7 +8,10 @@ using UnityUtils.Constants;
 
 namespace Noneb.Core.InGameEditor.Data.Availables
 {
-   [CreateAssetMenu(fileName = nameof(AvailableConstructPresets), menuName = MenuName.Data + ProjectMenuName.InGameEditor + nameof(AvailableConstructPresets))]
+    [CreateAssetMenu(
+        fileName = nameof(AvailableConstructPresets),
+        menuName = MenuName.Data + ProjectMenuName.InGameEditor + nameof(AvailableConstructPresets)
+    )]
     public class AvailableConstructPresets : AvailableDatas<Preset<ConstructData>>
     {
         [SerializeField] private ConstructPresetDataWrapper[] datas;
@@ -22,8 +25,8 @@ namespace Noneb.Core.InGameEditor.Data.Availables
                 }
             )
             .ToArray();
-        
-        
+
+
         [Serializable]
         private struct ConstructPresetDataWrapper
         {

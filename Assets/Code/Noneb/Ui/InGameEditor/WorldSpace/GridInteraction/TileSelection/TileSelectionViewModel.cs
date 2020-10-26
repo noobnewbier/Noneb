@@ -11,7 +11,6 @@ using Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition;
 using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;
 using Noneb.Ui.Game.UiState.CurrentSelectedTileHolder;
 using Noneb.Ui.Game.UiState.MousePosition;
-using Noneb.Ui.InGameEditor.UiState;
 using UniRx;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -51,17 +50,17 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                 .Subscribe(UpdateHaveTilesOnScreen);
         }
 
+        public void Dispose()
+        {
+            _disposable?.Dispose();
+        }
+
         private void UpdateHaveTilesOnScreen(MapConfig c)
         {
             _haveTilesOnScreen = IsMapHaveTiles(c);
         }
 
         private static bool IsMapHaveTiles(MapConfig c) => c.GetTotalMapSize() != 0;
-
-        public void Dispose()
-        {
-            _disposable?.Dispose();
-        }
 
         public void OnClicked(Vector3 mousePositionScreenSpace)
         {

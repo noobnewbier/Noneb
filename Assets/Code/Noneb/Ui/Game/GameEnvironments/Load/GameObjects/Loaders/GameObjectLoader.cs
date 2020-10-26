@@ -16,8 +16,12 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
     public abstract class GameObjectLoader : ScriptableObject, ILoader
     {
         [SerializeField] private GameObjectLoadServiceProvider serviceProvider;
-        [FormerlySerializedAs("currentLevelDataRepositoryProvider")] [SerializeField] private LevelDataRepositoryProvider selectedLevelDataRepositoryProvider;
-        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField] private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
+
+        [FormerlySerializedAs("currentLevelDataRepositoryProvider")] [SerializeField]
+        private LevelDataRepositoryProvider selectedLevelDataRepositoryProvider;
+
+        [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [SerializeField]
+        private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
         private IDisposable _disposable;
 

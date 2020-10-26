@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace Noneb.Ui.InGameEditor.DataSelection.SelectablePaletteData
 {
-
-    public class SelectablePaletteDataViewModel<T> where T: PaletteData
+    public class SelectablePaletteDataViewModel<T> where T : PaletteData
     {
-        public ILiveData<(Sprite sprite, string dataName)> BoardItemUiInfoLiveData { get; }
         private readonly T _paletteData;
         private readonly IDataSetRepository<IInspectable> _currentInspectableRepository;
 
@@ -24,6 +22,8 @@ namespace Noneb.Ui.InGameEditor.DataSelection.SelectablePaletteData
 
             BoardItemUiInfoLiveData.PostValue((sprite, dataName));
         }
+
+        public ILiveData<(Sprite sprite, string dataName)> BoardItemUiInfoLiveData { get; }
 
         public void Inspect()
         {

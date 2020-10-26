@@ -1,10 +1,8 @@
 ﻿using System;
 using Noneb.Core.Game.GameEnvironments.Save;
-using Noneb.Core.Game.GameState.GameEnvironments;
 using TMPro;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Noneb.Ui.InGameEditor.Save
 {
@@ -49,13 +47,9 @@ namespace Noneb.Ui.InGameEditor.Save
                     visible =>
                     {
                         if (visible)
-                        {
                             ShowSavingDetailDialog();
-                        }
                         else
-                        {
                             HideSavingDetailDialog();
-                        }
                     }
                 )
             );

@@ -2,7 +2,6 @@
 using Noneb.Core.Game.GameState.MapConfig;
 using Noneb.Core.Game.GameState.WorldConfig;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.Game.Maps.TilesPosition

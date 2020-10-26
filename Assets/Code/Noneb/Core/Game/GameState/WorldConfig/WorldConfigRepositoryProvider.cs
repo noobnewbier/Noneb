@@ -12,7 +12,8 @@ namespace Noneb.Core.Game.GameState.WorldConfig
     )]
     public class WorldConfigRepositoryProvider : ScriptableObject, IObjectProvider<IWorldConfigRepository>
     {
-        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField]
+        private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
 
         private IWorldConfigRepository _cache;
 

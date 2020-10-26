@@ -83,13 +83,9 @@ namespace Noneb.Ui.InGameEditor.Cameras
         public void OnZooming(float zoomingStrength, float deltaTime)
         {
             if (zoomingStrength > 0f)
-            {
                 if (_cameraViewSize.x > _mapSize.x && _cameraViewSize.y > _mapSize.y && _cameraViewSize.y > _minCameraY)
-                {
                     //don't zoom out too far
                     return;
-                }
-            }
 
             var currentYPosition = CameraLiveData.Value.transform.position.y;
             var newYPosition = currentYPosition + zoomingStrength * deltaTime * _config.MaxZoomingSpeed;

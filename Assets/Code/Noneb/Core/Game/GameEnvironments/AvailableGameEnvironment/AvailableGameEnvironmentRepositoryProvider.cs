@@ -25,10 +25,7 @@ namespace Noneb.Core.Game.GameEnvironments.AvailableGameEnvironment
 
         public IAvailableGameEnvironmentRepository Provide()
         {
-            if (_cache == null)
-            {
-                CreateCache();
-            }
+            if (_cache == null) CreateCache();
 
             return _cache;
         }

@@ -14,10 +14,7 @@ namespace Noneb.Ui.Game.Common.Holders
             for (var i = 0; i < transform.childCount; i++)
             {
                 var child = transform.GetChild(i);
-                if (child.CompareTag(HolderTag))
-                {
-                    toReturn.Add(child.GetComponent<THolder>());
-                }
+                if (child.CompareTag(HolderTag)) toReturn.Add(child.GetComponent<THolder>());
             }
 
             return toReturn;

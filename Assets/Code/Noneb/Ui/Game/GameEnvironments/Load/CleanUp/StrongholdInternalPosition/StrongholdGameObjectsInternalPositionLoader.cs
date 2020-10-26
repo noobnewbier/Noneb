@@ -63,10 +63,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.CleanUp.StrongholdInternalPosition
         {
             foreach (var strongholdHolder in strongholdHolders)
             {
-                if (strongholdHolder == null)
-                {
-                    continue;
-                }
+                if (strongholdHolder == null) continue;
 
                 SetupIndividualTileWithStronghold(strongholdHolder);
             }

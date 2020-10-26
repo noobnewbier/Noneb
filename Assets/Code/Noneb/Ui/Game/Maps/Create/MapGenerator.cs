@@ -14,7 +14,10 @@ namespace Noneb.Ui.Game.Maps.Create
         [FormerlySerializedAs("currentMapConfigRepositoryProvider")] [FormerlySerializedAs("mapConfigurationRepositoryProvider")] [SerializeField]
         private MapConfigRepositoryProvider selectedMapConfigRepositoryProvider;
 
-        [FormerlySerializedAs("currentWorldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigRepositoryProvider")] [FormerlySerializedAs("worldConfigurationRepositoryProvider")] [SerializeField]
+        [FormerlySerializedAs("currentWorldConfigRepositoryProvider")]
+        [FormerlySerializedAs("worldConfigRepositoryProvider")]
+        [FormerlySerializedAs("worldConfigurationRepositoryProvider")]
+        [SerializeField]
         private WorldConfigRepositoryProvider selectedWorldConfigRepositoryProvider;
 
         [FormerlySerializedAs("tileHolderProvider")] [FormerlySerializedAs("tileRepresentationProvider")] [SerializeField]

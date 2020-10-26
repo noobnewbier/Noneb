@@ -13,7 +13,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
         menuName = MenuName.Factory + ProjectMenuName.InGameEditor + "TileInspectorViewModel"
     )]
     public class TileInspectorViewModelFactory : ScriptableObject,
-                                                       IFactory<InspectorViewModel<Tile, TileData>>
+                                                 IFactory<InspectorViewModel<Tile, TileData>>
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;

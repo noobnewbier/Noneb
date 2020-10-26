@@ -32,9 +32,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects
 
                 var gameObjectProvider = gameObjectProviders[flattenedIndex];
                 if (gameObjectProvider == null) // if there is no gameObject in that coordinate(no board item)
-                {
                     continue;
-                }
 
                 gameObjectProvider.Create(holder.Transform, false);
             }

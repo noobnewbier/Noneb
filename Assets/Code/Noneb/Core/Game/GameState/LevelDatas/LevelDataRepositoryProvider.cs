@@ -12,7 +12,8 @@ namespace Noneb.Core.Game.GameState.LevelDatas
     )]
     public class LevelDataRepositoryProvider : ScriptableObject, IObjectProvider<ILevelDataRepository>
     {
-        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField] private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
+        [FormerlySerializedAs("currentGameEnvironmentRepositoryProvider")] [SerializeField]
+        private GameEnvironmentRepositoryProvider selectedGameEnvironmentRepositoryProvider;
 
         private ILevelDataRepository _cache;
 

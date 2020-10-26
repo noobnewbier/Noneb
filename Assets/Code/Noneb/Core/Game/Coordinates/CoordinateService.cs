@@ -25,9 +25,7 @@ namespace Noneb.Core.Game.Coordinates
         public Coordinate GetCoordinateFromFlattenArrayIndex(int index, MapConfig config)
         {
             if (index > config.GetTotalMapSize() || index < 0)
-            {
                 throw new ArgumentOutOfRangeException($"{index} is out of range of the given config: ${config}");
-            }
 
             var nestedArrayZ = index / config.GetMap2DActualHeight();
             var nestedArrayX = index - nestedArrayZ * config.GetMap2DActualWidth();
@@ -38,9 +36,7 @@ namespace Noneb.Core.Game.Coordinates
         public int GetFlattenArrayIndexFromAxialCoordinate(int x, int z, MapConfig config)
         {
             if (x > config.GetMap2DArrayWidth() || z > config.GetMap2DArrayHeight())
-            {
                 throw new ArgumentOutOfRangeException($"{x} or {z} is out of range of the given config: ${config}");
-            }
 
             return z * config.GetMap2DActualWidth() + x - z % 2 - z / 2;
         }

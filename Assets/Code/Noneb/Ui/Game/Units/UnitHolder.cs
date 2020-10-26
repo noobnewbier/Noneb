@@ -9,10 +9,7 @@ namespace Noneb.Ui.Game.Units
     {
         private void OnDrawGizmosSelected()
         {
-            if (Value == null)
-            {
-                return;
-            }
+            if (Value == null) return;
 
             var style = new GUIStyle {normal = {textColor = Color.yellow}};
             Handles.Label(

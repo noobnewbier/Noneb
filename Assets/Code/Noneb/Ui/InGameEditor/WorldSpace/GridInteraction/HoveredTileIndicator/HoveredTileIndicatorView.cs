@@ -40,10 +40,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.HoveredTileIndicator
 
         private void OnSelectedTileUpdated([CanBeNull] TileHolder tileHolder)
         {
-            if (_viewModel.CurrentlyHoveredTileHolderLiveData.Value == tileHolder)
-            {
-                _hoveredTileIndicatorController.SetDisabled();
-            }
+            if (_viewModel.CurrentlyHoveredTileHolderLiveData.Value == tileHolder) _hoveredTileIndicatorController.SetDisabled();
         }
 
         private void OnDisable()

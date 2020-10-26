@@ -77,10 +77,7 @@ namespace Noneb.Core.Game.GameEnvironments.Data
 
             public StrongholdData ToStrongholdData()
             {
-                if (unitDataScriptable == null && constructDataScriptable == null)
-                {
-                    return null;
-                }
+                if (unitDataScriptable == null && constructDataScriptable == null) return null;
 
                 return StrongholdData.Create(constructDataScriptable.ToData(), unitDataScriptable.ToData());
             }

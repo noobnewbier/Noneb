@@ -65,6 +65,12 @@ namespace Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition
                 null;
         }
 
+        public void Dispose()
+        {
+            _compositeDisposable?.Dispose();
+            _fetchingServiceDisposable?.Dispose();
+        }
+
         private void UpdateCurrentTileHolders()
         {
             _fetchingServiceDisposable = _holderFetchingService.Fetch()
@@ -75,11 +81,5 @@ namespace Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition
         }
 
         private static bool IsBehaviourValid(Behaviour tileHolder) => tileHolder != null && tileHolder.isActiveAndEnabled;
-
-        public void Dispose()
-        {
-            _compositeDisposable?.Dispose();
-            _fetchingServiceDisposable?.Dispose();
-        }
     }
 }

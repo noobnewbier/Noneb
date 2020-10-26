@@ -12,7 +12,8 @@ namespace Noneb.Ui.Game.UiState.BoardItemsFetcher.Providers
         menuName = MenuName.ScriptableRepository + "UnitsHolderFetcherRepository"
     )]
     public class UnitsHolderFetcherRepositoryProvider : ScriptableObject,
-                                                        IObjectProvider<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>>
+                                                        IObjectProvider<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>,
+                                                            UnitHolder>>
     {
         private readonly Lazy<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>> _lazyInstance =
             new Lazy<BoardItemsHolderFetcherRepository<BoardItemsHolderFetcher<UnitHolder>, UnitHolder>>(

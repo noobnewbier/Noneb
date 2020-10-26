@@ -19,5 +19,4 @@
     {
         TOut Create();
     }
-
 }

@@ -22,8 +22,8 @@ namespace Noneb.Core.InGameEditor.Data.Availables
                 }
             )
             .ToArray();
-        
-        
+
+
         [Serializable]
         private struct TilePresetDataWrapper
         {

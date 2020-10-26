@@ -14,10 +14,7 @@ namespace Noneb.Ui.Game.Tiles
 
         private void OnDrawGizmosSelected()
         {
-            if (Value == null)
-            {
-                return;
-            }
+            if (Value == null) return;
 
             Handles.Label(transform.position, Value.Coordinate.ToString());
         }

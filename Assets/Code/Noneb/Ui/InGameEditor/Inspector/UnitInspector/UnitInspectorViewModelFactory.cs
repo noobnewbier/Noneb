@@ -2,7 +2,6 @@
 using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Units;
-using Noneb.Core.InGameEditor.Data;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
 using UnityUtils.Constants;

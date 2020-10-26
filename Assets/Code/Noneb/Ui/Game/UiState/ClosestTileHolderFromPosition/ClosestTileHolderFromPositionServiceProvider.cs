@@ -7,7 +7,10 @@ using UnityUtils.Constants;
 
 namespace Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition
 {
-    [CreateAssetMenu(fileName = nameof(ClosestTileHolderFromPositionServiceProvider), menuName = MenuName.ScriptableService + nameof(ClosestTileHolderFromPositionService))]
+    [CreateAssetMenu(
+        fileName = nameof(ClosestTileHolderFromPositionServiceProvider),
+        menuName = MenuName.ScriptableService + nameof(ClosestTileHolderFromPositionService)
+    )]
     public class ClosestTileHolderFromPositionServiceProvider : ScriptableObject, IObjectProvider<IClosestTileHolderFromPositionService>
     {
         [SerializeField] private WorldConfigRepositoryProvider loadedWorldConfigRepositoryProvider;
@@ -16,13 +19,11 @@ namespace Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition
 
         private IClosestTileHolderFromPositionService _cache;
 
-        public IClosestTileHolderFromPositionService Provide()
-        {
-            return _cache ?? (_cache = new ClosestTileHolderFromPositionService(
+        public IClosestTileHolderFromPositionService Provide() =>
+            _cache ?? (_cache = new ClosestTileHolderFromPositionService(
                 loadedWorldConfigRepositoryProvider.Provide(),
                 tileHoldersFetchingServiceProvider.Provide(),
                 loadTilesHolderServiceProvider.Provide()
             ));
-        }
     }
 }

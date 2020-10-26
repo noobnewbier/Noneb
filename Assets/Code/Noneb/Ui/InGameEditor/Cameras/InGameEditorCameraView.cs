@@ -54,10 +54,7 @@ namespace Noneb.Ui.InGameEditor.Cameras
         private void Panning() //consider adding panning with middle mouse button
         {
             var panningStrength = GetPanningStrength();
-            if (FloatUtil.NearlyEqual(panningStrength, 0f))
-            {
-                return;
-            }
+            if (FloatUtil.NearlyEqual(panningStrength, 0f)) return;
 
             var mousePosition = Input.mousePosition;
 
@@ -83,9 +80,7 @@ namespace Noneb.Ui.InGameEditor.Cameras
 
             if (yDistancePercentage < config.EdgePercentageToPan && xDistancePercentage < config.EdgePercentageToPan ||
                 yDistancePercentage > 1f || xDistancePercentage > 1f) // prevent panning when mouse is outside of windows
-            {
                 return 0;
-            }
 
             var center = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
             var mouseDistanceFromCenter = Vector3.Distance(mousePosition, center);
@@ -104,10 +99,7 @@ namespace Noneb.Ui.InGameEditor.Cameras
         private void Zooming()
         {
             var zoomingStrength = GetZoomingStrength();
-            if (FloatUtil.NearlyEqual(zoomingStrength, 0f))
-            {
-                return;
-            }
+            if (FloatUtil.NearlyEqual(zoomingStrength, 0f)) return;
 
             _viewModel.OnZooming(zoomingStrength, Time.deltaTime);
         }
@@ -117,10 +109,7 @@ namespace Noneb.Ui.InGameEditor.Cameras
         {
             var zoomInput = Input.GetAxis("Mouse ScrollWheel");
             var inputStrength = Mathf.Abs(zoomInput);
-            if (!FloatUtil.NearlyEqual(zoomInput, 0f))
-            {
-                _currentZoomingDirection = Mathf.Sign(zoomInput) * (config.IsInvertedWheel ? -1f : 1f);
-            }
+            if (!FloatUtil.NearlyEqual(zoomInput, 0f)) _currentZoomingDirection = Mathf.Sign(zoomInput) * (config.IsInvertedWheel ? -1f : 1f);
 
             if (!FloatUtil.NearlyEqual(zoomInput, 0f))
             {

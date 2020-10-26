@@ -42,10 +42,7 @@ namespace Noneb.Core.Game.Maps
 
             foreach (var boardItem in boardItems)
             {
-                if (boardItem == null)
-                {
-                    continue;
-                }
+                if (boardItem == null) continue;
                 var coordinate = boardItem.Coordinate;
                 grid[coordinate.X, coordinate.Z] = boardItem;
             }

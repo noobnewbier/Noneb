@@ -15,11 +15,8 @@ namespace Noneb.Core.InGameEditor.GetInGameEditorDirectoryServices
 
         public string GetRelativeDirectoryToSpecificEnvironment(string environmentName)
         {
-            if (environmentName.IsNullOrEmpty())
-            {
-                throw new ArgumentException($"{nameof(environmentName)} is null or empty");
-            }
-            
+            if (environmentName.IsNullOrEmpty()) throw new ArgumentException($"{nameof(environmentName)} is null or empty");
+
             return Path.Combine("Assets/", EnvironmentsDirectory, environmentName);
         }
     }

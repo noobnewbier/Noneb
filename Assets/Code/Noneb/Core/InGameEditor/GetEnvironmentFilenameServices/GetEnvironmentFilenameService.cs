@@ -14,11 +14,8 @@ namespace Noneb.Core.InGameEditor.GetEnvironmentFilenameServices
 
         public string GetEnvironmentAsScriptableFilename(string environmentName, Type fileType)
         {
-            if (environmentName.IsNullOrEmpty())
-            {
-                throw new ArgumentException($"{nameof(environmentName)} is null or empty");
-            }
-            
+            if (environmentName.IsNullOrEmpty()) throw new ArgumentException($"{nameof(environmentName)} is null or empty");
+
             return environmentName + fileType.Name + AssetFileExtension;
         }
     }

@@ -39,10 +39,7 @@ namespace Noneb.Core.Game.Maps
 
                     //we ignore the starting tile when calculating the cost
                     var pathCost = path.Select(map.Get<Tile>).Sum(t => t.Data.Weight);
-                    if (includeStartingTile)
-                    {
-                        path.Add(start);
-                    }
+                    if (includeStartingTile) path.Add(start);
 
                     path = path.Reverse().ToList();
 
@@ -52,30 +49,21 @@ namespace Noneb.Core.Game.Maps
                 foreach (var neighbour in map.GetNeighbours<Tile>(current).Values)
                 {
                     if (neighbour == null)
-                    {
                         //ignore tiles that does not exist(e.g. when current is at the top/bottom edge of the map)
                         continue;
-                    }
 
                     var currentDistanceToNeighbour = distanceToTile[current] + neighbour.Data.Weight;
                     var neighbourCoordinate = neighbour.Coordinate;
                     if (!distanceToTile.TryGetValue(neighbourCoordinate, out var previousDistanceToNeighbour))
-                    {
                         previousDistanceToNeighbour = float.PositiveInfinity;
-                    }
 
-                    if (currentDistanceToNeighbour > previousDistanceToNeighbour)
-                    {
-                        continue;
-                    }
+                    if (currentDistanceToNeighbour > previousDistanceToNeighbour) continue;
 
                     var newScoreForNeighbour = currentDistanceToNeighbour + Heuristic(neighbourCoordinate, goal);
                     cameFrom[neighbourCoordinate] = current;
                     distanceToTile[neighbourCoordinate] = currentDistanceToNeighbour;
                     if (!tileToDiscover.TryUpdatePriority(neighbourCoordinate, newScoreForNeighbour))
-                    {
                         tileToDiscover.Enqueue(neighbourCoordinate, newScoreForNeighbour);
-                    }
                 }
             }
 

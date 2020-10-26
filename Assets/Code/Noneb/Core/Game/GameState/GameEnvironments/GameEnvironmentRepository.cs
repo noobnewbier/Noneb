@@ -16,7 +16,7 @@ namespace Noneb.Core.Game.GameState.GameEnvironments
     }
 
     public class GameEnvironmentRepository : DataRepository<GameEnvironment>,
-                                                    IGameEnvironmentRepository
+                                             IGameEnvironmentRepository
     {
     }
 }

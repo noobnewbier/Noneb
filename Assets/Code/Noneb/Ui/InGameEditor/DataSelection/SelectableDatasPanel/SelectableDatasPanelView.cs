@@ -54,14 +54,12 @@ namespace Noneb.Ui.InGameEditor.DataSelection.SelectableDatasPanel
         private void CleanUpExcessiveSelectableDataViews(IReadOnlyCollection<SelectablePaletteDataViewModel<PaletteData>> dataViewModels)
         {
             if (dataViewModels.Count < _selectablePaletteDataViews.Count)
-            {
                 for (var i = dataViewModels.Count; i < _selectablePaletteDataViews.Count; i++)
                 {
                     _selectablePaletteDataViews[i].ReturnToPool();
 
                     _selectablePaletteDataViews.RemoveAt(i);
                 }
-            }
         }
     }
 }

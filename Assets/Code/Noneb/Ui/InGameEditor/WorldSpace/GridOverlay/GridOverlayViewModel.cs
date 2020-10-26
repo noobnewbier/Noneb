@@ -66,18 +66,12 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
 
         private void UpdateCellsCountsWhenNeeded(int newValue)
         {
-            if (CellsCountLiveData.Value != newValue)
-            {
-                CellsCountLiveData.PostValue(newValue);
-            }
+            if (CellsCountLiveData.Value != newValue) CellsCountLiveData.PostValue(newValue);
         }
 
         private void UpdateWorldConfigWhenNeeded(WorldConfig newValue)
         {
-            if (WorldConfigLiveData.Value != newValue)
-            {
-                WorldConfigLiveData.PostValue(newValue);
-            }
+            if (WorldConfigLiveData.Value != newValue) WorldConfigLiveData.PostValue(newValue);
         }
 
         private void UpdateCoordinatesWhenNeeded(IReadOnlyList<Coordinate> newValue)
@@ -85,10 +79,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
             var currentValue = CoordinatesLiveData.Value;
             var needUpdate = !currentValue?.SequenceEqual(newValue) ?? true;
 
-            if (needUpdate)
-            {
-                CoordinatesLiveData.PostValue(newValue);
-            }
+            if (needUpdate) CoordinatesLiveData.PostValue(newValue);
         }
 
         private void UpdateCellsPositionWhenNeeded(IReadOnlyList<Vector3> newValue)
@@ -101,9 +92,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
             {
                 for (var i = 0; i < currentValue?.Count; i++)
                     if (currentValue[i] != newValue[i])
-                    {
                         needUpdate = true;
-                    }
             }
             else
             {
@@ -111,10 +100,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridOverlay
             }
 
 
-            if (needUpdate)
-            {
-                CellsPositionLiveData.PostValue(newValue);
-            }
+            if (needUpdate) CellsPositionLiveData.PostValue(newValue);
         }
     }
 }

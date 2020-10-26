@@ -1,6 +1,5 @@
 ﻿using System;
 using Noneb.Core.Game.Constructs;
-using Noneb.Core.InGameEditor.Data;
 using TMPro;
 using UniRx;
 using UnityEngine;

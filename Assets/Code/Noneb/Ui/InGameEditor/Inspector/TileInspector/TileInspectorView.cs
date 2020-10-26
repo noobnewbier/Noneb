@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using Noneb.Core.Game.Tiles;
-using Noneb.Core.InGameEditor.Data;
 using TMPro;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
@@ -28,7 +26,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
             _disposable = new CompositeDisposable
             {
                 _presetViewModel.TypeTLiveData.Subscribe(OnUpdateData),
-                _presetViewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility),
+                _presetViewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }
 

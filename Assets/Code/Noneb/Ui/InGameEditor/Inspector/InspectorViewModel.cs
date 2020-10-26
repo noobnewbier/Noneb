@@ -14,9 +14,6 @@ namespace Noneb.Ui.InGameEditor.Inspector
         where TData : BoardItemData
         where TItem : BoardItem<TData>
     {
-        public ILiveData<TData> TypeTLiveData { get; }
-        public ILiveData<bool> VisibilityLiveData { get; }
-
         private readonly IDisposable _disposable;
         private readonly IDisposable _coordinateDisposable;
         private Map _currentMap;
@@ -40,6 +37,14 @@ namespace Noneb.Ui.InGameEditor.Inspector
                         m => _currentMap = m
                     )
             };
+        }
+
+        public ILiveData<TData> TypeTLiveData { get; }
+        public ILiveData<bool> VisibilityLiveData { get; }
+
+        public void Dispose()
+        {
+            _disposable.Dispose();
         }
 
         private void OnInspectableUpdate(IInspectable inspectable)
@@ -81,11 +86,6 @@ namespace Noneb.Ui.InGameEditor.Inspector
         private void UpdateVisibility(bool isVisible)
         {
             VisibilityLiveData.PostValue(isVisible);
-        }
-
-        public void Dispose()
-        {
-            _disposable.Dispose();
         }
     }
 }

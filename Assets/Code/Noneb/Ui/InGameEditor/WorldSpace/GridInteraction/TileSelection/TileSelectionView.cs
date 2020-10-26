@@ -27,10 +27,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 
         private void HandleMouseClick()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _viewModel.OnClicked(Input.mousePosition);
-            }
+            if (Input.GetMouseButtonDown(0)) _viewModel.OnClicked(Input.mousePosition);
         }
 
         private void OnDisable()

@@ -65,7 +65,11 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
             newInstance.unitDatas = levelData.UnitDatas.Select(d => d?.Original).ToArray();
             newInstance.unitGameObjectProviders = levelData.UnitGameObjectProviders;
             newInstance.strongholdDatas = levelData.StrongholdDatas
-                .Select(data => data != null ? new StrongholdDataWrapper(data.UnitData.Original, data.ConstructData.Original) : new StrongholdDataWrapper(null, null))
+                .Select(
+                    data => data != null ?
+                        new StrongholdDataWrapper(data.UnitData.Original, data.ConstructData.Original) :
+                        new StrongholdDataWrapper(null, null)
+                )
                 .ToArray();
             newInstance.strongholdUnitGameObjectProviders = levelData.StrongholdUnitGameObjectProviders;
             newInstance.strongholdConstructGameObjectProviders = levelData.StrongholdConstructGameObjectProviders;
@@ -96,10 +100,7 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
             [CanBeNull]
             public StrongholdData ToStrongholdData()
             {
-                if (unitDataScriptable == null && constructDataScriptable == null)
-                {
-                    return null;
-                }
+                if (unitDataScriptable == null && constructDataScriptable == null) return null;
 
                 return StrongholdData.Create(constructDataScriptable.ToData(), unitDataScriptable.ToData());
             }

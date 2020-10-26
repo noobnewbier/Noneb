@@ -83,7 +83,7 @@ namespace Noneb.Ui.InGameEditor.Inspector
             VisibilityLiveData.PostValue(isVisible);
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
             _disposable.Dispose();
         }

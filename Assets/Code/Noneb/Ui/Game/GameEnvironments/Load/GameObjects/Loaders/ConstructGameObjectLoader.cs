@@ -19,7 +19,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.GameObjects.Loaders
         protected override IObservable<IReadOnlyList<GameObjectFactory>> GetGameObjectProvidersFromRepository(
             ILevelDataRepository levelDataRepository)
         {
-            return levelDataRepository.GetMostRecent().Select(d => d.ConstructGameObjectProviders);
+            return levelDataRepository.GetMostRecent().Select(d => d.ConstructGameObjectFactories);
         }
 
         protected override IBoardItemHoldersFetchingService<IBoardItemHolder> GetBoardItemsHolderFetchingService() => repositoryProvider.Provide();

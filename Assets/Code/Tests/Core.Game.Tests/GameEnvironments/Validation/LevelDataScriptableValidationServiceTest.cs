@@ -67,7 +67,7 @@ namespace Core.Game.Tests.GameEnvironments.Validation
         public void WhenStrongholdHasDataButNotConstructGameObjectFactory_ReturnIsNotValid()
         {
             var levelData = GetEmptyLevelData(_3X3MapConfig).FillWithTiles().FillWithStrongholds().ToScriptable();
-            levelData.StrongholdConstructGameObjectProviders[0] = null;
+            levelData.StrongholdConstructGameObjectFactories[0] = null;
 
             var returnedValue = _service.Validate(levelData, _3X3MapConfig);
 
@@ -78,7 +78,7 @@ namespace Core.Game.Tests.GameEnvironments.Validation
         public void WhenStrongholdHasDataButNotUnitGameObjectFactory_ReturnIsNotValid()
         {
             var levelData = GetEmptyLevelData(_3X3MapConfig).FillWithTiles().FillWithStrongholds().ToScriptable();
-            levelData.StrongholdUnitGameObjectProviders[0] = null;
+            levelData.StrongholdUnitGameObjectFactories[0] = null;
 
             var returnedValue = _service.Validate(levelData, _3X3MapConfig);
 
@@ -109,7 +109,7 @@ namespace Core.Game.Tests.GameEnvironments.Validation
         public void WhenUnitHasDataButNotGameObjectFactory_ReturnIsNotValid()
         {
             var levelData = GetEmptyLevelData(_3X3MapConfig).FillWithTiles().FillWithUnits().ToScriptable();
-            levelData.UnitGameObjectProviders[0] = null;
+            levelData.UnitGameObjectFactories[0] = null;
 
             var returnedValue = _service.Validate(levelData, _3X3MapConfig);
 

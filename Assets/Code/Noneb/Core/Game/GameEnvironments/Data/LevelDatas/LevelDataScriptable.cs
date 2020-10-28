@@ -16,14 +16,14 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
     public class LevelDataScriptable : ScriptableObject
     {
         [SerializeField] private TileDataScriptable[] tileDatas;
-        [SerializeField] private GameObjectFactory[] tileGameObjectProviders;
+        [FormerlySerializedAs("tileGameObjectProviders")] [SerializeField] private GameObjectFactory[] tileGameObjectFactories;
         [SerializeField] private ConstructDataScriptable[] constructDatas;
-        [SerializeField] private GameObjectFactory[] constructGameObjectProviders;
+        [FormerlySerializedAs("constructGameObjectProviders")] [SerializeField] private GameObjectFactory[] constructGameObjectFactories;
         [SerializeField] private UnitDataScriptable[] unitDatas;
-        [SerializeField] private GameObjectFactory[] unitGameObjectProviders;
+        [FormerlySerializedAs("unitGameObjectProviders")] [SerializeField] private GameObjectFactory[] unitGameObjectFactories;
         [SerializeField] private StrongholdDataWrapper[] strongholdDatas;
-        [SerializeField] private GameObjectFactory[] strongholdUnitGameObjectProviders;
-        [SerializeField] private GameObjectFactory[] strongholdConstructGameObjectProviders;
+        [FormerlySerializedAs("strongholdUnitGameObjectProviders")] [SerializeField] private GameObjectFactory[] strongholdUnitGameObjectFactories;
+        [FormerlySerializedAs("strongholdConstructGameObjectProviders")] [SerializeField] private GameObjectFactory[] strongholdConstructGameObjectFactories;
 
 #if UNITY_EDITOR
         [TextArea] [SerializeField] [UsedImplicitly]
@@ -32,26 +32,26 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
 
         public StrongholdDataWrapper[] StrongholdDatas => strongholdDatas;
         public TileDataScriptable[] TileDatas => tileDatas;
-        public GameObjectFactory[] TileGameObjectProviders => tileGameObjectProviders;
+        public GameObjectFactory[] TileGameObjectFactories => tileGameObjectFactories;
         public ConstructDataScriptable[] ConstructDatas => constructDatas;
-        public GameObjectFactory[] ConstructGameObjectProviders => constructGameObjectProviders;
+        public GameObjectFactory[] ConstructGameObjectFactories => constructGameObjectFactories;
         public UnitDataScriptable[] UnitDatas => unitDatas;
-        public GameObjectFactory[] UnitGameObjectProviders => unitGameObjectProviders;
-        public GameObjectFactory[] StrongholdUnitGameObjectProviders => strongholdUnitGameObjectProviders;
-        public GameObjectFactory[] StrongholdConstructGameObjectProviders => strongholdConstructGameObjectProviders;
+        public GameObjectFactory[] UnitGameObjectFactories => unitGameObjectFactories;
+        public GameObjectFactory[] StrongholdUnitGameObjectFactories => strongholdUnitGameObjectFactories;
+        public GameObjectFactory[] StrongholdConstructGameObjectFactories => strongholdConstructGameObjectFactories;
 
         public LevelData ToLevelData()
         {
             return new LevelData(
                 tileDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
-                tileGameObjectProviders,
+                tileGameObjectFactories,
                 constructDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
-                constructGameObjectProviders,
+                constructGameObjectFactories,
                 unitDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
-                unitGameObjectProviders,
+                unitGameObjectFactories,
                 strongholdDatas.Select(wrapper => wrapper.ToStrongholdData()).ToArray(),
-                strongholdUnitGameObjectProviders,
-                strongholdConstructGameObjectProviders
+                strongholdUnitGameObjectFactories,
+                strongholdConstructGameObjectFactories
             );
         }
 
@@ -59,11 +59,11 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
         {
             var newInstance = CreateInstance<LevelDataScriptable>();
             newInstance.tileDatas = levelData.TileDatas.Select(d => d?.Original).ToArray();
-            newInstance.tileGameObjectProviders = levelData.TileGameObjectProviders;
+            newInstance.tileGameObjectFactories = levelData.TileGameObjectFactories;
             newInstance.constructDatas = levelData.ConstructDatas.Select(d => d?.Original).ToArray();
-            newInstance.constructGameObjectProviders = levelData.ConstructGameObjectProviders;
+            newInstance.constructGameObjectFactories = levelData.ConstructGameObjectFactories;
             newInstance.unitDatas = levelData.UnitDatas.Select(d => d?.Original).ToArray();
-            newInstance.unitGameObjectProviders = levelData.UnitGameObjectProviders;
+            newInstance.unitGameObjectFactories = levelData.UnitGameObjectFactories;
             newInstance.strongholdDatas = levelData.StrongholdDatas
                 .Select(
                     data => data != null ?
@@ -71,8 +71,8 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
                         new StrongholdDataWrapper(null, null)
                 )
                 .ToArray();
-            newInstance.strongholdUnitGameObjectProviders = levelData.StrongholdUnitGameObjectProviders;
-            newInstance.strongholdConstructGameObjectProviders = levelData.StrongholdConstructGameObjectProviders;
+            newInstance.strongholdUnitGameObjectFactories = levelData.StrongholdUnitGameObjectFactories;
+            newInstance.strongholdConstructGameObjectFactories = levelData.StrongholdConstructGameObjectFactories;
 
             return newInstance;
         }

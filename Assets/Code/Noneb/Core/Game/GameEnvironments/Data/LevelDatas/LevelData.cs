@@ -27,36 +27,36 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
         );
 
         public LevelData(TileData[] tileDatas,
-                         GameObjectFactory[] tileGameObjectProviders,
+                         GameObjectFactory[] tileGameObjectFactories,
                          ConstructData[] constructDatas,
-                         GameObjectFactory[] constructGameObjectProviders,
+                         GameObjectFactory[] constructGameObjectFactories,
                          UnitData[] unitDatas,
-                         GameObjectFactory[] unitGameObjectProviders,
+                         GameObjectFactory[] unitGameObjectFactories,
                          StrongholdData[] strongholdDatas,
-                         GameObjectFactory[] strongholdUnitGameObjectProviders,
-                         GameObjectFactory[] strongholdConstructGameObjectProviders)
+                         GameObjectFactory[] strongholdUnitGameObjectFactories,
+                         GameObjectFactory[] strongholdConstructGameObjectFactories)
         {
             TileDatas = tileDatas;
-            TileGameObjectProviders = tileGameObjectProviders;
+            TileGameObjectFactories = tileGameObjectFactories;
             ConstructDatas = constructDatas;
-            ConstructGameObjectProviders = constructGameObjectProviders;
+            ConstructGameObjectFactories = constructGameObjectFactories;
             UnitDatas = unitDatas;
-            UnitGameObjectProviders = unitGameObjectProviders;
-            StrongholdUnitGameObjectProviders = strongholdUnitGameObjectProviders;
-            StrongholdConstructGameObjectProviders = strongholdConstructGameObjectProviders;
+            UnitGameObjectFactories = unitGameObjectFactories;
+            StrongholdUnitGameObjectFactories = strongholdUnitGameObjectFactories;
+            StrongholdConstructGameObjectFactories = strongholdConstructGameObjectFactories;
             StrongholdDatas = strongholdDatas;
         }
 
         public static LevelData Empty => LazyEmpty.Value;
 
         public TileData[] TileDatas { get; }
-        public GameObjectFactory[] TileGameObjectProviders { get; }
+        public GameObjectFactory[] TileGameObjectFactories { get; }
         public ConstructData[] ConstructDatas { get; }
-        public GameObjectFactory[] ConstructGameObjectProviders { get; }
+        public GameObjectFactory[] ConstructGameObjectFactories { get; }
         public UnitData[] UnitDatas { get; }
-        public GameObjectFactory[] UnitGameObjectProviders { get; }
+        public GameObjectFactory[] UnitGameObjectFactories { get; }
         public StrongholdData[] StrongholdDatas { get; }
-        public GameObjectFactory[] StrongholdUnitGameObjectProviders { get; }
-        public GameObjectFactory[] StrongholdConstructGameObjectProviders { get; }
+        public GameObjectFactory[] StrongholdUnitGameObjectFactories { get; }
+        public GameObjectFactory[] StrongholdConstructGameObjectFactories { get; }
     }
 }

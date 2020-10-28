@@ -67,7 +67,7 @@ namespace Core.Game.Tests.GameEnvironments.Validation
         public static LevelData FillWithTiles(this LevelData data)
         {
             data.TileDatas.Fill(new TileData(null, string.Empty, ScriptableObject.CreateInstance<TileDataScriptable>()));
-            data.TileGameObjectProviders.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
+            data.TileGameObjectFactories.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
 
             return data;
         }
@@ -75,7 +75,7 @@ namespace Core.Game.Tests.GameEnvironments.Validation
         public static LevelData FillWithUnits(this LevelData data)
         {
             data.UnitDatas.Fill(new UnitData(null, string.Empty, ScriptableObject.CreateInstance<UnitDataScriptable>()));
-            data.UnitGameObjectProviders.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
+            data.UnitGameObjectFactories.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
 
             return data;
         }
@@ -83,7 +83,7 @@ namespace Core.Game.Tests.GameEnvironments.Validation
         public static LevelData FillWithConstructs(this LevelData data)
         {
             data.ConstructDatas.Fill(new ConstructData(null, string.Empty, ScriptableObject.CreateInstance<ConstructDataScriptable>()));
-            data.ConstructGameObjectProviders.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
+            data.ConstructGameObjectFactories.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
 
             return data;
         }
@@ -97,8 +97,8 @@ namespace Core.Game.Tests.GameEnvironments.Validation
                 )
             );
 
-            data.StrongholdConstructGameObjectProviders.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
-            data.StrongholdUnitGameObjectProviders.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
+            data.StrongholdConstructGameObjectFactories.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
+            data.StrongholdUnitGameObjectFactories.Fill(ScriptableObject.CreateInstance<GameObjectFactory>());
 
             return data;
         }

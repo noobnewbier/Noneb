@@ -33,7 +33,7 @@ namespace Noneb.Core.Game.GameEnvironments.Validation
         {
             var result = SummarizeValidationResult(
                 AllDataOfCorrectSize(levelData, mapConfiguration),
-                AllTileHasData(levelData.TileDatas, levelData.TileGameObjectProviders),
+                AllTileHasData(levelData.TileDatas, levelData.TileGameObjectFactories),
                 UnitAndConstructHasDataWhenHasGameObjectFactoryAndViceVersa(levelData),
                 IsStrongHoldSetUpCorrectly(levelData),
                 NoOtherOnTileBoardItemWhenThereIsStronghold(levelData)
@@ -55,8 +55,8 @@ namespace Noneb.Core.Game.GameEnvironments.Validation
 
         private ValidationResult UnitAndConstructHasDataWhenHasGameObjectFactoryAndViceVersa(LevelDataScriptable levelData) =>
             SummarizeValidationResult(
-                DataHasCorrespondingGameObjectProvider(levelData.ConstructDatas, levelData.ConstructGameObjectProviders, nameof(Construct)),
-                DataHasCorrespondingGameObjectProvider(levelData.UnitDatas, levelData.UnitGameObjectProviders, nameof(Unit))
+                DataHasCorrespondingGameObjectProvider(levelData.ConstructDatas, levelData.ConstructGameObjectFactories, nameof(Construct)),
+                DataHasCorrespondingGameObjectProvider(levelData.UnitDatas, levelData.UnitGameObjectFactories, nameof(Unit))
             );
 
         #endregion
@@ -132,9 +132,9 @@ namespace Noneb.Core.Game.GameEnvironments.Validation
             );
 
             var testTileGameObjectProvidersResult = CheckDataIsOfCorrectSize(
-                levelData.TileGameObjectProviders,
+                levelData.TileGameObjectFactories,
                 arraysSize,
-                nameof(levelData.TileGameObjectProviders)
+                nameof(levelData.TileGameObjectFactories)
             );
 
             var testConstructDatasResult = CheckDataIsOfCorrectSize(
@@ -144,9 +144,9 @@ namespace Noneb.Core.Game.GameEnvironments.Validation
             );
 
             var testConstructGameObjectProvidersResult = CheckDataIsOfCorrectSize(
-                levelData.ConstructGameObjectProviders,
+                levelData.ConstructGameObjectFactories,
                 arraysSize,
-                nameof(levelData.ConstructGameObjectProviders)
+                nameof(levelData.ConstructGameObjectFactories)
             );
 
             var testUnitDatasResult = CheckDataIsOfCorrectSize(
@@ -156,9 +156,9 @@ namespace Noneb.Core.Game.GameEnvironments.Validation
             );
 
             var testUnitGameObjectProvidersResult = CheckDataIsOfCorrectSize(
-                levelData.UnitGameObjectProviders,
+                levelData.UnitGameObjectFactories,
                 arraysSize,
-                nameof(levelData.UnitGameObjectProviders)
+                nameof(levelData.UnitGameObjectFactories)
             );
 
             var testStrongholdDatasResult = CheckDataIsOfCorrectSize(
@@ -168,15 +168,15 @@ namespace Noneb.Core.Game.GameEnvironments.Validation
             );
 
             var testStrongholdUnitGameObjectProvidersResult = CheckDataIsOfCorrectSize(
-                levelData.StrongholdUnitGameObjectProviders,
+                levelData.StrongholdUnitGameObjectFactories,
                 arraysSize,
-                nameof(levelData.StrongholdUnitGameObjectProviders)
+                nameof(levelData.StrongholdUnitGameObjectFactories)
             );
 
             var testStrongholdConstructGameObjectProvidersResult = CheckDataIsOfCorrectSize(
-                levelData.StrongholdConstructGameObjectProviders,
+                levelData.StrongholdConstructGameObjectFactories,
                 arraysSize,
-                nameof(levelData.StrongholdConstructGameObjectProviders)
+                nameof(levelData.StrongholdConstructGameObjectFactories)
             );
 
             var summaries = SummarizeValidationResult(
@@ -247,13 +247,13 @@ namespace Noneb.Core.Game.GameEnvironments.Validation
             var dataWrapperHasValidData = StrongholdDataWrapperEitherHasBothUnitAndConstructOrNone(dataWrappers);
             var onlyHasUnitGoWhenHasUnit = DataHasCorrespondingGameObjectProvider(
                 dataWrappers.Select(d => d.UnitDataScriptable).ToList(),
-                levelData.StrongholdUnitGameObjectProviders,
-                nameof(levelData.StrongholdUnitGameObjectProviders)
+                levelData.StrongholdUnitGameObjectFactories,
+                nameof(levelData.StrongholdUnitGameObjectFactories)
             );
             var onlyHasConstructGoWhenHasConstruct = DataHasCorrespondingGameObjectProvider(
                 dataWrappers.Select(d => d.ConstructDataScriptable).ToList(),
-                levelData.StrongholdConstructGameObjectProviders,
-                nameof(levelData.StrongholdConstructGameObjectProviders)
+                levelData.StrongholdConstructGameObjectFactories,
+                nameof(levelData.StrongholdConstructGameObjectFactories)
             );
 
             return SummarizeValidationResult(

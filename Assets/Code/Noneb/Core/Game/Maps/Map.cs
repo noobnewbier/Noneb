@@ -73,6 +73,10 @@ namespace Noneb.Core.Game.Maps
         }
 
         public T Get<T>(Coordinate axialCoordinate) where T : BoardItem => GetGridForType<T>()[axialCoordinate.X, axialCoordinate.Z];
+        public void Set<T>(Coordinate axialCoordinate, T value) where T : BoardItem
+        {
+            GetGridForType<T>()[axialCoordinate.X, axialCoordinate.Z] = value;
+        }
 
         public bool TryGet<T>(Coordinate axialCoordinate, out T t) where T : BoardItem
         {

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3926c197df7d442cb67dee6283df6864
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - graphicRaycasterRepositoryProvider: {fileID: 11400000, guid: 49a9227e44b7dbf4f9c1b4bbe63aec94,
+      type: 2}
+  - unityEventSystemRepositoryProvider: {fileID: 11400000, guid: 5d284ca9fcc81f54aa6756a9d92f4c3f,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

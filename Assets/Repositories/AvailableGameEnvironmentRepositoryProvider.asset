@@ -18,5 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d5e0d75201e47d84c96da48e26e24721, type: 2}
   - {fileID: 11400000, guid: 7b805b1914e746643805ebd96619a4ab, type: 2}
   - {fileID: 11400000, guid: 4be47f72da75b634c9d4591105731e03, type: 2}
+  - {fileID: 11400000, guid: dc1a6944e146a614bbbf48a7bda8b227, type: 2}
   levelDataScriptableValidationServiceProvider: {fileID: 11400000, guid: a1bf7af325603a544812b4aee6ab3314,
     type: 2}

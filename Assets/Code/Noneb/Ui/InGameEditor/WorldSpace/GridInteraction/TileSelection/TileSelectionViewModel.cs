@@ -7,10 +7,11 @@ using Noneb.Core.Game.GameState.MapConfig;
 using Noneb.Core.Game.Maps;
 using Noneb.Core.InGameEditor.Data;
 using Noneb.Ui.Game.Tiles;
+using Noneb.Ui.Game.UiState.ClickStatus;
 using Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition;
 using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;
 using Noneb.Ui.Game.UiState.CurrentSelectedTileHolder;
-using Noneb.Ui.Game.UiState.MousePosition;
+using Noneb.Ui.Game.UiState.MousePositionOnMap;
 using UniRx;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -25,6 +26,7 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
         private readonly IDataSetRepository<IInspectable> _currentInspectableSetRepository;
         private readonly IMousePositionService _mousePositionService;
         private readonly IClosestTileHolderFromPositionService _closestTileHolderFromPositionService;
+        private readonly IClickStatusService _clickStatusService;
 
         private IReadOnlyList<TileHolder> _currentTileHolders;
         private IDisposable _fetchingServiceDisposable;
@@ -36,12 +38,14 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                                       IDataSetRepository<IInspectable> currentInspectableSetRepository,
                                       IClosestTileHolderFromPositionService closestTileHolderFromPositionService,
                                       IMousePositionService mousePositionService,
-                                      IMapConfigRepository loadedMapConfigRepository)
+                                      IMapConfigRepository loadedMapConfigRepository,
+                                      IClickStatusService clickStatusService)
         {
             _hoveredTileHolderSetRepository = hoveredTileHolderSetRepository;
             _currentInspectableSetRepository = currentInspectableSetRepository;
             _closestTileHolderFromPositionService = closestTileHolderFromPositionService;
             _mousePositionService = mousePositionService;
+            _clickStatusService = clickStatusService;
             _currentSelectedTileHolderSetRepository = currentSelectedTileHolderSetRepository;
 
             _disposable = loadedMapConfigRepository.GetObservableStream()
@@ -68,12 +72,16 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
 
             var currentClickedTileHolder = GetTileHolderFromMousePosition(mousePositionScreenSpace);
 
-            if (NotClickedOnSameTile(currentClickedTileHolder))
+            if (ShouldUpdateSelectedTileHolder(mousePositionScreenSpace, currentClickedTileHolder))
             {
                 UpdateInspectable(currentClickedTileHolder);
                 UpdateSelectedTileHolder(currentClickedTileHolder);
             }
         }
+
+        private bool ShouldUpdateSelectedTileHolder(Vector3 mousePositionScreenSpace, Object currentClickedTileHolder) => NotClickedOnSameTile(currentClickedTileHolder) && NotClickedOnUi(mousePositionScreenSpace);
+
+        private bool NotClickedOnUi(Vector3 mousePositionScreenSpace) => !_clickStatusService.IsMouseClickOnUi(mousePositionScreenSpace);
 
         private bool NotClickedOnSameTile(Object currentClickedTileHolder) => _previousClickedTileHolder != currentClickedTileHolder;
 

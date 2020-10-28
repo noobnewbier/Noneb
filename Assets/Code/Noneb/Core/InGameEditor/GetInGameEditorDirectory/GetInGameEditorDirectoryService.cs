@@ -2,7 +2,7 @@
 using System.IO;
 using Castle.Core.Internal;
 
-namespace Noneb.Core.InGameEditor.GetInGameEditorDirectoryServices
+namespace Noneb.Core.InGameEditor.GetInGameEditorDirectory
 {
     public interface IGetInGameEditorDirectoryService
     {

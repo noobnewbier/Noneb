@@ -20,7 +20,9 @@ MonoBehaviour:
     type: 2}
   closestTileHolderFromPositionServiceProvider: {fileID: 11400000, guid: b683706414e099c4cad9091bc8e7f726,
     type: 2}
-  mousePositionServiceProvider: {fileID: 11400000, guid: f0e175a43a14d854e89d39e73105ea24,
+  mousePositionOnMapServiceProvider: {fileID: 11400000, guid: f0e175a43a14d854e89d39e73105ea24,
     type: 2}
   loadedMapConfigRepositoryProvider: {fileID: 11400000, guid: d715e73387a0a8149a439747b1f60abd,
+    type: 2}
+  clickStatusServiceProvider: {fileID: 11400000, guid: 860fa7e6303aae543a0a3588ddfe4a68,
     type: 2}

@@ -1,4 +1,5 @@
 ﻿using System;
+using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
@@ -7,7 +8,7 @@ namespace Noneb.Ui.Game.UiState.CurrentMapTransform
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentMapTransformRepositoryProvider),
-        menuName = MenuName.ScriptableRepository + nameof(CurrentMapTransformRepository)
+        menuName = MenuName.ScriptableRepository + ProjectMenuName.Current + nameof(CurrentMapTransformRepository)
     )]
     public class CurrentMapTransformRepositoryProvider : ScriptableObject, IObjectProvider<CurrentMapTransformRepository>
     {

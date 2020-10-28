@@ -4,16 +4,16 @@ using Noneb.Ui.Game.UiState.CurrentMapTransform;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Ui.Game.UiState.MousePosition
+namespace Noneb.Ui.Game.UiState.MousePositionOnMap
 {
-    [CreateAssetMenu(fileName = nameof(MousePositionServiceProvider), menuName = MenuName.ScriptableService + nameof(MousePositionService))]
-    public class MousePositionServiceProvider : ScriptableObject, IObjectProvider<IMousePositionService>
+    [CreateAssetMenu(fileName = nameof(MousePositionOnMapServiceProvider), menuName = MenuName.ScriptableService + nameof(MousePositionOnMapService))]
+    public class MousePositionOnMapServiceProvider : ScriptableObject, IObjectProvider<IMousePositionService>
     {
         [SerializeField] private CameraRepositoryProvider cameraRepositoryProvider;
         [SerializeField] private CurrentMapTransformRepositoryProvider currentMapTransformRepositoryProvider;
         private IMousePositionService _cache;
 
-        public IMousePositionService Provide() => _cache ?? (_cache = new MousePositionService(
+        public IMousePositionService Provide() => _cache ?? (_cache = new MousePositionOnMapService(
             cameraRepositoryProvider.Provide(),
             currentMapTransformRepositoryProvider.Provide()
         ));

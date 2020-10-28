@@ -1,7 +1,7 @@
 ﻿using System;
 using Castle.Core.Internal;
 
-namespace Noneb.Core.InGameEditor.GetEnvironmentFilenameServices
+namespace Noneb.Core.InGameEditor.GetEnvironmentFilename
 {
     public interface IGetEnvironmentFilenameService
     {

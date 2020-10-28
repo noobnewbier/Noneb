@@ -7,14 +7,14 @@ using UniRx;
 using UnityEngine;
 using UnityUtils;
 
-namespace Noneb.Ui.Game.UiState.MousePosition
+namespace Noneb.Ui.Game.UiState.MousePositionOnMap
 {
     public interface IMousePositionService : IDisposable
     {
         Vector3 GetMousePositionOnMapWorldSpace(Vector3 mousePositionScreenSpace);
     }
 
-    public class MousePositionService : IMousePositionService
+    public class MousePositionOnMapService : IMousePositionService
     {
         private readonly IDisposable _disposable;
 
@@ -25,7 +25,7 @@ namespace Noneb.Ui.Game.UiState.MousePosition
         private TileHolder _previousClickedTileHolder;
         private bool _haveTilesOnScreen;
 
-        public MousePositionService(ICameraGetRepository cameraGetRepository, ICurrentMapTransformGetRepository mapTransformGetRepository)
+        public MousePositionOnMapService(ICameraGetRepository cameraGetRepository, ICurrentMapTransformGetRepository mapTransformGetRepository)
         {
             _disposable = new CompositeDisposable
             {

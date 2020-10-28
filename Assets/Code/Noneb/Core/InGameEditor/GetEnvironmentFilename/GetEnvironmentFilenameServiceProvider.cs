@@ -3,7 +3,7 @@ using Noneb.Core.Game.Common.Providers;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Core.InGameEditor.GetEnvironmentFilenameServices
+namespace Noneb.Core.InGameEditor.GetEnvironmentFilename
 {
     [CreateAssetMenu(
         fileName = nameof(GetEnvironmentFilenameServiceProvider),

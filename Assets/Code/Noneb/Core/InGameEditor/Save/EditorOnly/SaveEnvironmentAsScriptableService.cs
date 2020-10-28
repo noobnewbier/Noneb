@@ -5,8 +5,8 @@ using Noneb.Core.Game.GameEnvironments.Data.LevelDatas;
 using Noneb.Core.Game.GameEnvironments.Save;
 using Noneb.Core.Game.Maps;
 using Noneb.Core.Game.WorldConfigurations;
-using Noneb.Core.InGameEditor.GetEnvironmentFilenameServices;
-using Noneb.Core.InGameEditor.GetInGameEditorDirectoryServices;
+using Noneb.Core.InGameEditor.GetEnvironmentFilename;
+using Noneb.Core.InGameEditor.GetInGameEditorDirectory;
 using UnityEditor;
 using UnityEngine;
 

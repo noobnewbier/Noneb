@@ -1,7 +1,9 @@
 ﻿using System;
 using Noneb.Core.Game.InGameMessages;
 using Noneb.Ui.Game.UiState.BoardItemsFetcher.Setters;
+using Noneb.Ui.Game.UiState.CurrentGraphicRaycaster;
 using Noneb.Ui.Game.UiState.CurrentMapTransform;
+using Noneb.Ui.Game.UiState.CurrentUnityEventSystem;
 using UniRx;
 using UnityEngine;
 
@@ -14,6 +16,9 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
         [SerializeField] private ConstructsHolderFetcherSetter constructsFetcherSetter;
         [SerializeField] private StrongholdsHolderFetcherSetter strongholdsFetcherSetter;
         [SerializeField] private TilesHolderFetcherSetter tilesFetcherSetter;
+        [SerializeField] private UnityEventSystemSetter unityEventSystemSetter;
+        [SerializeField] private CurrentGraphicRaycasterSetter graphicRaycasterSetter;
+        
         [SerializeField] private InGameMessageServiceProvider messageServiceProvider;
 
 
@@ -45,6 +50,9 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.Manager
             tilesFetcherSetter.Set();
             constructsFetcherSetter.Set();
             strongholdsFetcherSetter.Set();
+            
+            graphicRaycasterSetter.Set();
+            unityEventSystemSetter.Set();
 
             return Observable.ReturnUnit().Single();
         }

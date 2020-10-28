@@ -1,4 +1,4 @@
-﻿using Noneb.Core.InGameEditor.GetInGameEditorDirectoryServices;
+﻿using Noneb.Core.InGameEditor.GetInGameEditorDirectory;
 using NUnit.Framework;
 
 namespace Core.InGameEditor.Tests.GetInGameEditorDirectoryServices

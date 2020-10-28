@@ -10,7 +10,7 @@ namespace Noneb.Ui.InGameEditor.UiState.Inspectable
 {
     [CreateAssetMenu(
         fileName = nameof(CurrentInspectableRepositoryProvider),
-        menuName = MenuName.ScriptableRepository + ProjectMenuName.InGameEditor + nameof(IInspectable)
+        menuName = MenuName.ScriptableRepository + ProjectMenuName.InGameEditor + ProjectMenuName.Current + nameof(IInspectable)
     )]
     public class CurrentInspectableRepositoryProvider : ScriptableObject, IObjectProvider<IDataRepository<IInspectable>>
     {

@@ -1,11 +1,13 @@
 ﻿using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Ui.Game.UiState.ClickStatus;
 using Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition;
 using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;
 using Noneb.Ui.Game.UiState.CurrentSelectedTileHolder;
-using Noneb.Ui.Game.UiState.MousePosition;
+using Noneb.Ui.Game.UiState.MousePositionOnMap;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
@@ -17,8 +19,10 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
         [SerializeField] private CurrentHoveredTileHolderRepositoryProvider currentHoveredTileHolderRepositoryProvider;
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
         [SerializeField] private ClosestTileHolderFromPositionServiceProvider closestTileHolderFromPositionServiceProvider;
-        [SerializeField] private MousePositionServiceProvider mousePositionServiceProvider;
+        [FormerlySerializedAs("mousePositionServiceProvider")] [SerializeField] private MousePositionOnMapServiceProvider mousePositionOnMapServiceProvider;
         [SerializeField] private MapConfigRepositoryProvider loadedMapConfigRepositoryProvider;
+        [SerializeField] private ClickStatusServiceProvider clickStatusServiceProvider;
+        
 
         public TileSelectionViewModel Create() =>
             new TileSelectionViewModel(
@@ -26,8 +30,9 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
                 currentSelectedTileHolderRepositoryProvider.Provide(),
                 currentInspectableRepositoryProvider.Provide(),
                 closestTileHolderFromPositionServiceProvider.Provide(),
-                mousePositionServiceProvider.Provide(),
-                loadedMapConfigRepositoryProvider.Provide()
+                mousePositionOnMapServiceProvider.Provide(),
+                loadedMapConfigRepositoryProvider.Provide(),
+                clickStatusServiceProvider.Provide()
             );
     }
 }

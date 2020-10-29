@@ -34,6 +34,8 @@ namespace Noneb.Core.Game.Maps.MapModification
                     map.Set(coordinate, new Stronghold(StrongholdData.Create(construct.Data, unit.Data), coordinate));
                     map.Set<Unit>(coordinate, null);
                     map.Set<Construct>(coordinate, null);
+                    
+                    observer.OnNext(UniRx.Unit.Default);
                     observer.OnCompleted();
 
                     PublishModifiedEvent();
@@ -61,6 +63,9 @@ namespace Noneb.Core.Game.Maps.MapModification
                     map.Set(coordinate, unit);
                     map.Set(coordinate, construct);
                     map.Set<Stronghold>(coordinate, null);
+                    
+                    observer.OnNext(UniRx.Unit.Default);
+                    observer.OnCompleted();
                     
                     PublishModifiedEvent();
 

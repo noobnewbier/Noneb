@@ -5,10 +5,11 @@ using Noneb.Core.Game.Common.TagInterface;
 using Noneb.Core.Game.Coordinates;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps;
-using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Core.Game.Strongholds;
 using Noneb.Core.InGameEditor.Data;
+using Noneb.Core.InGameEditor.LevelEdit;
 using UniRx;
+using UnityEngine;
 
 namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
 {
@@ -16,16 +17,16 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
     {
         private readonly IDisposable _disposable;
         private readonly IDisposable _coordinateDisposable;
-        private readonly IMapModificationService _mapModificationService;
+        private readonly ILevelEditService _levelEditService;
 
         private Map _currentMap;
         private Coordinate _currentCoordinate;
 
         public StrongholdInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository,
                                             IMapRepository mapRepository,
-                                            IMapModificationService mapModificationService)
+                                            ILevelEditService levelEditService)
         {
-            _mapModificationService = mapModificationService;
+            _levelEditService = levelEditService;
             StrongholdDataLiveData = new LiveData<StrongholdData>();
             VisibilityLiveData = new LiveData<bool>();
 
@@ -42,8 +43,8 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
                     .Subscribe(
                         m => _currentMap = m
                     ),
-                
-                _mapModificationService.ModifiedEventStream
+
+                _levelEditService.ModifiedEventStream
                     .SubscribeOn(Scheduler.ThreadPool)
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(_ => OnMapModified())
@@ -53,6 +54,8 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         public ILiveData<StrongholdData> StrongholdDataLiveData { get; }
         public ILiveData<bool> VisibilityLiveData { get; }
 
+        private bool IsCurrentlyVisible => VisibilityLiveData.Value;
+
         public void Dispose()
         {
             _disposable.Dispose();
@@ -60,13 +63,8 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
 
         private void OnMapModified()
         {
-            if (IsCurrentlyVisible)
-            {
-                UpdateLiveData();
-            }
+            if (IsCurrentlyVisible) UpdateLiveData();
         }
-
-        private bool IsCurrentlyVisible => VisibilityLiveData.Value;
 
         private void OnInspectableUpdate(IInspectable inspectable)
         {
@@ -97,18 +95,14 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         public void SetIsStronghold(bool isStronghold)
         {
             if (isStronghold)
-            {
                 SetUpStronghold();
-            }
             else
-            {
                 DestructStronghold();
-            }
         }
 
         private void SetUpStronghold()
         {
-            _mapModificationService.SetUpStronghold(_currentMap, _currentCoordinate)
+            _levelEditService.SetUpStronghold(_currentCoordinate)
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
                 .Subscribe();
@@ -116,7 +110,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
 
         private void DestructStronghold()
         {
-            _mapModificationService.DestructStronghold(_currentMap, _currentCoordinate)
+            _levelEditService.DestructStronghold(_currentCoordinate)
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
                 .Subscribe();

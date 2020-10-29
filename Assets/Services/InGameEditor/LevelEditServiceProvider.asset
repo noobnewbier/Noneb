@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490faf7231ba4e0a996df049251caeb7, type: 3}
+  m_Name: LevelEditServiceProvider
+  m_EditorClassIdentifier: 
+  levelDataModificationServiceProvider: {fileID: 11400000, guid: fad97219199a60746a098395df257e30,
+    type: 2}
+  mapModificationServiceProvider: {fileID: 11400000, guid: 1e74f1da51a40564aa7e8fe5d3ca012e,
+    type: 2}
+  mapConfigRepositoryProvider: {fileID: 11400000, guid: d715e73387a0a8149a439747b1f60abd,
+    type: 2}
+  mapRepositoryProvider: {fileID: 11400000, guid: 0db88873f9e14bb4aa41bf99d61c1e9a,
+    type: 2}
+  levelDataRepositoryProvider: {fileID: 11400000, guid: 3f6535a8ee312ec44be404a8c36be61f,
+    type: 2}

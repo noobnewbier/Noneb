@@ -44,14 +44,14 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
         {
             return new LevelData(
                 tileDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
-                tileGameObjectFactories,
+                (GameObjectFactory[]) tileGameObjectFactories.Clone(),
                 constructDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
-                constructGameObjectFactories,
+                (GameObjectFactory[]) constructGameObjectFactories.Clone(),
                 unitDatas.Select(d => d != null ? d.ToData() : null).ToArray(),
-                unitGameObjectFactories,
+                (GameObjectFactory[]) unitGameObjectFactories.Clone(),
                 strongholdDatas.Select(wrapper => wrapper.ToStrongholdData()).ToArray(),
-                strongholdUnitGameObjectFactories,
-                strongholdConstructGameObjectFactories
+                (GameObjectFactory[]) strongholdUnitGameObjectFactories.Clone(),
+                (GameObjectFactory[]) strongholdConstructGameObjectFactories.Clone()
             );
         }
 
@@ -59,11 +59,11 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
         {
             var newInstance = CreateInstance<LevelDataScriptable>();
             newInstance.tileDatas = levelData.TileDatas.Select(d => d?.Original).ToArray();
-            newInstance.tileGameObjectFactories = levelData.TileGameObjectFactories;
+            newInstance.tileGameObjectFactories = (GameObjectFactory[]) levelData.TileGameObjectFactories.Clone();
             newInstance.constructDatas = levelData.ConstructDatas.Select(d => d?.Original).ToArray();
-            newInstance.constructGameObjectFactories = levelData.ConstructGameObjectFactories;
+            newInstance.constructGameObjectFactories = (GameObjectFactory[]) levelData.ConstructGameObjectFactories.Clone();
             newInstance.unitDatas = levelData.UnitDatas.Select(d => d?.Original).ToArray();
-            newInstance.unitGameObjectFactories = levelData.UnitGameObjectFactories;
+            newInstance.unitGameObjectFactories = (GameObjectFactory[]) levelData.UnitGameObjectFactories.Clone();
             newInstance.strongholdDatas = levelData.StrongholdDatas
                 .Select(
                     data => data != null ?
@@ -71,8 +71,8 @@ namespace Noneb.Core.Game.GameEnvironments.Data.LevelDatas
                         new StrongholdDataWrapper(null, null)
                 )
                 .ToArray();
-            newInstance.strongholdUnitGameObjectFactories = levelData.StrongholdUnitGameObjectFactories;
-            newInstance.strongholdConstructGameObjectFactories = levelData.StrongholdConstructGameObjectFactories;
+            newInstance.strongholdUnitGameObjectFactories = (GameObjectFactory[]) levelData.StrongholdUnitGameObjectFactories.Clone();
+            newInstance.strongholdConstructGameObjectFactories = (GameObjectFactory[]) levelData.StrongholdConstructGameObjectFactories.Clone();
 
             return newInstance;
         }

@@ -44,9 +44,9 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         }
 
 
-        public void ClickedToggle(bool newState)
+        public void ClickedToggle()
         {
-            _viewModel.SetIsStronghold(newState);
+            _viewModel.SetIsStronghold(toggle.isOn);
         }
     }
 }

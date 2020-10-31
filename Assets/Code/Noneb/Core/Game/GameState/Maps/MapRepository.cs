@@ -11,17 +11,15 @@ using Unit = Noneb.Core.Game.Units.Unit;
 
 namespace Noneb.Core.Game.GameState.Maps
 {
-    public interface IMapRepository : IDataGetRepository<Map>
+    public interface IMapRepository : IDataGetRepository<Map>, IDisposable
     {
     }
 
     public class MapRepository : IMapRepository
     {
-        private readonly IMapConfigRepository _mapConfigRepository;
-        private readonly IBoardItemsGetRepository<Tile> _tilesRepository;
-        private readonly IBoardItemsGetRepository<Unit> _unitsRepository;
-        private readonly IBoardItemsRepository<Construct> _constructsRepository;
-        private readonly IBoardItemsGetRepository<Stronghold> _strongholdsRepository;
+        private readonly IDisposable _disposable;
+        private readonly ReplaySubject<Map> _mapSubject;
+        private IObservable<Map> _mapSingle;
 
         public MapRepository(IMapConfigRepository mapConfigRepository,
                              IBoardItemsGetRepository<Tile> tilesRepository,
@@ -29,39 +27,45 @@ namespace Noneb.Core.Game.GameState.Maps
                              IBoardItemsRepository<Construct> constructsRepository,
                              IBoardItemsGetRepository<Stronghold> strongholdsRepository)
         {
-            _mapConfigRepository = mapConfigRepository;
-            _tilesRepository = tilesRepository;
-            _unitsRepository = unitsRepository;
-            _constructsRepository = constructsRepository;
-            _strongholdsRepository = strongholdsRepository;
+            _mapSingle = Observable.Throw<Map>(new InvalidOperationException($"Value is not set yet for {GetType().Name}"));
+            _mapSubject = new ReplaySubject<Map>(1);
+
+            _disposable = mapConfigRepository.GetObservableStream()
+                .SubscribeOn(Scheduler.ThreadPool)
+                .ObserveOn(Scheduler.MainThread)
+                .ZipLatest(
+                    tilesRepository.GetObservableStream(),
+                    unitsRepository.GetObservableStream(),
+                    constructsRepository.GetObservableStream(),
+                    strongholdsRepository.GetObservableStream(),
+                    (config, tiles, units, constructs, strongholds) => (config, tiles, units, constructs, strongholds)
+                )
+                .Where(tuple => tuple.config != null)
+                .Subscribe(
+                    tuple =>
+                    {
+                        var (config, tiles, units, constructs, strongholds) = tuple;
+                        var map = new Map(tiles, units, constructs, strongholds, config);
+                        
+                        _mapSubject.OnNext(map);
+                        _mapSingle = Observable.Return(map);
+                    }
+                );
         }
 
         public IObservable<Map> GetObservableStream()
         {
-            return _mapConfigRepository.GetObservableStream()
-                .ZipLatest(
-                    _tilesRepository.GetObservableStream(),
-                    _unitsRepository.GetObservableStream(),
-                    _constructsRepository.GetObservableStream(),
-                    _strongholdsRepository.GetObservableStream(),
-                    (config, tiles, units, constructs, strongholds) => (config, tiles, units, constructs, strongholds)
-                )
-                .Where(tuple => tuple.config != null)
-                .Select(tuple => new Map(tuple.tiles, tuple.units, tuple.constructs, tuple.strongholds, tuple.config));
+            return _mapSubject;
         }
 
         public IObservable<Map> GetMostRecent()
         {
-            return _mapConfigRepository.GetMostRecent()
-                .ZipLatest(
-                    _tilesRepository.GetMostRecent(),
-                    _unitsRepository.GetMostRecent(),
-                    _constructsRepository.GetMostRecent(),
-                    _strongholdsRepository.GetMostRecent(),
-                    (config, tiles, units, constructs, strongholds) => (config, tiles, units, constructs, strongholds)
-                )
-                .Where(tuple => tuple.config != null)
-                .Select(tuple => new Map(tuple.tiles, tuple.units, tuple.constructs, tuple.strongholds, tuple.config));
+            return _mapSingle;
+        }
+
+        public void Dispose()
+        {
+            _disposable?.Dispose();
         }
     }
 }

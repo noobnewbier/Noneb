@@ -1,6 +1,7 @@
 ﻿using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.GameState.Maps;
+using Noneb.Core.Game.InGameMessages;
 using Noneb.Core.InGameEditor.LevelEdit;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
@@ -17,11 +18,14 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
         [SerializeField] private LevelEditServiceProvider levelEditServiceProvider;
+        [SerializeField] private InGameMessageServiceProvider inGameMessageServiceProvider;
+        
 
         public StrongholdInspectorViewModel Create() => new StrongholdInspectorViewModel(
             currentInspectableRepositoryProvider.Provide(),
             mapRepositoryProvider.Provide(),
-            levelEditServiceProvider.Provide()
+            levelEditServiceProvider.Provide(),
+            inGameMessageServiceProvider.Provide()
         );
     }
 }

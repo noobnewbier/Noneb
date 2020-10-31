@@ -4,12 +4,12 @@ using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Common.TagInterface;
 using Noneb.Core.Game.Coordinates;
 using Noneb.Core.Game.GameState.Maps;
+using Noneb.Core.Game.InGameMessages;
 using Noneb.Core.Game.Maps;
 using Noneb.Core.Game.Strongholds;
 using Noneb.Core.InGameEditor.Data;
 using Noneb.Core.InGameEditor.LevelEdit;
 using UniRx;
-using UnityEngine;
 
 namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
 {
@@ -18,15 +18,18 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         private readonly IDisposable _disposable;
         private readonly IDisposable _coordinateDisposable;
         private readonly ILevelEditService _levelEditService;
+        private readonly IInGameMessageService _inGameMessageService;
 
         private Map _currentMap;
         private Coordinate _currentCoordinate;
 
         public StrongholdInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository,
                                             IMapRepository mapRepository,
-                                            ILevelEditService levelEditService)
+                                            ILevelEditService levelEditService,
+                                            IInGameMessageService inGameMessageService)
         {
             _levelEditService = levelEditService;
+            _inGameMessageService = inGameMessageService;
             StrongholdDataLiveData = new LiveData<StrongholdData>();
             VisibilityLiveData = new LiveData<bool>();
 
@@ -105,7 +108,9 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
             _levelEditService.SetUpStronghold(_currentCoordinate)
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
-                .Subscribe();
+                .Subscribe(_ => { _inGameMessageService.PublishMessage("Stronghold Created"); },
+                    e => throw e
+                );
         }
 
         private void DestructStronghold()
@@ -113,7 +118,9 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
             _levelEditService.DestructStronghold(_currentCoordinate)
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
-                .Subscribe();
+                .Subscribe(_ => { _inGameMessageService.PublishMessage("Stronghold Created"); },
+                    e => throw e
+                );
         }
     }
 }

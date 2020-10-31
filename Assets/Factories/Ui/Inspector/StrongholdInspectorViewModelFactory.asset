@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 2}
   levelEditServiceProvider: {fileID: 11400000, guid: 8b5ea07be97756e4e988a3273596d54e,
     type: 2}
+  inGameMessageServiceProvider: {fileID: 11400000, guid: e50a2fd960ba9da40bd0c71229d4a797,
+    type: 2}

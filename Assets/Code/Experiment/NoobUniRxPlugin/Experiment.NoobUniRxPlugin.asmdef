@@ -1,11 +1,7 @@
 {
-    "name": "Core.InGameEditor",
+    "name": "Experiment.NoobUniRxPlugin",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:4f3da2670aa8eb84c82d96215988e9c0",
-        "GUID:48d3b9e0e1c97dc4f8fe02fbc1b583b0",
-        "GUID:acf43146c4364d2419bdbdeac67deb96",
-        "GUID:21cc5fe2c2fb6e74f837e63a99cc5dce"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

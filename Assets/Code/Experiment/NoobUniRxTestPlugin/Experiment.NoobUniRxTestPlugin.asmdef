@@ -1,0 +1,19 @@
+{
+    "name": "Experiment.NoobUniRxTestPlugin",
+    "references": [
+        "GUID:21cc5fe2c2fb6e74f837e63a99cc5dce"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

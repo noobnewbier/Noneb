@@ -6,7 +6,9 @@
         "UniRx",
         "Core.Game",
         "Core.InGameEditor",
-        "UnityUtils"
+        "UnityUtils",
+        "Experiment.NoobUniRxTestPlugin",
+        "Experiment.NoobUniRxPlugin"
     ],
     "includePlatforms": [
         "Editor"

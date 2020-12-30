@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Experiment.CrossPlatformLiveData;
 using Noneb.Core.Game.Coordinates;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Core.Game.WorldConfigurations;
 using Noneb.Ui.Game.Maps.TilesPosition;

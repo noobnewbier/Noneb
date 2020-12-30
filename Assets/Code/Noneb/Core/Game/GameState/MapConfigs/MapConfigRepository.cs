@@ -3,7 +3,7 @@ using Noneb.Core.Game.Common;
 using Noneb.Core.Game.GameState.GameEnvironments;
 using UniRx;
 
-namespace Noneb.Core.Game.GameState.MapConfig
+namespace Noneb.Core.Game.GameState.MapConfigs
 {
     public interface IMapConfigRepository : IDataGetRepository<Game.Maps.MapConfig>
     {

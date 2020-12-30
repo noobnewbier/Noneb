@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Ui.Game.Maps.TilesPosition;
 using Noneb.Ui.Game.UiState.CurrentMapTransform;

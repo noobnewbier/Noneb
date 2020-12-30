@@ -1,6 +1,6 @@
 ﻿using System;
 using Noneb.Core.Game.Common.Loaders;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.Maps;
 using Noneb.Ui.Game.UiState.CurrentMapTransform;
 using UniRx;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.GameState.WorldConfig;
 using Noneb.Core.Game.Maps;
 using Noneb.Core.Game.WorldConfigurations;

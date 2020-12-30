@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Noneb.Core.Game.Coordinates;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.Maps;
 using Noneb.Ui.Game.GameEnvironments.BoardItemsHoldersFetchingService;
 using UniRx;

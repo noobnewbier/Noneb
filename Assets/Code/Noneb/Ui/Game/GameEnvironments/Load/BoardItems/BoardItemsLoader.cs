@@ -4,7 +4,7 @@ using Noneb.Core.Game.Common.BoardItems;
 using Noneb.Core.Game.Common.Loaders;
 using Noneb.Core.Game.GameEnvironments.Load;
 using Noneb.Core.Game.GameState.LevelDatas;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.Maps;
 using UniRx;
 using UnityEngine;

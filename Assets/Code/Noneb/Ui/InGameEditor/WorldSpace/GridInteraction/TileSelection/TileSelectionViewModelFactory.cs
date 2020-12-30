@@ -1,5 +1,5 @@
 ﻿using Noneb.Core.Game.Common.Factories;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Ui.Game.UiState.ClickStatus;
 using Noneb.Ui.Game.UiState.ClosestTileHolderFromPosition;
 using Noneb.Ui.Game.UiState.CurrentHoveredTileHolder;

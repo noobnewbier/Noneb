@@ -18,7 +18,7 @@ namespace Noneb.Ui.InGameEditor.Inspector
         private readonly IDisposable _coordinateDisposable;
         private Map _currentMap;
 
-        public InspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository, IMapRepository mapRepository)
+        public InspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository, IMapGetService mapGetService)
         {
             TypeTLiveData = new LiveData<TData>();
             VisibilityLiveData = new LiveData<bool>();
@@ -30,7 +30,7 @@ namespace Noneb.Ui.InGameEditor.Inspector
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(OnInspectableUpdate),
 
-                mapRepository.GetObservableStream()
+                mapGetService.GetObservableStream()
                     .SubscribeOn(Scheduler.ThreadPool)
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(

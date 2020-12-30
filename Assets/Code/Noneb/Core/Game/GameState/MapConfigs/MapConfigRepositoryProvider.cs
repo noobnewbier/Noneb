@@ -3,7 +3,7 @@ using Noneb.Core.Game.GameState.GameEnvironments;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Core.Game.GameState.MapConfig
+namespace Noneb.Core.Game.GameState.MapConfigs
 {
     [CreateAssetMenu(
         fileName = nameof(MapConfigRepositoryProvider),

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Common.TagInterface;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.Maps;
 using Noneb.Core.InGameEditor.Data;
 using Noneb.Ui.Game.Tiles;

@@ -1,7 +1,7 @@
 ﻿using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Providers;
 using Noneb.Core.Game.GameState.LevelDatas;
-using Noneb.Core.Game.GameState.MapConfig;
+using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Core.InGameEditor.LevelDataModification;

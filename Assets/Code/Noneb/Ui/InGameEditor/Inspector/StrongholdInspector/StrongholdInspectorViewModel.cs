@@ -24,7 +24,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         private Coordinate _currentCoordinate;
 
         public StrongholdInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository,
-                                            IMapRepository mapRepository,
+                                            IMapGetService mapGetService,
                                             ILevelEditService levelEditService,
                                             IInGameMessageService inGameMessageService)
         {
@@ -40,7 +40,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(OnInspectableUpdate),
 
-                mapRepository.GetObservableStream()
+                mapGetService.GetObservableStream()
                     .SubscribeOn(Scheduler.ThreadPool)
                     .ObserveOn(Scheduler.MainThread)
                     .Subscribe(

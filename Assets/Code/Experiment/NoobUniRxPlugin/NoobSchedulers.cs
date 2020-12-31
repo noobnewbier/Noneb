@@ -15,7 +15,7 @@ namespace Experiment.NoobUniRxPlugin
         public static IScheduler ThreadPool => _threadPool;
         public static IScheduler Immediate => _immediate;
 
-        public static void ToDefaultMode()
+        internal static void ToDefaultMode()
         {
             _immediate = Scheduler.Immediate;
             _threadPool = Scheduler.ThreadPool;
@@ -27,7 +27,7 @@ namespace Experiment.NoobUniRxPlugin
 #endif
         }
 
-        public static void ToTestMode()
+        internal static void ToTestMode()
         {
             _immediate = Scheduler.Immediate;
             _threadPool = Scheduler.Immediate;

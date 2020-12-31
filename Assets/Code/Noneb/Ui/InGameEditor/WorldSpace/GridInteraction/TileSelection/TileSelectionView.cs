@@ -5,7 +5,6 @@ namespace Noneb.Ui.InGameEditor.WorldSpace.GridInteraction.TileSelection
     public class TileSelectionView : MonoBehaviour
     {
         [SerializeField] private TileSelectionViewModelFactory viewModelFactory;
-        [SerializeField] private Transform mapTransform;
 
         private TileSelectionViewModel _viewModel;
 

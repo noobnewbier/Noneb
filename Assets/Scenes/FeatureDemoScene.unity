@@ -294,7 +294,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e66a4cd1488ab47968eebe9d477895, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fa789ce3d382d44fb08f1214a625cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &482701712
@@ -449,7 +449,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &760056626
 PrefabInstance:
@@ -560,7 +560,7 @@ MonoBehaviour:
     z: 3
   maxCost: 5
   mapRepositoryProvider: {fileID: 849524808}
-  tileHolderRepositoryProvider: {fileID: 849524812}
+  tilesHoldersServiceProvider: {fileID: 849524812}
 --- !u!4 &849524807
 Transform:
   m_ObjectHideFlags: 0
@@ -573,7 +573,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &849524808
 MonoBehaviour:
@@ -587,9 +587,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5b8a7be604491d901263dc5157604d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
+  selectedMapConfigRepositoryProvider: {fileID: 11400000, guid: 066c6a259c211b3429d0529a94d56230,
     type: 2}
-  tileHolderRepositoryProvider: {fileID: 849524812}
+  tilesRepositoryProvider: {fileID: 0}
+  unitsRepositoryProvider: {fileID: 0}
+  constructsRepositoryProvider: {fileID: 0}
+  strongholdsRepositoryProvider: {fileID: 0}
 --- !u!114 &849524811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,6 +794,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1550164334}
     m_Modifications:
+    - target: {fileID: 1115891370010212391, guid: 8aeec0cd527db9b45928e0a191c567b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 262.82117
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115891370010212391, guid: 8aeec0cd527db9b45928e0a191c567b1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 262.82117
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115891370010212391, guid: 8aeec0cd527db9b45928e0a191c567b1,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115891370010212391, guid: 8aeec0cd527db9b45928e0a191c567b1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115891370010212391, guid: 8aeec0cd527db9b45928e0a191c567b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3745298556152083816, guid: 8aeec0cd527db9b45928e0a191c567b1,
         type: 3}
       propertyPath: m_Name

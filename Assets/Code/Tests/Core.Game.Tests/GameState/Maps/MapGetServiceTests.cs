@@ -154,11 +154,7 @@ namespace Core.Game.Tests.GameState.Maps
             _mapGetService.GetObservableStream()
                 .SubscribeOn(NoobSchedulers.Immediate)
                 .ObserveOn(NoobSchedulers.Immediate)
-                .Subscribe(v =>
-                    {
-                        returnedValue = v;
-                    }
-                );
+                .Subscribe(v => returnedValue = v);
 
             //we are using the unit's name as an ID, this is the only way to see how many times the map is updated with the current setup
             Assert.That(returnedValue.Get<Unit>(coordinate).Data.Name, Is.EqualTo(itemsUpdateCount.ToString()));

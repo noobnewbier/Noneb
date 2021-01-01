@@ -12,13 +12,13 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
         fileName = nameof(UnitInspectorViewModelFactory),
         menuName = MenuName.Factory + ProjectMenuName.InGameEditor + "UnitInspectorViewModelFactory"
     )]
-    public class UnitInspectorViewModelFactory : ScriptableObject, IFactory<InspectorViewModel<Unit, UnitData>>
+    public class UnitInspectorViewModelFactory : ScriptableObject, IFactory<BoardItemInspectorViewModel<Unit, UnitData>>
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
 
-        public InspectorViewModel<Unit, UnitData> Create() =>
-            new InspectorViewModel<Unit, UnitData>(currentInspectableRepositoryProvider.Provide(), mapRepositoryProvider.Provide());
+        public BoardItemInspectorViewModel<Unit, UnitData> Create() =>
+            new BoardItemInspectorViewModel<Unit, UnitData>(currentInspectableRepositoryProvider.Provide(), mapRepositoryProvider.Provide());
     }
 }

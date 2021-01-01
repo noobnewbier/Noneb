@@ -9,7 +9,6 @@ namespace Noneb.Core.InGameEditor.LevelDataModification
 {
     public interface ILevelDataModificationService
     {
-        IObservable<Unit> ModifiedEventStream { get; }
         IObservable<Unit> SetUpStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate);
         IObservable<Unit> DestructStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate);
     }
@@ -21,10 +20,7 @@ namespace Noneb.Core.InGameEditor.LevelDataModification
         public LevelDataModificationService(ICoordinateService coordinateService)
         {
             _coordinateService = coordinateService;
-            ModifiedEventStream = new Subject<Unit>();
         }
-
-        public IObservable<Unit> ModifiedEventStream { get; }
 
         public IObservable<Unit> DestructStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate)
         {
@@ -36,11 +32,9 @@ namespace Noneb.Core.InGameEditor.LevelDataModification
                     CreateUnitFromStrongholdInIndex(levelData, index);
                     CreateConstructFromStrongholdInIndex(levelData, index);
                     ClearStrongholdInIndex(levelData, index);
-                    
-                    observer.OnCompleted();
-                    observer.OnNext(Unit.Default);
 
-                    PublishModifiedEvent();
+                    observer.OnNext(Unit.Default);
+                    observer.OnCompleted();
 
                     return Disposable.Empty;
                 }
@@ -66,11 +60,6 @@ namespace Noneb.Core.InGameEditor.LevelDataModification
             levelData.UnitGameObjectFactories[index] = levelData.StrongholdUnitGameObjectFactories[index];
         }
 
-        private void PublishModifiedEvent()
-        {
-            ModifiedEventStream.Publish(Unit.Default);
-        }
-
         #region SetUpStronghold
 
         public IObservable<Unit> SetUpStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate)
@@ -82,11 +71,9 @@ namespace Noneb.Core.InGameEditor.LevelDataModification
 
                     CreateStrongholdInIndex(levelData, index);
                     ClearUnitAndConstructInIndex(levelData, index);
-                    
+
                     observer.OnCompleted();
                     observer.OnNext(Unit.Default);
-
-                    PublishModifiedEvent();
 
                     return Disposable.Empty;
                 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
+using Experiment.NoobUniRxPlugin;
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Common.BoardItems;
 using Noneb.Core.Game.Common.TagInterface;
@@ -10,15 +11,15 @@ using UniRx;
 
 namespace Noneb.Ui.InGameEditor.Inspector
 {
-    public class InspectorViewModel<TItem, TData> : IDisposable
+    public class BoardItemInspectorViewModel<TItem, TData> : IDisposable
         where TData : BoardItemData
         where TItem : BoardItem<TData>
     {
-        private readonly IDisposable _disposable;
         private readonly IDisposable _coordinateDisposable;
+        private readonly IDisposable _disposable;
         private Map _currentMap;
 
-        public InspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository, IMapGetService mapGetService)
+        public BoardItemInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository, IMapGetService mapGetService)
         {
             TypeTLiveData = new LiveData<TData>();
             VisibilityLiveData = new LiveData<bool>();
@@ -26,13 +27,13 @@ namespace Noneb.Ui.InGameEditor.Inspector
             _disposable = new CompositeDisposable
             {
                 currentInspectableGetRepository.GetObservableStream()
-                    .SubscribeOn(Scheduler.ThreadPool)
-                    .ObserveOn(Scheduler.MainThread)
+                    .SubscribeOn(NoobSchedulers.ThreadPool)
+                    .ObserveOn(NoobSchedulers.MainThread)
                     .Subscribe(OnInspectableUpdate),
 
                 mapGetService.GetObservableStream()
-                    .SubscribeOn(Scheduler.ThreadPool)
-                    .ObserveOn(Scheduler.MainThread)
+                    .SubscribeOn(NoobSchedulers.ThreadPool)
+                    .ObserveOn(NoobSchedulers.MainThread)
                     .Subscribe(
                         m => _currentMap = m
                     )

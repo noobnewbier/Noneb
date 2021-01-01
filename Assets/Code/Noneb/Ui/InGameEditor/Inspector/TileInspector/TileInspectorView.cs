@@ -10,15 +10,15 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
 {
     public class TileInspectorView : MonoBehaviour
     {
-        [SerializeField] private GameObject windowGameObject;
-        [SerializeField] private TileInspectorViewModelFactory viewModelFactory;
+        private IDisposable _disposable;
 
-        [SerializeField] private TextMeshProUGUI nameText;
-        [SerializeField] private TextMeshProUGUI weightText;
+        private BoardItemInspectorViewModel<Tile, TileData> _presetViewModel;
         [SerializeField] private Image iconImage;
 
-        private InspectorViewModel<Tile, TileData> _presetViewModel;
-        private IDisposable _disposable;
+        [SerializeField] private TextMeshProUGUI nameText;
+        [SerializeField] private TileInspectorViewModelFactory viewModelFactory;
+        [SerializeField] private TextMeshProUGUI weightText;
+        [SerializeField] private GameObject windowGameObject;
 
         private void OnEnable()
         {

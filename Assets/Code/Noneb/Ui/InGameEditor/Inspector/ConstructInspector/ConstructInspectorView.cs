@@ -9,15 +9,15 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
 {
     public class ConstructInspectorView : MonoBehaviour
     {
-        [SerializeField] private GameObject windowGameObject;
+        private IDisposable _disposable;
 
-        [SerializeField] private TextMeshProUGUI nameText;
+        private BoardItemInspectorViewModel<Construct, ConstructData> _viewModel;
         [SerializeField] private Image iconImage;
 
-        [SerializeField] private ConstructInspectorViewModelFactory viewModelFactory;
+        [SerializeField] private TextMeshProUGUI nameText;
 
-        private InspectorViewModel<Construct, ConstructData> _viewModel;
-        private IDisposable _disposable;
+        [SerializeField] private ConstructInspectorViewModelFactory viewModelFactory;
+        [SerializeField] private GameObject windowGameObject;
 
         private void OnEnable()
         {

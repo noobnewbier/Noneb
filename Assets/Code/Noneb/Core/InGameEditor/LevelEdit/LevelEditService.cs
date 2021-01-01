@@ -19,10 +19,11 @@ namespace Noneb.Core.InGameEditor.LevelEdit
     public class LevelEditService : ILevelEditService
     {
         private readonly ILevelDataModificationService _levelDataModificationService;
-        private readonly IMapModificationService _mapModificationService;
+        private readonly ILevelDataRepository _levelDataRepository;
         private readonly IMapConfigRepository _mapConfigRepository;
         private readonly IMapGetService _mapGetService;
-        private readonly ILevelDataRepository _levelDataRepository;
+        private readonly IMapModificationService _mapModificationService;
+        private readonly Subject<Unit> _modifiedEventStream;
 
         public LevelEditService(ILevelDataModificationService levelDataModificationService,
                                 IMapModificationService mapModificationService,
@@ -30,7 +31,7 @@ namespace Noneb.Core.InGameEditor.LevelEdit
                                 IMapGetService mapGetService,
                                 ILevelDataRepository levelDataRepository)
         {
-            ModifiedEventStream = new Subject<Unit>();
+            _modifiedEventStream = new Subject<Unit>();
 
             _levelDataModificationService = levelDataModificationService;
             _mapModificationService = mapModificationService;
@@ -39,18 +40,20 @@ namespace Noneb.Core.InGameEditor.LevelEdit
             _levelDataRepository = levelDataRepository;
         }
 
-        public IObservable<Unit> ModifiedEventStream { get; }
+        public IObservable<Unit> ModifiedEventStream => _modifiedEventStream;
 
         public IObservable<Unit> SetUpStronghold(Coordinate coordinate) =>
             SetUpStrongholdInMap(coordinate)
                 .Concat(SetUpStrongholdInLevelData(coordinate))
-                .Last();
+                .Last()
+                .DoOnCompleted(() => _modifiedEventStream.OnNext(Unit.Default));
 
 
         public IObservable<Unit> DestructStronghold(Coordinate coordinate) =>
             DestructStrongholdInMap(coordinate)
                 .Concat(DestructStrongholdInLevelData(coordinate))
-                .Last();
+                .Last()
+                .DoOnCompleted(() => _modifiedEventStream.OnNext(Unit.Default));
 
         private IObservable<Unit> SetUpStrongholdInLevelData(Coordinate coordinate)
         {

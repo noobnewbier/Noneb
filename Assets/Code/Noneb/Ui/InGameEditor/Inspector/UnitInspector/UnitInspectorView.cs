@@ -11,16 +11,16 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
 {
     public class UnitInspectorView : MonoBehaviour
     {
-        [SerializeField] private GameObject windowGameObject;
+        private IDisposable _disposable;
 
-        [SerializeField] private UnitInspectorViewModelFactory viewModelFactory;
-        [SerializeField] private TextMeshProUGUI nameText;
+
+        private BoardItemInspectorViewModel<Unit, UnitData> _viewModel;
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private Image iconImage;
+        [SerializeField] private TextMeshProUGUI nameText;
 
-
-        private InspectorViewModel<Unit, UnitData> _viewModel;
-        private IDisposable _disposable;
+        [SerializeField] private UnitInspectorViewModelFactory viewModelFactory;
+        [SerializeField] private GameObject windowGameObject;
 
         private void OnEnable()
         {

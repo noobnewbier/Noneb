@@ -65,7 +65,8 @@ namespace Experiment.NoobAutoLinker.Editor
 
         private void DrawSceneTab()
         {
-            if (GUILayout.Button("Link Active Scenes"))
+            GUILayout.Label("Active Scene", EditorStyles.boldLabel);
+            if (GUILayout.Button("Link Active Scene"))
             {
                 var scene = SceneManager.GetActiveScene();
 

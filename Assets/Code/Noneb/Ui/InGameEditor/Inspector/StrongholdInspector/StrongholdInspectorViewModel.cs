@@ -11,7 +11,7 @@ using Noneb.Core.Game.Maps;
 using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Core.Game.Strongholds;
 using Noneb.Core.InGameEditor.Data;
-using Noneb.Core.InGameEditor.LevelEdit;
+using Noneb.Core.InGameEditor.LevelEditing;
 using UniRx;
 using Unit = Noneb.Core.Game.Units.Unit;
 

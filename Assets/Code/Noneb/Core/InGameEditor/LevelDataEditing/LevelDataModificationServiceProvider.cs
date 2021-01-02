@@ -4,7 +4,7 @@ using Noneb.Core.Game.Coordinates;
 using UnityEngine;
 using UnityUtils.Constants;
 
-namespace Noneb.Core.InGameEditor.LevelDataModification
+namespace Noneb.Core.InGameEditor.LevelDataEditing
 {
     [CreateAssetMenu(
         fileName = nameof(LevelDataModificationServiceProvider),

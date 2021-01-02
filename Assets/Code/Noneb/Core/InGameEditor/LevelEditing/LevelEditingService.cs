@@ -4,10 +4,10 @@ using Noneb.Core.Game.GameState.LevelDatas;
 using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps.MapModification;
-using Noneb.Core.InGameEditor.LevelDataModification;
+using Noneb.Core.InGameEditor.LevelDataEditing;
 using UniRx;
 
-namespace Noneb.Core.InGameEditor.LevelEdit
+namespace Noneb.Core.InGameEditor.LevelEditing
 {
     public interface ILevelEditingService
     {
@@ -48,13 +48,6 @@ namespace Noneb.Core.InGameEditor.LevelEdit
                 .Last()
                 .DoOnCompleted(() => _modifiedEventStream.OnNext(Unit.Default));
 
-
-        public IObservable<Unit> DestructStronghold(Coordinate coordinate) =>
-            DestructStrongholdInMap(coordinate)
-                .Concat(DestructStrongholdInLevelData(coordinate))
-                .Last()
-                .DoOnCompleted(() => _modifiedEventStream.OnNext(Unit.Default));
-
         private IObservable<Unit> SetUpStrongholdInLevelData(Coordinate coordinate)
         {
             return _levelDataRepository.GetMostRecent()
@@ -69,6 +62,14 @@ namespace Noneb.Core.InGameEditor.LevelEdit
                     m => _mapEditingService.SetUpStronghold(m, coordinate)
                 );
         }
+        
+
+        public IObservable<Unit> DestructStronghold(Coordinate coordinate) =>
+            DestructStrongholdInMap(coordinate)
+                .Concat(DestructStrongholdInLevelData(coordinate))
+                .Last()
+                .DoOnCompleted(() => _modifiedEventStream.OnNext(Unit.Default));
+        
 
         private IObservable<Unit> DestructStrongholdInLevelData(Coordinate coordinate)
         {

@@ -4,7 +4,7 @@ using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.InGameMessages;
 using Noneb.Core.Game.Maps.MapModification;
-using Noneb.Core.InGameEditor.LevelEdit;
+using Noneb.Core.InGameEditor.LevelEditing;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
 using UnityEngine.Serialization;

@@ -4,12 +4,12 @@ using Noneb.Core.Game.GameState.LevelDatas;
 using Noneb.Core.Game.GameState.MapConfigs;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps.MapModification;
-using Noneb.Core.InGameEditor.LevelDataModification;
+using Noneb.Core.InGameEditor.LevelDataEditing;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
-namespace Noneb.Core.InGameEditor.LevelEdit
+namespace Noneb.Core.InGameEditor.LevelEditing
 {
     [CreateAssetMenu(
         fileName = nameof(LevelEditingServiceProvider),

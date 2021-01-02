@@ -5,7 +5,7 @@ using Noneb.Core.Game.Maps;
 using Noneb.Core.Game.Strongholds;
 using UniRx;
 
-namespace Noneb.Core.InGameEditor.LevelDataModification
+namespace Noneb.Core.InGameEditor.LevelDataEditing
 {
     public interface ILevelDataModificationService
     {

@@ -5,6 +5,7 @@ using System.Reflection;
 using Experiment.NoobAutoLinker.Core;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityUtils;
 using Object = UnityEngine.Object;
 
@@ -85,13 +86,18 @@ namespace Experiment.NoobAutoLinker.Editor
                 .SelectMany(scriptableObject => InjectToObject(scriptableObject, shouldOverrideExistingValue));
         }
 
+        public IEnumerable<LinkResult> InjectToScene(Scene scene, bool shouldOverrideExistingValue) =>
+            from rootGameObject in scene.GetRootGameObjects()
+            from monoBehaviour in rootGameObject.GetComponentsInChildren<MonoBehaviour>()
+            from result in InjectToObject(monoBehaviour, shouldOverrideExistingValue)
+            select result;
+
         private static LinkResult HandleSuccessfulInjection(Object objectToLink, FieldInfo fieldInfo, Object value)
         {
             fieldInfo.SetValue(objectToLink, value);
 
             return new LinkResult(objectToLink, LinkResultType.Success, $"Linked {objectToLink.name} with {value.name}", fieldInfo);
         }
-
 
         private LinkResult HandleNoExistObjectWithRequiredType(Object objectToLink, FieldInfo fieldInfo, Type requiredType) =>
             new LinkResult(

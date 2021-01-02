@@ -7,17 +7,17 @@ using UniRx;
 
 namespace Noneb.Core.InGameEditor.LevelDataEditing
 {
-    public interface ILevelDataModificationService
+    public interface ILevelDataEditingService
     {
         IObservable<Unit> SetUpStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate);
         IObservable<Unit> DestructStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate);
     }
 
-    public class LevelDataModificationService : ILevelDataModificationService
+    public class LevelDataEditingService : ILevelDataEditingService
     {
         private readonly ICoordinateService _coordinateService;
 
-        public LevelDataModificationService(ICoordinateService coordinateService)
+        public LevelDataEditingService(ICoordinateService coordinateService)
         {
             _coordinateService = coordinateService;
         }

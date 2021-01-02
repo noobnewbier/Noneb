@@ -17,7 +17,7 @@ namespace Noneb.Core.InGameEditor.LevelEditing
     )]
     public class LevelEditingServiceProvider : ScriptableObject, IObjectProvider<ILevelEditingService>
     {
-        [SerializeField] private LevelDataModificationServiceProvider levelDataModificationServiceProvider;
+        [FormerlySerializedAs("levelDataModificationServiceProvider")] [SerializeField] private LevelDataEditingServiceProvider levelDataEditingServiceProvider;
         [FormerlySerializedAs("mapModificationServiceProvider")] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
         [SerializeField] private MapConfigRepositoryProvider mapConfigRepositoryProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
@@ -26,7 +26,7 @@ namespace Noneb.Core.InGameEditor.LevelEditing
         private ILevelEditingService _cache;
 
         public ILevelEditingService Provide() => _cache ?? (_cache = new LevelEditingService(
-            levelDataModificationServiceProvider.Provide(),
+            levelDataEditingServiceProvider.Provide(),
             mapEditingServiceProvider.Provide(),
             mapConfigRepositoryProvider.Provide(),
             mapRepositoryProvider.Provide(),

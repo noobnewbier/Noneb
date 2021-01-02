@@ -18,14 +18,14 @@ namespace Noneb.Core.InGameEditor.LevelEditing
 
     public class LevelEditingService : ILevelEditingService
     {
-        private readonly ILevelDataModificationService _levelDataModificationService;
+        private readonly ILevelDataEditingService _levelDataEditingService;
         private readonly ILevelDataRepository _levelDataRepository;
         private readonly IMapConfigRepository _mapConfigRepository;
         private readonly IMapGetService _mapGetService;
         private readonly IMapEditingService _mapEditingService;
         private readonly Subject<Unit> _modifiedEventStream;
 
-        public LevelEditingService(ILevelDataModificationService levelDataModificationService,
+        public LevelEditingService(ILevelDataEditingService levelDataEditingService,
                                 IMapEditingService mapEditingService,
                                 IMapConfigRepository mapConfigRepository,
                                 IMapGetService mapGetService,
@@ -33,7 +33,7 @@ namespace Noneb.Core.InGameEditor.LevelEditing
         {
             _modifiedEventStream = new Subject<Unit>();
 
-            _levelDataModificationService = levelDataModificationService;
+            _levelDataEditingService = levelDataEditingService;
             _mapEditingService = mapEditingService;
             _mapConfigRepository = mapConfigRepository;
             _mapGetService = mapGetService;
@@ -52,7 +52,7 @@ namespace Noneb.Core.InGameEditor.LevelEditing
         {
             return _levelDataRepository.GetMostRecent()
                 .Zip(_mapConfigRepository.GetMostRecent(), (data, config) => (data, config))
-                .SelectMany(tuple => _levelDataModificationService.SetUpStronghold(tuple.data, tuple.config, coordinate));
+                .SelectMany(tuple => _levelDataEditingService.SetUpStronghold(tuple.data, tuple.config, coordinate));
         }
 
         private IObservable<Unit> SetUpStrongholdInMap(Coordinate coordinate)
@@ -75,7 +75,7 @@ namespace Noneb.Core.InGameEditor.LevelEditing
         {
             return _levelDataRepository.GetMostRecent()
                 .Zip(_mapConfigRepository.GetMostRecent(), (data, config) => (data, config))
-                .SelectMany(tuple => _levelDataModificationService.DestructStronghold(tuple.data, tuple.config, coordinate));
+                .SelectMany(tuple => _levelDataEditingService.DestructStronghold(tuple.data, tuple.config, coordinate));
         }
 
         private IObservable<Unit> DestructStrongholdInMap(Coordinate coordinate)

@@ -121,14 +121,20 @@ namespace Experiment.NoobAutoLinker.Editor
 
         private void InjectToObject(Object objectToLink)
         {
-            foreach (var linkResult in _autoLinker.InjectToObject(objectToLink, shouldOverrideExistingValue))
+            var linkResults = _autoLinker.InjectToObject(objectToLink, shouldOverrideExistingValue).ToArray();
+            foreach (var linkResult in linkResults)
                 HandleLinkResult(linkResult);
+            
+            Debug.Log($"finished linking, attempted to link {linkResults.Length} objects");
         }
 
         private void InjectToAllScriptableWithinSearchDirectory()
         {
-            foreach (var linkResult in _autoLinker.InjectToAllScriptableWithinSearchDirectory(shouldOverrideExistingValue))
+            var linkResults = _autoLinker.InjectToAllScriptableWithinSearchDirectory(shouldOverrideExistingValue).ToArray();
+            foreach (var linkResult in linkResults)
                 HandleLinkResult(linkResult);
+            
+            Debug.Log($"finished linking, attempted to link {linkResults.Length} objects");
         }
 
         private static void DrawField(string fieldName, SerializedObject serializedObject)

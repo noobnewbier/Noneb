@@ -7,21 +7,23 @@ using Unit = Noneb.Core.Game.Units.Unit;
 
 namespace Noneb.Core.Game.Maps.MapModification
 {
-    public interface IMapModificationService
+    public interface IMapEditingService
     {
         IObservable<UniRx.Unit> ModifiedEventStream { get; }
         IObservable<UniRx.Unit> SetUpStronghold(Map map, Coordinate coordinate);
         IObservable<UniRx.Unit> DestructStronghold(Map map, Coordinate coordinate);
     }
 
-    public class MapModificationService : IMapModificationService
+    public class MapEditingService : IMapEditingService
     {
-        public MapModificationService()
+        private readonly Subject<UniRx.Unit> _modifiedEventStream;
+
+        public MapEditingService()
         {
-            ModifiedEventStream = new Subject<UniRx.Unit>();
+            _modifiedEventStream = new Subject<UniRx.Unit>();
         }
 
-        public IObservable<UniRx.Unit> ModifiedEventStream { get; }
+        public IObservable<UniRx.Unit> ModifiedEventStream => _modifiedEventStream;
 
         public IObservable<UniRx.Unit> SetUpStronghold(Map map, Coordinate coordinate)
         {
@@ -38,16 +40,11 @@ namespace Noneb.Core.Game.Maps.MapModification
                     observer.OnNext(UniRx.Unit.Default);
                     observer.OnCompleted();
 
-                    PublishModifiedEvent();
+                    _modifiedEventStream.OnNext(UniRx.Unit.Default);
 
                     return Disposable.Empty;
                 }
             );
-        }
-
-        private void PublishModifiedEvent()
-        {
-            ModifiedEventStream.Publish(UniRx.Unit.Default);
         }
 
         public IObservable<UniRx.Unit> DestructStronghold(Map map, Coordinate coordinate)
@@ -67,7 +64,7 @@ namespace Noneb.Core.Game.Maps.MapModification
                     observer.OnNext(UniRx.Unit.Default);
                     observer.OnCompleted();
                     
-                    PublishModifiedEvent();
+                    _modifiedEventStream.OnNext(UniRx.Unit.Default);
 
                     return Disposable.Empty;
                 }

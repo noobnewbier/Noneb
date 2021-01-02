@@ -9,24 +9,24 @@ using UniRx;
 
 namespace Noneb.Core.InGameEditor.LevelEdit
 {
-    public interface ILevelEditService
+    public interface ILevelEditingService
     {
         IObservable<Unit> ModifiedEventStream { get; }
         IObservable<Unit> SetUpStronghold(Coordinate coordinate);
         IObservable<Unit> DestructStronghold(Coordinate coordinate);
     }
 
-    public class LevelEditService : ILevelEditService
+    public class LevelEditingService : ILevelEditingService
     {
         private readonly ILevelDataModificationService _levelDataModificationService;
         private readonly ILevelDataRepository _levelDataRepository;
         private readonly IMapConfigRepository _mapConfigRepository;
         private readonly IMapGetService _mapGetService;
-        private readonly IMapModificationService _mapModificationService;
+        private readonly IMapEditingService _mapEditingService;
         private readonly Subject<Unit> _modifiedEventStream;
 
-        public LevelEditService(ILevelDataModificationService levelDataModificationService,
-                                IMapModificationService mapModificationService,
+        public LevelEditingService(ILevelDataModificationService levelDataModificationService,
+                                IMapEditingService mapEditingService,
                                 IMapConfigRepository mapConfigRepository,
                                 IMapGetService mapGetService,
                                 ILevelDataRepository levelDataRepository)
@@ -34,7 +34,7 @@ namespace Noneb.Core.InGameEditor.LevelEdit
             _modifiedEventStream = new Subject<Unit>();
 
             _levelDataModificationService = levelDataModificationService;
-            _mapModificationService = mapModificationService;
+            _mapEditingService = mapEditingService;
             _mapConfigRepository = mapConfigRepository;
             _mapGetService = mapGetService;
             _levelDataRepository = levelDataRepository;
@@ -66,7 +66,7 @@ namespace Noneb.Core.InGameEditor.LevelEdit
         {
             return _mapGetService.GetMostRecent()
                 .SelectMany(
-                    m => _mapModificationService.SetUpStronghold(m, coordinate)
+                    m => _mapEditingService.SetUpStronghold(m, coordinate)
                 );
         }
 
@@ -81,7 +81,7 @@ namespace Noneb.Core.InGameEditor.LevelEdit
         {
             return _mapGetService.GetMostRecent()
                 .SelectMany(
-                    m => _mapModificationService.DestructStronghold(m, coordinate)
+                    m => _mapEditingService.DestructStronghold(m, coordinate)
                 );
         }
     }

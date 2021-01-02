@@ -16,7 +16,9 @@ MonoBehaviour:
     type: 2}
   mapRepositoryProvider: {fileID: 11400000, guid: 0db88873f9e14bb4aa41bf99d61c1e9a,
     type: 2}
-  levelEditServiceProvider: {fileID: 11400000, guid: 8b5ea07be97756e4e988a3273596d54e,
+  levelEditingServiceProvider: {fileID: 11400000, guid: 8b5ea07be97756e4e988a3273596d54e,
     type: 2}
   inGameMessageServiceProvider: {fileID: 11400000, guid: e50a2fd960ba9da40bd0c71229d4a797,
+    type: 2}
+  mapEditingServiceProvider: {fileID: 11400000, guid: 1e74f1da51a40564aa7e8fe5d3ca012e,
     type: 2}

@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 2}
   mapRepositoryProvider: {fileID: 11400000, guid: 0db88873f9e14bb4aa41bf99d61c1e9a,
     type: 2}
+  mapEditingServiceProvider: {fileID: 11400000, guid: 1e74f1da51a40564aa7e8fe5d3ca012e,
+    type: 2}

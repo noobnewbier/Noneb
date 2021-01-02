@@ -1,5 +1,6 @@
 ﻿using System;
 using Experiment.CrossPlatformLiveData;
+using Experiment.NoobUniRxPlugin;
 using Noneb.Core.Game.Common;
 using Noneb.Core.Game.Common.TagInterface;
 using Noneb.Core.Game.Constructs;
@@ -7,6 +8,7 @@ using Noneb.Core.Game.Coordinates;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.InGameMessages;
 using Noneb.Core.Game.Maps;
+using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Core.Game.Strongholds;
 using Noneb.Core.InGameEditor.Data;
 using Noneb.Core.InGameEditor.LevelEdit;
@@ -20,17 +22,18 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         private readonly IDisposable _coordinateDisposable;
         private readonly IDisposable _disposable;
         private readonly IInGameMessageService _inGameMessageService;
-        private readonly ILevelEditService _levelEditService;
+        private readonly ILevelEditingService _levelEditingService;
         private Coordinate _currentCoordinate;
 
         private Map _currentMap;
 
         public StrongholdInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository,
                                             IMapGetService mapGetService,
-                                            ILevelEditService levelEditService,
-                                            IInGameMessageService inGameMessageService)
+                                            ILevelEditingService levelEditingService,
+                                            IInGameMessageService inGameMessageService,
+                                            IMapEditingService mapEditingService)
         {
-            _levelEditService = levelEditService;
+            _levelEditingService = levelEditingService;
             _inGameMessageService = inGameMessageService;
             StrongholdDataLiveData = new LiveData<StrongholdData>();
             VisibilityLiveData = new LiveData<bool>();
@@ -38,20 +41,18 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
             _disposable = new CompositeDisposable
             {
                 currentInspectableGetRepository.GetObservableStream()
-                    .SubscribeOn(Scheduler.ThreadPool)
-                    .ObserveOn(Scheduler.MainThread)
+                    .SubscribeOn(NoobSchedulers.ThreadPool)
+                    .ObserveOn(NoobSchedulers.MainThread)
                     .Subscribe(OnInspectableUpdate),
 
                 mapGetService.GetObservableStream()
-                    .SubscribeOn(Scheduler.ThreadPool)
-                    .ObserveOn(Scheduler.MainThread)
-                    .Subscribe(
-                        m => _currentMap = m
-                    ),
+                    .SubscribeOn(NoobSchedulers.ThreadPool)
+                    .ObserveOn(NoobSchedulers.MainThread)
+                    .Subscribe(OnNewMapCreated),
 
-                _levelEditService.ModifiedEventStream
-                    .SubscribeOn(Scheduler.ThreadPool)
-                    .ObserveOn(Scheduler.MainThread)
+                mapEditingService.ModifiedEventStream
+                    .SubscribeOn(NoobSchedulers.ThreadPool)
+                    .ObserveOn(NoobSchedulers.MainThread)
                     .Subscribe(_ => OnMapModified())
             };
         }
@@ -66,12 +67,19 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
             _disposable.Dispose();
         }
 
+        private void OnNewMapCreated(Map m)
+        {
+            _currentMap = m;
+
+            UpdateStrongholdData();
+        }
+
         private void OnMapModified()
         {
             if (IsCurrentlyVisible)
             {
                 UpdateStrongholdData();
-                UpdateVisibility(IsVisibleOnCurrentCoordinate());
+                UpdateVisibility(IsNeedToInspectCurrentCoordinate());
             }
         }
 
@@ -82,7 +90,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
                 _currentCoordinate = inspectableCoordinate.Coordinate;
 
                 UpdateStrongholdData();
-                UpdateVisibility(IsVisibleOnCurrentCoordinate());
+                UpdateVisibility(IsNeedToInspectCurrentCoordinate());
             }
             else
             {
@@ -90,7 +98,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
             }
         }
 
-        private bool IsVisibleOnCurrentCoordinate() =>
+        private bool IsNeedToInspectCurrentCoordinate() =>
             _currentMap.TryGet<Unit>(_currentCoordinate, out _) && _currentMap.TryGet<Construct>(_currentCoordinate, out _) ||
             _currentMap.TryGet<Stronghold>(_currentCoordinate, out _);
 
@@ -115,7 +123,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
 
         private void SetUpStronghold()
         {
-            _levelEditService.SetUpStronghold(_currentCoordinate)
+            _levelEditingService.SetUpStronghold(_currentCoordinate)
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
                 .Subscribe(
@@ -126,7 +134,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
 
         private void DestructStronghold()
         {
-            _levelEditService.DestructStronghold(_currentCoordinate)
+            _levelEditingService.DestructStronghold(_currentCoordinate)
                 .SubscribeOn(Scheduler.ThreadPool)
                 .ObserveOn(Scheduler.MainThread)
                 .Subscribe(

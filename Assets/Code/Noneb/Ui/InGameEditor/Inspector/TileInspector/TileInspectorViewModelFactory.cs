@@ -1,6 +1,8 @@
-﻿using Noneb.Core.Game.Common.Constants;
+﻿using Experiment.NoobAutoLinker.Core;
+using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.GameState.Maps;
+using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Core.Game.Tiles;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
@@ -16,13 +18,15 @@ namespace Noneb.Ui.InGameEditor.Inspector.TileInspector
                                                  IFactory<BoardItemInspectorViewModel<Tile, TileData>>
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
+        [AutoLink] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
 
         public BoardItemInspectorViewModel<Tile, TileData> Create() =>
             new BoardItemInspectorViewModel<Tile, TileData>(
                 currentInspectableRepositoryProvider.Provide(),
-                mapRepositoryProvider.Provide()
+                mapRepositoryProvider.Provide(),
+                mapEditingServiceProvider.Provide()
             );
     }
 }

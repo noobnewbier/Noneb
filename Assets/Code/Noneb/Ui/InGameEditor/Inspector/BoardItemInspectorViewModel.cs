@@ -6,6 +6,7 @@ using Noneb.Core.Game.Common.BoardItems;
 using Noneb.Core.Game.Common.TagInterface;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps;
+using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Core.InGameEditor.Data;
 using UniRx;
 
@@ -17,9 +18,12 @@ namespace Noneb.Ui.InGameEditor.Inspector
     {
         private readonly IDisposable _coordinateDisposable;
         private readonly IDisposable _disposable;
+        private IInspectable _currentlyInspected;
         private Map _currentMap;
 
-        public BoardItemInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository, IMapGetService mapGetService)
+        public BoardItemInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository,
+                                           IMapGetService mapGetService,
+                                           IMapEditingService mapEditingService)
         {
             TypeTLiveData = new LiveData<TData>();
             VisibilityLiveData = new LiveData<bool>();
@@ -34,9 +38,12 @@ namespace Noneb.Ui.InGameEditor.Inspector
                 mapGetService.GetObservableStream()
                     .SubscribeOn(NoobSchedulers.ThreadPool)
                     .ObserveOn(NoobSchedulers.MainThread)
-                    .Subscribe(
-                        m => _currentMap = m
-                    )
+                    .Subscribe(OnNewMapCreated),
+
+                mapEditingService.ModifiedEventStream
+                    .SubscribeOn(NoobSchedulers.ThreadPool)
+                    .ObserveOn(NoobSchedulers.MainThread)
+                    .Subscribe(_ => OnMapEdited())
             };
         }
 
@@ -48,9 +55,27 @@ namespace Noneb.Ui.InGameEditor.Inspector
             _disposable.Dispose();
         }
 
+        private void OnNewMapCreated(Map m)
+        {
+            _currentMap = m;
+
+            UpdateTData();
+        }
+
+        private void OnMapEdited()
+        {
+            if (_currentlyInspected is InspectableCoordinate) UpdateTData();
+        }
+
         private void OnInspectableUpdate(IInspectable inspectable)
         {
-            if (TryGetTFromInspectable(inspectable, out var t))
+            _currentlyInspected = inspectable;
+            UpdateTData();
+        }
+
+        private void UpdateTData()
+        {
+            if (TryGetTFromInspectable(_currentlyInspected, out var t))
             {
                 UpdateVisibility(true);
                 UpdateInspectable(t);

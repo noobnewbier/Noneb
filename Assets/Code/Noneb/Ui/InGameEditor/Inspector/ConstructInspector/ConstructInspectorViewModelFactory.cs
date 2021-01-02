@@ -1,9 +1,12 @@
-﻿using Noneb.Core.Game.Common.Constants;
+﻿using Experiment.NoobAutoLinker.Core;
+using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.Constructs;
 using Noneb.Core.Game.GameState.Maps;
+using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
@@ -16,12 +19,15 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
+        [AutoLink] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
+        
 
 
         public BoardItemInspectorViewModel<Construct, ConstructData> Create() =>
             new BoardItemInspectorViewModel<Construct, ConstructData>(
                 currentInspectableRepositoryProvider.Provide(),
-                mapRepositoryProvider.Provide()
+                mapRepositoryProvider.Provide(),
+                mapEditingServiceProvider.Provide()
             );
     }
 }

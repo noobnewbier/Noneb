@@ -6,27 +6,28 @@ using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Core.InGameEditor.LevelDataModification;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Core.InGameEditor.LevelEdit
 {
     [CreateAssetMenu(
-        fileName = nameof(LevelEditServiceProvider),
-        menuName = MenuName.ScriptableService + ProjectMenuName.InGameEditor + nameof(LevelEditService)
+        fileName = nameof(LevelEditingServiceProvider),
+        menuName = MenuName.ScriptableService + ProjectMenuName.InGameEditor + nameof(LevelEditingService)
     )]
-    public class LevelEditServiceProvider : ScriptableObject, IObjectProvider<ILevelEditService>
+    public class LevelEditingServiceProvider : ScriptableObject, IObjectProvider<ILevelEditingService>
     {
         [SerializeField] private LevelDataModificationServiceProvider levelDataModificationServiceProvider;
-        [SerializeField] private MapModificationServiceProvider mapModificationServiceProvider;
+        [FormerlySerializedAs("mapModificationServiceProvider")] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
         [SerializeField] private MapConfigRepositoryProvider mapConfigRepositoryProvider;
         [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
         [SerializeField] private LevelDataRepositoryProvider levelDataRepositoryProvider;
 
-        private ILevelEditService _cache;
+        private ILevelEditingService _cache;
 
-        public ILevelEditService Provide() => _cache ?? (_cache = new LevelEditService(
+        public ILevelEditingService Provide() => _cache ?? (_cache = new LevelEditingService(
             levelDataModificationServiceProvider.Provide(),
-            mapModificationServiceProvider.Provide(),
+            mapEditingServiceProvider.Provide(),
             mapConfigRepositoryProvider.Provide(),
             mapRepositoryProvider.Provide(),
             levelDataRepositoryProvider.Provide()

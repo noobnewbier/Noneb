@@ -19,13 +19,14 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
     public class StrongholdInspectorViewModelFactory : ScriptableObject, IFactory<StrongholdInspectorViewModel>
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
-        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
+
+        [SerializeField] private InGameMessageServiceProvider inGameMessageServiceProvider;
 
         [FormerlySerializedAs("levelEditServiceProvider")] [SerializeField]
         private LevelEditingServiceProvider levelEditingServiceProvider;
 
-        [SerializeField] private InGameMessageServiceProvider inGameMessageServiceProvider;
         [AutoLink] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
+        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
 
         public StrongholdInspectorViewModel Create() => new StrongholdInspectorViewModel(

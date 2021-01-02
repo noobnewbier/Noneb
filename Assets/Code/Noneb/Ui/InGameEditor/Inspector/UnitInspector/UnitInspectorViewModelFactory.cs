@@ -3,7 +3,6 @@ using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Factories;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps.MapModification;
-using Noneb.Core.Game.Units;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
 using UnityUtils.Constants;
@@ -14,15 +13,15 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
         fileName = nameof(UnitInspectorViewModelFactory),
         menuName = MenuName.Factory + ProjectMenuName.InGameEditor + "UnitInspectorViewModelFactory"
     )]
-    public class UnitInspectorViewModelFactory : ScriptableObject, IFactory<BoardItemInspectorViewModel<Unit, UnitData>>
+    public class UnitInspectorViewModelFactory : ScriptableObject, IFactory<UnitInspectorViewModel>
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
-        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
         [AutoLink] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
+        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
 
-        public BoardItemInspectorViewModel<Unit, UnitData> Create() =>
-            new BoardItemInspectorViewModel<Unit, UnitData>(
+        public UnitInspectorViewModel Create() =>
+            new UnitInspectorViewModel(
                 currentInspectableRepositoryProvider.Provide(),
                 mapRepositoryProvider.Provide(),
                 mapEditingServiceProvider.Provide()

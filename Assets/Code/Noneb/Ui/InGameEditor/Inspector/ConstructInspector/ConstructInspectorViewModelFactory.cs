@@ -1,12 +1,10 @@
 ﻿using Experiment.NoobAutoLinker.Core;
 using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Factories;
-using Noneb.Core.Game.Constructs;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps.MapModification;
 using Noneb.Ui.InGameEditor.UiState.Inspectable;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityUtils.Constants;
 
 namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
@@ -15,16 +13,15 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
         fileName = nameof(ConstructInspectorViewModelFactory),
         menuName = MenuName.Factory + ProjectMenuName.InGameEditor + "ConstructInspectorViewModel"
     )]
-    public class ConstructInspectorViewModelFactory : ScriptableObject, IFactory<BoardItemInspectorViewModel<Construct, ConstructData>>
+    public class ConstructInspectorViewModelFactory : ScriptableObject, IFactory<ConstructInspectorViewModel>
     {
         [SerializeField] private CurrentInspectableRepositoryProvider currentInspectableRepositoryProvider;
-        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
         [AutoLink] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
-        
+        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
 
-        public BoardItemInspectorViewModel<Construct, ConstructData> Create() =>
-            new BoardItemInspectorViewModel<Construct, ConstructData>(
+        public ConstructInspectorViewModel Create() =>
+            new ConstructInspectorViewModel(
                 currentInspectableRepositoryProvider.Provide(),
                 mapRepositoryProvider.Provide(),
                 mapEditingServiceProvider.Provide()

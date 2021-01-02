@@ -7,11 +7,11 @@ namespace Noneb.Ui.InGameEditor.Inspector.CurrentHoveredTileCoordinate
 {
     public class CurrentHoveredTileCoordinateView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI coordinateText;
-        [SerializeField] private CurrentHoveredTileCoordinateViewModelFactory viewModelFactory;
+        private IDisposable _disposable;
 
         private CurrentHoveredTileCoordinateViewModel _viewModel;
-        private IDisposable _disposable;
+        [SerializeField] private TextMeshProUGUI coordinateText;
+        [SerializeField] private CurrentHoveredTileCoordinateViewModelFactory viewModelFactory;
 
         private void OnEnable()
         {

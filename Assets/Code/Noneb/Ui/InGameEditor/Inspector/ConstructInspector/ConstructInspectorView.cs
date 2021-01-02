@@ -11,7 +11,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
     {
         private IDisposable _disposable;
 
-        private BoardItemInspectorViewModel<Construct, ConstructData> _viewModel;
+        private ConstructInspectorViewModel _viewModel;
         [SerializeField] private Image iconImage;
 
         [SerializeField] private TextMeshProUGUI nameText;
@@ -24,7 +24,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.ConstructInspector
             _viewModel = viewModelFactory.Create();
             _disposable = new CompositeDisposable
             {
-                _viewModel.TypeTLiveData.Subscribe(OnUpdatePreset),
+                _viewModel.ConstructDataLiveData.Subscribe(OnUpdatePreset),
                 _viewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }

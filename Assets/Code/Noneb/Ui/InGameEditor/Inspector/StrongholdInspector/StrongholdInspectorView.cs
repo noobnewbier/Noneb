@@ -9,13 +9,13 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
 {
     public class StrongholdInspectorView : MonoBehaviour
     {
-        [SerializeField] private StrongholdInspectorViewModelFactory viewModelFactory;
-
-        [SerializeField] private Toggle toggle;
-        [SerializeField] private GameObject windowGameObject;
+        private IDisposable _disposable;
 
         private StrongholdInspectorViewModel _viewModel;
-        private IDisposable _disposable;
+
+        [SerializeField] private Toggle toggle;
+        [SerializeField] private StrongholdInspectorViewModelFactory viewModelFactory;
+        [SerializeField] private GameObject windowGameObject;
 
         private void OnEnable()
         {
@@ -31,7 +31,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.StrongholdInspector
         {
             windowGameObject.SetActive(isVisible);
         }
-        
+
         private void OnDataChanged([CanBeNull] StrongholdData data)
         {
             toggle.isOn = data != null;

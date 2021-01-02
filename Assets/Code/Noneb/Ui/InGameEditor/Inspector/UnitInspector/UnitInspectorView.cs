@@ -5,7 +5,6 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using Unit = Noneb.Core.Game.Units.Unit;
 
 namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
 {
@@ -14,7 +13,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
         private IDisposable _disposable;
 
 
-        private BoardItemInspectorViewModel<Unit, UnitData> _viewModel;
+        private UnitInspectorViewModel _viewModel;
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private Image iconImage;
         [SerializeField] private TextMeshProUGUI nameText;
@@ -27,7 +26,7 @@ namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
             _viewModel = viewModelFactory.Create();
             _disposable = new CompositeDisposable
             {
-                _viewModel.TypeTLiveData.Subscribe(OnUpdatePreset),
+                _viewModel.UnitDataLiveData.Subscribe(OnUpdatePreset),
                 _viewModel.VisibilityLiveData.Subscribe(OnUpdateVisibility)
             };
         }

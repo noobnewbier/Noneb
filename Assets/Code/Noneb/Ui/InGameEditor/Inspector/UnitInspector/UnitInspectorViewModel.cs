@@ -2,30 +2,30 @@
 using Experiment.CrossPlatformLiveData;
 using Experiment.NoobUniRxPlugin;
 using Noneb.Core.Game.Common;
-using Noneb.Core.Game.Common.BoardItems;
 using Noneb.Core.Game.Common.TagInterface;
 using Noneb.Core.Game.GameState.Maps;
 using Noneb.Core.Game.Maps;
 using Noneb.Core.Game.Maps.MapModification;
+using Noneb.Core.Game.Strongholds;
+using Noneb.Core.Game.Units;
 using Noneb.Core.InGameEditor.Data;
 using UniRx;
+using Unit = Noneb.Core.Game.Units.Unit;
 
-namespace Noneb.Ui.InGameEditor.Inspector
+namespace Noneb.Ui.InGameEditor.Inspector.UnitInspector
 {
-    public class BoardItemInspectorViewModel<TItem, TData> : IDisposable
-        where TData : BoardItemData
-        where TItem : BoardItem<TData>
+    public class UnitInspectorViewModel : IDisposable
     {
         private readonly IDisposable _coordinateDisposable;
         private readonly IDisposable _disposable;
         private IInspectable _currentlyInspected;
         private Map _currentMap;
 
-        public BoardItemInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository,
-                                           IMapGetService mapGetService,
-                                           IMapEditingService mapEditingService)
+        public UnitInspectorViewModel(IDataGetRepository<IInspectable> currentInspectableGetRepository,
+                                      IMapGetService mapGetService,
+                                      IMapEditingService mapEditingService)
         {
-            TypeTLiveData = new LiveData<TData>();
+            UnitDataLiveData = new LiveData<UnitData>();
             VisibilityLiveData = new LiveData<bool>();
 
             _disposable = new CompositeDisposable
@@ -47,7 +47,7 @@ namespace Noneb.Ui.InGameEditor.Inspector
             };
         }
 
-        public ILiveData<TData> TypeTLiveData { get; }
+        public ILiveData<UnitData> UnitDataLiveData { get; }
         public ILiveData<bool> VisibilityLiveData { get; }
 
         public void Dispose()
@@ -59,26 +59,26 @@ namespace Noneb.Ui.InGameEditor.Inspector
         {
             _currentMap = m;
 
-            UpdateTData();
+            UpdateUnitData();
         }
 
         private void OnMapEdited()
         {
-            if (_currentlyInspected is InspectableCoordinate) UpdateTData();
+            if (_currentlyInspected is InspectableCoordinate) UpdateUnitData();
         }
 
         private void OnInspectableUpdate(IInspectable inspectable)
         {
             _currentlyInspected = inspectable;
-            UpdateTData();
+            UpdateUnitData();
         }
 
-        private void UpdateTData()
+        private void UpdateUnitData()
         {
-            if (TryGetTFromInspectable(_currentlyInspected, out var t))
+            if (TryGetUnitFromInspectable(_currentlyInspected, out var data))
             {
                 UpdateVisibility(true);
-                UpdateInspectable(t);
+                UnitDataLiveData.PostValue(data);
             }
             else
             {
@@ -86,27 +86,31 @@ namespace Noneb.Ui.InGameEditor.Inspector
             }
         }
 
-        private bool TryGetTFromInspectable(IInspectable inspectable, out TData t)
+        private bool TryGetUnitFromInspectable(IInspectable inspectable, out UnitData data)
         {
             switch (inspectable)
             {
                 case InspectableCoordinate inspectableCoordinate:
-                    var hasItem = _currentMap.TryGet<TItem>(inspectableCoordinate.Coordinate, out var item);
-                    t = item?.Data;
+                    if (_currentMap.TryGet<Unit>(inspectableCoordinate.Coordinate, out var unit))
+                    {
+                        data = unit?.Data;
+                        return true;
+                    }
+                    else if (_currentMap.TryGet<Stronghold>(inspectableCoordinate.Coordinate, out var stronghold))
+                    {
+                        data = stronghold?.Data?.UnitData;
+                        return true;
+                    }
 
-                    return hasItem;
-                case PaletteData<Preset<TData>> paletteData:
-                    t = paletteData.Data.Data;
+                    data = default;
+                    return false;
+                case PaletteData<Preset<UnitData>> paletteData:
+                    data = paletteData.Data.Data;
                     return true;
                 default:
-                    t = default;
+                    data = default;
                     return false;
             }
-        }
-
-        private void UpdateInspectable(TData tData)
-        {
-            TypeTLiveData.PostValue(tData);
         }
 
         private void UpdateVisibility(bool isVisible)

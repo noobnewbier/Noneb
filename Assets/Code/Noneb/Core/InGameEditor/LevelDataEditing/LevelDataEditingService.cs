@@ -72,8 +72,8 @@ namespace Noneb.Core.InGameEditor.LevelDataEditing
                     CreateStrongholdInIndex(levelData, index);
                     ClearUnitAndConstructInIndex(levelData, index);
 
-                    observer.OnCompleted();
                     observer.OnNext(Unit.Default);
+                    observer.OnCompleted();
 
                     return Disposable.Empty;
                 }

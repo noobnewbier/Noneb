@@ -1,4 +1,6 @@
-﻿using Noneb.Core.Game.Common.Constants;
+﻿using Experiment.NoobAutoLinker.Core;
+using Noneb.Core.Game.Commands;
+using Noneb.Core.Game.Common.Constants;
 using Noneb.Core.Game.Common.Providers;
 using Noneb.Core.Game.GameState.LevelDatas;
 using Noneb.Core.Game.GameState.MapConfigs;
@@ -17,20 +19,28 @@ namespace Noneb.Core.InGameEditor.LevelEditing
     )]
     public class LevelEditingServiceProvider : ScriptableObject, IObjectProvider<ILevelEditingService>
     {
-        [FormerlySerializedAs("levelDataModificationServiceProvider")] [SerializeField] private LevelDataEditingServiceProvider levelDataEditingServiceProvider;
-        [FormerlySerializedAs("mapModificationServiceProvider")] [SerializeField] private MapEditingServiceProvider mapEditingServiceProvider;
-        [SerializeField] private MapConfigRepositoryProvider mapConfigRepositoryProvider;
-        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
+        private ILevelEditingService _cache;
+        [AutoLink] [SerializeField] private CommandExecutionServiceProvider commandExecutionServiceProvider;
+
+        [FormerlySerializedAs("levelDataModificationServiceProvider")] [SerializeField]
+        private LevelDataEditingServiceProvider levelDataEditingServiceProvider;
+
         [SerializeField] private LevelDataRepositoryProvider levelDataRepositoryProvider;
 
-        private ILevelEditingService _cache;
+        [SerializeField] private MapConfigRepositoryProvider mapConfigRepositoryProvider;
+
+        [FormerlySerializedAs("mapModificationServiceProvider")] [SerializeField]
+        private MapEditingServiceProvider mapEditingServiceProvider;
+
+        [SerializeField] private MapRepositoryProvider mapRepositoryProvider;
 
         public ILevelEditingService Provide() => _cache ?? (_cache = new LevelEditingService(
-            levelDataEditingServiceProvider.Provide(),
-            mapEditingServiceProvider.Provide(),
-            mapConfigRepositoryProvider.Provide(),
-            mapRepositoryProvider.Provide(),
-            levelDataRepositoryProvider.Provide()
-        ));
+                                                     levelDataEditingServiceProvider.Provide(),
+                                                     mapEditingServiceProvider.Provide(),
+                                                     mapConfigRepositoryProvider.Provide(),
+                                                     mapRepositoryProvider.Provide(),
+                                                     levelDataRepositoryProvider.Provide(),
+                                                     ((IObjectProvider<ICommandExecutionService>)commandExecutionServiceProvider).Provide()
+                                                 ));
     }
 }

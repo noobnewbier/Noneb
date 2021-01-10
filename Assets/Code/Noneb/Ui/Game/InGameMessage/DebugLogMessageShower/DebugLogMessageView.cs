@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Experiment.NoobAutoLinker.Core;
+using UnityEngine;
 
 namespace Noneb.Ui.Game.InGameMessage.DebugLogMessageShower
 {
     public class DebugLogMessageView : MonoBehaviour
     {
-        [SerializeField] private DebugLogMessageViewModelFactory viewModelFactory;
+        [AutoLink] [SerializeField] private DebugLogMessageViewModelFactory viewModelFactory;
 
         private IDebugLogMessageViewModel _viewModel;
 

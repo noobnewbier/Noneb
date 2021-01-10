@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490faf7231ba4e0a996df049251caeb7, type: 3}
   m_Name: LevelEditServiceProvider
   m_EditorClassIdentifier: 
-  levelDataModificationServiceProvider: {fileID: 11400000, guid: fad97219199a60746a098395df257e30,
+  commandExecutionServiceProvider: {fileID: 11400000, guid: 4a1d224b1d051df42811306c07c228a7,
     type: 2}
-  mapModificationServiceProvider: {fileID: 11400000, guid: 1e74f1da51a40564aa7e8fe5d3ca012e,
+  levelDataEditingServiceProvider: {fileID: 11400000, guid: fad97219199a60746a098395df257e30,
+    type: 2}
+  levelDataRepositoryProvider: {fileID: 11400000, guid: 3f6535a8ee312ec44be404a8c36be61f,
     type: 2}
   mapConfigRepositoryProvider: {fileID: 11400000, guid: d715e73387a0a8149a439747b1f60abd,
     type: 2}
-  mapRepositoryProvider: {fileID: 11400000, guid: 0db88873f9e14bb4aa41bf99d61c1e9a,
+  mapEditingServiceProvider: {fileID: 11400000, guid: 1e74f1da51a40564aa7e8fe5d3ca012e,
     type: 2}
-  levelDataRepositoryProvider: {fileID: 11400000, guid: 3f6535a8ee312ec44be404a8c36be61f,
+  mapRepositoryProvider: {fileID: 11400000, guid: 0db88873f9e14bb4aa41bf99d61c1e9a,
     type: 2}

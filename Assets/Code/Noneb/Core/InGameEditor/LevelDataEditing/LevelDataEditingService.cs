@@ -11,6 +11,7 @@ namespace Noneb.Core.InGameEditor.LevelDataEditing
     {
         IObservable<Unit> SetUpStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate);
         IObservable<Unit> DestructStronghold(LevelData levelData, MapConfig mapConfig, Coordinate coordinate);
+        IObservable<Unit> ChangeTilePreset(LevelData levelData, MapConfig mapConfig, Coordinate coordinate);
     }
 
     public class LevelDataEditingService : ILevelDataEditingService
@@ -36,6 +37,18 @@ namespace Noneb.Core.InGameEditor.LevelDataEditing
                     observer.OnNext(Unit.Default);
                     observer.OnCompleted();
 
+                    return Disposable.Empty;
+                }
+            );
+        }
+
+        public IObservable<Unit> ChangeTilePreset(LevelData levelData, MapConfig mapConfig, Coordinate coordinate)
+        {
+            return Observable.Create<Unit>(
+                observer =>
+                {
+                    var index = _coordinateService.GetFlattenArrayIndexFromAxialCoordinate(coordinate.X, coordinate.Z, mapConfig);
+//todo: actual implementation
                     return Disposable.Empty;
                 }
             );

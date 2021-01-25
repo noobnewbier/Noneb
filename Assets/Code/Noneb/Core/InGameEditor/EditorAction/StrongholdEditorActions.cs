@@ -1,5 +1,4 @@
 ﻿using System;
-using Noneb.Core.Game.Common.GameAction;
 using Noneb.Core.Game.Coordinates;
 using Noneb.Core.Game.GameState.LevelDatas;
 using Noneb.Core.Game.GameState.MapConfigs;

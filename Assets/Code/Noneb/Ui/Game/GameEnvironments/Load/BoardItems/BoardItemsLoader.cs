@@ -62,7 +62,7 @@ namespace Noneb.Ui.Game.GameEnvironments.Load.BoardItems
         {
             var service = GetService();
 
-            service.Load(
+            service.LoadDatas(
                 datas,
                 config.GetMap2DActualWidth(),
                 config.GetMap2DActualHeight()

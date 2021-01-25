@@ -9,7 +9,7 @@ namespace Noneb.Core.Game.GameEnvironments.Load
 {
     public interface ILoadBoardItemsService<in TBoardItemData> where TBoardItemData : BoardItemData
     {
-        void Load(IReadOnlyList<TBoardItemData> boardItemDatas,
+        void LoadDatas(IReadOnlyList<TBoardItemData> boardItemDatas,
                   int mapWidth,
                   int mapHeight);
     }
@@ -31,7 +31,7 @@ namespace Noneb.Core.Game.GameEnvironments.Load
             _boardItemsSetRepository = boardItemsSetRepository;
         }
 
-        public void Load(IReadOnlyList<TBoardItemData> boardItemDatas,
+        public void LoadDatas(IReadOnlyList<TBoardItemData> boardItemDatas,
                          int mapWidth,
                          int mapHeight)
         {

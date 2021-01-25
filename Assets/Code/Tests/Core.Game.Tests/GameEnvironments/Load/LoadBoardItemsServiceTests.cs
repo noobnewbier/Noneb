@@ -57,7 +57,7 @@ namespace Core.Game.Tests.GameEnvironments.Load
             const int mapWidth = 3;
             const int mapHeight = 3;
 
-            _loadService.Load(datas, mapWidth, mapHeight);
+            _loadService.LoadDatas(datas, mapWidth, mapHeight);
 
             _itemRepositoryMock.Verify(r => r.Set(It.Is<List<DummyBoardItem>>(actual => actual.SequenceEqual(_expectedAnswer))));
         }
@@ -69,7 +69,7 @@ namespace Core.Game.Tests.GameEnvironments.Load
             const int mapWidth = 0;
             const int mapHeight = 0;
 
-            _loadService.Load(datas, mapWidth, mapHeight);
+            _loadService.LoadDatas(datas, mapWidth, mapHeight);
 
             _itemRepositoryMock.Verify(r => r.Set(It.Is<List<DummyBoardItem>>(actual => !actual.Any())));
         }
@@ -83,7 +83,7 @@ namespace Core.Game.Tests.GameEnvironments.Load
 
             void CallWithMoreDataThanMapCanHold()
             {
-                _loadService.Load(datas, mapWidth, mapHeight);
+                _loadService.LoadDatas(datas, mapWidth, mapHeight);
             }
             
             Assert.That(CallWithMoreDataThanMapCanHold, Throws.TypeOf<ArgumentException>());
